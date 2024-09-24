@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
+    Title="LoginView"
+    Padding="0"
+    x:DataType="viewModels:LoginViewModel"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+    <ScrollView>
+        <Grid
+            x:Name="mainGrid"
+            ColumnDefinitions="*"
+            RowDefinitions="0.30*, *, auto">
+
+            <Grid Grid.Row="0">
+                <Image
+                    Aspect="AspectFill"
+                    HorizontalOptions="FillAndExpand"
+                    Source="bg_login_wave.svg"
+                    VerticalOptions="FillAndExpand" />
+
+                <Image
+                    Aspect="AspectFit"
+                    HorizontalOptions="Center"
+                    Source="logo_naturisa_white.svg"
+                    VerticalOptions="Center"
+                    WidthRequest="256" />
+            </Grid>
+
+            <VerticalStackLayout
+                Grid.Row="1"
+                Padding="16"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <VerticalStackLayout Spacing="24">
+                    <VerticalStackLayout Spacing="8">
+                        <Label
+                            Style="{StaticResource RegularLabel}"
+                            Text="Usuario"
+                            TextColor="{StaticResource Primary900}" />
+                        <Frame
+                            Padding="8"
+                            BackgroundColor="Transparent"
+                            BorderColor="{StaticResource Slate400}"
+                            HasShadow="False"
+                            HeightRequest="62">
+                            <Entry
+                                x:Name="UsernameEntry"
+                                FontSize="16"
+                                IsSpellCheckEnabled="False"
+                                Placeholder="Ingresa tu usuario"
+                                PlaceholderColor="{StaticResource Black-text-light}"
+                                Text="{Binding UserName}"
+                                TextColor="{StaticResource Black-text}" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="8">
+                        <Label
+                            Style="{StaticResource RegularLabel}"
+                            Text="Contraseña"
+                            TextColor="{StaticResource Primary900}" />
+                        <Frame
+                            Padding="8"
+                            Background="Transparent"
+                            BorderColor="{StaticResource Slate400}"
+                            HasShadow="False"
+                            HeightRequest="62">
+                            <Grid ColumnDefinitions="*, auto" ColumnSpacing="8">
+                                <Entry
+                                    x:Name="PasswordEntry"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    IsPassword="{Binding IsPassword}"
+                                    IsSpellCheckEnabled="False"
+                                    Placeholder="Ingresa tu contraseña"
+                                    PlaceholderColor="{StaticResource Black-text-light}"
+                                    Text="{Binding Password}"
+                                    TextColor="{StaticResource Black-text}" />
+                                <ImageButton
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent"
+                                    Command="{Binding ShowPasswordEntryCommand}"
+                                    HeightRequest="24"
+                                    Source="{Binding ImgBtnPassword}" />
+                            </Grid>
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary700}"
+                        BorderColor="Transparent"
+                        CornerRadius="8"
+                        HeightRequest="62"
+                        HorizontalOptions="FillAndExpand">
+                        <Grid ColumnDefinitions="*" HorizontalOptions="Fill">
+                            <Button
+                                Grid.Column="0"
+                                BackgroundColor="Transparent"
+                                Clicked="OnLoginButtonClicked"
+                                FontAttributes="Bold"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="{Binding IsVisibleBtn}"
+                                Text="Iniciar sesión"
+                                TextColor="White" />
+                            <ActivityIndicator
+                                Grid.Column="0"
+                                HeightRequest="32"
+                                IsRunning="{Binding IsBusy}"
+                                IsVisible="{Binding IsBusy}"
+                                Color="White" />
+                        </Grid>
+                    </Frame>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+
+            <Label
+                Grid.Row="2"
+                Padding="0,16"
+                HorizontalOptions="Center"
+                Text="Versión 0.1.0" />
+        </Grid>
+
+    </ScrollView>
+</ContentPage>

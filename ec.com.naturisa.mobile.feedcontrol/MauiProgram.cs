@@ -1,0 +1,93 @@
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+
+namespace ec.com.naturisa.mobile.feedcontrol
+{
+    public static class MauiProgram
+    {
+        public static MauiApp CreateMauiApp()
+        {
+            var builder = MauiApp.CreateBuilder();
+            builder
+                .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
+
+            //SERVICES
+            builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddSingleton<IToastService, ToastService>();
+
+            #region ViewModels
+            builder.Services.AddSingleton<LoginViewModel>();
+            builder.Services.AddSingleton<FeedingPoolViewModel>();
+            builder.Services.AddSingleton<FeedingPoolDetailViewModel>();
+            builder.Services.AddSingleton<FeedingRemainingViewModel>();
+            builder.Services.AddSingleton<FeedingRemainingDetailViewModel>();
+            builder.Services.AddSingleton<FarmInventoryViewModel>();
+            builder.Services.AddSingleton<WallInventoryViewModel>();
+            builder.Services.AddSingleton<FarmStoreDetailViewModel>();
+            builder.Services.AddSingleton<InventoryIncomeViewModel>();
+            builder.Services.AddSingleton<FeedingMovementsViewModel>();
+
+            // DISTRIBUTION
+            builder.Services.AddSingleton<FeedingPoolOneStepViewModel>();
+            builder.Services.AddTransient<FeedingPoolTwoStepViewModel>();
+            builder.Services.AddSingleton<StartOfRouteViewModel>();
+            builder.Services.AddTransient<FoodReceptionByCarrierViewModel>();
+            builder.Services.AddSingleton<WarehouseTransferViewModel>();
+            builder.Services.AddTransient<PoolTransferViewModel>();
+            builder.Services.AddTransient<NewTransferOneStepViewModel>();
+            builder.Services.AddTransient<NewTransferTwoStepViewModel>();
+            builder.Services.AddTransient<NewTransferThreeStepViewModel>();
+            builder.Services.AddTransient<TransferDetailViewModel>();
+
+            #endregion
+
+            #region Views
+            builder.Services.AddSingleton<NotificationsDetailView>();
+            builder.Services.AddSingleton<SelectFarmView>();
+            builder.Services.AddSingleton<ProfileDetailView>();
+
+            builder.Services.AddSingleton<LoginView>();
+            builder.Services.AddSingleton<FeedingPoolView>();
+            builder.Services.AddSingleton<FeedingPoolDetailView>();
+            builder.Services.AddSingleton<FeedingRemainingView>();
+            builder.Services.AddSingleton<FeedingRemainingDetailView>();
+            builder.Services.AddSingleton<InventoryIncomeView>();
+            builder.Services.AddSingleton<FarmInventoryView>();
+            builder.Services.AddSingleton<WallInventoryView>();
+            builder.Services.AddSingleton<FarmStoreDetailView>();
+            builder.Services.AddSingleton<FeedingMovementsView>();
+            builder.Services.AddSingleton<FeedingMovementsDetailView>();
+            builder.Services.AddSingleton<PoolFeedingByDay>();
+            builder.Services.AddSingleton<ReceptionOfFoodByCarrier>();
+
+            // DISTRIBUTION
+            builder.Services.AddSingleton<FeedingPoolOneStepView>();
+            builder.Services.AddTransient<FeedingPoolTwoStepView>();
+            builder.Services.AddSingleton<StartOfRouteView>();
+            builder.Services.AddTransient<WarehouseTransferView>();
+            builder.Services.AddTransient<TransferDetailView>();
+            builder.Services.AddTransient<PoolTransferView>();
+            builder.Services.AddTransient<NewTransferOneStepView>();
+            builder.Services.AddTransient<NewTransferTwoStepView>();
+            builder.Services.AddTransient<NewTransferThreeStepView>();
+
+            #endregion
+
+            #region HANDLERS
+            FormHandler.RemoveBorders();
+            #endregion
+
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
+
+            return builder.Build();
+        }
+    }
+}

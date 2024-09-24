@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.FeedingRemainingDetailView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Estimación de sobrante">
+    <Shell.TitleView>
+        <Label
+            Style="{StaticResource LargeLabel}"
+            Text="Estimación de sobrante"
+            TextColor="{StaticResource Primary900}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+
+    <ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Never">
+        <Grid RowDefinitions="auto, *, auto">
+
+            <VerticalStackLayout
+                Grid.Column="1"
+                Spacing="6"
+                VerticalOptions="Start">
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Start"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource LargeLabel}"
+                    Text="MA008"
+                    TextColor="{StaticResource Primary700}" />
+
+                <Label
+                    Margin="0,0,0,2"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Orden de alimentación"
+                    TextColor="{StaticResource Gray400}" />
+
+                <Label
+                    FontAttributes="None"
+                    MaximumWidthRequest="1000"
+                    Style="{StaticResource RegularLabel}"
+                    Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM. -&gt; 30 SACOS"
+                    TextColor="{StaticResource Primary900}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="1">
+                <Label
+                    Margin="0,12,0,4"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Sacos sobrantes en tolvas"
+                    TextColor="{StaticResource Primary900}" />
+
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="62"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid
+                        ColumnDefinitions="*, 70"
+                        ColumnSpacing="8"
+                        HorizontalOptions="Fill">
+                        <Entry
+                            Grid.Column="0"
+                            FontSize="16"
+                            Keyboard="Numeric"
+                            MaxLength="2"
+                            Placeholder="Ingresa el número de sacos"
+                            PlaceholderColor="{StaticResource Black-text-light}"
+                            TextColor="{StaticResource Black-text}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource Slate400}"
+                            FontAttributes="Bold"
+                            HeightRequest="60"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource RegularBlackLabel}"
+                            Text="0 KG"
+                            TextColor="{StaticResource Primary900}"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="80" />
+                    </Grid>
+                </Frame>
+
+                <Label
+                    Margin="0,12,0,4"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Tolvas con fallas"
+                    TextColor="{StaticResource Primary900}" />
+
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="62"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid
+                        ColumnDefinitions="*, 70"
+                        ColumnSpacing="8"
+                        HorizontalOptions="Fill">
+                        <Entry
+                            Grid.Column="0"
+                            FontSize="16"
+                            Keyboard="Numeric"
+                            MaxLength="2"
+                            Placeholder="Ingresa el número de tolvas con fallas"
+                            PlaceholderColor="{StaticResource Black-text-light}"
+                            TextColor="{StaticResource Black-text}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                    </Grid>
+                </Frame>
+
+                <Label
+                    Margin="0,12,0,4"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Observación (opcional)"
+                    TextColor="{StaticResource Primary900}" />
+
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="80"
+                    VerticalOptions="StartAndExpand">
+                    <VerticalStackLayout>
+                        <Editor
+                            AutoSize="Disabled"
+                            FontSize="16"
+                            Keyboard="Text"
+                            MaxLength="500"
+                            Placeholder="Escriba alguna observación"
+                            PlaceholderColor="{StaticResource Black-text-light}"
+                            TextColor="{StaticResource Black-text}"
+                            VerticalTextAlignment="Start" />
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+
+            <Frame
+                Grid.Row="2"
+                Margin="0,16,0,0"
+                Padding="0"
+                BackgroundColor="{StaticResource Primary700}"
+                BorderColor="Transparent"
+                CornerRadius="8"
+                HeightRequest="52"
+                HorizontalOptions="FillAndExpand">
+                <Grid
+                    ColumnDefinitions="*"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill">
+                    <Button
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        SemanticProperties.Hint="Registrar sobrante"
+                        Text="Registrar sobrante"
+                        TextColor="White" />
+                </Grid>
+            </Frame>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

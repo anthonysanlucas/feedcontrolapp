@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.WarehouseTransferView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Title="WarehouseTransferView"
+    x:DataType="viewModels:WarehouseTransferViewModel">
+    <Grid RowDefinitions="Auto, Auto, *">
+
+        <Frame
+            Grid.Row="0"
+            Margin="0"
+            BorderColor="{StaticResource Secondary}"
+            HeightRequest="70">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CreateTransferCommand}" />
+            </Frame.GestureRecognizers>
+
+            <HorizontalStackLayout
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="8">
+                <Frame
+                    Padding="4"
+                    BackgroundColor="{StaticResource Primary900}"
+                    HeightRequest="32"
+                    WidthRequest="32">
+                    <Image Source="icon_add_white.svg" WidthRequest="16" />
+                </Frame>
+
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Realizar una transferencia"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Frame>
+
+        <!--  Label for Movimientos  -->
+        <Label
+            Grid.Row="1"
+            Margin="0,16,0,8"
+            Text="Transferencias" />
+
+        <VerticalStackLayout Grid.Row="2">
+            <Frame
+                Margin="0,8"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
+                </Frame.GestureRecognizers>
+
+                <Grid
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="8"
+                    RowDefinitions="Auto,Auto,Auto"
+                    RowSpacing="8">
+
+                    <!--  Header Row with Feed Information  -->
+                    <VerticalStackLayout Grid.Column="0">
+
+                        <Label
+                            FontAttributes="None"
+                            Text="ID Guia"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontAttributes="None"
+                            Style="{StaticResource LargeLabel}"
+                            Text="75610"
+                            TextColor="{StaticResource Primary900}"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <!--  Status Box and Label  -->
+                    <components:StatusIndicator
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Status="EN CURSO"
+                        VerticalOptions="Center" />
+
+                    <!--  Row for TotalSacks and TotalWeight  -->
+                    <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                        <Label
+                            FontAttributes="None"
+                            Text="Cantidad total"
+                            VerticalOptions="Center" />
+
+                        <HorizontalStackLayout>
+                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource RegularLabel}"
+                                Text="264 SACOS  - "
+                                TextColor="{StaticResource Primary900}"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource RegularLabel}"
+                                Text="6,600 KG"
+                                TextColor="{StaticResource Primary900}"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </VerticalStackLayout>
+
+                    <!--  Row for Route Information  -->
+                    <Grid
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        ColumnDefinitions="Auto,Auto,*"
+                        ColumnSpacing="8"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="6">
+
+                        <!--  Route Header  -->
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="None"
+                            Text="Ruta"
+                            VerticalOptions="Center" />
+
+                        <!--  Routes Section  -->
+                        <HorizontalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Spacing="4">
+                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource RegularLabel}"
+                                Text="PESJOYA"
+                                TextColor="{StaticResource Primary700}"
+                                VerticalOptions="Center" />
+
+                            <Image Source="trending_flat_icon.svg" VerticalOptions="Center" />
+
+                            <Label
+                                Margin="0,0,4,0"
+                                FontAttributes="None"
+                                Style="{StaticResource RegularLabel}"
+                                Text="MARICULTURA"
+                                TextColor="{StaticResource Primary}"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+
+
+    </Grid>
+</ContentPage>

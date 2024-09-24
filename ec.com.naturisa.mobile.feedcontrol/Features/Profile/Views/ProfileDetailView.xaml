@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Profile.Views.ProfileDetailView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="ProfileDetailView"
+    Padding="0"
+    Shell.BackgroundColor="{StaticResource Primary900}"
+    Shell.ForegroundColor="{StaticResource White}">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="Bold"
+            Style="{StaticResource LargeLabel}"
+            Text="Perfil"
+            TextColor="{StaticResource White}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+
+    <ScrollView>
+        <Grid RowDefinitions="Auto, Auto">
+            <!--  Imagen y nombre del usuario  -->
+            <VerticalStackLayout
+                Grid.Row="0"
+                Padding="20"
+                BackgroundColor="{StaticResource Primary900}">
+                <Image
+                    Grid.Row="0"
+                    Margin="0,10"
+                    Aspect="AspectFill"
+                    HeightRequest="100"
+                    HorizontalOptions="Center"
+                    Source="icon_profile_placeholder.svg"
+                    VerticalOptions="Center"
+                    WidthRequest="100" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Padding="0,10,0,0"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource LargeLabel}"
+                        Text="Anthony San Lucas"
+                        TextColor="{StaticResource White}" />
+                    <Label
+                        FontSize="Medium"
+                        HorizontalOptions="Center"
+                        Text="Desarrollador Mobile"
+                        TextColor="{StaticResource OnSecondary}" />
+                </StackLayout>
+            </VerticalStackLayout>
+
+            <!--  Información personal  -->
+            <VerticalStackLayout Grid.Row="1">
+                <Frame>
+                    <StackLayout
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="10"
+                        BackgroundColor="White"
+                        Spacing="5">
+                        <Label
+                            Style="{StaticResource RegularLabel}"
+                            Text="Información Personal"
+                            TextColor="{StaticResource OnSecondary}" />
+                        <Label Text="Fecha de Nacimiento: 27 de diciembre del 2001" />
+                        <Label Text="Teléfono: 0982694256" />
+                        <Label Text="Correo electrónico: asanlucas@naturisa.com.ec" />
+                        <Label Text="Estado Civil: Soltero" />
+                        <Label Text="Género: Masculino" />
+                        <Label Text="Edad: 22" />
+                        <Label Text="Licencia: No" />
+                        <Label Text="Discapacidad: No" />
+                    </StackLayout>
+                </Frame>
+
+                <!--  Información laboral  -->
+                <StackLayout
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Padding="10"
+                    BackgroundColor="White"
+                    Spacing="5">
+                    <Label
+                        Style="{StaticResource RegularLabel}"
+                        Text="Información Laboral"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Label Text="Compañía: Naturisa Oficina" />
+                    <Label Text="Cargo: Ingeniero Software Jr" />
+                    <Label Text="Correo corporativo: amacias@naturisa.com.ec" />
+                    <Label Text="Teléfono corporativo: Sin Registro" />
+                    <Label Text="Fecha de entrada: 01/03/2024" />
+                    <Label Text="Antigüedad: 0 años y 6 meses" />
+                </StackLayout>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+</ContentPage>

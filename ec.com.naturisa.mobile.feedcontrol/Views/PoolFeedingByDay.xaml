@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.PoolFeedingByDay"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Alimentación por piscina">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="Bold"
+            Style="{StaticResource LargeLabel}"
+            Text="Plan de alimentación diaria"
+            TextColor="{StaticResource Primary900}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+    <ScrollView>
+        <VerticalStackLayout Spacing="8">
+            <Label
+                FontAttributes="None"
+                Style="{StaticResource LargeLabel}"
+                Text="Martes, 17 de septiembre"
+                TextColor="{StaticResource Primary900}" />
+
+            <Label Text="Piscinas" />
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA001"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="10 SACOS - 250 KG"
+                        TextColor="{StaticResource Primary900}" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="ALIMENTO INICIADOR AQUAXCEL 0.6 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="20 SACOS - 500 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA002"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="30 SACOS - 750 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA004"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="25 SACOS - 625 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA005"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="30 SACOS - 750 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA006"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="30 SACOS - 750 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA007"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="30 SACOS - 750 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA008"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="30 SACOS - 750 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                BackgroundColor="{StaticResource Secondary}"
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="StartAndExpand"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource LargeLabel}"
+                        Text="MA009"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        MaximumWidthRequest="600"
+                        Style="{StaticResource RegularLabel}"
+                        Text="30 SACOS - 750 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

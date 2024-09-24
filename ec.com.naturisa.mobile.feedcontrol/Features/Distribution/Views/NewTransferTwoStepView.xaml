@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewTransferTwoStepView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Title="Nueva transferencia"
+    x:DataType="viewModels:NewTransferTwoStepViewModel">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="Bold"
+            Style="{StaticResource LargeLabel}"
+            Text="Nueva transferencia"
+            TextColor="{StaticResource Primary900}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto" RowSpacing="24">
+        <!--  Barra de Progreso  -->
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="auto,auto"
+            RowSpacing="8">
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                <Frame
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary100}"
+                    CornerRadius="100"
+                    HasShadow="False"
+                    HeightRequest="32"
+                    VerticalOptions="Center"
+                    WidthRequest="32">
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="1"
+                        TextColor="{StaticResource Primary900}"
+                        VerticalOptions="Center" />
+                </Frame>
+
+                <Image Source="icon_trending_flat.svg" />
+
+                <Frame
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary700}"
+                    CornerRadius="100"
+                    HasShadow="False"
+                    HeightRequest="32"
+                    VerticalOptions="Center"
+                    WidthRequest="32">
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="2"
+                        TextColor="{StaticResource White}"
+                        VerticalOptions="Center" />
+                </Frame>
+
+                <Image Source="icon_trending_flat.svg" />
+
+                <Frame
+                    Padding="0"
+                    BackgroundColor="{StaticResource Primary100}"
+                    CornerRadius="100"
+                    HasShadow="False"
+                    HeightRequest="32"
+                    VerticalOptions="Center"
+                    WidthRequest="32">
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        Text="3"
+                        TextColor="{StaticResource Primary900}"
+                        VerticalOptions="Center" />
+                </Frame>
+            </HorizontalStackLayout>
+
+            <Label
+                Grid.Row="1"
+                HorizontalOptions="Center"
+                Text="Ingresa el detalle de transferencia"
+                TextColor="{StaticResource Primary900}" />
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="16">
+            <!--  Seleccionar Producto  -->
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    FontAttributes="None"
+                    Text="Producto"
+                    TextColor="{StaticResource Primary900}" />
+                <Frame
+                    Padding="8"
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="62">
+                    <Picker
+                        Title="Seleccionar producto"
+                        FontSize="16"
+                        ItemsSource="{Binding AvailableProducts}"
+                        SelectedItem="{Binding SelectedProduct}"
+                        TextColor="{StaticResource Black-text}" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <!--  Cantidad  -->
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    FontAttributes="None"
+                    Text="Cantidad (SACOS)"
+                    TextColor="{StaticResource Primary900}" />
+                <Frame
+                    Padding="8"
+                    BackgroundColor="Transparent"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="62">
+                    <Entry
+                        FontSize="16"
+                        Keyboard="Numeric"
+                        Placeholder="Ingresa cantidad en sacos"
+                        Text="{Binding Quantity}"
+                        TextColor="{StaticResource Black-text}" />
+                </Frame>
+            </VerticalStackLayout>
+
+            <!--  Botón para agregar producto  -->
+            <Button
+                BackgroundColor="Transparent"
+                BorderColor="{StaticResource Primary}"
+                BorderWidth="1"
+                Command="{Binding AddProductCommand}"
+                CornerRadius="8"
+                FontAttributes="None"
+                HeightRequest="50"
+                HorizontalOptions="EndAndExpand"
+                MaximumWidthRequest="256"
+                Text="Agregar producto"
+                TextColor="{StaticResource Primary}"
+                WidthRequest="200" />
+
+        </VerticalStackLayout>
+
+        <!--  Listado de productos agregados  -->
+        <Grid Grid.Row="2" RowDefinitions="Auto, *">
+            <!--  Encabezado de la tabla  -->
+            <Frame
+                Grid.Column="0"
+                Padding="8"
+                BackgroundColor="{StaticResource OnSecondary}">
+                <Grid ColumnDefinitions="*, auto" ColumnSpacing="0">
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Producto"
+                        TextColor="White" />
+
+                    <Label
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        Text="Cantidad"
+                        TextColor="White" />
+                </Grid>
+            </Frame>
+            <CollectionView Grid.Row="1" ItemsSource="{Binding AddedProducts}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Product">
+                        <Frame Padding="8">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="{Binding ProductName}"
+                                    TextColor="{StaticResource Primary900}" />
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="{Binding ProductDetails}" TextColor="{StaticResource Primary700}" />
+                                </VerticalStackLayout>
+                            </FlexLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+        <!--  Botón de Confirmación  -->
+        <Frame
+            Grid.Row="3"
+            Padding="0"
+            BackgroundColor="{StaticResource Primary700}"
+            BorderColor="Transparent"
+            CornerRadius="8"
+            HeightRequest="62"
+            HorizontalOptions="FillAndExpand">
+            <Grid ColumnDefinitions="*" HorizontalOptions="Fill">
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    Command="{Binding GoToNewTransferThreeStepCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Siguiente"
+                    TextColor="White" />
+                <ActivityIndicator
+                    Grid.Column="0"
+                    HeightRequest="32"
+                    IsRunning="{Binding IsBusy}"
+                    IsVisible="{Binding IsBusy}"
+                    Color="White" />
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

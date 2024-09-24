@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ec.com.naturisa.mobile.feedcontrol.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:distributionViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
+    xmlns:views="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views"
+    Title="ec.com.naturisa.mobile.feedcontrol"
+    x:DataType="viewModels:AppShellViewModel"
+    Shell.FlyoutBackgroundColor="{StaticResource Primary900}"
+    Shell.FlyoutBehavior="Flyout">
+
+    <Shell.TitleView>
+        <Grid
+            ColumnDefinitions="*, auto, auto"
+            ColumnSpacing="8"
+            VerticalOptions="FillAndExpand">
+            <HorizontalStackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
+                <BoxView
+                    Margin="0,6,8,0"
+                    BackgroundColor="{StaticResource Green500}"
+                    CornerRadius="8"
+                    HeightRequest="12"
+                    VerticalOptions="Start"
+                    WidthRequest="12" />
+                <VerticalStackLayout Spacing="2">
+                    <Label
+                        FontAttributes="Bold"
+                        Style="{StaticResource LargeLabel}"
+                        Text="Hola, Anthony"
+                        TextColor="{StaticResource Primary900}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                    <Label Text="24, septiembre del 2024" TextColor="{StaticResource OnSecondary}" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <!--  Selected Farm  -->
+            <Frame
+                Grid.Column="1"
+                Padding="8"
+                BackgroundColor="{StaticResource Primary700}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OpenSelectFarmViewCommand}" />
+                </Frame.GestureRecognizers>
+
+                <Grid ColumnDefinitions="16, auto" ColumnSpacing="4">
+                    <Image Source="icon_location_on.svg" WidthRequest="16" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource RegularLabel}"
+                        Text="MA"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+
+            <HorizontalStackLayout Grid.Column="2">
+                <ImageButton
+                    Command="{Binding OpenNotificationsDetailViewCommand}"
+                    HeightRequest="24"
+                    Source="icon_notifications.svg" />
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
+    <!--  Custom FlyoutItem  -->
+    <Shell.ItemTemplate>
+        <DataTemplate x:DataType="models:FlyoutItem">
+            <Grid
+                Margin="0,4"
+                Padding="16"
+                ColumnDefinitions="0.2*, 0.8*">
+                <Image HeightRequest="16" Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!--  Custom MenuItem  -->
+    <Shell.MenuItemTemplate>
+        <DataTemplate x:DataType="models:FlyoutItem">
+            <Grid
+                Margin="0,4"
+                Padding="16"
+                ColumnDefinitions="0.2*, 0.8*">
+                <Image HeightRequest="16" Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout Margin="0,16">
+            <VerticalStackLayout.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding OpenProfileDetailViewCommand}" />
+            </VerticalStackLayout.GestureRecognizers>
+            <StackLayout
+                Padding="24,32"
+                Orientation="Horizontal"
+                VerticalOptions="CenterAndExpand">
+                <Image
+                    Margin="0,0,10,0"
+                    Aspect="AspectFill"
+                    HeightRequest="50"
+                    Source="icon_profile_placeholder.svg"
+                    VerticalOptions="Center"
+                    WidthRequest="50" />
+                <StackLayout>
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="Anthony San Lucas"
+                        TextColor="White" />
+                    <Label
+                        FontSize="Small"
+                        Text="0951601517"
+                        TextColor="White" />
+                </StackLayout>
+            </StackLayout>
+            <BoxView
+                BackgroundColor="{StaticResource SurfaceLowContainer}"
+                HeightRequest="1"
+                HorizontalOptions="FillAndExpand" />
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <!--  Login View  -->
+    <FlyoutItem FlyoutItemIsVisible="False">
+        <ShellContent
+            Title="LoginPage"
+            ContentTemplate="{DataTemplate views:LoginView}"
+            Route="login"
+            Shell.FlyoutBehavior="Disabled" />
+    </FlyoutItem>
+
+    <!--  Estimación Sobrante  -->
+    <FlyoutItem
+        Title="Estimación Sobrante"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="icon_search_white.svg">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingRemainingView}" Route="FeedingRemainingDetail" />
+    </FlyoutItem>
+
+    <!--  Alimentación Piscina  -->
+    <FlyoutItem
+        Title="Alimentación Piscina"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="icon_shrimp_white.svg">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingPoolView}" Route="FeedingPool" />
+    </FlyoutItem>
+
+    <!--  Inventario Finca  -->
+    <FlyoutItem
+        Title="Inventario Finca"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="icon_inventory_white.svg">
+        <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
+    </FlyoutItem>
+
+    <!--  Movimientos Balanceado  -->
+    <FlyoutItem
+        Title="Movimientos Balanceado"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="icon_movements_white.svg">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" Route="FeedingMovements" />
+    </FlyoutItem>
+
+    <!--  Transferencias Bodegas  -->
+    <FlyoutItem
+        Title="Transferencias"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="icon_sync_alt_white.svg">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+    </FlyoutItem>
+
+    <MenuItem
+        Command="{Binding OpenProfileDetailViewCommand}"
+        IconImageSource="icon_acount_circle.svg"
+        Text="Mi Perfil" />
+
+    <Shell.FlyoutFooter>
+        <Frame
+            Margin="16"
+            Padding="8"
+            BackgroundColor="Transparent">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+            </Frame.GestureRecognizers>
+            <Grid ColumnDefinitions="0.2*, 0.8*">
+                <Image HeightRequest="16" Source="icon_logout.svg" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Cerrar sesión"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </Frame>
+    </Shell.FlyoutFooter>
+
+</Shell>

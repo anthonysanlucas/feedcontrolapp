@@ -6,57 +6,75 @@
         private List<string> destinationTypes;
 
         [ObservableProperty]
+        private string originBranch;
+
+        [ObservableProperty]
+        private List<string> originWarehouses;
+
+        [ObservableProperty]
+        private List<string> destinationBranches;
+
+        [ObservableProperty]
+        private List<string> destinationWarehouses;
+
+        [ObservableProperty]
         private List<string> destinations;
 
         [ObservableProperty]
-        private List<string> carriers;
+        private List<string> transporters;
 
         [ObservableProperty]
-        private List<string> vehicles;
+        private List<string> vehiclePlates;
 
         [ObservableProperty]
         private string selectedDestinationType;
 
         [ObservableProperty]
-        private string selectedDestination;
+        private string selectedOriginWharehouse;
 
         [ObservableProperty]
-        private string selectedCarrier;
+        private string selectedDestinationBranch;
 
         [ObservableProperty]
-        private string selectedVehicle;
+        private string selectedDestinationWharehouse;
+
+        [ObservableProperty]
+        private string selectedTransporter;
+
+        [ObservableProperty]
+        private string selectedVehiclePlate;
 
         public NewTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            DestinationTypes = new List<string> { "BODEGA", "PISCINA" };
-            Destinations = new List<string>
-            {
-                "MA001",
-                "MA002",
-                "MA003",
-                "MA004",
-                "MA005",
-                "MA006",
-                "MA007",
-                "MA007",
-                "MA008"
-            };
-            Carriers = new List<string> { "NELSON ZAMBRANO" };
-            Vehicles = new List<string> { "GCT 5936" };
+            originBranch = "MARICULTURA";
+
+            originWarehouses = ["Bodega de Balanceado MA"];
+
+            destinationBranches = ["Roblemar", "Josefina"];
+
+            destinationWarehouses =
+            [
+                "Bodega de Balanceado Roblemar",
+                "Bodega de Balanceado Josefina"
+            ];
+
+            transporters = ["NELSON ZAMBRANO"];
+            vehiclePlates = ["GCT 5936"];
         }
 
         [RelayCommand]
         async Task SubmitTransfer()
         {
             if (
-                string.IsNullOrEmpty(SelectedDestinationType)
-                || string.IsNullOrEmpty(SelectedDestination)
-                || string.IsNullOrEmpty(SelectedCarrier)
-                || string.IsNullOrEmpty(SelectedVehicle)
+                string.IsNullOrEmpty(SelectedOriginWharehouse)
+                || string.IsNullOrEmpty(SelectedDestinationBranch)
+                || string.IsNullOrEmpty(SelectedDestinationWharehouse)
+                || string.IsNullOrEmpty(SelectedTransporter)
+                || string.IsNullOrEmpty(SelectedVehiclePlate)
             )
             {
-                await ToastService.ShowToastAsync("Por favor complete todos los campos.");
+                await ToastService.ShowToastAsync("Por favor complete todos los campos");
                 return;
             }
 

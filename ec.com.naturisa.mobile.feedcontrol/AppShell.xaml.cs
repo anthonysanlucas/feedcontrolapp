@@ -2,10 +2,10 @@
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+        public AppShell(IToastService toastService)
         {
             InitializeComponent();
-            BindingContext = new AppShellViewModel();
+            BindingContext = new AppShellViewModel(toastService);
 
             Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
             Routing.RegisterRoute(nameof(FeedingPoolView), typeof(FeedingPoolView));

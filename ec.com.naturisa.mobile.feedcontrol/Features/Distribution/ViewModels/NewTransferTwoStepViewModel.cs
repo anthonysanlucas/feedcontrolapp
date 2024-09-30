@@ -6,10 +6,7 @@
         private List<string> availableProducts;
 
         [ObservableProperty]
-        private string selectedProduct;
-
-        [ObservableProperty]
-        private string quantity;
+        private ObservableCollection<ProductRow> productRows;
 
         [ObservableProperty]
         private ObservableCollection<Product> addedProducts;
@@ -20,39 +17,50 @@
             availableProducts = new List<string>
             {
                 "AQUAXCEL MW 424 SLD STARTER 0.8 MM",
-                "Producto 2",
-                "Producto 3"
+                "AQUAXCEL MW 424 SLD STARTER 0.6 MM",
+                "AQUAXCEL SLD 1.2 MM"
             };
-            addedProducts = new ObservableCollection<Product>();
+
+            ProductRows = new ObservableCollection<ProductRow> { new() };
+
+            ProductRows.CollectionChanged += (sender, args) => UpdateTotals();
+
+            foreach (var row in ProductRows)
+            {
+                row.PropertyChanged += ProductRow_PropertyChanged;
+            }
+        }
+
+        private void ProductRow_PropertyChanged(
+            object sender,
+            System.ComponentModel.PropertyChangedEventArgs e
+        )
+        {
+            if (e.PropertyName == nameof(ProductRow.QuantitySacks))
+            {
+                OnPropertyChanged(nameof(TotalQuantitySacks));
+                OnPropertyChanged(nameof(TotalWeightInKilos));
+            }
         }
 
         [RelayCommand]
-        async Task AddProduct()
+        public void AddProductRow()
         {
-            if (string.IsNullOrEmpty(selectedProduct) || string.IsNullOrEmpty(quantity))
-            {
-                await ToastService.ShowToastAsync(
-                    "Por favor selecciona un producto e ingresa una cantidad."
-                );
+            ProductRow newRow = new();
+            newRow.PropertyChanged += ProductRow_PropertyChanged;
+
+            ProductRows.Add(newRow);
+            UpdateTotals();
+        }
+
+        [RelayCommand]
+        public void DeleteProductRow(ProductRow row)
+        {
+            if (!ProductRows.Contains(row))
                 return;
-            }
 
-            int IntQuantity = int.Parse(quantity);
-
-            // Agrega el producto a la lista
-            addedProducts.Add(
-                new Product
-                {
-                    ProductName = selectedProduct,
-                    ProductDetails = $"{quantity} SACOS - {IntQuantity * 25} KG"
-                }
-            );
-
-            // Reiniciar selección
-            selectedProduct = null;
-            quantity = string.Empty;
-
-            await ToastService.ShowToastAsync("Producto agregado correctamente.");
+            ProductRows.Remove(row);
+            UpdateTotals();
         }
 
         [RelayCommand]
@@ -60,5 +68,25 @@
         {
             await Shell.Current.GoToAsync(nameof(NewTransferThreeStepView));
         }
+
+        public int TotalQuantitySacks =>
+            ProductRows.Sum(row => int.TryParse(row.QuantitySacks, out int sacks) ? sacks : 0);
+
+        public int TotalWeightInKilos => TotalQuantitySacks * 25;
+
+        private void UpdateTotals()
+        {
+            OnPropertyChanged(nameof(TotalQuantitySacks));
+            OnPropertyChanged(nameof(TotalWeightInKilos));
+        }
+    }
+
+    public partial class ProductRow : ObservableObject
+    {
+        [ObservableProperty]
+        private string selectedProduct;
+
+        [ObservableProperty]
+        private string quantitySacks;
     }
 }

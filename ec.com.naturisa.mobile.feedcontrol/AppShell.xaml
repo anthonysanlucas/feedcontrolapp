@@ -33,7 +33,7 @@
                         TextColor="{StaticResource Primary900}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
-                    <Label Text="24, septiembre del 2024" TextColor="{StaticResource OnSecondary}" />
+                    <Label Text="{Binding LongDate}" TextColor="{StaticResource OnSecondary}" />
                 </VerticalStackLayout>
             </HorizontalStackLayout>
 
@@ -200,7 +200,7 @@
 
     <!--  Inventario Finca  -->
     <FlyoutItem
-        Title="Inventario Finca"
+        Title="Saldo de Inventario"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="icon_inventory_white.svg">
         <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
@@ -216,7 +216,15 @@
 
     <!--  Transferencias Bodegas  -->
     <FlyoutItem
-        Title="Transferencias"
+        Title="Transferencias Bodega"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="icon_sync_alt_white.svg">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+    </FlyoutItem>
+
+    <!--  Transferencias Bodegas  -->
+    <FlyoutItem
+        Title="Transferencias Piscina"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="icon_sync_alt_white.svg">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />

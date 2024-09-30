@@ -1,8 +1,9 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels
 {
-    public partial class AppShellViewModel
+    public partial class AppShellViewModel : BaseViewModel
     {
-        public AppShellViewModel() { }
+        public AppShellViewModel(IToastService toastService)
+            : base(toastService) { }
 
         [RelayCommand]
         async Task Logout()

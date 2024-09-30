@@ -98,51 +98,7 @@
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
-
-
             <VerticalStackLayout Grid.Row="2">
-                <Label
-                    Margin="0,12,0,4"
-                    MaximumWidthRequest="1000"
-                    Style="{StaticResource RegularLabel}"
-                    Text="Sacos sobrantes en el muro al terminar de alimentar"
-                    TextColor="{StaticResource Primary900}" />
-                <Frame
-                    Margin="0"
-                    Padding="0"
-                    BorderColor="{StaticResource Slate400}"
-                    HasShadow="False"
-                    HeightRequest="62"
-                    VerticalOptions="CenterAndExpand">
-                    <Grid
-                        ColumnDefinitions="*, 70"
-                        ColumnSpacing="8"
-                        HorizontalOptions="Fill">
-                        <Entry
-                            Grid.Column="0"
-                            FontSize="16"
-                            Keyboard="Numeric"
-                            MaxLength="2"
-                            Placeholder="Ingresa el número de sacos"
-                            PlaceholderColor="{StaticResource Black-text-light}"
-                            TextColor="{StaticResource Black-text}"
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center" />
-                        <Label
-                            Grid.Column="1"
-                            BackgroundColor="{StaticResource Slate400}"
-                            FontAttributes="Bold"
-                            HeightRequest="60"
-                            HorizontalOptions="CenterAndExpand"
-                            HorizontalTextAlignment="Center"
-                            Style="{StaticResource RegularBlackLabel}"
-                            Text="0 KG"
-                            TextColor="{StaticResource Primary900}"
-                            VerticalTextAlignment="Center"
-                            WidthRequest="80" />
-                    </Grid>
-                </Frame>
-
                 <Label
                     Margin="0,24,0,4"
                     Style="{StaticResource RegularLabel}"
@@ -255,6 +211,48 @@
 
                 <Label
                     Margin="0,12,0,4"
+                    MaximumWidthRequest="1000"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Sacos sobrantes en el muro al terminar de alimentar"
+                    TextColor="{StaticResource Primary900}" />
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="62"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid
+                        ColumnDefinitions="*, 70"
+                        ColumnSpacing="8"
+                        HorizontalOptions="Fill">
+                        <Entry
+                            Grid.Column="0"
+                            FontSize="16"
+                            Keyboard="Numeric"
+                            MaxLength="2"
+                            Placeholder="Ingresa el número de sacos"
+                            PlaceholderColor="{StaticResource Black-text-light}"
+                            TextColor="{StaticResource Black-text}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Column="1"
+                            BackgroundColor="{StaticResource Slate400}"
+                            FontAttributes="Bold"
+                            HeightRequest="60"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource RegularBlackLabel}"
+                            Text="0 KG"
+                            TextColor="{StaticResource Primary900}"
+                            VerticalTextAlignment="Center"
+                            WidthRequest="80" />
+                    </Grid>
+                </Frame>
+
+                <Label
+                    Margin="0,12,0,4"
                     Style="{StaticResource RegularLabel}"
                     Text="Observación (opcional)"
                     TextColor="{StaticResource Primary900}" />
@@ -303,8 +301,6 @@
                         TextColor="White" />
                 </Grid>
             </Frame>
-
-
         </Grid>
     </ScrollView>
 </ContentPage>

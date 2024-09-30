@@ -60,7 +60,9 @@
 	  <None Remove="Resources\Images\bg_login_wave.svg" />
 	  <None Remove="Resources\Images\history_icon.svg" />
 	  <None Remove="Resources\Images\icon_acount_circle.svg" />
+	  <None Remove="Resources\Images\icon_add_box.svg" />
 	  <None Remove="Resources\Images\icon_add_white.svg" />
+	  <None Remove="Resources\Images\icon_delete_wite.svg" />
 	  <None Remove="Resources\Images\icon_dots.svg" />
 	  <None Remove="Resources\Images\icon_inventory_white.svg" />
 	  <None Remove="Resources\Images\icon_location_on.svg" />

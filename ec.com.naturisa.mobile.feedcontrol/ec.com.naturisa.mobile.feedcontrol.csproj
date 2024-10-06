@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\bg_login_wave.svg" />
 	  <None Remove="Resources\Images\history_icon.svg" />
 	  <None Remove="Resources\Images\icon_acount_circle.svg" />

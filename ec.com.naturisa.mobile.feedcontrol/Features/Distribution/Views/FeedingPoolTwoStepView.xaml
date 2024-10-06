@@ -16,7 +16,7 @@
     </Shell.TitleView>
 
     <ScrollView Orientation="Vertical">
-        <Grid RowDefinitions="auto, auto, *, 68" RowSpacing="16">
+        <Grid RowDefinitions="auto, auto, *, 68" RowSpacing="8">
             <!--  STEP  -->
             <Grid
                 Grid.Row="0"
@@ -76,12 +76,22 @@
                         Text="Orden de alimentación"
                         TextColor="{StaticResource Gray400}" />
 
-                    <Label
-                        FontAttributes="None"
-                        MaximumWidthRequest="1000"
-                        Style="{StaticResource RegularLabel}"
-                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM. -&gt; 30 SACOS"
-                        TextColor="{StaticResource Primary900}" />
+                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
+                        <Label
+                            MaximumWidthRequest="1000"
+                            Style="{StaticResource RegularLabel}"
+                            Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                            TextColor="{StaticResource Primary600}"
+                            VerticalOptions="Center" />
+
+                        <Frame BackgroundColor="{StaticResource Secondary}" VerticalOptions="Start">
+                            <Label
+                                MaximumWidthRequest="1000"
+                                Style="{StaticResource RegularLabel}"
+                                Text="30 SACOS"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </Frame>
+                    </FlexLayout>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout Spacing="4">
@@ -90,15 +100,52 @@
                         Text="Alimento a cargar en tolvas"
                         TextColor="{StaticResource Gray400}" />
 
-                    <Label
-                        MaximumWidthRequest="1000"
-                        Style="{StaticResource RegularLabel}"
-                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM. -&gt; 25 SACOS"
-                        TextColor="{StaticResource Primary600}" />
+                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
+                        <Label
+                            MaximumWidthRequest="1000"
+                            Style="{StaticResource RegularLabel}"
+                            Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                            TextColor="{StaticResource Primary600}"
+                            VerticalOptions="Center" />
+
+                        <Frame BackgroundColor="{StaticResource Primary900}" VerticalOptions="Start">
+                            <Label
+                                MaximumWidthRequest="1000"
+                                Style="{StaticResource RegularLabel}"
+                                Text="25 SACOS"
+                                TextColor="{StaticResource White}" />
+                        </Frame>
+                    </FlexLayout>
                 </VerticalStackLayout>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="2">
+                <Label
+                    Margin="0,12,0,4"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Tolvas cargadas"
+                    TextColor="{StaticResource Primary900}" />
+
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="62"
+                    VerticalOptions="CenterAndExpand">
+
+                    <Entry
+                        Grid.Column="0"
+                        FontSize="16"
+                        Keyboard="Numeric"
+                        MaxLength="2"
+                        Placeholder="Ingresa el número de tolvas cargadas"
+                        PlaceholderColor="{StaticResource Black-text-light}"
+                        TextColor="{StaticResource Black-text}"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </Frame>
+
                 <Label
                     Margin="0,24,0,4"
                     Style="{StaticResource RegularLabel}"
@@ -185,32 +232,6 @@
 
                 <Label
                     Margin="0,12,0,4"
-                    Style="{StaticResource RegularLabel}"
-                    Text="Tolvas cargadas"
-                    TextColor="{StaticResource Primary900}" />
-
-                <Frame
-                    Margin="0"
-                    Padding="0"
-                    BorderColor="{StaticResource Slate400}"
-                    HasShadow="False"
-                    HeightRequest="62"
-                    VerticalOptions="CenterAndExpand">
-
-                    <Entry
-                        Grid.Column="0"
-                        FontSize="16"
-                        Keyboard="Numeric"
-                        MaxLength="2"
-                        Placeholder="Ingresa el número de tolvas cargadas"
-                        PlaceholderColor="{StaticResource Black-text-light}"
-                        TextColor="{StaticResource Black-text}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
-                </Frame>
-
-                <Label
-                    Margin="0,12,0,4"
                     MaximumWidthRequest="1000"
                     Style="{StaticResource RegularLabel}"
                     Text="Sacos sobrantes en el muro al terminar de alimentar"
@@ -256,6 +277,31 @@
                     Style="{StaticResource RegularLabel}"
                     Text="Observación (opcional)"
                     TextColor="{StaticResource Primary900}" />
+
+                <CollectionView
+                    Grid.Row="2"
+                    HorizontalOptions="FillAndExpand"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding PredefinedObservations}"
+                    SelectedItem="{Binding SelectedObservation}"
+                    SelectionMode="Single"
+                    VerticalOptions="Start">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:Observation">
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                BackgroundColor="{StaticResource Primary50}"
+                                CornerRadius="10">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Name}"
+                                    TextColor="{StaticResource Primary900}"
+                                    VerticalOptions="Center" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
                 <Frame
                     Margin="0"

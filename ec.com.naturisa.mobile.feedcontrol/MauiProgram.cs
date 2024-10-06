@@ -44,6 +44,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewTransferThreeStepViewModel>();
             builder.Services.AddTransient<TransferDetailViewModel>();
+            builder.Services.AddTransient<NewPoolTransferOneStepViewModel>();
+            builder.Services.AddTransient<NewPoolTransferTwoStepViewModel>();
+            builder.Services.AddTransient<NewPoolTransferThreeStepViewModel>();
 
             #endregion
 
@@ -76,7 +79,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();
             builder.Services.AddTransient<NewTransferThreeStepView>();
-
+            builder.Services.AddTransient<NewPoolTransferOneStepView>();
+            builder.Services.AddTransient<NewPoolTransferTwoStepView>();
+            builder.Services.AddTransient<NewPoolTransferThreeStepView>();
             #endregion
 
             #region HANDLERS

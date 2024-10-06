@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewTransferOneStepView"
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewPoolTransferOneStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Title="NewPoolTransferOneStepView"
     Padding="0"
-    x:DataType="viewModels:NewTransferOneStepViewModel"
+    x:DataType="viewModels:NewPoolTransferOneStepViewModel"
     BackgroundColor="{StaticResource Primary900}"
     Shell.BackgroundColor="{StaticResource Primary900}"
     Shell.ForegroundColor="{StaticResource Primary100}">
@@ -29,7 +30,7 @@
                 <Label
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="Transferencia a Bodega"
+                    Text="Distribución de balanceado"
                     TextColor="{StaticResource Primary100}" />
             </HorizontalStackLayout>
             <Label
@@ -109,19 +110,17 @@
 
         <Grid Grid.Row="1">
             <Border
-                Grid.Row="0"
                 Background="{StaticResource White}"
                 HorizontalOptions="FillAndExpand"
                 StrokeShape="RoundRectangle 10,10,0,0"
                 StrokeThickness="0">
                 <Grid RowDefinitions="*">
-                    <ScrollView Grid.Row="0">
+                    <ScrollView>
                         <VerticalStackLayout
-                            Grid.Row="1"
-                            Margin="0,0,0,86"
                             Padding="16,24,16,0"
                             Spacing="8"
                             VerticalOptions="FillAndExpand">
+
                             <Frame BackgroundColor="{StaticResource Secondary}">
                                 <VerticalStackLayout Spacing="4">
                                     <Label Text="Sucursal origen" TextColor="{StaticResource OnSecondary}" />
@@ -132,10 +131,11 @@
                                 </VerticalStackLayout>
                             </Frame>
 
-                            <VerticalStackLayout Spacing="4">
+                            <!--  Vehículo  -->
+                            <VerticalStackLayout Spacing="8">
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="Bodega origen"
+                                    Text="Vehículo"
                                     TextColor="{StaticResource Primary900}" />
                                 <Frame
                                     Padding="8"
@@ -144,51 +144,10 @@
                                     HasShadow="False"
                                     HeightRequest="62">
                                     <Picker
-                                        Title="Selecciona un destino"
+                                        Title="Selecciona un vehículo"
                                         FontSize="16"
-                                        ItemsSource="{Binding OriginWarehouses}"
-                                        SelectedItem="{Binding SelectedOriginWharehouse}"
-                                        TextColor="{StaticResource Black-text}" />
-                                </Frame>
-                            </VerticalStackLayout>
-
-                            <VerticalStackLayout Spacing="4">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Sucursal destino"
-                                    TextColor="{StaticResource Primary900}" />
-                                <Frame
-                                    Padding="8"
-                                    BackgroundColor="Transparent"
-                                    BorderColor="{StaticResource Slate400}"
-                                    HasShadow="False"
-                                    HeightRequest="62">
-                                    <Picker
-                                        Title="Selecciona un destino"
-                                        FontSize="16"
-                                        ItemsSource="{Binding DestinationBranches}"
-                                        SelectedItem="{Binding SelectedDestinationBranch}"
-                                        TextColor="{StaticResource Primary700}"
-                                        TitleColor="{StaticResource OnSecondary}" />
-                                </Frame>
-                            </VerticalStackLayout>
-
-                            <VerticalStackLayout Spacing="4">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Bodega destino"
-                                    TextColor="{StaticResource Primary900}" />
-                                <Frame
-                                    Padding="8"
-                                    BackgroundColor="Transparent"
-                                    BorderColor="{StaticResource Slate400}"
-                                    HasShadow="False"
-                                    HeightRequest="62">
-                                    <Picker
-                                        Title="Selecciona un destino"
-                                        FontSize="16"
-                                        ItemsSource="{Binding DestinationWarehouses}"
-                                        SelectedItem="{Binding SelectedDestinationWharehouse}"
+                                        ItemsSource="{Binding VehiclePlates}"
+                                        SelectedItem="{Binding SelectedVehiclePlate}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>
@@ -216,27 +175,74 @@
                                 </Frame>
                             </VerticalStackLayout>
 
-                            <!--  Vehículo  -->
-                            <VerticalStackLayout Spacing="8">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Vehículo"
-                                    TextColor="{StaticResource Primary900}" />
-                                <Frame
-                                    Padding="8"
-                                    BackgroundColor="Transparent"
-                                    BorderColor="{StaticResource Slate400}"
-                                    HasShadow="False"
-                                    HeightRequest="62">
+                            <Label
+                                FontSize="16"
+                                Style="{StaticResource RegularLabel}"
+                                Text="Piscinas"
+                                TextColor="{StaticResource Primary900}" />
+
+                            <CollectionView
+                                Margin="0"
+                                HorizontalOptions="Start"
+                                HorizontalScrollBarVisibility="Never"
+                                ItemsLayout="HorizontalList"
+                                ItemsSource="{Binding SelectedPools}"
+                                SelectionMode="None"
+                                VerticalOptions="Start">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame
+                                            Margin="2"
+                                            Padding="6"
+                                            BackgroundColor="{StaticResource Primary50}"
+                                            VerticalOptions="Center">
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferOneStepViewModel}}, Path=RemoveSelectedPoolCommand}" CommandParameter="{Binding}" />
+                                            </Frame.GestureRecognizers>
+
+                                            <HorizontalStackLayout Spacing="4">
+                                                <Label
+                                                    Style="{StaticResource RegularLabel}"
+                                                    Text="{Binding}"
+                                                    TextColor="{StaticResource Primary}"
+                                                    VerticalOptions="Center" />
+                                                <Label
+                                                    Style="{StaticResource RegularLabel}"
+                                                    Text="x"
+                                                    TextColor="{StaticResource Primary700}"
+                                                    VerticalTextAlignment="Center" />
+                                            </HorizontalStackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <Frame
+                                Padding="8"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Slate400}"
+                                HasShadow="False">
+                                <Grid ColumnDefinitions="*, Auto">
                                     <Picker
-                                        Title="Selecciona un vehículo"
+                                        Title="Selecciona una piscina"
+                                        BackgroundColor="Transparent"
                                         FontSize="16"
-                                        ItemsSource="{Binding VehiclePlates}"
-                                        SelectedItem="{Binding SelectedVehiclePlate}"
+                                        ItemsSource="{Binding AvailablePools}"
+                                        SelectedItem="{Binding SelectedPool, Mode=TwoWay}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
-                                </Frame>
-                            </VerticalStackLayout>
+
+                                    <Button
+                                        Grid.Column="1"
+                                        BackgroundColor="{StaticResource Primary100}"
+                                        Command="{Binding AddPoolCommand}"
+                                        CommandParameter="{Binding SelectedPool}"
+                                        FontSize="Medium"
+                                        Text="+"
+                                        TextColor="{StaticResource Primary700}" />
+                                </Grid>
+                            </Frame>
                         </VerticalStackLayout>
                     </ScrollView>
 
@@ -254,7 +260,7 @@
                         <Frame.Shadow>
                             <Shadow
                                 Brush="{StaticResource Primary700}"
-                                Opacity="0.8"
+                                Opacity="0.5"
                                 Radius="80"
                                 Offset="10,-20" />
                         </Frame.Shadow>
@@ -262,7 +268,7 @@
                             <Button
                                 Grid.Column="0"
                                 BackgroundColor="Transparent"
-                                Command="{Binding SubmitTransferCommand}"
+                                Command="{Binding GoToPoolTransferTwoStepCommand}"
                                 HorizontalOptions="FillAndExpand"
                                 Text="Siguiente"
                                 TextColor="White" />
@@ -278,5 +284,4 @@
             </Border>
         </Grid>
     </Grid>
-
 </ContentPage>

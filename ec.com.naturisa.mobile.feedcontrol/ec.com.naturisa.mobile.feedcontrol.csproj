@@ -62,9 +62,11 @@
 	  <None Remove="Resources\Images\icon_acount_circle.svg" />
 	  <None Remove="Resources\Images\icon_add_box.svg" />
 	  <None Remove="Resources\Images\icon_add_white.svg" />
+	  <None Remove="Resources\Images\icon_close_small_on_secondary.svg" />
 	  <None Remove="Resources\Images\icon_delete_wite.svg" />
 	  <None Remove="Resources\Images\icon_dots.svg" />
 	  <None Remove="Resources\Images\icon_inventory_white.svg" />
+	  <None Remove="Resources\Images\icon_local_shipping_primary700.svg" />
 	  <None Remove="Resources\Images\icon_location_on.svg" />
 	  <None Remove="Resources\Images\icon_logout.svg" />
 	  <None Remove="Resources\Images\icon_movements_white.svg" />
@@ -77,6 +79,8 @@
 	  <None Remove="Resources\Images\icon_section_white.svg" />
 	  <None Remove="Resources\Images\icon_shrimp_white.svg" />
 	  <None Remove="Resources\Images\icon_sync_alt_white.svg" />
+	  <None Remove="Resources\Images\icon_takeout_dining_on_secondary.svg" />
+	  <None Remove="Resources\Images\icon_takeout_dining_primary700.svg" />
 	  <None Remove="Resources\Images\icon_trending_flat.svg" />
 	  <None Remove="Resources\Images\icon_visibility_off.svg" />
 	  <None Remove="Resources\Images\icon_visibility_on.svg" />
@@ -111,6 +115,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\FeedingPoolTwoStepView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\NewPoolTransferOneStepView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\NewPoolTransferThreeStepView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\NewPoolTransferTwoStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\NewTransferOneStepView.xaml">

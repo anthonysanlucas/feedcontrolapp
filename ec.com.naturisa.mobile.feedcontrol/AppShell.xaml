@@ -222,12 +222,12 @@
         <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
     </FlyoutItem>
 
-    <!--  Transferencias Bodegas  -->
+    <!--  Transferencias Piscinas  -->
     <FlyoutItem
-        Title="Transferencias Piscina"
+        Title="Distribución balanceado"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="icon_sync_alt_white.svg">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
     </FlyoutItem>
 
     <MenuItem

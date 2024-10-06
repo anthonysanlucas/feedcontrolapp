@@ -6,146 +6,275 @@
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
     Title="Inventario de Finca"
     x:DataType="viewModels:FarmInventoryViewModel">
-    <VerticalStackLayout>
-        <Label
-            Grid.Row="1"
-            Margin="0,0,0,8"
-            Style="{StaticResource RegularLabel}"
-            Text="Total en bodega"
-            TextColor="{StaticResource OnSecondary}" />
+    <ScrollView>
+        <VerticalStackLayout Spacing="8">
+            <Frame BackgroundColor="{StaticResource Primary100}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmStoreDetailCommand}" />
+                </Frame.GestureRecognizers>
 
-        <Frame
-            Margin="0,0,0,24"
-            BorderColor="{StaticResource Secondary}"
-            HasShadow="False">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmStoreDetailCommand}" />
-            </Frame.GestureRecognizers>
-            <Grid ColumnDefinitions="*,auto" ColumnSpacing="16">
-                <Image
-                    HorizontalOptions="Start"
-                    Source="icon_warehouse_primary700.svg"
-                    WidthRequest="24" />
-                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                <Grid RowDefinitions="Auto, *" RowSpacing="8">
                     <Label
-                        FontAttributes="Bold"
-                        Style="{StaticResource LargeLabel}"
-                        Text="1,145 SACOS"
-                        TextColor="{StaticResource Primary900}" />
-                    <Label
-                        FontAttributes="None"
+                        Grid.Row="0"
                         Style="{StaticResource RegularLabel}"
-                        Text="28,625 KG"
-                        TextColor="{StaticResource Primary900}" />
-                </VerticalStackLayout>
-            </Grid>
-        </Frame>
+                        Text="Total en bodega"
+                        TextColor="{StaticResource OnSecondary}" />
 
-        <VerticalStackLayout
-            Grid.Column="0"
-            HorizontalOptions="FillAndExpand"
-            Spacing="4">
+                    <FlexLayout
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        JustifyContent="SpaceBetween">
+                        <Border
+                            BackgroundColor="{StaticResource Primary200}"
+                            HeightRequest="44"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            WidthRequest="44">
+                            <Image
+                                HorizontalOptions="Center"
+                                Source="icon_warehouse_primary700.svg"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                        </Border>
 
-            <Label
-                Grid.Row="1"
-                Margin="0,0,0,8"
-                Style="{StaticResource RegularLabel}"
-                Text="Total en muros"
-                TextColor="{StaticResource OnSecondary}" />
-            <Frame
-                Margin="0,0,0,24"
-                BorderColor="{StaticResource Secondary}"
-                HasShadow="False">
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource RegularLabel}"
+                                Text="1,145 SACOS"
+                                TextColor="{StaticResource Primary900}" />
+                            <Label
+                                FontAttributes="None"
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="28,625 KG"
+                                TextColor="{StaticResource Primary900}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="{StaticResource Primary100}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmStoreDetailCommand}" />
+                </Frame.GestureRecognizers>
+
+                <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Total en transporte"
+                        TextColor="{StaticResource OnSecondary}" />
+
+                    <FlexLayout
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        JustifyContent="SpaceBetween">
+                        <Border
+                            BackgroundColor="{StaticResource Primary200}"
+                            HeightRequest="44"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            WidthRequest="44">
+                            <Image
+                                HorizontalOptions="Center"
+                                Source="icon_local_shipping_primary700.svg"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                        </Border>
+
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource RegularLabel}"
+                                Text="198 SACOS"
+                                TextColor="{StaticResource Primary900}" />
+                            <Label
+                                FontAttributes="None"
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="4,950 KG"
+                                TextColor="{StaticResource Primary900}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="{StaticResource Primary100}">
                 <Frame.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmWallInvetoryCommand}" />
                 </Frame.GestureRecognizers>
-                <Grid ColumnDefinitions="*,auto" ColumnSpacing="16">
-                    <Image
-                        HorizontalOptions="Start"
-                        Source="icon_section_primary700.svg"
-                        WidthRequest="24" />
-                    <VerticalStackLayout Grid.Column="1" Spacing="4">
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="160 SACOS"
-                            TextColor="{StaticResource Primary900}" />
-                        <Label
-                            FontAttributes="None"
-                            Style="{StaticResource RegularLabel}"
-                            Text="4,000 KG"
-                            TextColor="{StaticResource Primary900}" />
-                    </VerticalStackLayout>
+
+                <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Total en muros"
+                        TextColor="{StaticResource OnSecondary}" />
+
+                    <FlexLayout
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        JustifyContent="SpaceBetween">
+                        <Border
+                            BackgroundColor="{StaticResource Primary200}"
+                            HeightRequest="44"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            WidthRequest="44">
+                            <Image
+                                HorizontalOptions="Center"
+                                Source="icon_section_primary700.svg"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                        </Border>
+
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource RegularLabel}"
+                                Text="360 SACOS"
+                                TextColor="{StaticResource Primary900}" />
+                            <Label
+                                FontAttributes="None"
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="9,000 KG"
+                                TextColor="{StaticResource Primary900}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
                 </Grid>
             </Frame>
-        </VerticalStackLayout>
 
-        <VerticalStackLayout
-            Grid.Column="1"
-            HorizontalOptions="FillAndExpand"
-            Spacing="4">
-            <Label
-                Grid.Row="1"
-                Margin="0,0,0,8"
-                Style="{StaticResource RegularLabel}"
-                Text="Consumo del día anterior"
-                TextColor="{StaticResource OnSecondary}" />
+            <Frame BackgroundColor="{StaticResource Secondary}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmWallInvetoryCommand}" />
+                </Frame.GestureRecognizers>
+
+                <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Total en tolvas"
+                        TextColor="{StaticResource OnSecondary}" />
+
+                    <FlexLayout
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        JustifyContent="SpaceBetween">
+                        <Border
+                            BackgroundColor="{StaticResource Primary50}"
+                            HeightRequest="44"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            WidthRequest="44">
+                            <Image
+                                HorizontalOptions="Center"
+                                Source="icon_takeout_dining_on_secondary.svg"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                        </Border>
+
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource RegularLabel}"
+                                Text="160 SACOS"
+                                TextColor="{StaticResource Primary900}" />
+                            <Label
+                                FontAttributes="None"
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="4,000 KG"
+                                TextColor="{StaticResource Primary900}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </Grid>
+            </Frame>
+
+            <Frame BackgroundColor="{StaticResource Secondary}">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmWallInvetoryCommand}" />
+                </Frame.GestureRecognizers>
+
+                <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                    <Label
+                        Grid.Row="0"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Consumo del día anterior"
+                        TextColor="{StaticResource OnSecondary}" />
+
+                    <FlexLayout
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        JustifyContent="SpaceBetween">
+                        <Border
+                            BackgroundColor="{StaticResource Primary50}"
+                            HeightRequest="44"
+                            StrokeShape="RoundRectangle 10,10,10,10"
+                            WidthRequest="44">
+                            <Image
+                                HorizontalOptions="Center"
+                                Source="icon_wave_onsecondary.svg"
+                                VerticalOptions="Center"
+                                WidthRequest="24" />
+                        </Border>
+
+                        <VerticalStackLayout
+                            Grid.Column="1"
+                            HorizontalOptions="EndAndExpand"
+                            Spacing="4">
+                            <Label
+                                FontAttributes="Bold"
+                                Style="{StaticResource RegularLabel}"
+                                Text="530 SACOS"
+                                TextColor="{StaticResource Primary900}" />
+                            <Label
+                                FontAttributes="None"
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="13,250 KG"
+                                TextColor="{StaticResource Primary900}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+                </Grid>
+            </Frame>
+
             <Frame
                 Margin="0,0,0,24"
-                BackgroundColor="{StaticResource Secondary}"
-                BorderColor="{StaticResource Secondary}">
-                <Grid ColumnDefinitions="*,auto" ColumnSpacing="16">
-                    <Image
-                        HorizontalOptions="Start"
-                        Source="icon_wave_onsecondary.svg"
-                        WidthRequest="24" />
-                    <VerticalStackLayout Grid.Column="1" Spacing="4">
-                        <Label
-                            FontAttributes="Bold"
-                            Style="{StaticResource LargeLabel}"
-                            Text="530 SACOS"
-                            TextColor="{StaticResource Primary900}" />
-                        <Label
-                            FontAttributes="None"
-                            Style="{StaticResource RegularLabel}"
-                            Text="13,250 KG"
-                            TextColor="{StaticResource Primary900}" />
-                    </VerticalStackLayout>
-                </Grid>
+                BorderColor="{StaticResource Secondary}"
+                HasShadow="False"
+                HeightRequest="70"
+                VerticalOptions="EndAndExpand">
+
+                <HorizontalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="CenterAndExpand"
+                    Spacing="8">
+                    <Frame
+                        Padding="4"
+                        BackgroundColor="{StaticResource Primary700}"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        WidthRequest="32">
+                        <Image Source="history_icon.svg" />
+                    </Frame>
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Consultar historial de movimientos"
+                        TextColor="{StaticResource Primary900}"
+                        VerticalOptions="Center" />
+                </HorizontalStackLayout>
             </Frame>
         </VerticalStackLayout>
-
-        <Label
-            Margin="0,0,0,8"
-            Style="{StaticResource RegularLabel}"
-            Text="Historial"
-            TextColor="{StaticResource OnSecondary}" />
-
-        <Frame
-            Margin="0,0,0,24"
-            BorderColor="{StaticResource Secondary}"
-            HasShadow="False"
-            HeightRequest="70">
-
-            <HorizontalStackLayout
-                Grid.Column="0"
-                HorizontalOptions="CenterAndExpand"
-                Spacing="8">
-                <Frame
-                    Padding="4"
-                    BackgroundColor="{StaticResource Primary700}"
-                    HasShadow="False"
-                    HeightRequest="32"
-                    WidthRequest="32">
-                    <Image Source="history_icon.svg" />
-                </Frame>
-                <Label
-                    FontAttributes="None"
-                    Style="{StaticResource RegularLabel}"
-                    Text="Consultar historial de movimientos"
-                    TextColor="{StaticResource Primary900}"
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
-        </Frame>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -34,12 +34,22 @@
                     Text="Orden de alimentación"
                     TextColor="{StaticResource Gray400}" />
 
-                <Label
-                    FontAttributes="None"
-                    MaximumWidthRequest="1000"
-                    Style="{StaticResource RegularLabel}"
-                    Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM. -&gt; 30 SACOS"
-                    TextColor="{StaticResource Primary900}" />
+                <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
+                    <Label
+                        MaximumWidthRequest="1000"
+                        Style="{StaticResource RegularLabel}"
+                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        TextColor="{StaticResource Primary600}"
+                        VerticalOptions="Center" />
+
+                    <Frame BackgroundColor="{StaticResource Primary900}" VerticalOptions="Start">
+                        <Label
+                            MaximumWidthRequest="1000"
+                            Style="{StaticResource RegularLabel}"
+                            Text="30 SACOS"
+                            TextColor="{StaticResource White}" />
+                    </Frame>
+                </FlexLayout>
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="1">

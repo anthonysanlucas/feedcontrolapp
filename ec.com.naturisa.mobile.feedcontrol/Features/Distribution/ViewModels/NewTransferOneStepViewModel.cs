@@ -49,15 +49,11 @@
         {
             originBranch = "MARICULTURA";
 
-            originWarehouses = ["Bodega de Balanceado MA"];
+            originWarehouses = ["Bodega de Balanceado Maricultura"];
 
-            destinationBranches = ["Roblemar", "Josefina"];
+            destinationBranches = ["Kamaclusa"];
 
-            destinationWarehouses =
-            [
-                "Bodega de Balanceado Roblemar",
-                "Bodega de Balanceado Josefina"
-            ];
+            destinationWarehouses = ["Bodega de Balanceado Kamaclusa"];
 
             transporters = ["NELSON ZAMBRANO"];
             vehiclePlates = ["GCT 5936"];

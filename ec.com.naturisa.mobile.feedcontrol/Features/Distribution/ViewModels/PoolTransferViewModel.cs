@@ -4,5 +4,11 @@
     {
         public PoolTransferViewModel(IToastService toastService)
             : base(toastService) { }
+
+        [RelayCommand]
+        async Task CreateTransfer()
+        {
+            await Shell.Current.GoToAsync(nameof(NewPoolTransferOneStepView));
+        }
     }
 }

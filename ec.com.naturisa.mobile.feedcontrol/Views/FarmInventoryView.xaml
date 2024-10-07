@@ -45,10 +45,9 @@
                                 HorizontalOptions="EndAndExpand"
                                 Spacing="4">
                                 <Label
-                                    FontAttributes="Bold"
                                     Style="{StaticResource RegularLabel}"
                                     Text="1,145 SACOS"
-                                    TextColor="{StaticResource Primary900}" />
+                                    TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontAttributes="None"
                                     HorizontalOptions="End"
@@ -94,10 +93,9 @@
                                 HorizontalOptions="EndAndExpand"
                                 Spacing="4">
                                 <Label
-                                    FontAttributes="Bold"
                                     Style="{StaticResource RegularLabel}"
                                     Text="198 SACOS"
-                                    TextColor="{StaticResource Primary900}" />
+                                    TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontAttributes="None"
                                     HorizontalOptions="End"
@@ -144,10 +142,9 @@
                                 HorizontalOptions="EndAndExpand"
                                 Spacing="4">
                                 <Label
-                                    FontAttributes="Bold"
                                     Style="{StaticResource RegularLabel}"
                                     Text="360 SACOS"
-                                    TextColor="{StaticResource Primary900}" />
+                                    TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontAttributes="None"
                                     HorizontalOptions="End"
@@ -193,10 +190,9 @@
                                 HorizontalOptions="EndAndExpand"
                                 Spacing="4">
                                 <Label
-                                    FontAttributes="Bold"
                                     Style="{StaticResource RegularLabel}"
                                     Text="160 SACOS"
-                                    TextColor="{StaticResource Primary900}" />
+                                    TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontAttributes="None"
                                     HorizontalOptions="End"
@@ -221,7 +217,6 @@
                             <Label
                                 Grid.Row="0"
                                 FontAttributes="None"
-                                Style="{StaticResource SmallLabel}"
                                 Text="{Binding ShortPreviousDate}"
                                 TextColor="{StaticResource OnSecondary}"
                                 VerticalOptions="Center" />
@@ -250,10 +245,9 @@
                                 HorizontalOptions="EndAndExpand"
                                 Spacing="4">
                                 <Label
-                                    FontAttributes="Bold"
                                     Style="{StaticResource RegularLabel}"
                                     Text="530 SACOS"
-                                    TextColor="{StaticResource Primary900}" />
+                                    TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontAttributes="None"
                                     HorizontalOptions="End"
@@ -289,86 +283,10 @@
                             <FlexLayout JustifyContent="SpaceBetween">
                                 <Label
                                     Style="{StaticResource GoogleFont}"
-                                    Text="{x:Static models:IconFont.Trending_up}"
-                                    TextColor="{StaticResource Green500}" />
-
-                                <Label Text="06/10/2024" TextColor="{StaticResource OnSecondary}" />
-                            </FlexLayout>
-
-                            <Label
-                                HorizontalOptions="End"
-                                Style="{StaticResource RegularLabel}"
-                                Text="PESJOYA"
-                                TextColor="{StaticResource Primary700}" />
-
-                            <VerticalStackLayout HorizontalOptions="End">
-                                <Label
-                                    HorizontalOptions="End"
-                                    Text="264 SACOS"
-                                    TextColor="{StaticResource OnSecondary}" />
-                                <Label
-                                    HorizontalOptions="End"
-                                    Text="6,600 KG"
-                                    TextColor="{StaticResource OnSecondary}" />
-                            </VerticalStackLayout>
-                        </VerticalStackLayout>
-                    </Frame>
-
-                    <Frame
-                        BackgroundColor="{StaticResource SurfaceLowContainer}"
-                        HeightRequest="132"
-                        VerticalOptions="EndAndExpand"
-                        WidthRequest="132">
-                        <VerticalStackLayout
-                            Grid.Column="0"
-                            HorizontalOptions="FillAndExpand"
-                            Spacing="8"
-                            VerticalOptions="Center">
-                            <FlexLayout JustifyContent="SpaceBetween">
-                                <Label
-                                    Style="{StaticResource GoogleFont}"
-                                    Text="{x:Static models:IconFont.Trending_up}"
-                                    TextColor="{StaticResource Green500}" />
-
-                                <Label Text="05/10/2024" TextColor="{StaticResource OnSecondary}" />
-                            </FlexLayout>
-
-                            <Label
-                                HorizontalOptions="End"
-                                Style="{StaticResource RegularLabel}"
-                                Text="PESJOYA"
-                                TextColor="{StaticResource Primary700}" />
-
-                            <VerticalStackLayout HorizontalOptions="End">
-                                <Label
-                                    HorizontalOptions="End"
-                                    Text="198 SACOS"
-                                    TextColor="{StaticResource OnSecondary}" />
-                                <Label
-                                    HorizontalOptions="End"
-                                    Text="4,950 KG"
-                                    TextColor="{StaticResource OnSecondary}" />
-                            </VerticalStackLayout>
-                        </VerticalStackLayout>
-                    </Frame>
-
-                    <Frame
-                        BackgroundColor="{StaticResource SurfaceLowContainer}"
-                        HeightRequest="132"
-                        VerticalOptions="EndAndExpand"
-                        WidthRequest="132">
-                        <VerticalStackLayout
-                            Grid.Column="0"
-                            HorizontalOptions="FillAndExpand"
-                            Spacing="8"
-                            VerticalOptions="Center">
-                            <FlexLayout JustifyContent="SpaceBetween">
-                                <Label
-                                    Style="{StaticResource GoogleFont}"
-                                    Text="{x:Static models:IconFont.Trending_down}"
+                                    Text="{x:Static models:IconFont.Arrow_downward}"
                                     TextColor="{StaticResource Red500}" />
 
-                                <Label Text="03/10/2024" TextColor="{StaticResource OnSecondary}" />
+                                <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
                             </FlexLayout>
 
                             <Label
@@ -403,10 +321,10 @@
                             <FlexLayout JustifyContent="SpaceBetween">
                                 <Label
                                     Style="{StaticResource GoogleFont}"
-                                    Text="{x:Static models:IconFont.Trending_down}"
+                                    Text="{x:Static models:IconFont.Arrow_downward}"
                                     TextColor="{StaticResource Red500}" />
 
-                                <Label Text="03/10/2024" TextColor="{StaticResource OnSecondary}" />
+                                <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
                             </FlexLayout>
 
                             <Label
@@ -441,10 +359,10 @@
                             <FlexLayout JustifyContent="SpaceBetween">
                                 <Label
                                     Style="{StaticResource GoogleFont}"
-                                    Text="{x:Static models:IconFont.Trending_down}"
+                                    Text="{x:Static models:IconFont.Arrow_downward}"
                                     TextColor="{StaticResource Red500}" />
 
-                                <Label Text="03/10/2024" TextColor="{StaticResource OnSecondary}" />
+                                <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
                             </FlexLayout>
 
                             <Label
@@ -461,6 +379,82 @@
                                 <Label
                                     HorizontalOptions="End"
                                     Text="750 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_upward}"
+                                    TextColor="{StaticResource Green500}" />
+
+                                <Label Text="07/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="PESJOYA"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="264 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="6,600 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_upward}"
+                                    TextColor="{StaticResource Green500}" />
+
+                                <Label Text="07/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="PESJOYA"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="198 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="4,950 KG"
                                     TextColor="{StaticResource OnSecondary}" />
                             </VerticalStackLayout>
                         </VerticalStackLayout>

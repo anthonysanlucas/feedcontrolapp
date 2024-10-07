@@ -28,17 +28,15 @@
 
             // Crear filas de transferencias utilizando las piscinas disponibles
             PoolTransferRows = new ObservableCollection<PoolTransferRow>();
-            foreach (var pool in availablePools)
-            {
-                PoolTransferRows.Add(
-                    new PoolTransferRow
-                    {
-                        SelectedPool = pool,
-                        SelectedProduct = "",
-                        QuantitySacks = null
-                    }
-                );
-            }
+
+            PoolTransferRows.Add(
+                new PoolTransferRow
+                {
+                    SelectedPool = "",
+                    SelectedProduct = "",
+                    QuantitySacks = null
+                }
+            );
 
             PoolTransferRows.CollectionChanged += (sender, args) => UpdateTotals();
 

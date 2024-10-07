@@ -124,7 +124,7 @@
                             VerticalOptions="FillAndExpand">
                             <Frame BackgroundColor="{StaticResource Secondary}">
                                 <VerticalStackLayout Spacing="4">
-                                    <Label Text="Sucursal origen" TextColor="{StaticResource OnSecondary}" />
+                                    <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
                                     <Label
                                         Style="{StaticResource RegularLabel}"
                                         Text="{Binding OriginBranch}"
@@ -148,14 +148,15 @@
                                         FontSize="16"
                                         ItemsSource="{Binding OriginWarehouses}"
                                         SelectedItem="{Binding SelectedOriginWharehouse}"
-                                        TextColor="{StaticResource Black-text}" />
+                                        TextColor="{StaticResource Primary700}"
+                                        TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Spacing="4">
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="Sucursal destino"
+                                    Text="Finca destino"
                                     TextColor="{StaticResource Primary900}" />
                                 <Frame
                                     Padding="8"
@@ -194,6 +195,28 @@
                                 </Frame>
                             </VerticalStackLayout>
 
+                            <!--  Vehículo  -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="Vehículo"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Frame
+                                    Padding="8"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{StaticResource Slate400}"
+                                    HasShadow="False"
+                                    HeightRequest="62">
+                                    <Picker
+                                        Title="Selecciona un vehículo"
+                                        FontSize="16"
+                                        ItemsSource="{Binding VehiclePlates}"
+                                        SelectedItem="{Binding SelectedVehiclePlate}"
+                                        TextColor="{StaticResource Primary700}"
+                                        TitleColor="{StaticResource OnSecondary}" />
+                                </Frame>
+                            </VerticalStackLayout>
+
                             <!--  Transportista  -->
                             <VerticalStackLayout Spacing="8">
                                 <Label
@@ -216,27 +239,7 @@
                                 </Frame>
                             </VerticalStackLayout>
 
-                            <!--  Vehículo  -->
-                            <VerticalStackLayout Spacing="8">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Vehículo"
-                                    TextColor="{StaticResource Primary900}" />
-                                <Frame
-                                    Padding="8"
-                                    BackgroundColor="Transparent"
-                                    BorderColor="{StaticResource Slate400}"
-                                    HasShadow="False"
-                                    HeightRequest="62">
-                                    <Picker
-                                        Title="Selecciona un vehículo"
-                                        FontSize="16"
-                                        ItemsSource="{Binding VehiclePlates}"
-                                        SelectedItem="{Binding SelectedVehiclePlate}"
-                                        TextColor="{StaticResource Primary700}"
-                                        TitleColor="{StaticResource OnSecondary}" />
-                                </Frame>
-                            </VerticalStackLayout>
+
                         </VerticalStackLayout>
                     </ScrollView>
 
@@ -278,5 +281,4 @@
             </Border>
         </Grid>
     </Grid>
-
 </ContentPage>

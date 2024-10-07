@@ -7,7 +7,7 @@
     <Color x:Key="PrimaryDarkText">#242424</Color>
     <Color x:Key="SecondaryDarkText">#9880e5</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>
-    <Color x:Key="SurfaceLowContainer">#F4F4F4</Color>
+    <Color x:Key="SurfaceLowContainer">#FAFAFA</Color>
 
     <Color x:Key="White">White</Color>
     <Color x:Key="Black">Black</Color>
@@ -40,9 +40,7 @@
 
     <Color x:Key="Green500">#22c55e</Color>
     <Color x:Key="Amber500">#f59e0b</Color>
-
-
-
+    <Color x:Key="Red500">#ef4444</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />

@@ -19,7 +19,7 @@
             VerticalOptions="FillAndExpand">
             <HorizontalStackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
                 <BoxView
-                    Margin="0,6,8,0"
+                    Margin="0,8,8,0"
                     BackgroundColor="{StaticResource Green500}"
                     CornerRadius="8"
                     HeightRequest="12"
@@ -29,7 +29,7 @@
                     <Label
                         FontAttributes="Bold"
                         Style="{StaticResource LargeLabel}"
-                        Text="Hola, Anthony"
+                        Text="Anthony San Lucas"
                         TextColor="{StaticResource Primary900}"
                         VerticalOptions="Center"
                         VerticalTextAlignment="Center" />
@@ -78,14 +78,20 @@
             <Grid
                 Margin="0,4"
                 Padding="16"
+                BackgroundColor="Red"
                 ColumnDefinitions="0.2*, 0.8*">
-                <Image HeightRequest="16" Source="{Binding Icon}" />
+                <Label
+                    HeightRequest="24"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{Binding Icon}"
+                    TextColor="{StaticResource White}"
+                    WidthRequest="24" />
                 <Label
                     Grid.Column="1"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding Title}"
                     TextColor="White"
-                    VerticalTextAlignment="Center" />
+                    VerticalTextAlignment="Start" />
 
                 <VisualStateManager.VisualStateGroups>
                     <VisualStateGroup x:Name="CommonStates">
@@ -96,7 +102,7 @@
                         </VisualState>
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -186,7 +192,7 @@
     <FlyoutItem
         Title="Estimación Sobrante"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="icon_search_white.svg">
+        Icon="{x:Static models:IconFont.Assessment}">
         <ShellContent ContentTemplate="{DataTemplate views:FeedingRemainingView}" Route="FeedingRemainingDetail" />
     </FlyoutItem>
 
@@ -194,7 +200,7 @@
     <FlyoutItem
         Title="Alimentación Piscina"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="icon_shrimp_white.svg">
+        Icon="{x:Static models:IconFont.Water}">
         <ShellContent ContentTemplate="{DataTemplate views:FeedingPoolView}" Route="FeedingPool" />
     </FlyoutItem>
 
@@ -202,15 +208,15 @@
     <FlyoutItem
         Title="Saldo de Inventario"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="icon_inventory_white.svg">
+        Icon="{x:Static models:IconFont.Inventory}">
         <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
     </FlyoutItem>
 
     <!--  Movimientos Balanceado  -->
     <FlyoutItem
-        Title="Movimientos Balanceado"
+        Title="Movimientos"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="icon_movements_white.svg">
+        Icon="{x:Static models:IconFont.Local_shipping}">
         <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" Route="FeedingMovements" />
     </FlyoutItem>
 
@@ -218,7 +224,7 @@
     <FlyoutItem
         Title="Transferencias Bodega"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="icon_sync_alt_white.svg">
+        Icon="{x:Static models:IconFont.Sync_alt}">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
     </FlyoutItem>
 
@@ -226,7 +232,7 @@
     <FlyoutItem
         Title="Distribución balanceado"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="icon_sync_alt_white.svg">
+        Icon="{x:Static models:IconFont.Sync_alt}">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
     </FlyoutItem>
 

@@ -19,7 +19,6 @@
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">
-        <!--  Header  -->
         <VerticalStackLayout
             Grid.Row="0"
             Padding="16"

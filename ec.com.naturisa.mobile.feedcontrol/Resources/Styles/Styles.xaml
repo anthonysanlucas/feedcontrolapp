@@ -7,7 +7,6 @@
         <Setter Property="FontSize" Value="24" />
     </Style>
 
-
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
     </Style>
@@ -254,6 +253,10 @@
         <Setter Property="Offset" Value="10,10" />
     </Style>
 
+    <Style TargetType="ScrollView">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+    </Style>
 
     <Style x:Key="SelectionRowLabel" TargetType="VerticalStackLayout">
         <Setter Property="VisualStateManager.VisualStateGroups">

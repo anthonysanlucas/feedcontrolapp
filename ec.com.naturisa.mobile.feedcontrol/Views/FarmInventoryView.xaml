@@ -134,7 +134,6 @@
                                     Text="{x:Static models:IconFont.View_agenda}"
                                     TextColor="{StaticResource Primary700}"
                                     VerticalOptions="Center" />
-
                             </Border>
 
                             <VerticalStackLayout
@@ -285,7 +284,6 @@
                                     Style="{StaticResource GoogleFont}"
                                     Text="{x:Static models:IconFont.Arrow_downward}"
                                     TextColor="{StaticResource Red500}" />
-
                                 <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
                             </FlexLayout>
 

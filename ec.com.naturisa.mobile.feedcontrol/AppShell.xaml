@@ -102,7 +102,7 @@
                         </VisualState>
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -235,11 +235,6 @@
         Icon="{x:Static models:IconFont.Sync_alt}">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
     </FlyoutItem>
-
-    <MenuItem
-        Command="{Binding OpenProfileDetailViewCommand}"
-        IconImageSource="icon_acount_circle.svg"
-        Text="Mi Perfil" />
 
     <Shell.FlyoutFooter>
         <Frame

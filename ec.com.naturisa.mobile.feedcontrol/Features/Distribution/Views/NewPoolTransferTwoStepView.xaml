@@ -116,7 +116,10 @@
             StrokeShape="RoundRectangle 10,10,0,0"
             StrokeThickness="0">
             <Grid RowDefinitions="*">
-                <Grid Grid.Row="0" RowDefinitions="Auto, Auto, Auto, Auto">
+                <Grid
+                    Grid.Row="0"
+                    Padding="0,0,0,90"
+                    RowDefinitions="Auto, Auto, *, Auto">
                     <Grid
                         Grid.Row="0"
                         Margin="0,0,0,8"
@@ -141,7 +144,7 @@
                                     <Label
                                         FontAttributes="None"
                                         Style="{StaticResource RegularLabel}"
-                                        Text="165 SACOS"
+                                        Text="{Binding RemainingCapacity, StringFormat='{0} SACOS'}"
                                         TextColor="{StaticResource Primary700}" />
                                 </VerticalStackLayout>
                             </Grid>

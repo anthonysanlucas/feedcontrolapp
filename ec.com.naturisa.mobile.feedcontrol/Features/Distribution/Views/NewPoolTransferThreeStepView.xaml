@@ -114,34 +114,40 @@
             HorizontalOptions="FillAndExpand"
             StrokeShape="RoundRectangle 10,10,0,0"
             StrokeThickness="0">
-            <Grid RowDefinitions="Auto, *" RowSpacing="16">
-                <Frame BackgroundColor="{StaticResource Secondary}">
-                    <VerticalStackLayout Spacing="16">
-                        <FlexLayout JustifyContent="SpaceBetween">
-                            <VerticalStackLayout Spacing="4">
-                                <Label Text="Sucursal origen" TextColor="{StaticResource OnSecondary}" />
+            <Grid RowDefinitions="*">
+                <Grid RowDefinitions="Auto, *" RowSpacing="16">
+                    <Frame BackgroundColor="{StaticResource Secondary}">
+                        <Grid
+                            ColumnDefinitions="120, *"
+                            ColumnSpacing="8"
+                            RowDefinitions="Auto, Auto"
+                            RowSpacing="16">
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Spacing="4">
+                                <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
                                     Text="Maricultura"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Spacing="4">
-                                <Label
-                                    HorizontalOptions="End"
-                                    Text="Destino"
-                                    TextColor="{StaticResource OnSecondary}" />
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Spacing="4">
+                                <Label Text="Destino" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="MA001, MA002, MA003, MA005"
+                                    Text="MA001, MA002, MA003"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
-                        </FlexLayout>
 
-                        <FlexLayout JustifyContent="SpaceBetween">
-
-
-                            <VerticalStackLayout Spacing="4">
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Spacing="4">
                                 <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
@@ -149,208 +155,205 @@
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
-                            <VerticalStackLayout Spacing="4">
-                                <Label
-                                    HorizontalOptions="End"
-                                    Text="Transportista"
-                                    TextColor="{StaticResource OnSecondary}" />
+                            <VerticalStackLayout
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Spacing="4">
+                                <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
                                     Text="NELSON ZAMBRANO"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
-                        </FlexLayout>
-                    </VerticalStackLayout>
-                </Frame>
-                <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto">
-                    <!--  Table Header  -->
-                    <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
-                        <Grid ColumnDefinitions="Auto,*, auto">
-                            <Label
-                                Grid.Column="0"
-                                Text="Piscina"
-                                TextColor="{StaticResource OnSecondary}" />
-                            <Label
-                                Grid.Column="1"
-                                HorizontalOptions="Center"
-                                Text="Producto"
-                                TextColor="{StaticResource OnSecondary}" />
-                            <Label
-                                Grid.Column="2"
-                                HorizontalOptions="End"
-                                Text="Cantidad"
-                                TextColor="{StaticResource OnSecondary}" />
+
                         </Grid>
                     </Frame>
 
-
-                    <VerticalStackLayout Grid.Row="1">
-                        <!--  Primera fila  -->
-                        <Grid
-                            Padding="8"
-                            BackgroundColor="{StaticResource Primary100}"
-                            ColumnDefinitions="Auto, *, Auto"
-                            ColumnSpacing="8">
-
-                            <Label
-                                Style="{StaticResource RegularLabel}"
-                                Text="MA001"
-                                TextColor="{StaticResource OnSecondary}"
-                                VerticalOptions="Start" />
-
-                            <VerticalStackLayout
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Padding="8,0">
+                    <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto">
+                        <!--  Table Header  -->
+                        <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
+                            <Grid ColumnDefinitions="Auto,*, auto">
                                 <Label
-                                    HorizontalOptions="Start"
-                                    MaximumWidthRequest="300"
-                                    Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                    TextColor="{StaticResource Primary900}" />
-                                <Label
-                                    FontSize="14"
-                                    Text="SKU 13449"
+                                    Grid.Column="0"
+                                    Text="Piscina"
                                     TextColor="{StaticResource OnSecondary}" />
-                            </VerticalStackLayout>
-
-
-                            <Label
-                                Grid.Column="2"
-                                Style="{StaticResource RegularLabel}"
-                                Text="30 SACOS"
-                                TextColor="{StaticResource Primary700}"
-                                VerticalOptions="Center" />
-
-
-                        </Grid>
-
-                        <Grid
-                            Padding="8"
-                            BackgroundColor="{StaticResource Primary100}"
-                            ColumnDefinitions="Auto, *, Auto"
-                            ColumnSpacing="8">
-
-                            <Label
-                                Style="{StaticResource RegularLabel}"
-                                Text="MA002"
-                                TextColor="{StaticResource OnSecondary}"
-                                VerticalOptions="Start" />
-
-                            <VerticalStackLayout
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Padding="8,0">
                                 <Label
-                                    HorizontalOptions="Start"
-                                    MaximumWidthRequest="300"
-                                    Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                    TextColor="{StaticResource Primary900}" />
-                                <Label
-                                    FontSize="14"
-                                    Text="SKU 13449"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Text="Producto"
                                     TextColor="{StaticResource OnSecondary}" />
-                            </VerticalStackLayout>
-
-
-                            <Label
-                                Grid.Column="2"
-                                Style="{StaticResource RegularLabel}"
-                                Text="30 SACOS"
-                                TextColor="{StaticResource Primary700}"
-                                VerticalOptions="Center" />
-                        </Grid>
-
-
-                        <Grid
-                            Padding="8"
-                            BackgroundColor="{StaticResource Primary100}"
-                            ColumnDefinitions="Auto, *, Auto"
-                            ColumnSpacing="8">
-
-                            <Label
-                                Style="{StaticResource RegularLabel}"
-                                Text="MA003"
-                                TextColor="{StaticResource OnSecondary}"
-                                VerticalOptions="Start" />
-
-                            <VerticalStackLayout
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Padding="8,0">
                                 <Label
-                                    HorizontalOptions="Start"
-                                    MaximumWidthRequest="300"
-                                    Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                    TextColor="{StaticResource Primary900}" />
-                                <Label
-                                    FontSize="14"
-                                    Text="SKU 13449"
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    Text="Cantidad"
                                     TextColor="{StaticResource OnSecondary}" />
-                            </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+
+                        <VerticalStackLayout Grid.Row="1">
+                            <!--  Primera fila  -->
+                            <Grid
+                                Padding="8"
+                                BackgroundColor="{StaticResource Primary100}"
+                                ColumnDefinitions="Auto, *, Auto"
+                                ColumnSpacing="8">
+
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="MA001"
+                                    TextColor="{StaticResource OnSecondary}"
+                                    VerticalOptions="Start" />
+
+                                <VerticalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="8,0">
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        MaximumWidthRequest="300"
+                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
+                                        TextColor="{StaticResource Primary900}" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="SKU 13449"
+                                        TextColor="{StaticResource OnSecondary}" />
+                                </VerticalStackLayout>
 
 
-                            <Label
-                                Grid.Column="2"
-                                Style="{StaticResource RegularLabel}"
-                                Text="25 SACOS"
-                                TextColor="{StaticResource Primary700}"
-                                VerticalOptions="Center" />
-                        </Grid>
-                    </VerticalStackLayout>
+                                <Label
+                                    Grid.Column="2"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="30 SACOS"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
 
-                    <!--  Table Footer  -->
-                    <Grid
-                        Grid.Row="2"
-                        Grid.ColumnSpan="2"
-                        ColumnDefinitions="*,*"
-                        RowDefinitions="auto, auto">
-                        <BoxView
-                            Grid.Row="0"
+
+                            </Grid>
+
+                            <Grid
+                                Padding="8"
+                                BackgroundColor="{StaticResource Primary100}"
+                                ColumnDefinitions="Auto, *, Auto"
+                                ColumnSpacing="8">
+
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="MA002"
+                                    TextColor="{StaticResource OnSecondary}"
+                                    VerticalOptions="Start" />
+
+                                <VerticalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="8,0">
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        MaximumWidthRequest="300"
+                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
+                                        TextColor="{StaticResource Primary900}" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="SKU 13449"
+                                        TextColor="{StaticResource OnSecondary}" />
+                                </VerticalStackLayout>
+
+
+                                <Label
+                                    Grid.Column="2"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="30 SACOS"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+
+
+                            <Grid
+                                Padding="8"
+                                BackgroundColor="{StaticResource Primary100}"
+                                ColumnDefinitions="Auto, *, Auto"
+                                ColumnSpacing="8">
+
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="MA003"
+                                    TextColor="{StaticResource OnSecondary}"
+                                    VerticalOptions="Start" />
+
+                                <VerticalStackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="8,0">
+                                    <Label
+                                        HorizontalOptions="Start"
+                                        MaximumWidthRequest="300"
+                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
+                                        TextColor="{StaticResource Primary900}" />
+                                    <Label
+                                        FontSize="14"
+                                        Text="SKU 13449"
+                                        TextColor="{StaticResource OnSecondary}" />
+                                </VerticalStackLayout>
+
+
+                                <Label
+                                    Grid.Column="2"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="25 SACOS"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Grid>
+                        </VerticalStackLayout>
+
+                        <!--  Table Footer  -->
+                        <Grid
+                            Grid.Row="2"
                             Grid.ColumnSpan="2"
-                            Margin="0,0,0,8"
-                            BackgroundColor="{StaticResource Gray200}"
-                            HeightRequest="1" />
+                            ColumnDefinitions="*,*"
+                            RowDefinitions="auto, auto">
+                            <BoxView
+                                Grid.Row="0"
+                                Grid.ColumnSpan="2"
+                                Margin="0,0,0,8"
+                                BackgroundColor="{StaticResource Gray200}"
+                                HeightRequest="1" />
 
-                        <Label
-                            Grid.Row="4"
-                            Grid.Column="0"
-                            FontAttributes="None"
-                            Text="TOTAL"
-                            TextColor="{StaticResource OnSecondary}"
-                            VerticalOptions="Start"
-                            VerticalTextAlignment="Center" />
+                            <Label
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                FontAttributes="None"
+                                Text="TOTAL"
+                                TextColor="{StaticResource OnSecondary}"
+                                VerticalOptions="Start"
+                                VerticalTextAlignment="Center" />
 
-                        <StackLayout
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            HorizontalOptions="End">
-                            <Label
-                                HorizontalOptions="End"
-                                Text="85 SACOS"
-                                TextColor="{StaticResource Primary700}" />
-                            <Label
-                                FontSize="14"
-                                HorizontalOptions="End"
-                                Text="2,125 KG"
-                                TextColor="{StaticResource OnSecondary}" />
-                        </StackLayout>
+                            <StackLayout
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="85 SACOS"
+                                    TextColor="{StaticResource Primary700}" />
+                                <Label
+                                    FontSize="14"
+                                    HorizontalOptions="End"
+                                    Text="2,125 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </StackLayout>
+                        </Grid>
                     </Grid>
                 </Grid>
 
-                <Grid
-                    Grid.Row="1"
-                    Padding="0,0,0,16"
-                    ColumnDefinitions="*, Auto"
-                    ColumnSpacing="16"
-                    VerticalOptions="End">
-                    <Button
-                        Grid.Column="0"
-                        BackgroundColor="{StaticResource Primary700}"
-                        HeightRequest="62"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Realizar transferencia"
-                        TextColor="White" />
-                </Grid>
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,0,16"
+                    BackgroundColor="{StaticResource Primary700}"
+                    HeightRequest="62"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Realizar transferencia"
+                    TextColor="White"
+                    VerticalOptions="End" />
             </Grid>
         </Border>
     </Grid>

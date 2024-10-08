@@ -296,7 +296,7 @@
                             VerticalOptions="Start"
                             VerticalTextAlignment="Center" />
 
-                        <StackLayout
+                        <VerticalStackLayout
                             Grid.Row="1"
                             Grid.Column="1"
                             HorizontalOptions="End">
@@ -309,7 +309,7 @@
                                 HorizontalOptions="End"
                                 Text="{Binding TotalWeightInKilos, StringFormat='{}{0:N0} KG'}"
                                 TextColor="{StaticResource OnSecondary}" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </Grid>
                 </Grid>
 

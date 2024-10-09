@@ -179,13 +179,43 @@
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
 
-    <!--  Login View  -->
+
     <FlyoutItem FlyoutItemIsVisible="False">
         <ShellContent
             Title="LoginPage"
             ContentTemplate="{DataTemplate views:LoginView}"
             Route="login"
             Shell.FlyoutBehavior="Disabled" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Saldo de Inventario"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Inventory}">
+        <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Transferencias a Bodega"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Sync_alt}">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+    </FlyoutItem>
+
+    <!--  Transferencias Piscinas  -->
+    <FlyoutItem
+        Title="Despacho a Piscinas"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Sync_alt}">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
+    </FlyoutItem>
+
+    <!--  Movimientos Balanceado  -->
+    <FlyoutItem
+        Title="Movimientos"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Local_shipping}">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" Route="FeedingMovements" />
     </FlyoutItem>
 
     <!--  Estimación Sobrante  -->
@@ -204,37 +234,6 @@
         <ShellContent ContentTemplate="{DataTemplate views:FeedingPoolView}" Route="FeedingPool" />
     </FlyoutItem>
 
-    <!--  Inventario Finca  -->
-    <FlyoutItem
-        Title="Saldo de Inventario"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Inventory}">
-        <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
-    </FlyoutItem>
-
-    <!--  Movimientos Balanceado  -->
-    <FlyoutItem
-        Title="Movimientos"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Local_shipping}">
-        <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" Route="FeedingMovements" />
-    </FlyoutItem>
-
-    <!--  Transferencias Bodegas  -->
-    <FlyoutItem
-        Title="Transferencias Bodega"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
-    </FlyoutItem>
-
-    <!--  Transferencias Piscinas  -->
-    <FlyoutItem
-        Title="Distribución balanceado"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
-    </FlyoutItem>
 
     <Shell.FlyoutFooter>
         <Frame

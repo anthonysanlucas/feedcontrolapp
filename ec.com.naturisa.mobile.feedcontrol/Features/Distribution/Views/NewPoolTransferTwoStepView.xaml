@@ -120,14 +120,15 @@
                     Grid.Row="0"
                     Padding="0,0,0,90"
                     RowDefinitions="Auto, Auto, *, Auto">
+
                     <Grid
                         Grid.Row="0"
                         Margin="0,0,0,8"
-                        ColumnDefinitions="Auto, *"
-                        VerticalOptions="EndAndExpand">
+                        RowDefinitions="Auto, Auto"
+                        RowSpacing="8">
                         <Frame Grid.Column="0" BackgroundColor="{StaticResource Secondary}">
-                            <Grid ColumnDefinitions="Auto, Auto, Auto" ColumnSpacing="16">
-                                <VerticalStackLayout Spacing="8">
+                            <FlexLayout Grid.Row="0" JustifyContent="SpaceBetween">
+                                <VerticalStackLayout Grid.Column="0" Spacing="8">
                                     <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                                     <Label
                                         Style="{StaticResource RegularLabel}"
@@ -143,15 +144,16 @@
 
                                     <Label
                                         FontAttributes="None"
+                                        HorizontalOptions="End"
                                         Style="{StaticResource RegularLabel}"
-                                        Text="{Binding RemainingCapacity, StringFormat='{0} SACOS'}"
+                                        Text="{Binding RemainingCapacity, StringFormat='{0} sacos'}"
                                         TextColor="{StaticResource Primary700}" />
                                 </VerticalStackLayout>
-                            </Grid>
+                            </FlexLayout>
                         </Frame>
 
                         <Frame
-                            Grid.Column="1"
+                            Grid.Row="1"
                             BackgroundColor="{StaticResource Primary200}"
                             HeightRequest="44"
                             HorizontalOptions="End"
@@ -264,7 +266,7 @@
                                                 HorizontalOptions="End"
                                                 HorizontalTextAlignment="End"
                                                 Keyboard="Numeric"
-                                                Placeholder="SACOS"
+                                                Placeholder="sacos"
                                                 PlaceholderColor="{StaticResource OnSecondary}"
                                                 Text="{Binding QuantitySacks}" />
                                         </Frame>
@@ -302,12 +304,12 @@
                             HorizontalOptions="End">
                             <Label
                                 HorizontalOptions="End"
-                                Text="{Binding TotalQuantitySacks, StringFormat='{}{0:N0} SACOS'}"
+                                Text="{Binding TotalQuantitySacks, StringFormat='{}{0:N0} sacos'}"
                                 TextColor="{StaticResource Primary700}" />
                             <Label
                                 FontSize="14"
                                 HorizontalOptions="End"
-                                Text="{Binding TotalWeightInKilos, StringFormat='{}{0:N0} KG'}"
+                                Text="{Binding TotalWeightInKilos, StringFormat='{}{0:N0} kg'}"
                                 TextColor="{StaticResource OnSecondary}" />
                         </VerticalStackLayout>
                     </Grid>

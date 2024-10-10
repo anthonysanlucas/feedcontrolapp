@@ -55,45 +55,6 @@
         </Grid>
     </Shell.TitleView>
 
-    <!--  Custom FlyoutItem  -->
-    <Shell.ItemTemplate>
-        <DataTemplate x:DataType="models:FlyoutItem">
-            <Grid
-                Margin="0,4"
-                Padding="16"
-                BackgroundColor="Red"
-                ColumnDefinitions="0.2*, 0.8*">
-                <Label
-                    HeightRequest="24"
-                    Style="{StaticResource GoogleFont}"
-                    Text="{Binding Icon}"
-                    TextColor="{StaticResource White}"
-                    WidthRequest="24" />
-                <Label
-                    Grid.Column="1"
-                    Style="{StaticResource RegularLabel}"
-                    Text="{Binding Title}"
-                    TextColor="White"
-                    VerticalTextAlignment="Start" />
-
-                <VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="Transparent" />
-                            </VisualState.Setters>
-                        </VisualState>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>
-            </Grid>
-        </DataTemplate>
-    </Shell.ItemTemplate>
-
     <!--  Custom MenuItem  -->
     <Shell.MenuItemTemplate>
         <DataTemplate x:DataType="models:FlyoutItem">
@@ -162,10 +123,17 @@
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
 
+    <FlyoutItem FlyoutItemIsVisible="False">
+        <ShellContent
+            Title="InitialLoadingView"
+            ContentTemplate="{DataTemplate views:InitialLoadingView}"
+            Route="InitialLoading"
+            Shell.FlyoutBehavior="Disabled" />
+    </FlyoutItem>
 
     <FlyoutItem FlyoutItemIsVisible="False">
         <ShellContent
-            Title="LoginPage"
+            Title="LoginView"
             ContentTemplate="{DataTemplate views:LoginView}"
             Route="login"
             Shell.FlyoutBehavior="Disabled" />

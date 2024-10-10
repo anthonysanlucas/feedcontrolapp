@@ -63,7 +63,8 @@
 
             #endregion
 
-            #region Global
+            #region GlobalRoutes
+            Routing.RegisterRoute(nameof(InitialLoadingView), typeof(InitialLoadingView));
             Routing.RegisterRoute(nameof(NotificationsDetailView), typeof(NotificationsDetailView));
             Routing.RegisterRoute(nameof(SelectFarmView), typeof(SelectFarmView));
             Routing.RegisterRoute(nameof(ProfileDetailView), typeof(ProfileDetailView));

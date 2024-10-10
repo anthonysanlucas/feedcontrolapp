@@ -30,9 +30,9 @@
         [RelayCommand]
         async Task Login()
         {
-            await Shell.Current.GoToAsync("///FeedingPool");
+            //await Shell.Current.GoToAsync("///FeedingPool");
 
-            return;
+            //return;
 
             if (IsBusy)
                 return;

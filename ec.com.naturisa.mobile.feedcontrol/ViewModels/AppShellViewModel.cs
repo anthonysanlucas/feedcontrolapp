@@ -10,7 +10,7 @@
         {
             // Delete the token from the secure storage and navigate to the login page
 
-            // await Shell.Current.GoToAsync($"/{nameof(LoginView)}");
+            await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
         }
 
         [RelayCommand]

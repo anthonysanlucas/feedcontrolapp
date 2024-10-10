@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
-    Title="LoginView"
     Padding="0"
     x:DataType="viewModels:LoginViewModel"
     Shell.FlyoutBehavior="Disabled"
@@ -15,14 +14,12 @@
             x:Name="mainGrid"
             ColumnDefinitions="*"
             RowDefinitions="0.30*, *, auto">
-
             <Grid Grid.Row="0">
                 <Image
                     Aspect="AspectFill"
                     HorizontalOptions="FillAndExpand"
                     Source="bg_login_wave.svg"
                     VerticalOptions="FillAndExpand" />
-
                 <Image
                     Aspect="AspectFit"
                     HorizontalOptions="Center"
@@ -103,7 +100,6 @@
                                 Grid.Column="0"
                                 BackgroundColor="Transparent"
                                 Clicked="OnLoginButtonClicked"
-                                FontAttributes="Bold"
                                 HorizontalOptions="FillAndExpand"
                                 IsVisible="{Binding IsVisibleBtn}"
                                 Text="Iniciar sesión"
@@ -118,13 +114,11 @@
                     </Frame>
                 </VerticalStackLayout>
             </VerticalStackLayout>
-
             <Label
                 Grid.Row="2"
                 Padding="0,16"
                 HorizontalOptions="Center"
                 Text="Versión 0.1.0" />
         </Grid>
-
     </ScrollView>
 </ContentPage>

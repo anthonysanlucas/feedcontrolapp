@@ -23,6 +23,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IToastService, ToastService>();
 
             #region ViewModels
+
+            builder.Services.AddSingleton<InitialLoadingViewModel>();
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<FeedingPoolViewModel>();
             builder.Services.AddSingleton<FeedingPoolDetailViewModel>();
@@ -56,6 +58,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<SelectFarmView>();
             builder.Services.AddSingleton<ProfileDetailView>();
 
+            builder.Services.AddSingleton<InitialLoadingView>();
             builder.Services.AddSingleton<LoginView>();
             builder.Services.AddSingleton<FeedingPoolView>();
             builder.Services.AddSingleton<FeedingPoolDetailView>();

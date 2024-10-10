@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:distributionViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
@@ -17,25 +18,7 @@
             ColumnDefinitions="*, auto, auto"
             ColumnSpacing="8"
             VerticalOptions="FillAndExpand">
-            <HorizontalStackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
-                <BoxView
-                    Margin="0,8,8,0"
-                    BackgroundColor="{StaticResource Green500}"
-                    CornerRadius="8"
-                    HeightRequest="12"
-                    VerticalOptions="Start"
-                    WidthRequest="12" />
-                <VerticalStackLayout Spacing="2">
-                    <Label
-                        FontAttributes="Bold"
-                        Style="{StaticResource LargeLabel}"
-                        Text="Anthony San Lucas"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center"
-                        VerticalTextAlignment="Center" />
-                    <Label Text="{Binding LongDate}" TextColor="{StaticResource OnSecondary}" />
-                </VerticalStackLayout>
-            </HorizontalStackLayout>
+            <components:ShellTitle />
 
             <!--  Selected Farm  -->
             <Frame
@@ -189,22 +172,15 @@
     </FlyoutItem>
 
     <FlyoutItem
-        Title="Saldo de Inventario"
+        Title="Saldos de Inventario"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Inventory}">
         <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
     </FlyoutItem>
 
-    <FlyoutItem
-        Title="Transferencias a Bodega"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
-    </FlyoutItem>
-
     <!--  Transferencias Piscinas  -->
     <FlyoutItem
-        Title="Despacho a Piscinas"
+        Title="Asignación de Viaje"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Sync_alt}">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
@@ -212,7 +188,7 @@
 
     <!--  Movimientos Balanceado  -->
     <FlyoutItem
-        Title="Movimientos"
+        Title="Transporte de Balanceado"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Local_shipping}">
         <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" Route="FeedingMovements" />
@@ -234,6 +210,19 @@
         <ShellContent ContentTemplate="{DataTemplate views:FeedingPoolView}" Route="FeedingPool" />
     </FlyoutItem>
 
+    <FlyoutItem
+        Title="Recepción de Inventario"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Sync_alt}">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Transferencia a Finca"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Sync_alt}">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+    </FlyoutItem>
 
     <Shell.FlyoutFooter>
         <Frame

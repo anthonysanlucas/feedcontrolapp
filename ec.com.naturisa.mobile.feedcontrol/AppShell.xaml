@@ -88,6 +88,40 @@
         </DataTemplate>
     </Shell.MenuItemTemplate>
 
+    <!--  Custom FlyoutItem  -->
+    <Shell.ItemTemplate>
+        <DataTemplate x:DataType="models:FlyoutItem">
+            <Grid
+                Margin="0,4"
+                Padding="16"
+                ColumnDefinitions="0.2*, 0.8*">
+                <Image HeightRequest="16" Source="{Binding Icon}" />
+                <Label
+                    Grid.Column="1"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding Title}"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="Transparent" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+
     <Shell.FlyoutHeader>
         <VerticalStackLayout Margin="0,16">
             <VerticalStackLayout.GestureRecognizers>
@@ -123,60 +157,55 @@
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
 
-    <FlyoutItem FlyoutItemIsVisible="False">
-        <ShellContent
-            Title="InitialLoadingView"
-            ContentTemplate="{DataTemplate views:InitialLoadingView}"
-            Route="InitialLoading"
-            Shell.FlyoutBehavior="Disabled" />
+    <FlyoutItem FlyoutItemIsVisible="False" Route="InitialLoadingView">
+        <ShellContent ContentTemplate="{DataTemplate views:InitialLoadingView}" Shell.FlyoutBehavior="Disabled" />
     </FlyoutItem>
 
-    <FlyoutItem FlyoutItemIsVisible="False">
-        <ShellContent
-            Title="LoginView"
-            ContentTemplate="{DataTemplate views:LoginView}"
-            Route="login"
-            Shell.FlyoutBehavior="Disabled" />
+    <FlyoutItem FlyoutItemIsVisible="False" Route="LoginView">
+        <ShellContent ContentTemplate="{DataTemplate views:LoginView}" Shell.FlyoutBehavior="Disabled" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Alimentación Piscina"
+        FlyoutItemIsVisible="True"
+        Icon="{x:Static models:IconFont.Water}"
+        Route="FeedingPoolView">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingPoolView}" />
     </FlyoutItem>
 
     <FlyoutItem
         Title="Saldos de Inventario"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Inventory}">
-        <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" Route="FarmInventory" />
+        Icon="{x:Static models:IconFont.Inventory}"
+        Route="FarmInventoryView">
+        <ShellContent ContentTemplate="{DataTemplate views:FarmInventoryView}" />
     </FlyoutItem>
 
-    <!--  Transferencias Piscinas  -->
     <FlyoutItem
         Title="Asignación de Viaje"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" Route="PoolTransfer" />
+        Icon="{x:Static models:IconFont.Sync_alt}"
+        Route="PoolTransferView">
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:PoolTransferView}" />
     </FlyoutItem>
 
-    <!--  Movimientos Balanceado  -->
     <FlyoutItem
         Title="Transporte de Balanceado"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Local_shipping}">
-        <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" Route="FeedingMovements" />
+        Icon="{x:Static models:IconFont.Local_shipping}"
+        Route="FeedingMovementsView">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" />
     </FlyoutItem>
 
-    <!--  Estimación Sobrante  -->
     <FlyoutItem
         Title="Estimación Sobrante"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Assessment}">
-        <ShellContent ContentTemplate="{DataTemplate views:FeedingRemainingView}" Route="FeedingRemainingDetail" />
+        Icon="{x:Static models:IconFont.Assessment}"
+        Route="FeedingRemainingView">
+        <ShellContent ContentTemplate="{DataTemplate views:FeedingRemainingView}" />
     </FlyoutItem>
 
-    <!--  Alimentación Piscina  -->
-    <FlyoutItem
-        Title="Alimentación Piscina"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Water}">
-        <ShellContent ContentTemplate="{DataTemplate views:FeedingPoolView}" Route="FeedingPool" />
-    </FlyoutItem>
+
 
     <FlyoutItem
         Title="Recepción de Inventario"

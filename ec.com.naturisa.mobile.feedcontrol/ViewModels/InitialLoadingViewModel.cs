@@ -13,7 +13,7 @@
 
             if (string.IsNullOrWhiteSpace(UserDataString))
             {
-                await Shell.Current.GoToAsync(nameof(LoginView));
+                await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
 
                 return;
             }

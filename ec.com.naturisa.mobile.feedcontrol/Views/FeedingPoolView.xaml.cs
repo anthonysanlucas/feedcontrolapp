@@ -14,7 +14,7 @@ public partial class FeedingPoolView : ContentPage
     {
         if (BindingContext is FeedingPoolViewModel viewModel)
         {
-            viewModel.CollectionViewWidth = poolListCollectionView.Width;
+            //viewModel.CollectionViewWidth = poolListCollectionView.Width;
         }
     }
 }

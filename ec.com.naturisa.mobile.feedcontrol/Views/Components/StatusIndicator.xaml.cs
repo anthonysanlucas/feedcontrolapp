@@ -20,15 +20,14 @@ public partial class StatusIndicator : ContentView
 
     // Propiedades dependientes de Status
     public Color StatusColor => GetStatusColor(Status);
+    public Color StatusTextColor => GetTextColor(Status);
     public string StatusText => Status;
 
-    // Constructor del componente
     public StatusIndicator()
     {
         InitializeComponent();
     }
 
-    // Callback para cuando cambie la propiedad Status
     private static void OnStatusChanged(BindableObject bindable, object oldValue, object newValue)
     {
         var control = (StatusIndicator)bindable;
@@ -40,9 +39,34 @@ public partial class StatusIndicator : ContentView
     {
         OnPropertyChanged(nameof(StatusColor));
         OnPropertyChanged(nameof(StatusText));
+        OnPropertyChanged(nameof(StatusTextColor));
     }
 
     // Devuelve el color basado en el valor del estado
+    private static Color GetTextColor(string status)
+    {
+        // Método auxiliar para obtener el color de los recursos.
+        Color GetResourceColor(string resourceKey)
+        {
+            if (Application.Current.Resources.TryGetValue(resourceKey, out var color))
+            {
+                return (Color)color;
+            }
+            return Colors.DarkGray;
+        }
+
+        return status switch
+        {
+            "ASIGNADO" => GetResourceColor("Amber500"),
+            "RECIBIDO" => GetResourceColor("Primary700"),
+            "TRANSITO" => GetResourceColor("Primary"),
+            "PAUSADO" => GetResourceColor("Primary"),
+            "FINALIZADO" => GetResourceColor("Primary700"),
+            "ENTREGADO" => GetResourceColor("Green500"),
+            _ => Colors.DarkGray
+        };
+    }
+
     private static Color GetStatusColor(string status)
     {
         // Método auxiliar para obtener el color de los recursos.
@@ -52,17 +76,17 @@ public partial class StatusIndicator : ContentView
             {
                 return (Color)color;
             }
-            return Colors.Red;
+            return Colors.DarkGray;
         }
 
         return status switch
         {
-            "ASIGNADO" => GetResourceColor("Amber500"),
-            "RECIBIDO" => GetResourceColor("Primary700"),
-            "EN CURSO" => GetResourceColor("Primary"),
-            "ENTREGADO" => GetResourceColor("Primary700"),
-            "COMPLETADO" => GetResourceColor("Green500"),
-            _ => Colors.Red
+            "ASIGNADO" => GetResourceColor("Primary100"),
+            "RECIBIDO" => GetResourceColor("Primary100"),
+            "TRANSITO" => GetResourceColor("Primary100"),
+            "FINALIZADO" => GetResourceColor("Primary100"),
+            "ENTREGADO" => GetResourceColor("Primary100"),
+            _ => Colors.DarkGray
         };
     }
 }

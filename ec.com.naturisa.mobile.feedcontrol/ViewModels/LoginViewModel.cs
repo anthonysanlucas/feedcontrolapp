@@ -30,9 +30,9 @@
         [RelayCommand]
         async Task Login()
         {
-            //await Shell.Current.GoToAsync("///FeedingPool");
+            await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
 
-            //return;
+            return;
 
             if (IsBusy)
                 return;
@@ -48,7 +48,7 @@
                         UserName = UserName.Trim(),
                         Password = Password.Trim(),
                         CodeApplication = Guid.Parse("FE1D5B4D-80EB-4978-AC81-FDA234B91275"),
-                        IncludeUserInfo = false,
+                        IncludeUserInfo = true,
                         CodeTwoFactorAuthenticator = null
                     };
 

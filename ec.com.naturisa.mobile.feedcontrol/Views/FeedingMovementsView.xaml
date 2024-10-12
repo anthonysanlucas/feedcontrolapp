@@ -135,7 +135,7 @@
                                         VerticalOptions="Center" />
                                     <Image Source="trending_flat_icon.svg" VerticalOptions="Center" />
 
-                                    <!--  Loop through each Destination inside Route  -->
+                                    <!--  Loop through each Destination inside Route
                                     <CollectionView
                                         BackgroundColor="Transparent"
                                         HorizontalScrollBarVisibility="Never"
@@ -155,6 +155,7 @@
                                             </DataTemplate>
                                         </CollectionView.ItemTemplate>
                                     </CollectionView>
+                                    -->
                                 </HorizontalStackLayout>
                             </Grid>
                         </Grid>

@@ -2,55 +2,55 @@
 {
     public class FeedTransfer
     {
-        [JsonPropertyName("id_transfer")]
-        public int IdTransfer { get; set; }
-
-        [JsonPropertyName("transfer_code")]
-        public string TransferCode { get; set; }
-
-        [JsonPropertyName("assigned_date")]
-        public string AssignedDate { get; set; }
-
-        [JsonPropertyName("total_sacks")]
-        public int TotalSacks { get; set; }
-
-        [JsonPropertyName("total_weight")]
-        public double TotalWeight { get; set; }
-
-        [JsonPropertyName("approximate_pallets")]
-        public double ApproximatePallets { get; set; }
-
-        [JsonPropertyName("destination_subsidiary_id")]
-        public int DestinationSubsidiaryId { get; set; }
-
-        [JsonPropertyName("origin_subsidiary_name")]
-        public required string DestinationSubsidiaryName { get; set; }
+        [JsonPropertyName("id_feed_transfer")]
+        public int IdFeedTransfer { get; set; }
 
         [JsonPropertyName("origin_subsidiary_id")]
         public int OriginSubsidiaryId { get; set; }
 
         [JsonPropertyName("origin_subsidiary_name")]
-        public required string OriginSubsidiaryName { get; set; }
+        public string OriginSubsidiaryName { get; set; }
 
-        [JsonPropertyName("reception_date")]
-        public DateTime ReceptionDate { get; set; }
+        [JsonPropertyName("destination_subsidiary_id")]
+        public int DestinationSubsidiaryId { get; set; }
 
-        [JsonPropertyName("status")]
-        public required string Status { get; set; }
-
-        [JsonPropertyName("assigned_carrier_id")]
-        public required string AssignedCarrierId { get; set; }
-
-        [JsonPropertyName("assigned_carrier_name")]
-        public required string AssignedCarrierName { get; set; }
+        [JsonPropertyName("destination_subsidiary_name")]
+        public string DestinationSubsidiaryName { get; set; }
 
         [JsonPropertyName("assigned_vehicle_id")]
-        public required string AssignedVehicleId { get; set; }
+        public int AssignedVehicleId { get; set; }
 
         [JsonPropertyName("assigned_vehicle_plate")]
-        public required string AssignedVehiclePlate { get; set; }
+        public string AssignedVehiclePlate { get; set; }
 
-        [JsonPropertyName("route")]
-        public Route Route { get; set; }
+        [JsonPropertyName("assigned_carrier_id")]
+        public int AssignedCarrierId { get; set; }
+
+        [JsonPropertyName("assigned_carrier_name")]
+        public string AssignedCarrierName { get; set; }
+
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+
+        [JsonPropertyName("transfer_code")]
+        public string TransferCode { get; set; }
+
+        [JsonPropertyName("total_sacks")]
+        public int TotalSacks { get; set; }
+
+        [JsonPropertyName("total_weight")]
+        public decimal TotalWeight { get; set; }
+
+        [JsonPropertyName("approximate_pallets")]
+        public int ApproximatePallets { get; set; }
+
+        [JsonPropertyName("assigned_date")]
+        public DateTime AssignedDate { get; set; }
+
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        //[JsonPropertyName("feed_transfer_details")]
+        //public List<FeedTransferDetail> FeedTransferDetails { get; set; }
     }
 }

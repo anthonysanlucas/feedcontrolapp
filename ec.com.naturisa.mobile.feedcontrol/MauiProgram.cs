@@ -18,9 +18,14 @@ namespace ec.com.naturisa.mobile.feedcontrol
                     fonts.AddFont("MaterialIcons-Regular.ttf", "GoogleMaterialFont");
                 });
 
-            //SERVICES
+            #region Services
             builder.Services.AddSingleton<IAuthService, AuthService>();
             builder.Services.AddSingleton<IToastService, ToastService>();
+
+            // DISTRIBUTION
+            builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
+            #endregion
+
 
             #region ViewModels
 

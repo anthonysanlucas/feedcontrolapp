@@ -9,35 +9,26 @@
 
         private async void CheckUserLoginDetails()
         {
-            string UserDataString = Preferences.Get(nameof(App.UserData), "");
+            string UserData = Preferences.Get(nameof(App.UserData), String.Empty);
 
-            if (string.IsNullOrWhiteSpace(UserDataString))
+            if (!string.IsNullOrWhiteSpace(UserData))
             {
-                await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
+                User? userData = JsonSerializer.Deserialize<User>(UserData);
 
-                return;
+                // TODO: Check the token expiration (one hour)
+
+                if (userData != null)
+                {
+                    App.UserData = userData;
+                    await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
+
+                    return;
+                }
             }
 
-            //{
-            //    if (DeviceInfo.Platform == DevicePlatform.WinUI)
-            //    {
-            //        AppShell.Current.Dispatcher.Dispatch(async () =>
-            //        {
-            //            await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            //        });
-            //    }
-            //    else
-            //    {
-            //        //await Shell.Current.GoToAsync($"//{nameof(LoginPage)}");
-            //    }
-            //    // navigate to Login Page
-            //}
-            //else
-            //{
-            //    //var userInfo = JsonConvert.DeserializeObject<UserBasicInfo>(userDetailsStr);
-            //    //App.UserDetails = userInfo;
-            //    //await AppConstant.AddFlyoutMenusDetails();
-            //}
+            await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
+
+            return;
         }
     }
 }

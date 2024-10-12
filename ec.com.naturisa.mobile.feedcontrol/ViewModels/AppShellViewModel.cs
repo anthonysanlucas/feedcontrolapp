@@ -8,7 +8,8 @@
         [RelayCommand]
         async Task Logout()
         {
-            // Delete the token from the secure storage and navigate to the login page
+            SecureStorage.Default.RemoveAll();
+            Preferences.Default.Clear();
 
             await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
         }

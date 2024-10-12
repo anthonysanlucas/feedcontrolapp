@@ -30,33 +30,49 @@
         [RelayCommand]
         async Task Login()
         {
-            await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
+            //await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
 
-            return;
+            //return;
 
             if (IsBusy)
                 return;
+
+            if (string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(Password))
+            {
+                await ShowToastAsync("Usuario o contraseña no pueden estar vacíos.");
+                return;
+            }
+
+            LoginByUserRequest loginByUserRequest =
+                new()
+                {
+                    UserName = UserName.Trim(),
+                    Password = Password.Trim(),
+                    CodeApplication = Guid.Parse("FE1D5B4D-80EB-4978-AC81-FDA234B91275"),
+                    IncludeUserInfo = true,
+                    CodeTwoFactorAuthenticator = null
+                };
 
             try
             {
                 IsBusy = true;
                 IsVisibleBtn = false;
 
-                LoginByUserRequest loginByUserRequest =
-                    new()
-                    {
-                        UserName = UserName.Trim(),
-                        Password = Password.Trim(),
-                        CodeApplication = Guid.Parse("FE1D5B4D-80EB-4978-AC81-FDA234B91275"),
-                        IncludeUserInfo = true,
-                        CodeTwoFactorAuthenticator = null
-                    };
+                AuthenticationData loginResponse = await _authService.Auth(loginByUserRequest);
 
-                LoginResponse loginResponse = await _authService.Auth(loginByUserRequest);
+                await SecureStorage.Default.SetAsync("auth_token", loginResponse.Token);
+
+                Preferences.Set(nameof(App.UserData), JsonSerializer.Serialize(loginResponse.User));
+
+                // User data that remains persistent throughout the application's lifecycle
+                App.UserData = loginResponse.User;
 
                 if (loginResponse != null)
                 {
-                    //await Shell.Current.GoToAsync("///FeedingPool");
+                    UserName = string.Empty;
+                    Password = string.Empty;
+
+                    await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
                 }
                 else
                 {

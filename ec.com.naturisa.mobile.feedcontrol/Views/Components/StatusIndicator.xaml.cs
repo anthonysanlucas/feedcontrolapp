@@ -81,10 +81,10 @@ public partial class StatusIndicator : ContentView
 
         return status switch
         {
-            "ASIGNADO" => GetResourceColor("Primary100"),
+            "ASIGNADO" => GetResourceColor("Amber50"),
             "RECIBIDO" => GetResourceColor("Primary100"),
             "TRANSITO" => GetResourceColor("Primary100"),
-            "FINALIZADO" => GetResourceColor("Primary100"),
+            "FINALIZADO" => GetResourceColor("Green100"),
             "ENTREGADO" => GetResourceColor("Primary100"),
             _ => Colors.DarkGray
         };

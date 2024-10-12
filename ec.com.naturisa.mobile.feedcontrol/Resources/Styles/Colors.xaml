@@ -39,8 +39,12 @@
     <Color x:Key="Secondary">#F4F4F4</Color>
 
     <Color x:Key="Green500">#22c55e</Color>
+    <Color x:Key="Green100">#dcfce7</Color>
     <Color x:Key="Amber500">#f59e0b</Color>
+    <Color x:Key="Amber100">#fef3c7</Color>
+    <Color x:Key="Amber50">#fffbeb</Color>
     <Color x:Key="Red500">#ef4444</Color>
+    <Color x:Key="Red100">#fee2e2</Color>
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}" />

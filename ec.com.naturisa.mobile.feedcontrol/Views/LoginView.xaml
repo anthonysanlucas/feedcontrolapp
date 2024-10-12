@@ -45,14 +45,16 @@
                             BorderColor="{StaticResource Slate400}"
                             HasShadow="False"
                             HeightRequest="62">
-                            <Entry
-                                x:Name="UsernameEntry"
-                                FontSize="16"
-                                IsSpellCheckEnabled="False"
-                                Placeholder="Ingresa tu usuario"
-                                PlaceholderColor="{StaticResource Black-text-light}"
-                                Text="{Binding UserName}"
-                                TextColor="{StaticResource Black-text}" />
+                            <VerticalStackLayout>
+                                <Entry
+                                    x:Name="UsernameEntry"
+                                    FontSize="16"
+                                    IsSpellCheckEnabled="False"
+                                    Placeholder="Ingresa tu usuario"
+                                    PlaceholderColor="{StaticResource Black-text-light}"
+                                    Text="{Binding UserName}"
+                                    TextColor="{StaticResource Black-text}" />
+                            </VerticalStackLayout>
                         </Frame>
                     </VerticalStackLayout>
 

@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using ec.com.naturisa.mobile.feedcontrol.Models.Api;
-using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
-using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
-
-namespace ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer
 {
     public class FeedTransferService : BaseHttpService, IFeedTransferService
     {

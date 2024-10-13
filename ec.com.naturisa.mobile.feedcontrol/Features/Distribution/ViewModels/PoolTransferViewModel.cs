@@ -1,6 +1,4 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Models.Api;
-using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
-using ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer;
+﻿using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {

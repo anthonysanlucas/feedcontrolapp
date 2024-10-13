@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Http.Headers;
 using ec.com.naturisa.mobile.feedcontrol.Models.Api;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
@@ -49,17 +44,40 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync();
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
-                    responseData,
-                    _jsonSerializerOptions
-                );
-                return apiResponse
-                    ?? new ApiResponse<T>
-                    {
-                        Code = (int)response.StatusCode,
-                        Message = "Error en la deserialización",
-                        Data = default
-                    };
+
+                // Determinar si el tipo T es una PagedApiResponse o no.
+                var isPagedResponse =
+                    typeof(T).IsGenericType
+                    && typeof(T).GetGenericTypeDefinition() == typeof(PagedApiResponse<>);
+
+                if (isPagedResponse)
+                {
+                    var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
+                        responseData,
+                        _jsonSerializerOptions
+                    );
+                    return apiResponse
+                        ?? new ApiResponse<T>
+                        {
+                            Code = (int)response.StatusCode,
+                            Message = "Error en la deserialización",
+                            Data = default
+                        };
+                }
+                else
+                {
+                    var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(
+                        responseData,
+                        _jsonSerializerOptions
+                    );
+                    return apiResponse
+                        ?? new ApiResponse<T>
+                        {
+                            Code = (int)response.StatusCode,
+                            Message = "Error en la deserialización",
+                            Data = default
+                        };
+                }
             }
 
             return new ApiResponse<T>

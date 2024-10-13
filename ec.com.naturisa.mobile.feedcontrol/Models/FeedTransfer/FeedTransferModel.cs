@@ -2,55 +2,56 @@
 {
     public class FeedTransferModel
     {
-        [JsonPropertyName("id_feed_transfer")]
+        [JsonPropertyName("idFeedTransfer")]
         public int IdFeedTransfer { get; set; }
 
-        [JsonPropertyName("origin_subsidiary_id")]
+        [JsonPropertyName("originSubsidiaryId")]
         public int OriginSubsidiaryId { get; set; }
 
-        [JsonPropertyName("origin_subsidiary_name")]
+        [JsonPropertyName("originSubsidiaryName")]
         public string OriginSubsidiaryName { get; set; }
 
-        [JsonPropertyName("destination_subsidiary_id")]
+        [JsonPropertyName("destinationSubsidiaryId")]
         public int DestinationSubsidiaryId { get; set; }
 
-        [JsonPropertyName("destination_subsidiary_name")]
+        [JsonPropertyName("destinationSubsidiaryName")]
         public string DestinationSubsidiaryName { get; set; }
 
-        [JsonPropertyName("assigned_vehicle_id")]
+        [JsonPropertyName("assignedVehicleId")]
         public int AssignedVehicleId { get; set; }
 
-        [JsonPropertyName("assigned_vehicle_plate")]
+        [JsonPropertyName("assignedVehiclePlate")]
         public string AssignedVehiclePlate { get; set; }
 
-        [JsonPropertyName("assigned_carrier_id")]
+        [JsonPropertyName("assignedCarrierId")]
         public int AssignedCarrierId { get; set; }
 
-        [JsonPropertyName("assigned_carrier_name")]
+        [JsonPropertyName("assignedCarrierName")]
         public string AssignedCarrierName { get; set; }
 
         [JsonPropertyName("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("transfer_code")]
+        [JsonPropertyName("transferCode")]
         public string TransferCode { get; set; }
 
-        [JsonPropertyName("total_sacks")]
+        [JsonPropertyName("totalSacks")]
         public int TotalSacks { get; set; }
 
-        [JsonPropertyName("total_weight")]
+        [JsonPropertyName("totalWeight")]
         public decimal TotalWeight { get; set; }
 
-        [JsonPropertyName("approximate_pallets")]
+        [JsonPropertyName("approximatePallets")]
         public int ApproximatePallets { get; set; }
 
-        [JsonPropertyName("assigned_date")]
+        [JsonPropertyName("assignedDate")]
         public DateTime AssignedDate { get; set; }
 
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
-        //[JsonPropertyName("feed_transfer_details")]
+        // Descomentar y ajustar según sea necesario
+        //[JsonPropertyName("feedTransferDetails")]
         //public List<FeedTransferDetail> FeedTransferDetails { get; set; }
     }
 }

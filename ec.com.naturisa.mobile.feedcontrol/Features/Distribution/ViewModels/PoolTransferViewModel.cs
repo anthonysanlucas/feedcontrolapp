@@ -1,10 +1,15 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer;
+﻿using ec.com.naturisa.mobile.feedcontrol.Models.Api;
+using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
+using ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     public partial class PoolTransferViewModel : BaseViewModel
     {
         private readonly FeedTransferService _feedTransferService;
+
+        [ObservableProperty]
+        private ObservableCollection<FeedTransferModel> feedingTrips;
 
         public PoolTransferViewModel(IToastService toastService)
             : base(toastService)
@@ -23,7 +28,17 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         [RelayCommand]
         async Task GetFeedTransfers()
         {
-            await _feedTransferService.GetFeedTransfers();
+            var response = await _feedTransferService.GetFeedTransfers();
+
+            if (response != null && response.Data != null && response.Data.Data.Any())
+            {
+                var feedTransferModels = response.Data.Data;
+                Console.WriteLine($"Número de transferencias: {feedTransferModels.Count}");
+            }
+            else
+            {
+                Console.WriteLine("No se recibieron datos de transferencias o hubo un error.");
+            }
         }
     }
 }

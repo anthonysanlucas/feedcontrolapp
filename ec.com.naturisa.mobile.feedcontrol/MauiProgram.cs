@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
 using Microsoft.Extensions.Logging;
 
 namespace ec.com.naturisa.mobile.feedcontrol
@@ -21,11 +22,11 @@ namespace ec.com.naturisa.mobile.feedcontrol
             #region Services
             builder.Services.AddSingleton<IAuthService, AuthService>();
             builder.Services.AddSingleton<IToastService, ToastService>();
+            builder.Services.AddSingleton<BaseHttpService>();
 
             // DISTRIBUTION
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
             #endregion
-
 
             #region ViewModels
 
@@ -93,7 +94,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<NewPoolTransferThreeStepView>();
             #endregion
 
-            #region HANDLERS
+            #region Handlers
             FormHandler.RemoveBorders();
             #endregion
 

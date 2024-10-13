@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Title="PoolTransferView"
@@ -32,6 +33,120 @@
 
             </Grid>
 
+            <CollectionView Grid.Row="2" ItemsSource="{Binding FeedingTrips}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
+                        <Frame
+                            Margin="0,8"
+                            BorderColor="{StaticResource Secondary}"
+                            HasShadow="False">
+
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="8"
+                                RowDefinitions="Auto,Auto,Auto"
+                                RowSpacing="8">
+
+                                <!--  Header Row with Feed Information  -->
+                                <Grid Grid.Column="0">
+                                    <Label
+                                        FontAttributes="None"
+                                        Style="{StaticResource LargeLabel}"
+                                        Text="{Binding TransferCode}"
+                                        TextColor="{StaticResource Primary900}"
+                                        VerticalOptions="Center" />
+                                </Grid>
+
+                                <!--  Status Box and Label  -->
+                                <components:StatusIndicator
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Status="{Binding Status}"
+                                    VerticalOptions="Center" />
+
+                                <!--  Row for TotalSacks and TotalWeight  -->
+                                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
+                                    <Label
+                                        FontAttributes="None"
+                                        Text="Cantidad total"
+                                        VerticalOptions="Center" />
+
+                                    <HorizontalStackLayout>
+                                        <Label
+                                            FontAttributes="None"
+                                            Style="{StaticResource RegularLabel}"
+                                            Text="{Binding TotalSacks, StringFormat='{0} SACOS'}"
+                                            TextColor="{StaticResource Primary900}"
+                                            VerticalOptions="Center" />
+                                        <Label
+                                            FontAttributes="None"
+                                            Style="{StaticResource RegularLabel}"
+                                            Text=" - 4,950 KG"
+                                            TextColor="{StaticResource Primary900}"
+                                            VerticalOptions="Center" />
+                                    </HorizontalStackLayout>
+                                </VerticalStackLayout>
+
+                                <!--  Row for Route Information  -->
+                                <Grid
+                                    Grid.Row="2"
+                                    Grid.ColumnSpan="2"
+                                    ColumnDefinitions="Auto,Auto,*"
+                                    ColumnSpacing="8"
+                                    RowDefinitions="Auto,Auto"
+                                    RowSpacing="6">
+
+                                    <!--  Route Header  -->
+                                    <Label
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        FontAttributes="None"
+                                        Text="Ruta"
+                                        VerticalOptions="Center" />
+
+                                    <!--  Routes Section  -->
+                                    <HorizontalStackLayout
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        Spacing="4">
+                                        <Label
+                                            FontAttributes="None"
+                                            Style="{StaticResource RegularLabel}"
+                                            Text="{Binding OriginSubsidiaryName}"
+                                            TextColor="{StaticResource Primary900}"
+                                            VerticalOptions="Center" />
+                                        <Image Source="trending_flat_icon.svg" VerticalOptions="Center" />
+
+                                        <!--  Loop through each Destination inside Route
+                             <CollectionView
+                                 BackgroundColor="Transparent"
+                                 HorizontalScrollBarVisibility="Never"
+                                 ItemsLayout="HorizontalList"
+                                 ItemsSource="{Binding Route.Destinations}">
+                                 <CollectionView.ItemTemplate>
+                                     <DataTemplate x:DataType="models:Destination">
+                                         <Grid>
+                                             <Label
+                                                 Margin="0,0,4,0"
+                                                 FontAttributes="None"
+                                                 Style="{StaticResource RegularLabel}"
+                                                 Text="{Binding DestinationName}"
+                                                 TextColor="{StaticResource Primary700}"
+                                                 VerticalOptions="Center" />
+                                         </Grid>
+                                     </DataTemplate>
+                                 </CollectionView.ItemTemplate>
+                             </CollectionView>
+                                        -->
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <!--
             <VerticalStackLayout Grid.Row="1">
                 <VerticalStackLayout Grid.Row="2" Margin="0,16">
                     <Frame
@@ -50,7 +165,7 @@
                             RowDefinitions="Auto,Auto,Auto,Auto"
                             RowSpacing="8">
 
-                            <!--  Header Row with Feed Information  -->
+
                             <VerticalStackLayout Grid.Column="0" Spacing="2">
                                 <Label
                                     FontAttributes="None"
@@ -64,7 +179,7 @@
                                     VerticalOptions="Center" />
                             </VerticalStackLayout>
 
-                            <!--  Status Box and Label  -->
+
                             <components:StatusIndicator
                                 Grid.Column="1"
                                 HorizontalOptions="End"
@@ -104,7 +219,6 @@
                                     VerticalOptions="Center" />
                             </VerticalStackLayout>
 
-                            <!--  Row for TotalSacks and TotalWeight  -->
                             <VerticalStackLayout
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -124,7 +238,7 @@
                                 </VerticalStackLayout>
                             </VerticalStackLayout>
 
-                            <!--  Row for Route Information  -->
+
                             <Grid
                                 Grid.Row="1"
                                 Grid.ColumnSpan="2"
@@ -133,7 +247,7 @@
                                 RowDefinitions="Auto,Auto"
                                 RowSpacing="2">
 
-                                <!--  Route Header  -->
+
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="0"
@@ -141,7 +255,7 @@
                                     Text="Ruta"
                                     VerticalOptions="Center" />
 
-                                <!--  Routes Section  -->
+
                                 <HorizontalStackLayout
                                     Grid.Row="1"
                                     Grid.Column="0"
@@ -172,8 +286,7 @@
                         </Grid>
                     </Frame>
                 </VerticalStackLayout>
-            </VerticalStackLayout>
-
+            </VerticalStackLayout>-->
         </Grid>
 
         <Frame

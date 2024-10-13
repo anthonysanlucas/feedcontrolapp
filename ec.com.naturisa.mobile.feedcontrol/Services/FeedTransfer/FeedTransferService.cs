@@ -1,51 +1,34 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using ec.com.naturisa.mobile.feedcontrol.Models.Api;
+using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
+using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer
 {
-    public class FeedTransferService : IFeedTransferService
+    public class FeedTransferService : BaseHttpService, IFeedTransferService
     {
-        private readonly HttpClient _feedTransferHttpClient;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
-
-        private static class FeedTransferEnpoints
+        private static class FeedTransferEndpoints
         {
-            public const string FeedTransfer = "/feed_transfers";
-            public const string FeedTransferDetails = "/feed_transfer_details";
-            public const string FeedTransferDetailPools = "/feed_transfer_detail_pools";
+            public const string FeedTransfer = $"{ApiConstants.API_FEED_CONTROL}/feed_transfers";
+            public const string FeedTransferDetails =
+                $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_details";
+            public const string FeedTransferDetailPools =
+                $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_detail_pools";
         }
 
         public FeedTransferService()
+            : base(ApiConstants.API_FEED_CONTROL) { }
+
+        public async Task<ApiResponse<PagedApiResponse<FeedTransferModel>>> GetFeedTransfers()
         {
-            _feedTransferHttpClient = new HttpClient
-            {
-                BaseAddress = new Uri(ApiConstants.API_FEED_CONTROL)
-            };
-
-            _jsonSerializerOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-        }
-
-        public async Task<HttpResponseMessage> GetFeedTransfers()
-        {
-            // Recuperar el token del Secure Storage
-            var token = await SecureStorage.GetAsync("auth_token");
-
-            // Añadir la cabecera Authorization si el token no es nulo
-            if (!string.IsNullOrEmpty(token))
-            {
-                _feedTransferHttpClient.DefaultRequestHeaders.Authorization =
-                    new AuthenticationHeaderValue("Bearer", token);
-            }
-
-            // Realizar la solicitud GET
-            var response = await _feedTransferHttpClient.GetAsync(
-                $"{ApiConstants.API_FEED_CONTROL}{FeedTransferEnpoints.FeedTransfer}"
+            var response = await SendRequestAsync(
+                HttpMethod.Get,
+                FeedTransferEndpoints.FeedTransfer
             );
 
-            // Manejar la respuesta (puedes procesarla según tus necesidades)
-            return response;
+            return await ProcessResponse<PagedApiResponse<FeedTransferModel>>(response);
         }
     }
 }

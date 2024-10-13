@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Services.Auth
+﻿using ec.com.naturisa.mobile.feedcontrol.Models.Api;
+
+namespace ec.com.naturisa.mobile.feedcontrol.Services.Auth
 {
     public class AuthService : IAuthService
     {

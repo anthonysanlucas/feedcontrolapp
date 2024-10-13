@@ -33,6 +33,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             if (response != null && response.Data != null && response.Data.Data.Any())
             {
                 var feedTransferModels = response.Data.Data;
+
+                FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
+
                 Console.WriteLine($"Número de transferencias: {feedTransferModels.Count}");
             }
             else

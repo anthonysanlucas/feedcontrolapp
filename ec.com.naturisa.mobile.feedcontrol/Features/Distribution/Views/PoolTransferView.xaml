@@ -35,7 +35,7 @@
             <RefreshView
                 Grid.Row="2"
                 Command="{Binding GetFeedTransfersCommand}"
-                IsEnabled="{Binding IsNotBusy}"
+                IsRefreshing="{Binding IsRefreshing}"
                 RefreshColor="Transparent">
                 <CollectionView ItemsSource="{Binding FeedingTrips}">
                     <CollectionView.ItemTemplate>
@@ -340,7 +340,7 @@
             BackgroundColor="White"
             HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsBusy}"
-            Opacity="0.8"
+            Opacity="0.9"
             VerticalOptions="FillAndExpand" />
     </Grid>
 

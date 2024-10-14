@@ -24,12 +24,11 @@
         [RelayCommand]
         async Task GetFeedTransfers()
         {
+            IsNotBusy = false;
             IsBusy = true;
-            IsRefreshing = true;
+            IsRefreshing = false;
 
             var response = await _feedTransferService.GetFeedTransfers();
-
-            IsRefreshing = false;
 
             if (response != null && response.Data != null && response.Data.Data.Any())
             {
@@ -45,6 +44,7 @@
             }
 
             IsBusy = false;
+            IsNotBusy = true;
         }
     }
 }

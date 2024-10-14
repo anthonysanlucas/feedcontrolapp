@@ -8,7 +8,8 @@
         [ObservableProperty]
         private bool _isRefreshing;
 
-        public bool IsNotBusy => !IsBusy;
+        [ObservableProperty]
+        private bool _isNotBusy;
 
         [ObservableProperty]
         private DateTime _currentDateTime = DateTime.Now;
@@ -56,11 +57,6 @@
         partial void OnCurrentDateTimeChanged(DateTime value)
         {
             UpdateDateFormats();
-        }
-
-        partial void OnIsBusyChanged(bool value)
-        {
-            OnPropertyChanged(nameof(IsNotBusy));
         }
     }
 }

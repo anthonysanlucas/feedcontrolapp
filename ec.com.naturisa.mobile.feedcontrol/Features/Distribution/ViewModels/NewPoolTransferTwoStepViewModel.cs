@@ -4,62 +4,72 @@
     public partial class NewPoolTransferTwoStepViewModel : BaseViewModel
     {
         [ObservableProperty]
-        PoolTransferOneStepSelection poolTransferOneStepSelection;
+        private PoolTransferOneStepSelection poolTransferOneStepSelection;
 
         [ObservableProperty]
-        private List<string> availableProducts;
+        private List<FeedTransferDetailModel> availableProducts;
 
         [ObservableProperty]
-        private List<string> availablePools;
+        private List<FeedTransferDetailPoolModel> availablePools;
 
         [ObservableProperty]
-        private int vehicleCapacity;
+        private ObservableCollection<ProductRowModel> productRows;
 
         [ObservableProperty]
-        private ObservableCollection<PoolTransferRow> poolTransferRows;
+        private ObservableCollection<FeedTransferDetailModel> addedProducts;
 
         [ObservableProperty]
-        private ObservableCollection<Product> addedProducts;
+        private int vehicleCapacity = 165;
 
         public NewPoolTransferTwoStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            VehicleCapacity = 165;
-
-            AvailableProducts = new List<string>
+            AvailableProducts = new()
             {
-                "AQUAXCEL MW 424 SLD STARTER 0.8 MM",
-                "AQUAXCEL MW 424 SLD STARTER 0.6 MM",
-                "AQUAXCEL SLD 1.2 MM"
+                new FeedTransferDetailModel
+                {
+                    ProductId = 22392,
+                    ProductName = "AQUAXCEL MW354 GROWER NG1.8MM"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 13655,
+                    ProductName = "AQUAXCEL MW 424 SLD STARTER 0.8 MM"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 2489,
+                    ProductName = "ALIMENTO INICIADOR AQUAXCEL 0.6 MM"
+                },
             };
 
-            AvailablePools = new List<string> { "MA001", "MA002", "MA003", "MA005" };
-
-            PoolTransferRows = new ObservableCollection<PoolTransferRow>();
-
-            PoolTransferRows.Add(
-                new PoolTransferRow
-                {
-                    SelectedPool = "",
-                    SelectedProduct = "",
-                    QuantitySacks = null
-                }
-            );
-
-            PoolTransferRows.CollectionChanged += (sender, args) => UpdateTotals();
-
-            foreach (var row in PoolTransferRows)
+            AvailablePools = new()
             {
-                row.PropertyChanged += PoolTransferRow_PropertyChanged;
+                new FeedTransferDetailPoolModel { PoolId = 1, PoolCode = "MA001", },
+                new FeedTransferDetailPoolModel { PoolId = 2, PoolCode = "MA002", },
+                new FeedTransferDetailPoolModel { PoolId = 3, PoolCode = "MA003", },
+                new FeedTransferDetailPoolModel { PoolId = 4, PoolCode = "MA004", },
+                new FeedTransferDetailPoolModel { PoolId = 5, PoolCode = "MA005", },
+                new FeedTransferDetailPoolModel { PoolId = 6, PoolCode = "MA006", },
+                new FeedTransferDetailPoolModel { PoolId = 7, PoolCode = "MA007", },
+            };
+
+            ProductRows = new ObservableCollection<ProductRowModel> { new ProductRowModel() };
+
+            ProductRows.CollectionChanged += (sender, args) => UpdateTotals();
+
+            foreach (var row in ProductRows)
+            {
+                row.PropertyChanged += ProductRow_PropertyChanged;
             }
         }
 
-        private void PoolTransferRow_PropertyChanged(
+        private void ProductRow_PropertyChanged(
             object sender,
             System.ComponentModel.PropertyChangedEventArgs e
         )
         {
-            if (e.PropertyName == nameof(PoolTransferRow.QuantitySacks))
+            if (e.PropertyName == nameof(ProductRowModel.QuantitySacks))
             {
                 OnPropertyChanged(nameof(TotalQuantitySacks));
                 OnPropertyChanged(nameof(TotalWeightInKilos));
@@ -67,31 +77,31 @@
         }
 
         [RelayCommand]
-        public async void AddPoolTransferRow()
+        public async void AddProductRow()
         {
             if (RemainingCapacity < 0)
             {
                 await ToastService.ShowToastAsync(
-                    "No se puede superar la capacidad máxima del vehículo"
+                    "No se puede superar la capacidad máxima del vehículo."
                 );
 
                 return;
             }
 
-            PoolTransferRow newRow = new();
-            newRow.PropertyChanged += PoolTransferRow_PropertyChanged;
+            ProductRowModel newRow = new ProductRowModel();
+            newRow.PropertyChanged += ProductRow_PropertyChanged;
 
-            PoolTransferRows.Add(newRow);
+            ProductRows.Add(newRow);
             UpdateTotals();
         }
 
         [RelayCommand]
-        public void DeletePoolTransfertRow(PoolTransferRow row)
+        public void DeleteProductRow(ProductRowModel row)
         {
-            if (!PoolTransferRows.Contains(row))
+            if (!ProductRows.Contains(row))
                 return;
 
-            PoolTransferRows.Remove(row);
+            ProductRows.Remove(row);
             UpdateTotals();
         }
 
@@ -110,8 +120,7 @@
             await Shell.Current.GoToAsync(nameof(NewPoolTransferThreeStepView));
         }
 
-        public int TotalQuantitySacks =>
-            PoolTransferRows.Sum(row => int.TryParse(row.QuantitySacks, out int sacks) ? sacks : 0);
+        public int TotalQuantitySacks => ProductRows.Sum(row => row.QuantitySacks);
 
         public int TotalWeightInKilos => TotalQuantitySacks * 25;
 
@@ -125,15 +134,15 @@
         }
     }
 
-    public partial class PoolTransferRow : ObservableObject
+    public partial class ProductRowModel : ObservableObject
     {
         [ObservableProperty]
-        private string selectedPool;
+        private FeedTransferDetailModel selectedProduct;
 
         [ObservableProperty]
-        private string selectedProduct;
+        private FeedTransferDetailPoolModel selectedPool;
 
         [ObservableProperty]
-        private string quantitySacks;
+        private int quantitySacks;
     }
 }

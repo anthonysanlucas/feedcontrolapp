@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    Title="NewPoolTransferTwoStepView"
     Padding="0"
     x:DataType="viewModels:NewPoolTransferTwoStepViewModel"
     BackgroundColor="{StaticResource Primary900}"
@@ -160,7 +159,7 @@
                             MaximumWidthRequest="110"
                             VerticalOptions="End">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddPoolTransferRowCommand}" />
+                                <TapGestureRecognizer Command="{Binding AddProductRowCommand}" />
                             </Frame.GestureRecognizers>
                             <HorizontalStackLayout Spacing="4">
                                 <Label
@@ -201,9 +200,9 @@
                         </Grid>
                     </Frame>
 
-                    <CollectionView Grid.Row="2" ItemsSource="{Binding PoolTransferRows}">
+                    <CollectionView Grid.Row="2" ItemsSource="{Binding ProductRows}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="viewModels:PoolTransferRow">
+                            <DataTemplate x:DataType="viewModels:ProductRowModel">
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>
@@ -238,8 +237,9 @@
                                             BorderColor="{StaticResource Slate400}">
                                             <Picker
                                                 Title="Selecciona una piscina"
+                                                ItemDisplayBinding="{Binding PoolCode}"
                                                 ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=AvailablePools}"
-                                                SelectedItem="{Binding SelectedPool, Mode=TwoWay}"
+                                                SelectedItem="{Binding SelectedPool}"
                                                 TextColor="{StaticResource OnSecondary}"
                                                 TitleColor="{StaticResource Primary900}" />
                                         </Frame>
@@ -251,6 +251,7 @@
                                             BorderColor="{StaticResource Slate400}">
                                             <Picker
                                                 Title="Selecciona un producto"
+                                                ItemDisplayBinding="{Binding ProductName}"
                                                 ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=AvailableProducts}"
                                                 SelectedItem="{Binding SelectedProduct}"
                                                 TextColor="{StaticResource OnSecondary}"
@@ -268,7 +269,7 @@
                                                 Keyboard="Numeric"
                                                 Placeholder="sacos"
                                                 PlaceholderColor="{StaticResource OnSecondary}"
-                                                Text="{Binding QuantitySacks}" />
+                                                Text="{Binding QuantitySacks, Mode=TwoWay}" />
                                         </Frame>
                                     </Grid>
                                 </SwipeView>

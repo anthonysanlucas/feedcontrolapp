@@ -8,7 +8,6 @@
     xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    Title="PoolTransferView"
     x:DataType="viewModels:PoolTransferViewModel">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="Auto, *">
@@ -201,7 +200,6 @@
                     Text="{x:Static models:IconFont.Add}"
                     TextColor="{StaticResource Primary700}"
                     VerticalOptions="Center" />
-
                 <Label
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
@@ -210,7 +208,6 @@
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
-
         <components:ViewLoader
             Grid.Row="0"
             BackgroundColor="White"
@@ -219,7 +216,6 @@
             Opacity="0.9"
             VerticalOptions="FillAndExpand" />
     </Grid>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:TruncateTextConverter x:Key="TruncateTextConverter" />

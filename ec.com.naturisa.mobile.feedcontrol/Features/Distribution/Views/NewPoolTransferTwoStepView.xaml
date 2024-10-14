@@ -132,7 +132,7 @@
                                     <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                                     <Label
                                         Style="{StaticResource RegularLabel}"
-                                        Text="GCT 5936"
+                                        Text="{Binding PoolTransferOneStepSelection.SelectedTransport.Plate}"
                                         TextColor="{StaticResource Primary700}" />
                                 </VerticalStackLayout>
 

@@ -1,7 +1,11 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
+    [QueryProperty(nameof(PoolTransferOneStepSelection), nameof(PoolTransferOneStepSelection))]
     public partial class NewPoolTransferTwoStepViewModel : BaseViewModel
     {
+        [ObservableProperty]
+        PoolTransferOneStepSelection poolTransferOneStepSelection;
+
         [ObservableProperty]
         private List<string> availableProducts;
 

@@ -4,7 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    Title="NewPoolTransferOneStepView"
     Padding="0"
     x:DataType="viewModels:NewPoolTransferOneStepViewModel"
     BackgroundColor="{StaticResource Primary900}"
@@ -145,6 +144,7 @@
                                     <Picker
                                         Title="Selecciona un destino"
                                         FontSize="16"
+                                        ItemDisplayBinding="{Binding Name}"
                                         ItemsSource="{Binding OriginWarehouses}"
                                         SelectedItem="{Binding SelectedOriginWharehouse}"
                                         TextColor="{StaticResource Primary700}"
@@ -162,13 +162,13 @@
                                     Padding="8"
                                     BackgroundColor="Transparent"
                                     BorderColor="{StaticResource Slate400}"
-                                    HasShadow="False"
                                     HeightRequest="62">
                                     <Picker
                                         Title="Selecciona un vehículo"
                                         FontSize="16"
-                                        ItemsSource="{Binding VehiclePlates}"
-                                        SelectedItem="{Binding SelectedVehiclePlate}"
+                                        ItemDisplayBinding="{Binding Plate}"
+                                        ItemsSource="{Binding Transports}"
+                                        SelectedItem="{Binding SelectedTransport}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>
@@ -189,8 +189,9 @@
                                     <Picker
                                         Title="Selecciona un transportista"
                                         FontSize="16"
-                                        ItemsSource="{Binding Transporters}"
-                                        SelectedItem="{Binding SelectedTransporter}"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        ItemsSource="{Binding Carriers}"
+                                        SelectedItem="{Binding SelectedCarrier}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>

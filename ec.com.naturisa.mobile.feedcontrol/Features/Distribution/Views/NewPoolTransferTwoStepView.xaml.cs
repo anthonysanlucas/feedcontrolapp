@@ -9,4 +9,9 @@ public partial class NewPoolTransferTwoStepView : ContentPage
         InitializeComponent();
         BindingContext = newPoolTransferTwoStepViewModel;
     }
+
+    protected override void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+    }
 }

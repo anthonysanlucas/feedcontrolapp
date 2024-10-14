@@ -157,6 +157,9 @@
 	  <MauiXaml Update="Features\Profile\Views\ProfileDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\WarehouseReception.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\AppLogoAndName.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

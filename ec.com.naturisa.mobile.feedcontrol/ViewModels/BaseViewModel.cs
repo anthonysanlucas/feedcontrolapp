@@ -6,6 +6,11 @@
         private bool _isBusy;
 
         [ObservableProperty]
+        private bool _isRefreshing;
+
+        public bool IsNotBusy => !IsBusy;
+
+        [ObservableProperty]
         private DateTime _currentDateTime = DateTime.Now;
 
         // (e.g., 29, September 2024)
@@ -31,10 +36,9 @@
             UpdateDateFormats();
         }
 
-        // Method to show a toast
         protected async Task ShowToastAsync(
             string message,
-            ToastDuration duration = ToastDuration.Short,
+            ToastDuration duration = ToastDuration.Long,
             double fontSize = 14
         )
         {
@@ -43,15 +47,20 @@
 
         private void UpdateDateFormats()
         {
-            LongDate = _currentDateTime.ToString("dd, MMMM yyyy");
-            ShortDate = _currentDateTime.ToString("dd/MM/yyyy");
-            TimeOnly = _currentDateTime.ToString("HH:mm");
-            ShortPreviousDate = _currentDateTime.AddDays(-1).ToString("dd/MM/yyyy");
+            LongDate = CurrentDateTime.ToString("dd, MMMM yyyy");
+            ShortDate = CurrentDateTime.ToString("dd/MM/yyyy");
+            TimeOnly = CurrentDateTime.ToString("HH:mm");
+            ShortPreviousDate = CurrentDateTime.AddDays(-1).ToString("dd/MM/yyyy");
         }
 
         partial void OnCurrentDateTimeChanged(DateTime value)
         {
             UpdateDateFormats();
+        }
+
+        partial void OnIsBusyChanged(bool value)
+        {
+            OnPropertyChanged(nameof(IsNotBusy));
         }
     }
 }

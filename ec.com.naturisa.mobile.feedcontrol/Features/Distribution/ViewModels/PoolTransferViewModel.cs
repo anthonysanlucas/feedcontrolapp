@@ -1,6 +1,4 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
-
-namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     public partial class PoolTransferViewModel : BaseViewModel
     {
@@ -26,7 +24,12 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         [RelayCommand]
         async Task GetFeedTransfers()
         {
+            IsBusy = true;
+            IsRefreshing = true;
+
             var response = await _feedTransferService.GetFeedTransfers();
+
+            IsRefreshing = false;
 
             if (response != null && response.Data != null && response.Data.Data.Any())
             {
@@ -40,6 +43,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             {
                 Console.WriteLine("No se recibieron datos de transferencias o hubo un error.");
             }
+
+            IsBusy = false;
         }
     }
 }

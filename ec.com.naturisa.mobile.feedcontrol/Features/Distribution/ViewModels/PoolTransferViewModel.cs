@@ -35,12 +35,6 @@
                 var feedTransferModels = response.Data.Data;
 
                 FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
-
-                Console.WriteLine($"Número de transferencias: {feedTransferModels.Count}");
-            }
-            else
-            {
-                Console.WriteLine("No se recibieron datos de transferencias o hubo un error.");
             }
 
             IsBusy = false;

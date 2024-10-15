@@ -123,6 +123,8 @@
                 {
                     ["PoolTransferOneStepSelection"] = PoolTransferOneStepSelection,
                     ["PoolTransferTwoStepSelectionModels"] = ProductRows,
+                    ["TotalQuantitySacks"] = TotalQuantitySacks,
+                    ["TotalWeight"] = TotalWeightInKilos,
                 }
             );
         }

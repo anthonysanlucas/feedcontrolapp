@@ -216,8 +216,6 @@
                                         Text="SKU 13449"
                                         TextColor="{StaticResource OnSecondary}" />
                                 </VerticalStackLayout>
-
-
                                 <Label
                                     Grid.Column="2"
                                     Style="{StaticResource RegularLabel}"
@@ -248,23 +246,18 @@
                                 TextColor="{StaticResource OnSecondary}"
                                 VerticalOptions="Start"
                                 VerticalTextAlignment="Center" />
-
-                            <!--
-                                Text="{Binding TotalWeight, StringFormat='{}{0:N0} kg'}"
-                                Text="{Binding TotalSacks, StringFormat='{}{0:N0} sacos'}"
-                            -->
                             <StackLayout
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 HorizontalOptions="End">
                                 <Label
                                     HorizontalOptions="End"
-                                    Text="0122"
+                                    Text="{Binding TotalQuantitySacks, StringFormat='{}{0:N0} sacos'}"
                                     TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontSize="14"
                                     HorizontalOptions="End"
-                                    Text="001"
+                                    Text="{Binding TotalWeight, StringFormat='{}{0:N0} kg'}"
                                     TextColor="{StaticResource OnSecondary}" />
                             </StackLayout>
                         </Grid>

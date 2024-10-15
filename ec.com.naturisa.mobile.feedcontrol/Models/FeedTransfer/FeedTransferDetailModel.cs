@@ -16,5 +16,8 @@
 
         [JsonPropertyName("status")]
         public bool? Status { get; set; }
+
+        [JsonPropertyName("feedTransferDetailPools")]
+        public List<FeedTransferDetailPoolModel>? FeedTransferDetailPools { get; set; }
     }
 }

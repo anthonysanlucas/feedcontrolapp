@@ -140,7 +140,7 @@
                                 <Label Text="Destino" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="MA001, MA002, MA003"
+                                    Text="{Binding DestinationPools}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -165,7 +165,6 @@
                                     Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
-
                         </Grid>
                     </Frame>
 
@@ -186,7 +185,7 @@
                                         <Label
                                             Grid.Column="2"
                                             HorizontalOptions="End"
-                                            Text="Cantidad (sacos)"
+                                            Text="Cantidad Sacos"
                                             TextColor="{StaticResource OnSecondary}" />
                                     </Grid>
                                 </Frame>
@@ -213,7 +212,7 @@
                                                 TextColor="{StaticResource Primary900}" />
                                             <Label
                                                 FontSize="14"
-                                                Text="{Binding QuantitySacks, StringFormat='SKU {0:F0}'}"
+                                                Text="{Binding SelectedProduct.ProductId, StringFormat='SKU {0:F0}'}"
                                                 TextColor="{StaticResource OnSecondary}" />
                                         </VerticalStackLayout>
 

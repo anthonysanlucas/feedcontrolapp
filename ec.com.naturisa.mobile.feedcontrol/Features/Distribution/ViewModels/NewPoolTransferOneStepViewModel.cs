@@ -46,7 +46,7 @@
 
             Transports = new List<TransportModel>
             {
-                new TransportModel { Id = 10, Plate = "GCT 5936" }
+                new TransportModel { Id = 10, Plate = "GCT5936" }
             };
 
             SelectedOriginWharehouse = OriginWarehouses.FirstOrDefault();

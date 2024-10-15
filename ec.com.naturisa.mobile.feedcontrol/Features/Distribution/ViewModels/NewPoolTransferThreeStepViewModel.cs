@@ -9,6 +9,8 @@
     [QueryProperty(nameof(TotalWeight), nameof(TotalWeight))]
     public partial class NewPoolTransferThreeStepViewModel : BaseViewModel
     {
+        private readonly FeedTransferService _feedTransferService;
+
         [ObservableProperty]
         private PoolTransferOneStepSelection poolTransferOneStepSelection;
 
@@ -21,8 +23,14 @@
         [ObservableProperty]
         private decimal totalWeight;
 
+        [ObservableProperty]
+        private string destinationPools;
+
         public NewPoolTransferThreeStepViewModel(IToastService toastService)
-            : base(toastService) { }
+            : base(toastService)
+        {
+            _feedTransferService = new FeedTransferService();
+        }
 
         [RelayCommand]
         async Task GoToPoolTransferView()
@@ -34,36 +42,33 @@
                     ProductId = group.First().SelectedProduct.ProductId,
                     ProductName = group.Key,
                     QuantitySacks = group.Sum(item => item.QuantitySacks ?? 0),
+                    Weight = group.Sum(item => item.QuantitySacks ?? 0) * 25,
                     FeedTransferDetailPools = group
                         .Select(detail => new FeedTransferDetailPoolModel
                         {
                             PoolId = detail.SelectedPool.PoolId,
                             PoolCode = detail.SelectedPool.PoolCode,
                             QuantitySacks = detail.QuantitySacks ?? 0,
-                            Weight = detail.SelectedPool.Weight,
+                            Weight = (double)(detail.QuantitySacks * 25),
                             Status = detail.SelectedPool.Status
                         })
                         .ToList()
                 })
                 .ToList();
 
-            foreach (var product in groupedByProduct)
-            {
-                Console.WriteLine($"{product.ProductName} {product.QuantitySacks}");
+            DestinationPools = string.Join(
+                " ",
+                PoolTransferTwoStepSelectionModels.Select(detail => detail.SelectedPool.PoolCode)
+            );
 
-                foreach (var pool in product.FeedTransferDetailPools)
-                {
-                    Console.WriteLine($"- {pool.PoolCode} {pool.QuantitySacks}");
-                }
-            }
-
+            // PLACA-AÑOMESDIA-1
             var feedTransferModel = new FeedTransferModel
             {
-                TransferCode = "T0001",
+                TransferCode = $"{PoolTransferOneStepSelection.SelectedTransport.Plate}-20241015-1",
                 TotalSacks = TotalQuantitySacks,
                 TotalWeight = TotalWeight,
                 DestinationSubsidiaryId = 2,
-                DestinationSubsidiaryName = PoolTransferOneStepSelection.OriginBranch,
+                DestinationSubsidiaryName = DestinationPools,
                 OriginSubsidiaryId = 2,
                 OriginSubsidiaryName = PoolTransferOneStepSelection.OriginBranch,
                 AssignedDate = DateTime.Now,
@@ -75,6 +80,27 @@
                 FeedTransferDetails = groupedByProduct
             };
 
+            try
+            {
+                var response = await _feedTransferService.PostFeedTransfer(feedTransferModel);
+
+                if (response.Code == 201) { }
+                else
+                {
+                    await ToastService.ShowToastAsync($"Error: {response.Message}");
+                    return;
+                }
+            }
+            catch (HttpRequestException httpEx)
+            {
+                //await ToastService.ShowToastAsync($"Error de red: {httpEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                //await ToastService.ShowToastAsync($"Error inesperado: {ex.Message}");
+            }
+
+            await ToastService.ShowToastAsync("Viaje asignado correctamente.");
             await Shell.Current.GoToAsync(nameof(PoolTransferView));
         }
     }

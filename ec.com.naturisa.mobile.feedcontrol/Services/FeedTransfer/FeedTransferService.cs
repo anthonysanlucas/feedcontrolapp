@@ -23,5 +23,21 @@
 
             return await ProcessResponse<PagedApiResponse<FeedTransferModel>>(response);
         }
+
+        public async Task<ApiResponse<FeedTransferModel>> PostFeedTransfer(
+            FeedTransferModel feedTransferModel
+        )
+        {
+            var jsonContent = JsonSerializer.Serialize(feedTransferModel);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await SendRequestAsync(
+                HttpMethod.Post,
+                FeedTransferEndpoints.FeedTransfer,
+                content
+            );
+
+            return await ProcessResponse<FeedTransferModel>(response);
+        }
     }
 }

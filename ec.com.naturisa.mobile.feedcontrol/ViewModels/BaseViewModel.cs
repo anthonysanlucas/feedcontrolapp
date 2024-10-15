@@ -22,6 +22,8 @@
         [ObservableProperty]
         private string _shortDate;
 
+        // (e.g., 20240929)
+
         [ObservableProperty]
         private string _shortPreviousDate;
 

@@ -49,6 +49,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<FoodReceptionByCarrierViewModel>();
             builder.Services.AddSingleton<WarehouseTransferViewModel>();
             builder.Services.AddTransient<PoolTransferViewModel>();
+            builder.Services.AddTransient<InventoryReceptionViewModel>();
             builder.Services.AddTransient<NewTransferOneStepViewModel>();
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewTransferThreeStepViewModel>();
@@ -86,6 +87,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<WarehouseTransferView>();
             builder.Services.AddTransient<TransferDetailView>();
             builder.Services.AddTransient<PoolTransferView>();
+            builder.Services.AddTransient<InventoryReceptionView>();
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();
             builder.Services.AddTransient<NewTransferThreeStepView>();

@@ -136,6 +136,9 @@
 	  <MauiXaml Update="Features\Distribution\Views\NewTransferTwoStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\InventoryReceptionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\PoolTransferView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -227,6 +230,15 @@
 	  <Compile Update="Features\Distribution\Views\NewTransferOneStepView.xaml.cs">
 	    <DependentUpon>NewTransferOneStepView.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Features\Distribution\Views\InventoryReceptionView.xaml.cs">
+	    <DependentUpon>InventoryReceptionView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiFont Update="Resources\Fonts\MaterialIcons-Regular.ttf">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiFont>
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" /></VisualStudio></ProjectExtensions>

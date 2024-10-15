@@ -10,89 +10,158 @@
         <Label
             FontAttributes="Bold"
             Style="{StaticResource LargeLabel}"
-            Text="Información de la transferencia"
+            Text="Información del Viaje"
             TextColor="{StaticResource Primary900}"
             VerticalOptions="CenterAndExpand" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="auto,*,auto" RowSpacing="24">
         <VerticalStackLayout Grid.Row="0">
+            <Grid RowSpacing="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
 
-            <Grid
-                ColumnDefinitions="*,*"
-                ColumnSpacing="8"
-                RowDefinitions="auto,auto,auto"
-                RowSpacing="8">
-                <VerticalStackLayout>
-                    <Label
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Text="ID Guia"
-                        VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Style="{StaticResource LargeLabel}"
-                        Text="75610"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
+                </Grid.RowDefinitions>
 
-                <components:StatusIndicator
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    Status="EN CURSO" />
+                <Grid.ColumnDefinitions>
 
-                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                    <Label
-                        FontAttributes="None"
-                        Text="Cantidad total"
-                        VerticalOptions="Center" />
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
 
-                    <Label
-                        FontAttributes="None"
-                        Style="{StaticResource RegularLabel}"
-                        Text="264 SACOS - 6,600 KG"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
 
-                <Grid
-                    Grid.Row="2"
+                <Label
                     Grid.ColumnSpan="2"
-                    ColumnDefinitions="auto,auto,*"
-                    ColumnSpacing="8"
-                    RowDefinitions="auto, auto"
-                    RowSpacing="6">
+                    Grid.Column="0" 
+                    Grid.Row="1"
+                    FontAttributes="None"
+                    Text="Viaje"
+                    VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="0"
-                        FontAttributes="None"
-                        Text="Ruta"
-                        VerticalOptions="Center" />
+                <!--  Header Row with Feed Information  -->
+                <Label
+                    Grid.Column="0" Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Bold"
+                    Style="{StaticResource RegularLabel}"
+                    Text="NARCISA-20241008-1"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Style="{StaticResource RegularLabel}"
-                        Text="PESJOYA"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0" 
+                    Grid.Row="3"
+                    FontAttributes="None"
+                    Text="Origen"
+                    VerticalOptions="Center" />
+                <!--  Status Box and Label  -->
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0" 
+                    Grid.Row="4"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="MUELLE CARGILL"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
 
-                    <Image
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Source="trending_flat_icon.svg" />
+                <Label
+                     Grid.ColumnSpan="2"
+                     Grid.Column="0" 
+                     Grid.Row="5"
+                     FontAttributes="None"
+                     Text="Destino"
+                     VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0" 
+                    Grid.Row="6"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="PESJOYA"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Style="{StaticResource RegularLabel}"
-                        Text="MARICULTURA"
-                        TextColor="{StaticResource Primary700}" />
-                </Grid>
+                <Label
+                     Grid.ColumnSpan="2"
+                     Grid.Column="2" 
+                     Grid.Row="3"
+                     FontAttributes="None"
+                     Text="Gabarra"
+                     VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="2" 
+                    Grid.Row="4"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="NARCISA"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <Label
+                     Grid.ColumnSpan="2"
+                     Grid.Column="2" 
+                     Grid.Row="5"
+                     FontAttributes="None"
+                     Text="Capitán"
+                     VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="2" 
+                    Grid.Row="6"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="JHON CUERO"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+                
+                <components:StatusIndicator
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Status="ASIGNADO"
+                    VerticalOptions="Center" />
+
+                <VerticalStackLayout 
+                    Grid.Column="2"  
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="EndAndExpand" 
+                    Grid.Row="2">
+                    <HorizontalStackLayout>
+                        <Label 
+                            Text="1,320" 
+                            VerticalOptions="EndAndExpand" 
+                            FontSize="22"
+                            FontAttributes="Bold"
+                            Style="{StaticResource RegularLabel}"
+                            TextColor="{StaticResource Primary900}"
+    />
+                        <Label 
+                            VerticalOptions="EndAndExpand"
+                            Style="{StaticResource RegularLabel}"
+                            Margin="0, 0, 0, 2.5"
+                            Text=" Sacos" />
+                        
+                    </HorizontalStackLayout>
+                        
+
+                </VerticalStackLayout>
+
+
             </Grid>
         </VerticalStackLayout>
 
@@ -112,17 +181,25 @@
                     <Label
                         FontAttributes="Bold"
                         HorizontalOptions="End"
-                        Text="Cantidad"
+                        Text="Cantidad Sacos"
                         TextColor="White" />
                 </Grid>
             </Frame>
 
             <!--  Contenido de la tabla  -->
-            <Grid
-                ColumnDefinitions="Auto, *"
-                RowDefinitions="Auto, Auto, Auto"
-                RowSpacing="10">
+            <Grid>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
+                
                 <!--  Primera fila  -->
                 <VerticalStackLayout
                     Grid.Row="0"
@@ -140,11 +217,11 @@
                         FontAttributes="Bold"
                         HorizontalOptions="Start"
                         MaximumWidthRequest="300"
-                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        Text="ALIMENTO INICIADOR AQUACEL 0.6 MM."
                         TextColor="{StaticResource Primary900}" />
                     <Label
                         FontSize="14"
-                        Text="13449"
+                        Text="SKU 245"
                         TextColor="{StaticResource OnSecondary}" />
                 </VerticalStackLayout>
 
@@ -156,14 +233,7 @@
                     <Label
                         FontAttributes="Bold"
                         Style="{StaticResource RegularLabel}"
-                        Text="198 SACOS"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                    <Label
-                        FontAttributes="None"
-                        HorizontalOptions="End"
-                        Style="{StaticResource RegularLabel}"
-                        Text="4,950 KG"
+                        Text="1,254"
                         TextColor="{StaticResource Primary700}"
                         VerticalOptions="Center" />
                 </VerticalStackLayout>
@@ -185,11 +255,11 @@
                         FontAttributes="Bold"
                         HorizontalOptions="Start"
                         MaximumWidthRequest="300"
-                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        Text="NATURISA ADVANCE ST D 1.2 MM."
                         TextColor="{StaticResource Primary900}" />
                     <Label
                         FontSize="14"
-                        Text="SKU 13449"
+                        Text="SKU 246"
                         TextColor="{StaticResource OnSecondary}" />
                 </VerticalStackLayout>
 
@@ -202,57 +272,73 @@
                         FontAttributes="Bold"
                         HorizontalOptions="End"
                         Style="{StaticResource RegularLabel}"
-                        Text="66 SACOS"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                    <Label
-                        FontAttributes="None"
-                        HorizontalOptions="End"
-                        Style="{StaticResource RegularLabel}"
-                        Text="1,650 KG"
+                        Text="66"
                         TextColor="{StaticResource Primary700}"
                         VerticalOptions="Center" />
                 </VerticalStackLayout>
 
-                <!--  Fila de total  -->
-                <Grid
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    ColumnDefinitions="*,*"
-                    RowDefinitions="auto, auto">
-                    <BoxView
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Margin="0,8"
-                        BackgroundColor="{StaticResource Gray200}"
-                        HeightRequest="1" />
-
-                    <Label
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Text="TOTAL"
-                        TextColor="{StaticResource OnSecondary}"
-                        VerticalOptions="Start"
-                        VerticalTextAlignment="Center" />
-
-                    <StackLayout
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        HorizontalOptions="End">
-                        <Label
-                            HorizontalOptions="End"
-                            Text="264 SACOS"
-                            TextColor="{StaticResource Primary700}" />
-                        <Label
-                            FontSize="14"
-                            HorizontalOptions="End"
-                            Text="6,600 KG"
-                            TextColor="{StaticResource OnSecondary}" />
-                    </StackLayout>
-                </Grid>
+                
             </Grid>
+
+            <!--  Fila de total  -->
+            <Grid
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                ColumnDefinitions="*,*"
+                RowDefinitions="auto, auto">
+                <BoxView
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,8"
+                    BackgroundColor="{StaticResource Gray200}"
+                    HeightRequest="1" />
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="None"
+                    Text="TOTAL"
+                    TextColor="{StaticResource OnSecondary}"
+                    VerticalOptions="Start"
+                    VerticalTextAlignment="Center" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="End">
+                    <Label
+                        HorizontalOptions="End"
+                        Text="1,320 SACOS"
+                        TextColor="{StaticResource Primary700}" />
+                    <Label
+                        FontSize="14"
+                        HorizontalOptions="End"
+                        Text="33,000 KG"
+                        TextColor="{StaticResource OnSecondary}" />
+                </StackLayout>
+            </Grid>
+            <Frame
+                Margin="50 0"
+                Padding="0"
+                BorderColor="{StaticResource Slate400}"
+                HasShadow="False"
+                HeightRequest="80"
+                VerticalOptions="StartAndExpand">
+                <VerticalStackLayout>
+                    <Editor
+                        AutoSize="Disabled"
+                        FontSize="16"
+                        Keyboard="Text"
+                        MaxLength="500"
+                        Placeholder="Escriba alguna observación"
+                        PlaceholderColor="{StaticResource Black-text-light}"
+                        TextColor="{StaticResource Black-text}"
+                        VerticalTextAlignment="Start" />
+                </VerticalStackLayout>
+            </Frame>
         </StackLayout>
+
+        
 
         <Frame
             Grid.Row="2"
@@ -272,8 +358,8 @@
                     BackgroundColor="Transparent"
                     Command="{Binding ReceptTransferCommand}"
                     HorizontalOptions="FillAndExpand"
-                    SemanticProperties.Hint="Registrar recepción"
-                    Text="Registrar recepción"
+                    SemanticProperties.Hint="Registrar Recepción"
+                    Text="Registrar Recepción"
                     TextColor="White" />
             </Grid>
         </Frame>

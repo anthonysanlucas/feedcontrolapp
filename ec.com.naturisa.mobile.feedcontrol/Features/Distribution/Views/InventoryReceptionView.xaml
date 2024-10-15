@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.InventoryReceptionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Title="InventoryReceptionView"
+    x:DataType="viewModels:InventoryReceptionViewModel">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="Auto, *">
+            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="8">
+                <SearchBar
+                    Grid.Column="0"
+                    BackgroundColor="White"
+                    FontSize="14"
+                    Placeholder="Buscar por piscina o transportista" />
+
+                <Frame
+                    Grid.Column="1"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Secondary}">
+                    <DatePicker
+                        Format="dd/MM/yyyy"
+                        HorizontalOptions="FillAndExpand"
+                        MaximumDate="2030-12-31"
+                        MinimumDate="2020-01-01"
+                        TextColor="{StaticResource OnSecondary}" />
+                </Frame>
+            </Grid>
+
+            <RefreshView
+                Grid.Row="2"
+                Command="{Binding GetFeedTransfersCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshColor="Transparent">
+
+                <CollectionView ItemsSource="{Binding FeedingTrips}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
+                            <Frame
+                Margin="0,8"
+                BackgroundColor="{StaticResource SurfaceLowContainer}"
+                BorderColor="{StaticResource Secondary}">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
+                                </Frame.GestureRecognizers>
+                                <Grid
+                    ColumnDefinitions="*,Auto"
+                    ColumnSpacing="8"
+                    RowDefinitions="Auto,Auto,Auto,Auto"
+                    RowSpacing="8">
+
+                                    <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                        <Label
+                            FontAttributes="None"
+                            Text="Número de movimiento"
+                            VerticalOptions="Center" />
+                                        <Label
+                            FontAttributes="None"
+                            Style="{StaticResource RegularLabel}"
+                            Text="{Binding TransferCode}"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                                    </VerticalStackLayout>
+
+                                    <components:StatusIndicator
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        Status="{Binding Status}"
+                        VerticalOptions="Start" />
+
+                                    <VerticalStackLayout
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Spacing="2">
+                                        <Label
+                            FontAttributes="None"
+                            Text="Transportista"
+                            VerticalOptions="Center" />
+                                        <Label
+                            FontAttributes="None"
+                            Style="{StaticResource RegularLabel}"
+                            Text="{Binding AssignedCarrierName}"
+                            TextColor="{StaticResource OnSecondary}"
+                            VerticalOptions="Center" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Spacing="2">
+                                        <Label
+                            FontAttributes="None"
+                            Text="Vehículo"
+                            VerticalOptions="Center" />
+                                        <Label
+                            FontAttributes="None"
+                            Style="{StaticResource RegularLabel}"
+                            Text="{Binding AssignedVehiclePlate}"
+                            TextColor="{StaticResource OnSecondary}"
+                            VerticalOptions="Center" />
+                                    </VerticalStackLayout>
+
+                                    <VerticalStackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        VerticalOptions="End">
+                                        <VerticalStackLayout HorizontalOptions="End">
+                                            <Label
+                                HorizontalOptions="End"
+                                Text="{Binding TotalSacks, StringFormat='{0} sacos'}"
+                                TextColor="{StaticResource Primary700}" />
+                                            <Label
+                                FontSize="14"
+                                HorizontalOptions="End"
+                                Text="{Binding TotalWeight, StringFormat='{}{0:N0} KG'}"
+                                TextColor="{StaticResource OnSecondary}" />
+                                        </VerticalStackLayout>
+                                    </VerticalStackLayout>
+
+                                    <Grid
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        ColumnDefinitions="Auto,Auto,*"
+                        ColumnSpacing="8"
+                        RowDefinitions="Auto,Auto"
+                        RowSpacing="2">
+                                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="None"
+                            Text="Ruta"
+                            VerticalOptions="Center" />
+                                        <HorizontalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            Spacing="4">
+                                            <Label
+                                FontAttributes="None"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding OriginSubsidiaryName}"
+                                TextColor="{StaticResource Primary700}"
+                                VerticalOptions="Center" />
+                                            <Label
+                                FontSize="16"
+                                Style="{StaticResource GoogleFont}"
+                                Text="{x:Static models:IconFont.Chevron_right}"
+                                TextColor="{StaticResource OnSecondary}"
+                                VerticalOptions="End" />
+                                            <Label
+                                Margin="0,0,4,0"
+                                FontAttributes="None"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding DestinationSubsidiaryName, Converter={StaticResource TruncateTextConverter}, ConverterParameter=3}"
+                                TextColor="{StaticResource Primary}"
+                                VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.EmptyView>
+                        <components:EmptyView
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="{Binding IsNotBusy}"
+            Text="No se han encontrado viajes"
+            VerticalOptions="CenterAndExpand" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </Grid>
+
+        <Frame
+            Grid.Row="0"
+            Margin="0"
+            BackgroundColor="{StaticResource Secondary}"
+            BorderColor="{StaticResource Primary700}"
+            CornerRadius="100"
+            HeightRequest="52"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            WidthRequest="220">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding CreateTransferCommand}" />
+            </Frame.GestureRecognizers>
+            <HorizontalStackLayout
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="8">
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Add}"
+                    TextColor="{StaticResource Primary700}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Asignar viaje"
+                    TextColor="{StaticResource Primary700}"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Frame>
+
+        <components:ViewLoader
+            Grid.Row="0"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}"
+            Opacity="0.9"
+            VerticalOptions="FillAndExpand" />
+    </Grid>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

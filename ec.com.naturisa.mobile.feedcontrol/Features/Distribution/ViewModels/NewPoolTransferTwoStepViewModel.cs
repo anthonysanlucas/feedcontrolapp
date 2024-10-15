@@ -122,7 +122,7 @@
                 new Dictionary<string, object>
                 {
                     ["PoolTransferOneStepSelection"] = PoolTransferOneStepSelection,
-                    ["PoolTransferTwoStepSelectionModel"] = ProductRows
+                    ["PoolTransferTwoStepSelectionModels"] = ProductRows,
                 }
             );
         }

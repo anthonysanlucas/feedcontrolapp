@@ -2,8 +2,8 @@
 {
     [QueryProperty(nameof(PoolTransferOneStepSelection), nameof(PoolTransferOneStepSelection))]
     [QueryProperty(
-        nameof(PoolTransferTwoStepSelectionModel),
-        nameof(PoolTransferTwoStepSelectionModel)
+        nameof(PoolTransferTwoStepSelectionModels),
+        nameof(PoolTransferTwoStepSelectionModels)
     )]
     public partial class NewPoolTransferThreeStepViewModel : BaseViewModel
     {
@@ -11,7 +11,7 @@
         private PoolTransferOneStepSelection poolTransferOneStepSelection;
 
         [ObservableProperty]
-        private PoolTransferTwoStepSelectionModel poolTransferOneStepSelectionModel;
+        private ObservableCollection<PoolTransferTwoStepSelectionModel> poolTransferTwoStepSelectionModels;
 
         public NewPoolTransferThreeStepViewModel(IToastService toastService)
             : base(toastService) { }
@@ -21,5 +21,10 @@
         {
             await Shell.Current.GoToAsync(nameof(PoolTransferView));
         }
+
+        //public int TotalSacks =>
+        //    PoolTransferTwoStepSelectionModels.Sum(line => line.SelectedPool.QuantitySacks);
+
+        //public double TotalWeight => TotalSacks * 25;
     }
 }

@@ -190,7 +190,6 @@
                         </Frame>
 
                         <VerticalStackLayout Grid.Row="1">
-                            <!--  Primera fila  -->
                             <Grid
                                 Padding="8"
                                 BackgroundColor="{StaticResource Primary100}"
@@ -225,80 +224,6 @@
                                     Text="30 SACOS"
                                     TextColor="{StaticResource Primary700}"
                                     VerticalOptions="Center" />
-
-
-                            </Grid>
-
-                            <Grid
-                                Padding="8"
-                                BackgroundColor="{StaticResource Primary100}"
-                                ColumnDefinitions="Auto, *, Auto"
-                                ColumnSpacing="8">
-
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="MA002"
-                                    TextColor="{StaticResource OnSecondary}"
-                                    VerticalOptions="Start" />
-
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Padding="8,0">
-                                    <Label
-                                        HorizontalOptions="Start"
-                                        MaximumWidthRequest="300"
-                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                        TextColor="{StaticResource Primary900}" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="SKU 13449"
-                                        TextColor="{StaticResource OnSecondary}" />
-                                </VerticalStackLayout>
-
-                                <Label
-                                    Grid.Column="2"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="30 SACOS"
-                                    TextColor="{StaticResource Primary700}"
-                                    VerticalOptions="Center" />
-                            </Grid>
-
-
-                            <Grid
-                                Padding="8"
-                                BackgroundColor="{StaticResource Primary100}"
-                                ColumnDefinitions="Auto, *, Auto"
-                                ColumnSpacing="8">
-
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="MA003"
-                                    TextColor="{StaticResource OnSecondary}"
-                                    VerticalOptions="Start" />
-
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Padding="8,0">
-                                    <Label
-                                        HorizontalOptions="Start"
-                                        MaximumWidthRequest="300"
-                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                        TextColor="{StaticResource Primary900}" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="SKU 13449"
-                                        TextColor="{StaticResource OnSecondary}" />
-                                </VerticalStackLayout>
-
-
-                                <Label
-                                    Grid.Column="2"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="25 SACOS"
-                                    TextColor="{StaticResource Primary700}"
-                                    VerticalOptions="Center" />
                             </Grid>
                         </VerticalStackLayout>
 
@@ -324,18 +249,22 @@
                                 VerticalOptions="Start"
                                 VerticalTextAlignment="Center" />
 
+                            <!--
+                                Text="{Binding TotalWeight, StringFormat='{}{0:N0} kg'}"
+                                Text="{Binding TotalSacks, StringFormat='{}{0:N0} sacos'}"
+                            -->
                             <StackLayout
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 HorizontalOptions="End">
                                 <Label
                                     HorizontalOptions="End"
-                                    Text="85 SACOS"
+                                    Text="0122"
                                     TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontSize="14"
                                     HorizontalOptions="End"
-                                    Text="2,125 KG"
+                                    Text="001"
                                     TextColor="{StaticResource OnSecondary}" />
                             </StackLayout>
                         </Grid>

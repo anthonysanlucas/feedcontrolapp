@@ -2,10 +2,13 @@
 {
     public partial class PoolTransferTwoStepSelectionModel : ObservableObject
     {
-        public FeedTransferDetailModel? SelectedProduct;
+        [ObservableProperty]
+        public FeedTransferDetailModel? selectedProduct;
 
-        public FeedTransferDetailPoolModel? SelectedPool;
+        [ObservableProperty]
+        public FeedTransferDetailPoolModel? selectedPool;
 
-        public int? QuantitySacks;
+        [ObservableProperty]
+        public int? quantitySacks;
     }
 }

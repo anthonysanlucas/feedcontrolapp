@@ -58,7 +58,7 @@
                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
                 </Frame.GestureRecognizers>
 
-                <Grid>
+                <Grid RowSpacing="3">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20*"/>
@@ -139,7 +139,13 @@
                         VerticalOptions="Center" />
 
 
-                    <VerticalStackLayout Grid.Column="2"  Grid.ColumnSpan="2" HorizontalOptions="FillAndExpand" VerticalOptions="End" Grid.Row="1" Grid.RowSpan="4">
+                    <VerticalStackLayout 
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2" 
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="End" 
+                        Grid.Row="1" 
+                        Grid.RowSpan="4">
                         
                         <Label Text="1,320" 
                                VerticalOptions="Center" 
@@ -150,6 +156,7 @@
 />
                         <Label 
                             Text="Sacos" 
+                            Padding="20,0,0,0"
                             Style="{StaticResource RegularLabel}"/>
 
                     </VerticalStackLayout>

@@ -27,19 +27,34 @@
         [RelayCommand]
         async Task GoToPoolTransferView()
         {
-            // Create a new List of FeedTransferDetailModel instances
-            var feedTransferDetailModels = new List<FeedTransferDetailModel>();
-
-            // Iterate over each PoolTransferTwoStepSelectionModel instance
-            foreach (PoolTransferTwoStepSelectionModel detail in PoolTransferTwoStepSelectionModels)
-            {
-                var feedTransferDetailModel = new FeedTransferDetailModel
+            var groupedByProduct = PoolTransferTwoStepSelectionModels
+                .GroupBy(detail => detail.SelectedProduct.ProductName)
+                .Select(group => new FeedTransferDetailModel
                 {
-                    ProductId = detail.SelectedProduct.ProductId,
-                    ProductName = detail.SelectedProduct.ProductName,
-                };
+                    ProductId = group.First().SelectedProduct.ProductId,
+                    ProductName = group.Key,
+                    QuantitySacks = group.Sum(item => item.QuantitySacks ?? 0),
+                    FeedTransferDetailPools = group
+                        .Select(detail => new FeedTransferDetailPoolModel
+                        {
+                            PoolId = detail.SelectedPool.PoolId,
+                            PoolCode = detail.SelectedPool.PoolCode,
+                            QuantitySacks = detail.QuantitySacks ?? 0,
+                            Weight = detail.SelectedPool.Weight,
+                            Status = detail.SelectedPool.Status
+                        })
+                        .ToList()
+                })
+                .ToList();
 
-                feedTransferDetailModels.Add(feedTransferDetailModel);
+            foreach (var product in groupedByProduct)
+            {
+                Console.WriteLine($"{product.ProductName} {product.QuantitySacks}");
+
+                foreach (var pool in product.FeedTransferDetailPools)
+                {
+                    Console.WriteLine($"- {pool.PoolCode} {pool.QuantitySacks}");
+                }
             }
 
             var feedTransferModel = new FeedTransferModel
@@ -57,10 +72,8 @@
                 AssignedVehicleId = PoolTransferOneStepSelection.SelectedTransport.Id,
                 AssignedVehiclePlate = PoolTransferOneStepSelection.SelectedTransport.Plate,
                 AssignedCarrierName = PoolTransferOneStepSelection.SelectedCarrier.Name,
-                FeedTransferDetails = feedTransferDetailModels
+                FeedTransferDetails = groupedByProduct
             };
-
-            Console.WriteLine($"{TotalQuantitySacks} - {TotalWeight}");
 
             await Shell.Current.GoToAsync(nameof(PoolTransferView));
         }

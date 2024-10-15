@@ -128,7 +128,7 @@
                                 <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="Maricultura"
+                                    Text="{Binding PoolTransferOneStepSelection.OriginBranch}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -150,7 +150,7 @@
                                 <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="GCT 5936"
+                                    Text="{Binding PoolTransferOneStepSelection.SelectedTransport.Plate}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -161,7 +161,7 @@
                                 <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="NELSON ZAMBRANO"
+                                    Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -255,7 +255,6 @@
                                         Text="SKU 13449"
                                         TextColor="{StaticResource OnSecondary}" />
                                 </VerticalStackLayout>
-
 
                                 <Label
                                     Grid.Column="2"

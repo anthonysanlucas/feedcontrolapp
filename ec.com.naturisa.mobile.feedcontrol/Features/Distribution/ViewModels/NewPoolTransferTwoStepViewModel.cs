@@ -13,7 +13,7 @@
         private List<FeedTransferDetailPoolModel> availablePools;
 
         [ObservableProperty]
-        private ObservableCollection<ProductRowModel> productRows;
+        private ObservableCollection<PoolTransferTwoStepSelectionModel> productRows;
 
         [ObservableProperty]
         private ObservableCollection<FeedTransferDetailModel> addedProducts;
@@ -45,16 +45,16 @@
 
             AvailablePools = new()
             {
-                new FeedTransferDetailPoolModel { PoolId = 1, PoolCode = "MA001", },
-                new FeedTransferDetailPoolModel { PoolId = 2, PoolCode = "MA002", },
-                new FeedTransferDetailPoolModel { PoolId = 3, PoolCode = "MA003", },
-                new FeedTransferDetailPoolModel { PoolId = 4, PoolCode = "MA004", },
-                new FeedTransferDetailPoolModel { PoolId = 5, PoolCode = "MA005", },
-                new FeedTransferDetailPoolModel { PoolId = 6, PoolCode = "MA006", },
-                new FeedTransferDetailPoolModel { PoolId = 7, PoolCode = "MA007", },
+                new FeedTransferDetailPoolModel { PoolId = 1, PoolCode = "MA001" },
+                new FeedTransferDetailPoolModel { PoolId = 2, PoolCode = "MA002" },
+                new FeedTransferDetailPoolModel { PoolId = 3, PoolCode = "MA003" },
+                new FeedTransferDetailPoolModel { PoolId = 4, PoolCode = "MA004" },
+                new FeedTransferDetailPoolModel { PoolId = 5, PoolCode = "MA005" },
+                new FeedTransferDetailPoolModel { PoolId = 6, PoolCode = "MA006" },
+                new FeedTransferDetailPoolModel { PoolId = 7, PoolCode = "MA007" },
             };
 
-            ProductRows = new ObservableCollection<ProductRowModel> { new ProductRowModel() };
+            ProductRows = new ObservableCollection<PoolTransferTwoStepSelectionModel> { new() };
 
             ProductRows.CollectionChanged += (sender, args) => UpdateTotals();
 
@@ -69,10 +69,11 @@
             System.ComponentModel.PropertyChangedEventArgs e
         )
         {
-            if (e.PropertyName == nameof(ProductRowModel.QuantitySacks))
+            if (e.PropertyName == nameof(PoolTransferTwoStepSelectionModel.QuantitySacks))
             {
                 OnPropertyChanged(nameof(TotalQuantitySacks));
                 OnPropertyChanged(nameof(TotalWeightInKilos));
+                OnPropertyChanged(nameof(RemainingCapacity));
             }
         }
 
@@ -84,11 +85,10 @@
                 await ToastService.ShowToastAsync(
                     "No se puede superar la capacidad máxima del vehículo."
                 );
-
                 return;
             }
 
-            ProductRowModel newRow = new ProductRowModel();
+            var newRow = new PoolTransferTwoStepSelectionModel();
             newRow.PropertyChanged += ProductRow_PropertyChanged;
 
             ProductRows.Add(newRow);
@@ -96,7 +96,7 @@
         }
 
         [RelayCommand]
-        public void DeleteProductRow(ProductRowModel row)
+        public void DeleteProductRow(PoolTransferTwoStepSelectionModel row)
         {
             if (!ProductRows.Contains(row))
                 return;
@@ -106,21 +106,28 @@
         }
 
         [RelayCommand]
-        async Task GoToNewPoolTransferThreeStep()
+        public async Task GoToNewPoolTransferThreeStep()
         {
             if (RemainingCapacity < 0)
             {
                 await ToastService.ShowToastAsync(
                     "No se puede superar la capacidad máxima del vehículo."
                 );
-
                 return;
             }
 
-            await Shell.Current.GoToAsync(nameof(NewPoolTransferThreeStepView));
+            await Shell.Current.GoToAsync(
+                nameof(NewPoolTransferThreeStepView),
+                true,
+                new Dictionary<string, object>
+                {
+                    ["PoolTransferOneStepSelection"] = PoolTransferOneStepSelection,
+                    ["PoolTransferTwoStepSelectionModel"] = ProductRows
+                }
+            );
         }
 
-        public int TotalQuantitySacks => ProductRows.Sum(row => row.QuantitySacks);
+        public int TotalQuantitySacks => ProductRows.Sum(row => row.QuantitySacks ?? 0);
 
         public int TotalWeightInKilos => TotalQuantitySacks * 25;
 
@@ -134,7 +141,7 @@
         }
     }
 
-    public partial class ProductRowModel : ObservableObject
+    public partial class PoolTransferTwoStepSelectionModel : ObservableObject
     {
         [ObservableProperty]
         private FeedTransferDetailModel selectedProduct;
@@ -143,6 +150,6 @@
         private FeedTransferDetailPoolModel selectedPool;
 
         [ObservableProperty]
-        private int quantitySacks;
+        private int? quantitySacks;
     }
 }

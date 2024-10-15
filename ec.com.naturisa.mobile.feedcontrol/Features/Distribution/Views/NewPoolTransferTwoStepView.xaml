@@ -202,7 +202,7 @@
 
                     <CollectionView Grid.Row="2" ItemsSource="{Binding ProductRows}">
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="viewModels:ProductRowModel">
+                            <DataTemplate x:DataType="viewModels:PoolTransferTwoStepSelectionModel">
                                 <SwipeView>
                                     <SwipeView.RightItems>
                                         <SwipeItems>

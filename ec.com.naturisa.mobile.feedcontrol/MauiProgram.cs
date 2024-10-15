@@ -86,6 +86,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<WarehouseTransferView>();
             builder.Services.AddTransient<TransferDetailView>();
             builder.Services.AddTransient<PoolTransferView>();
+            builder.Services.AddTransient<PoolTransferDetailView>();
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();
             builder.Services.AddTransient<NewTransferThreeStepView>();

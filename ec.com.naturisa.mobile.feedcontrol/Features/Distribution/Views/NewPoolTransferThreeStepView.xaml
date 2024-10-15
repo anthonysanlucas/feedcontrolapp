@@ -14,7 +14,7 @@
         <Label
             FontAttributes="None"
             Style="{StaticResource LargeLabel}"
-            Text="Nueva transferencia"
+            Text="Nuevo viaje"
             TextColor="{StaticResource Primary100}"
             VerticalOptions="CenterAndExpand" />
     </Shell.TitleView>
@@ -29,7 +29,7 @@
                 <Label
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="Distribución de balanceado"
+                    Text="Asignación de viaje"
                     TextColor="{StaticResource Primary100}" />
             </HorizontalStackLayout>
             <Label
@@ -97,13 +97,6 @@
                             VerticalOptions="Center" />
                     </Frame>
                 </HorizontalStackLayout>
-                <Label
-                    Grid.Row="1"
-                    FontAttributes="None"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource SmallLabel}"
-                    Text="Resumen de transferencia"
-                    TextColor="{StaticResource Primary100}" />
             </Grid>
         </VerticalStackLayout>
 

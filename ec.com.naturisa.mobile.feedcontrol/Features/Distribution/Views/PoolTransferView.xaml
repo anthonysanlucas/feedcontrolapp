@@ -49,13 +49,23 @@
                                 <Grid
                                     ColumnDefinitions="*,Auto"
                                     ColumnSpacing="8"
-                                    RowDefinitions="Auto,Auto,Auto,Auto"
+                                    RowDefinitions="Auto,Auto,Auto"
                                     RowSpacing="8">
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="32"
+                                        HorizontalOptions="End"
+                                        Style="{StaticResource GoogleFont}"
+                                        Text="{x:Static models:IconFont.Chevron_right}"
+                                        TextColor="{StaticResource OnSecondary}"
+                                        VerticalOptions="End" />
 
                                     <VerticalStackLayout Grid.Column="0" Spacing="2">
                                         <Label
                                             FontAttributes="None"
-                                            Text="Número de movimiento"
+                                            Text="Viaje"
                                             VerticalOptions="Center" />
                                         <Label
                                             FontAttributes="None"
@@ -84,22 +94,6 @@
                                             FontAttributes="None"
                                             Style="{StaticResource RegularLabel}"
                                             Text="{Binding AssignedCarrierName}"
-                                            TextColor="{StaticResource OnSecondary}"
-                                            VerticalOptions="Center" />
-                                    </VerticalStackLayout>
-
-                                    <VerticalStackLayout
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Spacing="2">
-                                        <Label
-                                            FontAttributes="None"
-                                            Text="Vehículo"
-                                            VerticalOptions="Center" />
-                                        <Label
-                                            FontAttributes="None"
-                                            Style="{StaticResource RegularLabel}"
-                                            Text="{Binding AssignedVehiclePlate}"
                                             TextColor="{StaticResource OnSecondary}"
                                             VerticalOptions="Center" />
                                     </VerticalStackLayout>

@@ -7,9 +7,9 @@
     <Frame
         Padding="12,4"
         BackgroundColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusColor}"
+        HeightRequest="32"
         HorizontalOptions="End">
         <Label
-            FontAttributes="None"
             HorizontalOptions="Center"
             HorizontalTextAlignment="Center"
             Style="{StaticResource SmallLabel}"

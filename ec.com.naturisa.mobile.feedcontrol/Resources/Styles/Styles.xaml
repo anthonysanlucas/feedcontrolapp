@@ -142,7 +142,7 @@
     </Style>
 
     <Style x:Key="DatePickerFrame" TargetType="Frame">
-        <Setter Property="Padding" Value="10" />
+        <Setter Property="Padding" Value="8" />
         <Setter Property="HasShadow" Value="False" />
         <Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />
     </Style>
@@ -181,16 +181,16 @@
         x:Key="LargeLabel"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Black-text}" />
+        <Setter Property="TextColor" Value="{StaticResource Primary900}" />
         <Setter Property="FontSize" Value="20" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontAttributes" Value="None" />
     </Style>
 
     <Style
         x:Key="RegularLabel"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Black-text-medium}" />
+        <Setter Property="TextColor" Value="{StaticResource Primary900}" />
         <Setter Property="FontSize" Value="16" />
     </Style>
 
@@ -198,9 +198,34 @@
         x:Key="SmallLabel"
         BasedOn="{StaticResource BaseLabel}"
         TargetType="Label">
-        <Setter Property="TextColor" Value="{StaticResource Black-text-light}" />
-        <Setter Property="FontSize" Value="12" />
-        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource OnSecondary}" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontAttributes" Value="None" />
+    </Style>
+
+    <Style
+        x:Key="ShellTitleLabel"
+        BasedOn="{StaticResource LargeLabel}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Primary900}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="FontAttributes" Value="None" />
+    </Style>
+
+    <Style
+        x:Key="DataTitleLabel"
+        BasedOn="{StaticResource SmallLabel}"
+        TargetType="Label">
+        <Setter Property="Margin" Value="0, 0, 0, 4" />
+    </Style>
+
+    <Style
+        x:Key="DataTextLabel"
+        BasedOn="{StaticResource BaseLabel}"
+        TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource Primary800}" />
+        <Setter Property="FontSize" Value="16" />
     </Style>
 
     <Style
@@ -281,7 +306,7 @@
     <Style ApplyToDerivedTypes="True" TargetType="Shell">
         <Setter Property="Shell.BackgroundColor" Value="{StaticResource White}" />
         <Setter Property="Shell.TitleColor" Value="{StaticResource Black-text}" />
-        <Setter Property="Shell.ForegroundColor" Value="{StaticResource Black-text}" />
+        <Setter Property="Shell.ForegroundColor" Value="{StaticResource Primary900}" />
         <Setter Property="Shell.NavBarHasShadow" Value="False" />
         <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource White}" />
         <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Secondary}" />

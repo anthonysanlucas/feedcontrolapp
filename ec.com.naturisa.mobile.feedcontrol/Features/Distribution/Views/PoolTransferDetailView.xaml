@@ -5,7 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
+    x:DataType="viewModels:PoolTransferDetailViewModel"
     BackgroundColor="{StaticResource Secondary}"
     Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
@@ -33,7 +35,7 @@
                     <Label
                         FontAttributes="None"
                         Style="{StaticResource DataTextLabel}"
-                        Text="GCT5936-20242012-1"
+                        Text="{Binding SelectedTransfer.TransferCode}"
                         VerticalOptions="Center" />
                 </VerticalStackLayout>
                 <components:StatusIndicator Status="ASIGNADO" />
@@ -41,7 +43,7 @@
 
             <VerticalStackLayout Grid.Row="1" Grid.Column="0">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Finca origen" />
-                <Label Style="{StaticResource DataTextLabel}" Text="Maricultura" />
+                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.OriginSubsidiaryName}" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="1" Grid.Column="1">

@@ -2,8 +2,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views;
 
 public partial class PoolTransferDetailView : ContentPage
 {
-	public PoolTransferDetailView()
-	{
-		InitializeComponent();
-	}
+    public PoolTransferDetailView(PoolTransferDetailViewModel poolTransferDetailViewModel)
+    {
+        InitializeComponent();
+        BindingContext = poolTransferDetailViewModel;
+    }
 }

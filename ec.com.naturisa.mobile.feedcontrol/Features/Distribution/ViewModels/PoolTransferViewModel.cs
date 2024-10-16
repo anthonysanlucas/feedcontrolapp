@@ -22,9 +22,16 @@
         }
 
         [RelayCommand]
-        async Task GoToPoolTransferDetail()
+        async Task GoToPoolTransferDetail(FeedTransferModel selectedTransfer)
         {
-            await Shell.Current.GoToAsync(nameof(PoolTransferDetailView));
+            if (selectedTransfer == null)
+                return;
+
+            await Shell.Current.GoToAsync(
+                nameof(PoolTransferDetailView),
+                true,
+                new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
+            );
         }
 
         [RelayCommand]

@@ -22,6 +22,12 @@
         }
 
         [RelayCommand]
+        async Task GoToPoolTransferDetail()
+        {
+            await Shell.Current.GoToAsync(nameof(PoolTransferDetailView));
+        }
+
+        [RelayCommand]
         async Task GetFeedTransfers()
         {
             IsNotBusy = false;

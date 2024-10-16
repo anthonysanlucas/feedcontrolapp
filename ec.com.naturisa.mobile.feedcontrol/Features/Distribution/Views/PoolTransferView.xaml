@@ -44,7 +44,7 @@
                                 BackgroundColor="{StaticResource SurfaceLowContainer}"
                                 BorderColor="{StaticResource Secondary}">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PoolTransferViewModel}}, Path=GoToPoolTransferDetailCommand}" />
                                 </Frame.GestureRecognizers>
                                 <Grid
                                     ColumnDefinitions="*,Auto"

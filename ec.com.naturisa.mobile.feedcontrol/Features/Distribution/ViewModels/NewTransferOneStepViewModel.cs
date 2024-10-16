@@ -47,7 +47,7 @@
         public NewTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            originBranch = "MARICULTURA";
+            originBranch = "Maricultura";
 
             originWarehouses = ["Bodega de Balanceado"];
 

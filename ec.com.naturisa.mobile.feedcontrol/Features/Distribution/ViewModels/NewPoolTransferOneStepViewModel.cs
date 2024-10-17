@@ -3,9 +3,6 @@
     public partial class NewPoolTransferOneStepViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private ObservableCollection<string> availablePools;
-
-        [ObservableProperty]
         private string originBranch;
 
         [ObservableProperty]
@@ -55,6 +52,18 @@
         [RelayCommand]
         async Task GoToPoolTransferTwoStep()
         {
+            if (
+                SelectedOriginWharehouse == null
+                || OriginBranch is null
+                || SelectedCarrier is null
+                || SelectedTransport is null
+            )
+            {
+                await ToastService.ShowToastAsync("Debes completar todos los campos.");
+                return;
+            }
+            ;
+
             PoolTransferOneStepSelection = new()
             {
                 OriginBranch = OriginBranch,
@@ -71,17 +80,6 @@
                     ["PoolTransferOneStepSelection"] = PoolTransferOneStepSelection,
                 }
             );
-        }
-
-        private void SortAvailablePools()
-        {
-            var sortedPools = AvailablePools.OrderBy(p => p).ToList();
-
-            AvailablePools.Clear();
-            foreach (var pool in sortedPools)
-            {
-                AvailablePools.Add(pool);
-            }
         }
     }
 }

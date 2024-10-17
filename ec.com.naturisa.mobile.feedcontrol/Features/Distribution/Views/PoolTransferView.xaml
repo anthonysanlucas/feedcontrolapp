@@ -173,22 +173,18 @@
 
         <Frame
             Grid.Row="0"
-            Margin="0"
-            BackgroundColor="{StaticResource Secondary}"
-            BorderColor="{StaticResource Primary700}"
-            CornerRadius="100"
-            HeightRequest="52"
             HorizontalOptions="End"
-            VerticalOptions="End"
-            WidthRequest="220">
+            Style="{StaticResource SecondaryBtnFrame}"
+            VerticalOptions="End">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding CreateTransferCommand}" />
             </Frame.GestureRecognizers>
             <HorizontalStackLayout
                 Grid.Column="0"
                 HorizontalOptions="CenterAndExpand"
-                Spacing="8">
+                Spacing="4">
                 <Label
+                    FontSize="18"
                     HorizontalOptions="Center"
                     Style="{StaticResource GoogleFont}"
                     Text="{x:Static models:IconFont.Add}"

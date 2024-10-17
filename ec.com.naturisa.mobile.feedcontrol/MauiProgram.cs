@@ -1,8 +1,4 @@
-﻿using CommunityToolkit.Maui;
-using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
-using Microsoft.Extensions.Logging;
-
-namespace ec.com.naturisa.mobile.feedcontrol
+﻿namespace ec.com.naturisa.mobile.feedcontrol
 {
     public static class MauiProgram
     {
@@ -24,8 +20,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IToastService, ToastService>();
             builder.Services.AddSingleton<BaseHttpService>();
 
-            // DISTRIBUTION
+            // GLOBAL
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
+            builder.Services.AddSingleton<IFeedTransferDetailService, FeedTransferDetailService>();
             #endregion
 
             #region ViewModels

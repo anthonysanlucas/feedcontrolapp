@@ -54,12 +54,13 @@
 
             <VerticalStackLayout Grid.Row="2" Grid.Column="0">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Vehículo" />
-                <Label Style="{StaticResource DataTextLabel}" Text="GCT5936" />
+                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedVehiclePlate}" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="2" Grid.Column="1">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Transportista" />
-                <Label Style="{StaticResource DataTextLabel}" Text="Nelson Zambrano" />
+                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedCarrierName}" />
+                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.IdFeedTransfer}" />
             </VerticalStackLayout>
         </Grid>
 

@@ -5,10 +5,6 @@
         private static class FeedTransferEndpoints
         {
             public const string FeedTransfer = $"{ApiConstants.API_FEED_CONTROL}/feed_transfers";
-            public const string FeedTransferDetails =
-                $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_details";
-            public const string FeedTransferDetailPools =
-                $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_detail_pools";
         }
 
         public FeedTransferService()

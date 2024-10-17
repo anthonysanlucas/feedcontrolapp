@@ -2,6 +2,12 @@
 {
     public class FeedTransferDetailModel
     {
+        [JsonPropertyName("idFeedTransferDetail")]
+        public int IdFeedTransferDetail { get; set; }
+
+        [JsonPropertyName("feedTransferId")]
+        public int FeedTransferId { get; set; }
+
         [JsonPropertyName("productId")]
         public int ProductId { get; set; }
 
@@ -15,7 +21,7 @@
         public double Weight { get; set; }
 
         [JsonPropertyName("status")]
-        public bool? Status { get; set; }
+        public string? Status { get; set; }
 
         [JsonPropertyName("feedTransferDetailPools")]
         public List<FeedTransferDetailPoolModel>? FeedTransferDetailPools { get; set; }

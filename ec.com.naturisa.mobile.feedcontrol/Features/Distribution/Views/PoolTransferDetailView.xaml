@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
@@ -60,10 +61,8 @@
             <VerticalStackLayout Grid.Row="2" Grid.Column="1">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Transportista" />
                 <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedCarrierName}" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.IdFeedTransfer}" />
             </VerticalStackLayout>
         </Grid>
-
         <Border
             Grid.Row="1"
             Padding="16,24,16,0"
@@ -71,70 +70,62 @@
             HorizontalOptions="FillAndExpand"
             StrokeShape="RoundRectangle 16,16,0,0"
             StrokeThickness="0">
-            <Grid RowDefinitions="*">
-                <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto, Auto">
+            <CollectionView ItemsSource="{Binding FeedTransferDetails}" SelectionMode="None">
+                <CollectionView.Header>
                     <Frame Padding="6" BackgroundColor="{StaticResource Secondary}">
-                        <Grid ColumnDefinitions="64,*, Auto" ColumnSpacing="4">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4">
                             <Label
                                 Grid.Column="0"
-                                Text="Piscina"
-                                TextColor="{StaticResource OnSecondary}" />
-                            <Label
-                                Grid.Column="1"
                                 HorizontalOptions="Start"
                                 Text="Producto"
                                 TextColor="{StaticResource OnSecondary}" />
                             <Label
-                                Grid.Column="2"
+                                Grid.Column="1"
                                 HorizontalOptions="End"
                                 Text="Cantidad sacos"
                                 TextColor="{StaticResource OnSecondary}" />
                         </Grid>
                     </Frame>
-                    <Grid
-                        Grid.Row="1"
-                        Padding="8"
-                        BackgroundColor="{StaticResource Primary50}"
-                        ColumnDefinitions="Auto, *, Auto"
-                        ColumnSpacing="8">
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource RegularLabel}"
-                            Text="MA001"
-                            TextColor="{StaticResource OnSecondary}"
-                            VerticalOptions="Start" />
-
-                        <VerticalStackLayout Grid.Column="1" Padding="8,0">
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="feedTransferModels:FeedTransferDetailModel">
+                        <Grid
+                            Padding="8"
+                            BackgroundColor="{StaticResource Primary50}"
+                            ColumnDefinitions="*,Auto"
+                            ColumnSpacing="8">
+                            <VerticalStackLayout Grid.Column="0" Padding="8,0">
+                                <Label
+                                    HorizontalOptions="Start"
+                                    MaximumWidthRequest="300"
+                                    Text="{Binding ProductName}"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding ProductId}"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
                             <Label
-                                HorizontalOptions="Start"
-                                MaximumWidthRequest="300"
-                                Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM"
-                                TextColor="{StaticResource Primary900}" />
-                            <Label
-                                FontSize="14"
-                                Text="SKU 13655"
-                                TextColor="{StaticResource OnSecondary}" />
-                        </VerticalStackLayout>
-
-                        <Label
-                            Grid.Column="2"
-                            Style="{StaticResource RegularLabel}"
-                            Text="30"
-                            TextColor="{StaticResource Primary700}"
-                            VerticalOptions="Start" />
-                    </Grid>
+                                Grid.Column="1"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding QuantitySacks}"
+                                TextColor="{StaticResource Primary700}"
+                                VerticalOptions="Start" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
                     <Grid
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         ColumnDefinitions="*,*"
-                        RowDefinitions="auto, auto">
+                        RowDefinitions="Auto, Auto">
                         <BoxView
                             Grid.Row="0"
                             Grid.ColumnSpan="2"
                             Margin="0,0,0,8"
                             BackgroundColor="{StaticResource Gray200}"
                             HeightRequest="1" />
-
                         <Label
                             Grid.Row="4"
                             Grid.Column="0"
@@ -149,49 +140,59 @@
                             HorizontalOptions="End">
                             <Label
                                 HorizontalOptions="End"
-                                Text="30 sacos"
+                                Text="{Binding TotalSacks, StringFormat='{}{0:N0} sacos'}"
                                 TextColor="{StaticResource Primary700}" />
                             <Label
                                 FontSize="14"
                                 HorizontalOptions="End"
-                                Text="1 pallets"
+                                Text="{Binding TotalPallets, StringFormat='{}{0:N0} pallets'}"
                                 TextColor="{StaticResource OnSecondary}" />
                         </StackLayout>
                     </Grid>
-                </Grid>
-
-                <Frame
-                    Grid.Row="0"
-                    Margin="0,0,0,16"
-                    HorizontalOptions="End"
-                    Style="{StaticResource SecondaryBtnFrame}"
-                    VerticalOptions="End">
-                    <Frame.Behaviors>
-                        <toolkit:TouchBehavior
-                            DefaultAnimationDuration="32"
-                            DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
-                            DefaultOpacity="1"
-                            PressedOpacity="0.6" />
-                    </Frame.Behaviors>
-                    <HorizontalStackLayout
-                        Grid.Column="0"
-                        HorizontalOptions="CenterAndExpand"
-                        Spacing="8">
-                        <Label
-                            HorizontalOptions="Center"
-                            Style="{StaticResource GoogleFont}"
-                            Text="{x:Static models:IconFont.Edit}"
-                            TextColor="{StaticResource Primary700}"
-                            VerticalOptions="Center" />
-                        <Label
-                            FontAttributes="None"
-                            Style="{StaticResource RegularLabel}"
-                            Text="Editar detalle"
-                            TextColor="{StaticResource Primary700}"
-                            VerticalOptions="Center" />
-                    </HorizontalStackLayout>
-                </Frame>
-            </Grid>
+                </CollectionView.Footer>
+            </CollectionView>
         </Border>
+
+        <Frame
+            Grid.Row="1"
+            Margin="0,0,16,16"
+            HorizontalOptions="End"
+            IsVisible="{Binding DetailEditable}"
+            Style="{StaticResource SecondaryBtnFrame}"
+            VerticalOptions="End">
+            <Frame.Behaviors>
+                <toolkit:TouchBehavior
+                    DefaultAnimationDuration="32"
+                    DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                    DefaultOpacity="1"
+                    PressedOpacity="0.6" />
+            </Frame.Behaviors>
+            <HorizontalStackLayout
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="8">
+                <Label
+                    HorizontalOptions="Center"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Edit}"
+                    TextColor="{StaticResource Primary700}"
+                    VerticalOptions="Center" />
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Editar detalle"
+                    TextColor="{StaticResource Primary700}"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Frame>
+
+        <components:ViewLoader
+            Grid.Row="1"
+            Margin="16"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}"
+            Opacity="1"
+            VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>

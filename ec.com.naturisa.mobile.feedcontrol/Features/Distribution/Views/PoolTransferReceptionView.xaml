@@ -40,7 +40,7 @@
                             Text="{Binding SelectedTransfer.TransferCode}"
                             VerticalOptions="Center" />
                     </VerticalStackLayout>
-                    <components:StatusIndicator Status="ASIGNADO" />
+                    <components:StatusIndicator Status="{Binding SelectedTransfer.Status}" />
                 </FlexLayout>
 
                 <VerticalStackLayout Grid.Row="1" Grid.Column="0">

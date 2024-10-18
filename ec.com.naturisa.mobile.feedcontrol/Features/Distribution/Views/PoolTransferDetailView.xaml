@@ -50,7 +50,7 @@
 
             <VerticalStackLayout Grid.Row="1" Grid.Column="1">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Destino" />
-                <Label Style="{StaticResource DataTextLabel}" Text="MA001 MA002 MA003" />
+                <Label Style="{StaticResource DataTextLabel}" Text="MA001 MA005" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="2" Grid.Column="0">

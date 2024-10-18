@@ -7,4 +7,10 @@ public partial class ReceptionOfFoodByCarrier : ContentPage
         InitializeComponent();
         BindingContext = foodReceptionByCarrierViewModel;
     }
+
+    [RelayCommand]
+    async Task CompleteFoodReception()
+    {
+        await Shell.Current.GoToAsync(nameof(StartOfRouteView));
+    }
 }

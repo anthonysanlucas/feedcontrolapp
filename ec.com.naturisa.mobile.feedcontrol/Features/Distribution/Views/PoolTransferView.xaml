@@ -209,7 +209,6 @@
             BackgroundColor="White"
             HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsBusy}"
-            Opacity="0.9"
             VerticalOptions="FillAndExpand" />
     </Grid>
     <ContentPage.Resources>

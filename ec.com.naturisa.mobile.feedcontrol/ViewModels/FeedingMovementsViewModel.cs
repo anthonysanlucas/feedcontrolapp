@@ -28,15 +28,15 @@
         }
 
         [RelayCommand]
-        async Task GoToReceptionOfFoodByCarrier(FeedTransfer feedTransfer)
+        async Task GoToPoolTransferReception(FeedTransferModel selectedTransfer)
         {
-            if (feedTransfer is null)
+            if (selectedTransfer == null)
                 return;
 
             await Shell.Current.GoToAsync(
-                nameof(ReceptionOfFoodByCarrier),
+                nameof(PoolTransferReceptionView),
                 true,
-                new Dictionary<string, object> { { "FeedTransfer", feedTransfer } }
+                new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
             );
         }
 

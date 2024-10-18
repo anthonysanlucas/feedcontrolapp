@@ -26,7 +26,6 @@
             #endregion
 
             #region ViewModels
-
             builder.Services.AddSingleton<InitialLoadingViewModel>();
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<FeedingPoolViewModel>();
@@ -46,6 +45,7 @@
             builder.Services.AddTransient<FoodReceptionByCarrierViewModel>();
             builder.Services.AddSingleton<WarehouseTransferViewModel>();
             builder.Services.AddTransient<PoolTransferViewModel>();
+            builder.Services.AddTransient<PoolTransferReceptionViewModel>();
             builder.Services.AddTransient<PoolTransferDetailViewModel>();
             builder.Services.AddTransient<NewTransferOneStepViewModel>();
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
@@ -61,7 +61,6 @@
             builder.Services.AddSingleton<NotificationsDetailView>();
             builder.Services.AddSingleton<SelectFarmView>();
             builder.Services.AddSingleton<ProfileDetailView>();
-
             builder.Services.AddSingleton<InitialLoadingView>();
             builder.Services.AddSingleton<LoginView>();
             builder.Services.AddSingleton<FeedingPoolView>();
@@ -85,6 +84,7 @@
             builder.Services.AddTransient<TransferDetailView>();
             builder.Services.AddTransient<PoolTransferView>();
             builder.Services.AddTransient<PoolTransferDetailView>();
+            builder.Services.AddTransient<PoolTransferReceptionView>();
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();
             builder.Services.AddTransient<NewTransferThreeStepView>();

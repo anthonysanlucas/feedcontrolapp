@@ -37,7 +37,7 @@
             }
             catch (Exception ex)
             {
-                await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.);
+                await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
             }
         }
     }

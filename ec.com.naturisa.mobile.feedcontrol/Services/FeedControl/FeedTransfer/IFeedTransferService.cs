@@ -4,7 +4,11 @@
     {
         Task<ApiResponse<PagedApiResponse<FeedTransferModel>>> GetFeedTransfers();
 
-        // Agrega el método PostFeedTransfer
         Task<ApiResponse<FeedTransferModel>> PostFeedTransfer(FeedTransferModel feedTransferModel);
+
+        Task<ApiResponse<FeedTransferModel>> PatchFeedTransferStatus(
+            int feedTransferId,
+            string nextStatus
+        );
     }
 }

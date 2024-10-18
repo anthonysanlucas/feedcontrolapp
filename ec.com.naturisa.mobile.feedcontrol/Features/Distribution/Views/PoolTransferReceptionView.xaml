@@ -177,6 +177,8 @@
                     <Button
                         Grid.Column="0"
                         BackgroundColor="Transparent"
+                        Command="{Binding UpdateToReceivedFeedTransferStatusCommand}"
+                        CommandParameter="{Binding SelectedTransfer.IdFeedTransfer}"
                         HorizontalOptions="FillAndExpand"
                         Text="Recibir carga"
                         TextColor="White" />

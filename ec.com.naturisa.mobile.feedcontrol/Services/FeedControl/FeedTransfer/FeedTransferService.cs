@@ -5,6 +5,8 @@
         private static class FeedTransferEndpoints
         {
             public const string FeedTransfer = $"{ApiConstants.API_FEED_CONTROL}/feed_transfers";
+
+            public static string FeedTransferById(int id) => $"{FeedTransfer}/{id}/change_status";
         }
 
         public FeedTransferService()
@@ -30,6 +32,23 @@
             var response = await SendRequestAsync(
                 HttpMethod.Post,
                 FeedTransferEndpoints.FeedTransfer,
+                content
+            );
+
+            return await ProcessResponse<FeedTransferModel>(response);
+        }
+
+        public async Task<ApiResponse<FeedTransferModel>> PatchFeedTransferStatus(
+            int id,
+            string nextStatus
+        )
+        {
+            var jsonContent = JsonSerializer.Serialize(new { nextStatus });
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await SendRequestAsync(
+                HttpMethod.Patch,
+                FeedTransferEndpoints.FeedTransferById(id),
                 content
             );
 

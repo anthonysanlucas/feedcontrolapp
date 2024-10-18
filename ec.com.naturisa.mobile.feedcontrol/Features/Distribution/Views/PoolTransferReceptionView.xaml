@@ -155,6 +155,40 @@
                 -->
             </Border>
 
+            <Frame
+                Grid.Row="1"
+                Margin="16"
+                Padding="0"
+                BackgroundColor="{StaticResource Primary700}"
+                BorderColor="Transparent"
+                CornerRadius="8"
+                HasShadow="True"
+                HeightRequest="62"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End">
+                <Frame.Shadow>
+                    <Shadow
+                        Brush="{StaticResource Primary700}"
+                        Opacity="0.5"
+                        Radius="80"
+                        Offset="10,-20" />
+                </Frame.Shadow>
+                <Grid ColumnDefinitions="*" HorizontalOptions="Fill">
+                    <Button
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Recibir carga"
+                        TextColor="White" />
+                    <ActivityIndicator
+                        Grid.Column="0"
+                        HeightRequest="32"
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        Color="White" />
+                </Grid>
+            </Frame>
+
             <components:ViewLoader
                 Grid.Row="1"
                 Margin="16"

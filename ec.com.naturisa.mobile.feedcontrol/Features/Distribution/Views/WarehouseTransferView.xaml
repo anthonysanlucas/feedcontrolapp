@@ -139,27 +139,68 @@
                         VerticalOptions="Center" />
 
 
-                    <VerticalStackLayout 
+                    <Grid 
                         Grid.Column="2"
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="End" 
+                        VerticalOptions="StartAndExpand" 
                         Grid.Row="1" 
                         Grid.RowSpan="4">
-                        
-                        <Label Text="1,320" 
-                               VerticalOptions="Center" 
-                               FontSize="32"
-                               FontAttributes="Bold"
-                                Style="{StaticResource RegularLabel}"
-                                TextColor="{StaticResource Primary900}"
-/>
-                        <Label 
-                            Text="Sacos" 
-                            Padding="20,0,0,0"
-                            Style="{StaticResource RegularLabel}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*"/>
+                        </Grid.RowDefinitions>
 
-                    </VerticalStackLayout>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="48*"/>
+                            <ColumnDefinition Width="4*"/>
+                            <ColumnDefinition Width="48*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                            <VerticalStackLayout
+                                Grid.Column="0" HorizontalOptions="FillAndExpand">
+                                <Label Text="1,320" 
+                                       VerticalOptions="Center" 
+                                       FontSize="32"
+                                       FontAttributes="Bold"
+                                        Style="{StaticResource RegularLabel}"
+                                        TextColor="{StaticResource Primary900}"
+                                />
+                                <Label 
+                                    Text="Sacos" 
+                                    Padding="20,0,0,0"
+                                    FontAttributes="Bold"
+                                    Style="{StaticResource RegularLabel}"/>
+                                
+                            </VerticalStackLayout>
+                        <BoxView 
+                            Grid.Column="1"
+                            BackgroundColor="LightGrey"
+                            VerticalOptions="EndAndExpand"
+                            HeightRequest="40"
+                            WidthRequest="1"></BoxView>
+                        <VerticalStackLayout
+                            Grid.Column="2" 
+                            Padding="0,0,0,1"
+                            HorizontalOptions="StartAndExpand" 
+                            VerticalOptions="EndAndExpand">
+                                <Label 
+                                    Text="20" 
+                                    FontSize="20"
+                                    HorizontalOptions="CenterAndExpand"
+                                    FontAttributes="Bold"
+                                    Style="{StaticResource RegularLabel}"
+                                    TextColor="{StaticResource Primary900}"
+/>
+                                <Label 
+                                    Text="Pallets" 
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Style="{StaticResource SmallLabel}"/>
+
+                        </VerticalStackLayout>
+
+
+                    </Grid>
 
                     <Label
                         Grid.Column="3"

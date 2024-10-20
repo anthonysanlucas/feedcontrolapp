@@ -6,5 +6,6 @@
 
         public const string AUTH_URL = $"{API_URL}/seguridad";
         public const string API_FEED_CONTROL = $"{API_URL}/feedcontrol/api";
+        public const string API_FEED_CONTROL_LOCAL = $"http://localhost:7031/api";
     }
 }

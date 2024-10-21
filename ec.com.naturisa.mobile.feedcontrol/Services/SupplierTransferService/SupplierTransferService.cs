@@ -19,13 +19,22 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService
 
         public async Task<ApiResponse<PagedApiResponse<SupplierTransferResponse>>> GetSupplierTransfers(SupplierTransferQuery query)
         {
-            string queryParams = StringExtensions.BuildQueryString(query);
-            var response = await SendRequestAsync(
-                HttpMethod.Get,
-                SupplierTransferEndpoints.SupplierTransfer + queryParams
-            );
+            try
+            {
+                string queryParams = StringExtensions.BuildQueryString(query);
+                var response = await SendRequestAsync(
+                    HttpMethod.Get,
+                    SupplierTransferEndpoints.SupplierTransfer + queryParams
+                );
 
-            return await ProcessResponse<PagedApiResponse<SupplierTransferResponse>>(response);
+                return await ProcessResponse<PagedApiResponse<SupplierTransferResponse>>(response);
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
     }
 }

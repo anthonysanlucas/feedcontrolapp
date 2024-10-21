@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
+using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
 using Microsoft.Extensions.Logging;
 
 namespace ec.com.naturisa.mobile.feedcontrol
@@ -23,6 +24,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IAuthService, AuthService>();
             builder.Services.AddSingleton<IToastService, ToastService>();
             builder.Services.AddSingleton<BaseHttpService>();
+
+            // SUPPLY
+            builder.Services.AddSingleton<ISupplierTransferService, SupplierTransferService>();
 
             // DISTRIBUTION
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
@@ -84,7 +88,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<FeedingPoolOneStepView>();
             builder.Services.AddTransient<FeedingPoolTwoStepView>();
             builder.Services.AddSingleton<StartOfRouteView>();
-            builder.Services.AddTransient<WarehouseTransferView>();
+            builder.Services.AddScoped<WarehouseTransferView>();
             builder.Services.AddTransient<TransferDetailView>();
             builder.Services.AddTransient<PoolTransferView>();
             builder.Services.AddTransient<InventoryReceptionView>();

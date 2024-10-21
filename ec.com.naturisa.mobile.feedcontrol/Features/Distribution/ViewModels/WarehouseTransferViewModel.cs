@@ -56,7 +56,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             {
                 var data = response.Data.Data;
 
-                supplierTransfers = new ObservableCollection<SupplierTransferResponse>(data);
+                SupplierTransfers = new ObservableCollection<SupplierTransferResponse>(data);
             }
 
             IsBusy = false;

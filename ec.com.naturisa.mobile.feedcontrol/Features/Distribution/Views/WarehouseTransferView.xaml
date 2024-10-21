@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
     Title="WarehouseTransferView"
      xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     x:DataType="viewModels:WarehouseTransferViewModel">
@@ -58,7 +59,10 @@
                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
                 </Frame.GestureRecognizers>
 
-                <Grid RowSpacing="3">
+                <CollectionView ItemsSource="{Binding SupplierTransfers}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">
+                    <Grid RowSpacing="3">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20*"/>
@@ -93,7 +97,7 @@
                             Grid.ColumnSpan="2"
                             FontAttributes="None"
                             Style="{StaticResource RegularLabel}"
-                            Text="NARCISA-20241008-1"
+                            Text="{Binding Code}"
                             TextColor="{StaticResource Primary900}"
                             VerticalOptions="Center" />
 
@@ -279,6 +283,11 @@
                        
                     </Grid>
                 </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                
             </Frame>
         </VerticalStackLayout>
 

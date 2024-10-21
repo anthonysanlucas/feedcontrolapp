@@ -9,7 +9,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
         [ObservableProperty]
         private ObservableCollection<SupplierTransferResponse> supplierTransfers;
-
+        
         public WarehouseTransferViewModel(IToastService toastService)
             : base(toastService) {
             _supplierTransferService = new SupplierTransferService();
@@ -26,10 +26,20 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         }
 
         [RelayCommand]
-        async Task GoToTransferDetail()
+        async Task GoToTransferDetail(SupplierTransferResponse selectedTransfer)
         {
-            await Shell.Current.GoToAsync(nameof(TransferDetailView));
+            if (selectedTransfer != null)
+            {
+                var navigationParameter = new Dictionary<string, object>
+                {
+                    { "SelectedTransfer", selectedTransfer }
+                };
+
+                await Shell.Current.GoToAsync(nameof(TransferDetailView), navigationParameter);
+            }
+
         }
+
 
         [RelayCommand]
         async Task GetSupplierTransfers()

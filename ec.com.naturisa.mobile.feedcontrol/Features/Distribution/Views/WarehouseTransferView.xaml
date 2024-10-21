@@ -115,7 +115,7 @@
                             Grid.Row="3"
                                 FontAttributes="None"
                                 Style="{StaticResource RegularLabel}"
-                                Text="MUELLE CARGILL"
+                                Text="{Binding OriginSupplierName}"
                                 TextColor="{StaticResource Primary900}"
                                 VerticalOptions="Center" />
 
@@ -132,14 +132,15 @@
                              Grid.Row="5"
                               FontAttributes="None"
                               Style="{StaticResource RegularLabel}"
-                              Text="PESJOYA"
+                              Text="{Binding DestinationWarehouseName}"
                               TextColor="{StaticResource Primary900}"
                               VerticalOptions="Center" />
                     <components:StatusIndicator
-                        Grid.Column="4"
+                        Grid.Column="2"
+                        Grid.ColumnSpan="2"
                         Grid.Row="0"
-                        HorizontalOptions="Center"
-                        Status="ASIGNADO"
+                        HorizontalOptions="EndAndExpand"
+                        Status="{Binding LastStatusCatalogueName}"
                         VerticalOptions="Center" />
 
 
@@ -162,7 +163,7 @@
                         
                             <VerticalStackLayout
                                 Grid.Column="0" HorizontalOptions="FillAndExpand">
-                                <Label Text="1,320" 
+                                        <Label Text="{Binding TotalEquivalenceSacks}" 
                                        VerticalOptions="Center" 
                                        FontSize="32"
                                        FontAttributes="Bold"
@@ -188,7 +189,7 @@
                             HorizontalOptions="StartAndExpand" 
                             VerticalOptions="EndAndExpand">
                                 <Label 
-                                    Text="20" 
+                                    Text="{Binding TotalEquivalencePallets}"
                                     FontSize="20"
                                     HorizontalOptions="CenterAndExpand"
                                     FontAttributes="Bold"

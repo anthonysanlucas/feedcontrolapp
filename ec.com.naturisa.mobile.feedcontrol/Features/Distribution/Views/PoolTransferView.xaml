@@ -47,6 +47,7 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
                                 </Frame.GestureRecognizers>
+                                
                                 <Grid
                                     ColumnDefinitions="*,Auto"
                                     ColumnSpacing="8"

@@ -51,13 +51,11 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<FeedingPoolTwoStepViewModel>();
             builder.Services.AddSingleton<StartOfRouteViewModel>();
             builder.Services.AddTransient<FoodReceptionByCarrierViewModel>();
-            builder.Services.AddSingleton<WarehouseTransferViewModel>();
             builder.Services.AddTransient<PoolTransferViewModel>();
             builder.Services.AddTransient<InventoryReceptionViewModel>();
             builder.Services.AddTransient<NewTransferOneStepViewModel>();
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewTransferThreeStepViewModel>();
-            builder.Services.AddTransient<TransferDetailViewModel>();
             builder.Services.AddTransient<NewPoolTransferOneStepViewModel>();
             builder.Services.AddTransient<NewPoolTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewPoolTransferThreeStepViewModel>();
@@ -88,8 +86,13 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<FeedingPoolOneStepView>();
             builder.Services.AddTransient<FeedingPoolTwoStepView>();
             builder.Services.AddSingleton<StartOfRouteView>();
-            builder.Services.AddScoped<WarehouseTransferView>();
+
+            builder.Services.AddSingleton<WarehouseTransferView>();
+            builder.Services.AddSingleton<WarehouseTransferViewModel>();
             builder.Services.AddTransient<TransferDetailView>();
+            builder.Services.AddTransient<TransferDetailViewModel>();
+
+
             builder.Services.AddTransient<PoolTransferView>();
             builder.Services.AddTransient<InventoryReceptionView>();
             builder.Services.AddTransient<NewTransferOneStepView>();

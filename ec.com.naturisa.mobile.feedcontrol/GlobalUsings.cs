@@ -20,6 +20,7 @@ global using ec.com.naturisa.mobile.feedcontrol.Features.Farm.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Notifications.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Profile.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Handlers;
+global using ec.com.naturisa.mobile.feedcontrol.Helpers;
 global using ec.com.naturisa.mobile.feedcontrol.Models;
 global using ec.com.naturisa.mobile.feedcontrol.Models.Api;
 global using ec.com.naturisa.mobile.feedcontrol.Models.Auth;

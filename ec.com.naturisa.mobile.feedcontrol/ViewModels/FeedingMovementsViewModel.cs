@@ -33,11 +33,19 @@
             if (selectedTransfer == null)
                 return;
 
-            await Shell.Current.GoToAsync(
-                nameof(PoolTransferReceptionView),
-                true,
-                new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
-            );
+            if (selectedTransfer.Status == Const.Status.Transfer.Assigned)
+                await Shell.Current.GoToAsync(
+                    nameof(PoolTransferReceptionView),
+                    true,
+                    new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
+                );
+
+            if (selectedTransfer.Status == Const.Status.Transfer.Received)
+                await Shell.Current.GoToAsync(
+                    nameof(StartOfRouteView),
+                    true,
+                    new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
+                );
         }
 
         [RelayCommand]

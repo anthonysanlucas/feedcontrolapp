@@ -212,15 +212,16 @@
     <FlyoutItem
         Title="Recepción de Inventario"
         FlyoutDisplayOptions="AsSingleItem"
+        Route="WarehouseTransferView"
         Icon="{x:Static models:IconFont.Move_to_inbox}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" />
     </FlyoutItem>
-    
+
     <FlyoutItem
         Title="Transferencia a Finca"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" Route="WarehouseTransfer" />
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:NewTransferThreeStepView}"/>
     </FlyoutItem>
 
     <Shell.FlyoutFooter>

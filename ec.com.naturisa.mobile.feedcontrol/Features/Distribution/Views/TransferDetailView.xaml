@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.TransferDetailView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     x:DataType="viewModels:TransferDetailViewModel">
@@ -56,7 +57,7 @@
                     Grid.ColumnSpan="2"
                     FontAttributes="Bold"
                     Style="{StaticResource RegularLabel}"
-                    Text="NARCISA-20241008-1"
+                    Text="{Binding SelectedTransfer.Code}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center" />
 
@@ -74,7 +75,7 @@
                     Grid.Row="4"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="MUELLE CARGILL"
+                    Text="{Binding SelectedTransfer.OriginSupplierName}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center" />
 
@@ -91,7 +92,7 @@
                     Grid.Row="6"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="PESJOYA"
+                    Text="{Binding SelectedTransfer.DestinationWarehouseName}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center" />
 
@@ -108,7 +109,7 @@
                     Grid.Row="4"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="NARCISA"
+                    Text="{Binding SelectedTransfer.TransportName}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center" />
 
@@ -125,7 +126,7 @@
                     Grid.Row="6"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="JHON CUERO"
+                    Text="{Binding SelectedTransfer.FreightTransporterName}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center" />
                 
@@ -135,55 +136,8 @@
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     HorizontalOptions="EndAndExpand"
-                    Status="ASIGNADO"
+                    Status="{Binding SelectedTransfer.LastStatusCatalogueName}"
                     VerticalOptions="CenterAndExpand" />
-
-                <!--<VerticalStackLayout 
-                    Grid.Column="2"  
-                    Grid.ColumnSpan="2"
-                    HorizontalOptions="EndAndExpand" 
-                    Grid.Row="2">
-                    <HorizontalStackLayout>
-                        <Label 
-                            Text="51,320" 
-                            VerticalOptions="EndAndExpand" 
-                            FontSize="22"
-                            FontAttributes="Bold"
-                            Style="{StaticResource RegularLabel}"
-                            TextColor="{StaticResource Primary900}"
-                        />
-                        <Label 
-                            VerticalOptions="EndAndExpand"
-                            Style="{StaticResource RegularLabel}"
-                            Margin="0, 0, 0, 2.5"
-                            Text=" Sacos" />
-                        <BoxView 
-                            Grid.Column="1"
-                            Margin="5, 0, 5, 0"
-                            BackgroundColor="LightGrey"
-                            VerticalOptions="Center"
-                            HeightRequest="20"
-                            WidthRequest="2"></BoxView>
-                        <Label 
-                            Text="020" 
-                            VerticalOptions="EndAndExpand" 
-                            FontSize="18"
-                            Margin="0, 0, 0, 1.3"
-                            FontAttributes="Bold"
-                            Style="{StaticResource RegularLabel}"
-                            TextColor="{StaticResource Primary900}"
-    />
-                        <Label 
-                            VerticalOptions="EndAndExpand"
-                            Style="{StaticResource SmallLabel}"
-                            Margin="0, 0,0, 3.3"
-                            Text=" Pallets" />
-                        
-                    </HorizontalStackLayout>
-                        
-
-                </VerticalStackLayout>-->
-
 
             </Grid>
         </VerticalStackLayout>
@@ -223,7 +177,13 @@
                 </Grid>
             </Frame>
 
-            <!--  Contenido de la tabla  -->
+            <CollectionView 
+                ItemsSource="{Binding SelectedTransfer.SupplierTransferDetails}" 
+                Grid.Row="1"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="supplierTransferModels:SupplierTransferDetailResponse">
+                        <!--  Contenido de la tabla  -->
             <Grid>
 
                 <Grid.RowDefinitions>
@@ -243,7 +203,10 @@
                     Grid.Column="0"
                     Padding="0"
                     VerticalOptions="FillAndExpand">
-                    <CheckBox Margin="0" VerticalOptions="Start" />
+                    <CheckBox 
+                        Margin="0" 
+                        VerticalOptions="Start" 
+                        IsChecked="{Binding IsChecked}"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout
@@ -254,11 +217,11 @@
                         FontAttributes="Bold"
                         HorizontalOptions="Start"
                         MaximumWidthRequest="300"
-                        Text="ALIMENTO INICIADOR AQUACEL 0.6 MM."
+                        Text="{Binding ProductName}"
                         TextColor="{StaticResource Primary900}" />
                     <Label
                         FontSize="14"
-                        Text="SKU 245"
+                        Text="{Binding ProductSupplierCode}"
                         TextColor="{StaticResource OnSecondary}" />
                 </VerticalStackLayout>
 
@@ -270,52 +233,19 @@
                     <Label
                         FontAttributes="Bold"
                         Style="{StaticResource RegularLabel}"
-                        Text="1,254"
+                        Text="{Binding EquivalenceSacks}"
                         TextColor="{StaticResource Primary700}"
                         VerticalOptions="Center" />
                 </VerticalStackLayout>
 
-                <!--  Segunda fila  -->
-                <VerticalStackLayout
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Padding="0"
-                    VerticalOptions="FillAndExpand">
-                    <CheckBox Margin="0" VerticalOptions="Start" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Padding="8">
-                    <Label
-                        FontAttributes="Bold"
-                        HorizontalOptions="Start"
-                        MaximumWidthRequest="300"
-                        Text="NATURISA ADVANCE ST D 1.2 MM."
-                        TextColor="{StaticResource Primary900}" />
-                    <Label
-                        FontSize="14"
-                        Text="SKU 246"
-                        TextColor="{StaticResource OnSecondary}" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Padding="8"
-                    HorizontalOptions="End">
-                    <Label
-                        FontAttributes="Bold"
-                        HorizontalOptions="End"
-                        Style="{StaticResource RegularLabel}"
-                        Text="66"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
 
                 
             </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
 
             <!--  Fila de total  -->
             <Grid
@@ -345,12 +275,12 @@
                     HorizontalOptions="End">
                     <Label
                         HorizontalOptions="End"
-                        Text="1,320 SACOS"
+                        Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0} Sacos'}"
                         TextColor="{StaticResource Primary700}" />
                     <Label
                         FontSize="14"
                         HorizontalOptions="End"
-                        Text="20 Pallets"
+                        Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} Pallets'}"
                         TextColor="{StaticResource OnSecondary}" />
                 </StackLayout>
             </Grid>
@@ -370,6 +300,7 @@
                         Placeholder="Escriba alguna observación"
                         PlaceholderColor="{StaticResource Black-text-light}"
                         TextColor="{StaticResource Black-text}"
+                        Text="{Binding SelectedTransfer.Observation}"
                         VerticalTextAlignment="Start" />
                 </VerticalStackLayout>
             </Frame>

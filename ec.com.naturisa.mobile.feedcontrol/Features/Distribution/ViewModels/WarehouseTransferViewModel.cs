@@ -9,10 +9,27 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
         [ObservableProperty]
         private ObservableCollection<SupplierTransferResponse> supplierTransfers;
-        
+
+        [ObservableProperty]
+        private SupplierTransferQuery filterQuery;
+
+
         public WarehouseTransferViewModel(IToastService toastService)
             : base(toastService) {
             _supplierTransferService = new SupplierTransferService();
+            FilterQuery = new SupplierTransferQuery
+            {
+                AssignmentDate = DateTime.Now,
+                IncludeFreightTransporter = true,
+                DestinationOperatorWarehouseUserId = App.UserData.IdUser,
+                IncludeStatusCatalogue = true,
+                IncludeStatusCatalogueList = true,
+                IncludeSupplier = true,
+                IncludeSupplierTransferDetails = true,
+                IncludeTransport = true,
+                Status = "ACTIVO",
+                StatusCatalogueName = [SupplierTransferConstants.Finished]
+            };
 
             GetSupplierTransfers();
 
@@ -48,19 +65,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             IsBusy = true;
             IsRefreshing = false;
 
-            var response = await _supplierTransferService.GetSupplierTransfers(new SupplierTransferQuery
-            {
-                AssignmentDate = DateTime.Now,
-                IncludeFreightTransporter = true,
-                DestinationOperatorWarehouseUserId = 20051,
-                IncludeStatusCatalogue = true,
-                IncludeStatusCatalogueList = true,
-                IncludeSupplier = true,
-                IncludeSupplierTransferDetails = true,
-                IncludeTransport = true,
-                Status = "ACTIVO",
-                StatusCatalogueName = [SupplierTransferConstants.Finished]
-            });
+            var response = await _supplierTransferService.GetSupplierTransfers(FilterQuery);
 
             if (response != null && response.Data != null && response.Data.Data.Any())
             {
@@ -68,10 +73,20 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
                 SupplierTransfers = new ObservableCollection<SupplierTransferResponse>(data);
             }
+            else
+            {
+                SupplierTransfers.Clear();
+            }
 
             IsBusy = false;
             IsNotBusy = true;
         }
+
+        public async  Task OnConfirmReceptionClicked(object sender, EventArgs e)
+        {
+            await GetSupplierTransfers();
+        }
+
 
         #endregion
     }

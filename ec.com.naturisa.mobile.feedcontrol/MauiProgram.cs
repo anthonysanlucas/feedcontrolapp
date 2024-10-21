@@ -87,8 +87,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<FeedingPoolTwoStepView>();
             builder.Services.AddSingleton<StartOfRouteView>();
 
-            builder.Services.AddSingleton<WarehouseTransferView>();
-            builder.Services.AddSingleton<WarehouseTransferViewModel>();
+            builder.Services.AddTransient<WarehouseTransferView>();
+            builder.Services.AddTransient<WarehouseTransferViewModel>();
             builder.Services.AddTransient<TransferDetailView>();
             builder.Services.AddTransient<TransferDetailViewModel>();
 

@@ -25,5 +25,6 @@ namespace ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer
         public string CreatedBy { get; set; }
         public DateTime? ModifiedAt { get; set; }
         public string? ModifiedBy { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

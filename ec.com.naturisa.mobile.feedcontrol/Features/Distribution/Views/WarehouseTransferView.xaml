@@ -9,96 +9,103 @@
     Title="WarehouseTransferView"
      xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     x:DataType="viewModels:WarehouseTransferViewModel">
-    <Grid RowDefinitions="Auto, Auto, *">
 
-        <!--<Frame
-            Grid.Row="0"
-            Margin="0"
-            BorderColor="{StaticResource Secondary}"
-            HeightRequest="70">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CreateTransferCommand}" />
-            </Frame.GestureRecognizers>
+    <Grid RowDefinitions="auto,*">
+        <Grid ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
 
-            <HorizontalStackLayout
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            
+            <VerticalStackLayout
                 Grid.Column="0"
-                HorizontalOptions="CenterAndExpand"
-                Spacing="8">
-                <Frame
-                    Padding="4"
-                    BackgroundColor="{StaticResource Primary900}"
-                    HeightRequest="32"
-                    WidthRequest="32">
-                    <Image Source="icon_add_white.svg" WidthRequest="16" />
-                </Frame>
-
-                <Label
-                    FontAttributes="None"
-                    Style="{StaticResource RegularLabel}"
-                    Text="Realizar una transferencia"
-                    TextColor="{StaticResource Primary900}"
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
-        </Frame>-->
-
-        <!--  Label for Movimientos  -->
-        <VerticalStackLayout Grid.Row="2">
-        <Label
-            Grid.Row="0"
-            Margin="0,16,0,8"
-            Text="Viajes" />
-
-        <CollectionView 
-            ItemsSource="{Binding SupplierTransfers}" 
-            Grid.Row="1"
-            SelectionMode="None">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">
-                    
-            <Frame
-                Margin="0,8"
+                Padding="0"
                 HorizontalOptions="FillAndExpand"
-                BackgroundColor="{StaticResource SurfaceLowContainer}"
-                BorderColor="{StaticResource Secondary}"
-                HasShadow="False">
+                BackgroundColor="{StaticResource Secondary}">
+                <DatePicker
+                    Format="dd/MM/yyyy"
+                    MaximumDate="2050-12-31"
+                    MinimumDate="2020-01-01"
+                    Date="{Binding FilterQuery.AssignmentDate}"
+                    TextColor="{StaticResource OnSecondary}" />
+            </VerticalStackLayout>
 
-                <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" CommandParameter="{Binding .}" />
-                    
-                </Frame.GestureRecognizers>
+            <VerticalStackLayout
+                Grid.Column="1"
+                HorizontalOptions="FillAndExpand">
+                <Button 
+                    Command="{Binding GetSupplierTransfersCommand}"
+                    Text="Consultar"
+                    BackgroundColor="{StaticResource White}" 
+                    TextColor="{StaticResource Gray500}" 
+                    BorderColor="{StaticResource Gray500}" 
+                    BorderWidth="1" ></Button>
+            </VerticalStackLayout>
+        </Grid>
+        
+            
 
-                
-                    <Grid RowSpacing="3">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        <RowDefinition Height="20*"/>
-                        
+        <RefreshView
+                Grid.Row="2"
+                Command="{Binding GetSupplierTransfersCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshColor="Transparent">
+                <CollectionView 
+                    ItemsSource="{Binding SupplierTransfers}" 
+                    SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">
 
-                    </Grid.RowDefinitions>
+                            <Frame
+                                Margin="0,8"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="{StaticResource SurfaceLowContainer}"
+                                BorderColor="{StaticResource Secondary}"
+                                HasShadow="False">
 
-                    <Grid.ColumnDefinitions>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" CommandParameter="{Binding .}" />
 
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="20*"/>
-                        <ColumnDefinition Width="20*"/>
-                    </Grid.ColumnDefinitions>
+                                </Frame.GestureRecognizers>
 
-                    <Label
+
+                                <Grid RowSpacing="3">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20*"/>
+                                        <RowDefinition Height="20*"/>
+                                        <RowDefinition Height="20*"/>
+                                        <RowDefinition Height="20*"/>
+                                        <RowDefinition Height="20*"/>
+                                        <RowDefinition Height="20*"/>
+
+
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label
                         Grid.ColumnSpan="2"
                         Grid.Column="0" 
                         Grid.Row="0"
                         FontAttributes="None"
                         Text="Viaje"
                         VerticalOptions="Center" />
-                    
-                    <!--  Header Row with Feed Information  -->
-                        <Label
+
+                                    <!--  Header Row with Feed Information  -->
+                                    <Label
                             Grid.Column="0" Grid.Row="1"
                             Grid.ColumnSpan="2"
                             FontAttributes="None"
@@ -107,15 +114,15 @@
                             TextColor="{StaticResource Primary900}"
                             VerticalOptions="Center" />
 
-                        <Label
+                                    <Label
                             Grid.ColumnSpan="2"
                             Grid.Column="0" 
                             Grid.Row="2"
                             FontAttributes="None"
                             Text="Origen"
                             VerticalOptions="Center" />
-                    <!--  Status Box and Label  -->
-                        <Label
+                                    <!--  Status Box and Label  -->
+                                    <Label
                             Grid.ColumnSpan="2"
                             Grid.Column="0" 
                             Grid.Row="3"
@@ -125,14 +132,14 @@
                                 TextColor="{StaticResource Primary900}"
                                 VerticalOptions="Center" />
 
-                        <Label
+                                    <Label
                              Grid.ColumnSpan="2"
                              Grid.Column="0" 
                              Grid.Row="4"
                              FontAttributes="None"
                              Text="Destino"
                              VerticalOptions="Center" />
-                        <Label
+                                    <Label
                             Grid.ColumnSpan="2"
                              Grid.Column="0" 
                              Grid.Row="5"
@@ -141,7 +148,7 @@
                               Text="{Binding DestinationWarehouseName}"
                               TextColor="{StaticResource Primary900}"
                               VerticalOptions="Center" />
-                    <components:StatusIndicator
+                                    <components:StatusIndicator
                         Grid.Column="2"
                         Grid.ColumnSpan="2"
                         Grid.Row="0"
@@ -150,51 +157,51 @@
                         VerticalOptions="Center" />
 
 
-                    <Grid 
+                                    <Grid 
                         Grid.Column="2"
                         Grid.ColumnSpan="2" 
                         HorizontalOptions="FillAndExpand" 
                         VerticalOptions="StartAndExpand" 
                         Grid.Row="1" 
                         Grid.RowSpan="4">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="20*"/>
-                        </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20*"/>
+                                        </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="48*"/>
-                            <ColumnDefinition Width="4*"/>
-                            <ColumnDefinition Width="48*"/>
-                        </Grid.ColumnDefinitions>
-                        
-                            <VerticalStackLayout
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="48*"/>
+                                            <ColumnDefinition Width="4*"/>
+                                            <ColumnDefinition Width="48*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <VerticalStackLayout
                                 Grid.Column="0" HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding TotalEquivalenceSacks}" 
+                                            <Label Text="{Binding TotalEquivalenceSacks}" 
                                        VerticalOptions="Center" 
                                        FontSize="32"
                                        FontAttributes="Bold"
                                         Style="{StaticResource RegularLabel}"
                                         TextColor="{StaticResource Primary900}"
                                 />
-                                <Label 
+                                            <Label 
                                     Text="Sacos" 
                                     Padding="20,0,0,0"
                                     FontAttributes="Bold"
                                     Style="{StaticResource RegularLabel}"/>
-                                
-                            </VerticalStackLayout>
-                        <BoxView 
+
+                                        </VerticalStackLayout>
+                                        <BoxView 
                             Grid.Column="1"
                             BackgroundColor="LightGrey"
                             VerticalOptions="EndAndExpand"
                             HeightRequest="40"
                             WidthRequest="1"></BoxView>
-                        <VerticalStackLayout
+                                        <VerticalStackLayout
                             Grid.Column="2" 
                             Padding="0,0,0,1"
                             HorizontalOptions="StartAndExpand" 
                             VerticalOptions="EndAndExpand">
-                                <Label 
+                                            <Label 
                                     Text="{Binding TotalEquivalencePallets}"
                                     FontSize="20"
                                     HorizontalOptions="CenterAndExpand"
@@ -202,18 +209,18 @@
                                     Style="{StaticResource RegularLabel}"
                                     TextColor="{StaticResource Primary900}"
 />
-                                <Label 
+                                            <Label 
                                     Text="Pallets" 
                                     FontAttributes="Bold"
                                     HorizontalOptions="CenterAndExpand"
                                     Style="{StaticResource SmallLabel}"/>
 
-                        </VerticalStackLayout>
+                                        </VerticalStackLayout>
 
 
-                    </Grid>
+                                    </Grid>
 
-                    <Label
+                                    <Label
                         Grid.Column="3"
                         Grid.Row="4"
                         Grid.RowSpan="2"
@@ -225,16 +232,18 @@
                          TextColor="{StaticResource OnSecondary}"
                          VerticalOptions="End" />
 
-                    
-                </Grid>
 
-                        
-                
-            </Frame>
-        
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        </VerticalStackLayout>
+                                </Grid>
+
+
+
+                            </Frame>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </RefreshView>
+       
     </Grid>
 </ContentPage>

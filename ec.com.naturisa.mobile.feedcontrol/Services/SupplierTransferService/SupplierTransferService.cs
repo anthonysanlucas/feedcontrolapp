@@ -36,5 +36,27 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService
                 throw;
             }
         }
+
+        public async Task<ApiResponse<dynamic>> ChangeStatus(long id, string nextStatus, string observation)
+        {
+            //if (string.IsNullOrEmpty(nextStatus) || string.IsNullOrWhiteSpace(nextStatus))
+            //    throw new Exception("El estado es obligatorio");
+            
+            //if (id <= 0)
+            //    throw new Exception("El id debe ser mayor a 0");
+
+            var jsonContent = JsonSerializer.Serialize(new { nextStatus, observation });
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            var response = await SendRequestAsync(
+                HttpMethod.Patch,
+                $"{SupplierTransferEndpoints.SupplierTransfer}/{id}/change_status",
+                content
+            );
+
+            return await ProcessResponse<dynamic>(response);
+        }
+
+
     }
 }

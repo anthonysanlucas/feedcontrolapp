@@ -5,5 +5,9 @@
         Task<ApiResponse<PagedApiResponse<FeedTransferDetailModel>>> GetFeedTransferDetails(
             int feedReceptionId
         );
+
+        Task<ApiResponse<FeedTransferDetailCustomResponseModel>> GetFeedTransferDetailsConsolidated(
+            int feedReceptionId
+        );
     }
 }

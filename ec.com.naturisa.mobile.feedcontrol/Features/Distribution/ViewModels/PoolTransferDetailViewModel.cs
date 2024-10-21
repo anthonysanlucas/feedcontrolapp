@@ -7,7 +7,10 @@
         private FeedTransferModel selectedTransfer;
 
         [ObservableProperty]
-        private ObservableCollection<FeedTransferDetailModel> feedTransferDetails;
+        private FeedTransferDetailCustomResponseModel selectedTransferDetail;
+
+        [ObservableProperty]
+        private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
 
         [ObservableProperty]
         private int totalSacks;
@@ -35,6 +38,7 @@
             {
                 LoadFeedTransferDetails((int)value.IdFeedTransfer);
             }
+            return;
         }
 
         private async void LoadFeedTransferDetails(int feedTransferId)
@@ -43,7 +47,9 @@
             {
                 IsBusy = true;
                 var transferDetailsResponse =
-                    await _feedTransferDetailService.GetFeedTransferDetails(feedTransferId);
+                    await _feedTransferDetailService.GetFeedTransferDetailsConsolidated(
+                        feedTransferId
+                    );
 
                 if (transferDetailsResponse == null || transferDetailsResponse.Code != 200)
                 {
@@ -51,10 +57,15 @@
                     return;
                 }
 
-                FeedTransferDetails = new ObservableCollection<FeedTransferDetailModel>(
-                    transferDetailsResponse.Data.Data
-                );
-                CalculateTotals();
+                SelectedTransferDetail = transferDetailsResponse.Data;
+
+                FeedTransferDetails =
+                    new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
+                        (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
+                            transferDetailsResponse.Data.FeedTransferPoolsDetail
+                        )
+                    );
+
                 IsDetailEditable();
             }
             catch (Exception ex)
@@ -65,12 +76,6 @@
             {
                 IsBusy = false;
             }
-        }
-
-        private void CalculateTotals()
-        {
-            TotalSacks = FeedTransferDetails.Sum(detail => detail.QuantitySacks);
-            TotalPallets = (int)Math.Ceiling((double)TotalSacks / 66);
         }
 
         private void IsDetailEditable()

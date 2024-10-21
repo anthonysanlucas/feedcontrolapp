@@ -73,9 +73,14 @@
             <CollectionView ItemsSource="{Binding FeedTransferDetails}" SelectionMode="None">
                 <CollectionView.Header>
                     <Frame Padding="6" BackgroundColor="{StaticResource Secondary}">
-                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="4">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="4">
                             <Label
                                 Grid.Column="0"
+                                HorizontalOptions="Start"
+                                Text="Piscina"
+                                TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Grid.Column="1"
                                 HorizontalOptions="Start"
                                 Text="Producto"
                                 TextColor="{StaticResource OnSecondary}" />
@@ -88,13 +93,19 @@
                     </Frame>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="feedTransferModels:FeedTransferDetailModel">
+                    <DataTemplate x:DataType="feedTransferModels:FeedTransferPoolDetailCustomResponse">
                         <Grid
                             Padding="8"
                             BackgroundColor="{StaticResource Primary50}"
-                            ColumnDefinitions="*,Auto"
+                            ColumnDefinitions="Auto,*,Auto"
                             ColumnSpacing="8">
-                            <VerticalStackLayout Grid.Column="0" Padding="8,0">
+                            <Label
+                                Grid.Column="0"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding PoolCode}"
+                                TextColor="{StaticResource Primary700}"
+                                VerticalOptions="Start" />
+                            <VerticalStackLayout Grid.Column="1" Padding="8,0">
                                 <Label
                                     HorizontalOptions="Start"
                                     MaximumWidthRequest="300"
@@ -106,7 +117,7 @@
                                     TextColor="{StaticResource OnSecondary}" />
                             </VerticalStackLayout>
                             <Label
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 Style="{StaticResource RegularLabel}"
                                 Text="{Binding QuantitySacks}"
                                 TextColor="{StaticResource Primary700}"
@@ -140,12 +151,14 @@
                             HorizontalOptions="End">
                             <Label
                                 HorizontalOptions="End"
-                                Text="{Binding TotalSacks, StringFormat='{}{0:N0} sacos'}"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding SelectedTransferDetail.TotalSacks, StringFormat='{}{0:N0} sacos'}"
                                 TextColor="{StaticResource Primary700}" />
                             <Label
                                 FontSize="14"
                                 HorizontalOptions="End"
-                                Text="{Binding TotalPallets, StringFormat='{}{0:N0} pallets'}"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding SelectedTransferDetail.TotalPallets, StringFormat='{}{0:N0} pallets'}"
                                 TextColor="{StaticResource OnSecondary}" />
                         </StackLayout>
                     </Grid>

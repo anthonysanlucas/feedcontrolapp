@@ -64,12 +64,12 @@
                 <VisualStateGroup x:Name="CommonStates">
                     <VisualState x:Name="Normal">
                         <VisualState.Setters>
-                            <Setter Property="Color" Value="{StaticResource Slate400}" />
+                            <Setter Property="Color" Value="{StaticResource OnSecondary}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="IsChecked">
                         <VisualState.Setters>
-                            <Setter Property="Color" Value="{StaticResource Primary}" />
+                            <Setter Property="Color" Value="{StaticResource Primary700}" />
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState x:Name="Disabled">

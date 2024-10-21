@@ -155,7 +155,6 @@
                                 Text="{Binding SelectedTransferDetail.TotalSacks, StringFormat='{}{0:N0} sacos'}"
                                 TextColor="{StaticResource Primary700}" />
                             <Label
-                                FontSize="14"
                                 HorizontalOptions="End"
                                 Style="{StaticResource RegularLabel}"
                                 Text="{Binding SelectedTransferDetail.TotalPallets, StringFormat='{}{0:N0} pallets'}"

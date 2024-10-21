@@ -10,5 +10,6 @@
         public int QuantitySacks { get; set; }
         public decimal Weight { get; set; }
         public string Status { get; set; } = null!;
+        public bool IsChecked { get; set; }
     }
 }

@@ -64,7 +64,7 @@
             // PLACA-AÑOMESDIA-1
             var feedTransferModel = new FeedTransferModel
             {
-                TransferCode = $"{PoolTransferOneStepSelection.SelectedTransport.Plate}-20241015-1",
+                TransferCode = $"{PoolTransferOneStepSelection.SelectedTransport.Plate}-20241021-1",
                 TotalSacks = TotalQuantitySacks,
                 TotalWeight = TotalWeight,
                 DestinationSubsidiaryId = 2,
@@ -101,7 +101,7 @@
             }
 
             await ToastService.ShowToastAsync("Viaje asignado correctamente.");
-            await Shell.Current.GoToAsync(nameof(PoolTransferView));
+            await Shell.Current.GoToAsync($"//{nameof(PoolTransferView)}");
         }
     }
 }

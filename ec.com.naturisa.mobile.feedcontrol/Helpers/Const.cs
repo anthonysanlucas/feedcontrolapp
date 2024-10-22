@@ -14,6 +14,7 @@ public class Const
             public const string InRoute = "EN RUTA";
             public const string Finalized = "FINALIZADO";
             public const string Delivered = "ENTREGADO";
+            public const string Paused = "PAUSADO";
         }
     }
 }

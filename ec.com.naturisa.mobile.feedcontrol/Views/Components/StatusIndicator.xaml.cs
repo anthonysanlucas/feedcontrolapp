@@ -2,23 +2,19 @@ namespace ec.com.naturisa.mobile.feedcontrol.Views.Components;
 
 public partial class StatusIndicator : ContentView
 {
-    // Definición de la propiedad BindableProperty
     public static readonly BindableProperty StatusProperty = BindableProperty.Create(
-        propertyName: nameof(Status),
-        returnType: typeof(string),
-        declaringType: typeof(StatusIndicator),
-        defaultValue: string.Empty,
-        propertyChanged: OnStatusChanged
-    );
-
-    // Propiedad vinculable Status
+     propertyName: nameof(Status),
+     returnType: typeof(string),
+     declaringType: typeof(StatusIndicator),
+     defaultValue: string.Empty,
+     propertyChanged: OnStatusChanged
+);
     public string Status
     {
         get => (string)GetValue(StatusProperty);
         set => SetValue(StatusProperty, value);
     }
 
-    // Propiedades dependientes de Status
     public Color StatusColor => GetStatusColor(Status);
     public Color StatusTextColor => GetTextColor(Status);
     public string StatusText => Status;
@@ -34,7 +30,6 @@ public partial class StatusIndicator : ContentView
         control.UpdateStatus();
     }
 
-    // Actualiza las propiedades del componente basadas en el nuevo estado
     private void UpdateStatus()
     {
         OnPropertyChanged(nameof(StatusColor));
@@ -42,10 +37,8 @@ public partial class StatusIndicator : ContentView
         OnPropertyChanged(nameof(StatusTextColor));
     }
 
-    // Devuelve el color basado en el valor del estado
     private static Color GetTextColor(string status)
     {
-        // Método auxiliar para obtener el color de los recursos.
         Color GetResourceColor(string resourceKey)
         {
             if (Application.Current.Resources.TryGetValue(resourceKey, out var color))
@@ -58,18 +51,17 @@ public partial class StatusIndicator : ContentView
         return status switch
         {
             "ASIGNADO" => GetResourceColor("Amber500"),
-            "RECIBIDO" => GetResourceColor("Primary700"),
-            "TRANSITO" => GetResourceColor("Primary"),
-            "PAUSADO" => GetResourceColor("Primary"),
-            "FINALIZADO" => GetResourceColor("Primary700"),
-            "ENTREGADO" => GetResourceColor("Green500"),
+            "RECIBIDO" => GetResourceColor("Yellow400"),
+            "EN RUTA" => GetResourceColor("Sky600"),
+            "FINALIZADO" => GetResourceColor("Indigo600"),
+            "ENTREGADO" => GetResourceColor("Green600"),
+            "PAUSADO" => GetResourceColor("Neutral500"),
             _ => Colors.DarkGray
         };
     }
 
     private static Color GetStatusColor(string status)
     {
-        // Método auxiliar para obtener el color de los recursos.
         Color GetResourceColor(string resourceKey)
         {
             if (Application.Current.Resources.TryGetValue(resourceKey, out var color))

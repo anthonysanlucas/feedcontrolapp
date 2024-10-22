@@ -40,8 +40,15 @@
 
     <Color x:Key="Green500">#22c55e</Color>
     <Color x:Key="Green100">#dcfce7</Color>
-    <Color x:Key="Amber500">#f59e0b</Color>
     <Color x:Key="Amber100">#fef3c7</Color>
+
+    <Color x:Key="Amber500">#f59e0b</Color>
+    <Color x:Key="Yellow400">#facc15</Color>
+    <Color x:Key="Sky600">#0284C7</Color>
+    <Color x:Key="Indigo600">#4F46E5</Color>
+    <Color x:Key="Green600">#16A34A</Color>
+    <Color x:Key="Neutral500">#737373</Color>
+
     <Color x:Key="Amber50">#fffbeb</Color>
     <Color x:Key="Red500">#ef4444</Color>
     <Color x:Key="Red100">#fee2e2</Color>

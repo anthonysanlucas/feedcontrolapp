@@ -5,16 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="StatusIndicatorControl">
     <Frame
-        Padding="12,4"
-        BackgroundColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusColor}"
-        HorizontalOptions="End">
+     Padding="0"
+     BackgroundColor="Transparent"
+     HeightRequest="32"
+     HorizontalOptions="End">
         <Label
-            FontAttributes="None"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Style="{StaticResource SmallLabel}"
-            Text="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusText}"
-            TextColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusTextColor}"
-            VerticalOptions="Center" />
+         HorizontalOptions="Center"
+         HorizontalTextAlignment="Center"
+         Style="{StaticResource SmallLabel}"
+         Text="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusText}"
+         TextColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusTextColor}"
+         VerticalOptions="Center" />
     </Frame>
 </ContentView>

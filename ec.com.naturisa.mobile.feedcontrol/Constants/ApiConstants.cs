@@ -6,6 +6,6 @@
 
         public const string AUTH_URL = $"{API_URL}/seguridad";
         public const string API_FEED_CONTROL = $"{API_URL}/feedcontrol/api";
-        public const string API_FEED_CONTROL_LOCAL = $"https://67cb-186-3-139-196.ngrok-free.app/api";
+        public const string API_FEED_CONTROL_LOCAL = $"https://adbf-186-3-139-203.ngrok-free.app/api";
     }
 }

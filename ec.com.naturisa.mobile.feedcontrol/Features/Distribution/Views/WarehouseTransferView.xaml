@@ -175,18 +175,20 @@
                                         </Grid.ColumnDefinitions>
 
                                         <VerticalStackLayout
-                                Grid.Column="0" HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding TotalEquivalenceSacks}" 
-                                       VerticalOptions="Center" 
-                                       FontSize="28"
-                                       FontAttributes="Bold"
-                                        Style="{StaticResource RegularLabel}"
-                                        TextColor="{StaticResource Primary900}"
+                                Grid.Column="0" HorizontalOptions="FillAndExpand" Padding="0,0,5,0">
+                                            <Label 
+                                                Text="{Binding TotalEquivalenceSacks}" 
+                                               VerticalOptions="End"
+                                                HorizontalOptions="End"
+                                               FontSize="28"
+                                               FontAttributes="Bold"
+                                                Style="{StaticResource RegularLabel}"
+                                                TextColor="{StaticResource Primary900}"
                                 />
                                             <Label 
                                     Text="Sacos" 
-                                    Padding="20,0,0,0"
                                     FontAttributes="Bold"
+                                                HorizontalOptions="End"
                                     Style="{StaticResource RegularLabel}"/>
 
                                         </VerticalStackLayout>

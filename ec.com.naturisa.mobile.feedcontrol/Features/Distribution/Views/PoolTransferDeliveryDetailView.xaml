@@ -14,5 +14,10 @@
             HorizontalOptions="Center"
             Text="{Binding SelectedTransferPoolDetail.PoolCode}"
             VerticalOptions="Center" />
+
+        <Button
+            Command="{Binding UpdateToDeliveryStatusCommand}"
+            Style="{StaticResource PressedSecondary}"
+            Text="Entregar" />
     </VerticalStackLayout>
 </ContentPage>

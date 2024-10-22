@@ -266,7 +266,7 @@
                     Command="{Binding GoToPoolTransferViewCommand}"
                     HeightRequest="62"
                     HorizontalOptions="FillAndExpand"
-                    Text="Realizar transferencia"
+                    Text="Confirmar recepción"
                     TextColor="White"
                     VerticalOptions="End" />
             </Grid>

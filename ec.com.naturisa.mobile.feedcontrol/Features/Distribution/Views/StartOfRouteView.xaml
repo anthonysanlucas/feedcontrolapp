@@ -71,8 +71,7 @@
             HorizontalOptions="FillAndExpand"
             StrokeShape="RoundRectangle 16,16,0,0"
             StrokeThickness="0">
-            <Grid RowDefinitions="Auto, *">
-                <!--  Color Leyend  -->
+            <Grid RowDefinitions="Auto, *" RowSpacing="16">
                 <Grid
                     Grid.Row="0"
                     Margin="0,8"
@@ -96,7 +95,7 @@
 
                     <HorizontalStackLayout Grid.Column="1" Spacing="4">
                         <BoxView
-                            BackgroundColor="{StaticResource Primary400}"
+                            BackgroundColor="{StaticResource Sky600}"
                             CornerRadius="2"
                             HeightRequest="16"
                             WidthRequest="16" />
@@ -113,7 +112,7 @@
                             HeightRequest="16"
                             WidthRequest="16" />
                         <Label
-                            Style="{StaticResource RegularLabel}"
+                            Style="{StaticResource SmallLabel}"
                             Text="ENTREGADO"
                             TextColor="{StaticResource OnSecondary}" />
                     </HorizontalStackLayout>
@@ -169,6 +168,30 @@
             IsVisible="{Binding IsBusy}"
             Opacity="1"
             VerticalOptions="FillAndExpand" />
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="16"
+            BackgroundColor="{StaticResource Primary700}"
+            Command="{Binding UpdateStatusCommand}"
+            HeightRequest="62"
+            HorizontalOptions="FillAndExpand"
+            Text="Iniciar ruta"
+            TextColor="White"
+            VerticalOptions="End" />
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="70"
+            BackgroundColor="{StaticResource Primary700}"
+            Command="{Binding UpdateDeliveredStatusCommand}"
+            HeightRequest="62"
+            HorizontalOptions="FillAndExpand"
+            Text="Finalizar ruta"
+            TextColor="White"
+            VerticalOptions="End" />
     </Grid>
 
     <ContentPage.Resources>

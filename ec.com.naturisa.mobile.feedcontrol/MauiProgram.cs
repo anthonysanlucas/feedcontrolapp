@@ -20,9 +20,13 @@
             builder.Services.AddSingleton<IToastService, ToastService>();
             builder.Services.AddSingleton<BaseHttpService>();
 
-            // GLOBAL
+            // DISTRIBUTION
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
             builder.Services.AddSingleton<IFeedTransferDetailService, FeedTransferDetailService>();
+            builder.Services.AddSingleton<
+                IFeedTransferDetailPoolService,
+                FeedTransferDetailPoolService
+            >();
             #endregion
 
             #region ViewModels

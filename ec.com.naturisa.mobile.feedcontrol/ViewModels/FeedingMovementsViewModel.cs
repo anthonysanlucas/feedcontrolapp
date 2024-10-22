@@ -40,7 +40,10 @@
                     new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
                 );
 
-            if (selectedTransfer.Status == Const.Status.Transfer.Received)
+            if (
+                selectedTransfer.Status == Const.Status.Transfer.Received
+                || selectedTransfer.Status == Const.Status.Transfer.InRoute
+            )
                 await Shell.Current.GoToAsync(
                     nameof(StartOfRouteView),
                     true,

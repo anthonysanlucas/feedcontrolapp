@@ -28,6 +28,7 @@ global using ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Services.Auth;
 global using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
 global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.FeedTransferDetail;
+global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.FeedTransferDetailPool;
 global using ec.com.naturisa.mobile.feedcontrol.Services.FeedTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Services.Notifications;
 global using ec.com.naturisa.mobile.feedcontrol.ViewModels;

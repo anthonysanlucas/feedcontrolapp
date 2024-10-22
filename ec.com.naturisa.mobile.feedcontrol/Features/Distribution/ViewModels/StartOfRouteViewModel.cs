@@ -15,14 +15,18 @@
         [ObservableProperty]
         private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
 
+        private readonly IFeedTransferService _feedTransferService;
+
         private readonly IFeedTransferDetailService _feedTransferDetailService;
 
         public StartOfRouteViewModel(
             IToastService toastService,
+            IFeedTransferService feedTransferService,
             IFeedTransferDetailService feedTransferDetailService
         )
             : base(toastService)
         {
+            _feedTransferService = feedTransferService;
             _feedTransferDetailService = feedTransferDetailService;
         }
 
@@ -88,6 +92,82 @@
                     { "SelectedTransferPoolDetail", selectedTransferPoolDetail }
                 }
             );
+        }
+
+        [RelayCommand]
+        async Task UpdateStatus()
+        {
+            try
+            {
+                IsBusy = true;
+
+                int id = (int)SelectedTransfer.IdFeedTransfer;
+
+                var response = await _feedTransferService.PatchFeedTransferStatus(
+                    id,
+                    Const.Status.Transfer.InRoute
+                );
+
+                if (response != null && response.Code == 200)
+                {
+                    await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+                    SelectedTransfer.Status = Const.Status.Transfer.InRoute;
+
+                    LoadFeedTransferDetails(id);
+                }
+                else
+                {
+                    await ToastService.ShowToastAsync(
+                        "Error al actualizar el estado, intente nuevamente."
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        [RelayCommand]
+        async Task UpdateDeliveredStatus()
+        {
+            try
+            {
+                IsBusy = true;
+
+                int id = (int)SelectedTransfer.IdFeedTransfer;
+
+                var response = await _feedTransferService.PatchFeedTransferStatus(
+                    id,
+                    Const.Status.Transfer.Delivered
+                );
+
+                if (response != null && response.Code == 200)
+                {
+                    await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+                    SelectedTransfer.Status = Const.Status.Transfer.Delivered;
+
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                {
+                    await ToastService.ShowToastAsync(
+                        "Error al actualizar el estado, intente nuevamente."
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         #endregion

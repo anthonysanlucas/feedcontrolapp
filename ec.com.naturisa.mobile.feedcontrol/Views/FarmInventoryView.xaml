@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.FarmInventoryView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
+    Title="Inventario de Finca"
+    Padding="0"
+    x:DataType="viewModels:FarmInventoryViewModel">
+    <ScrollView>
+        <VerticalStackLayout Spacing="8">
+            <VerticalStackLayout Padding="16,8" Spacing="8">
+                <Frame BackgroundColor="{StaticResource Primary50}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmStoreDetailCommand}" />
+                    </Frame.GestureRecognizers>
+
+                    <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                        <Label
+                            Grid.Row="0"
+                            Style="{StaticResource RegularLabel}"
+                            Text="Total en bodega"
+                            TextColor="{StaticResource OnSecondary}" />
+
+                        <FlexLayout
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            JustifyContent="SpaceBetween">
+                            <Border
+                                BackgroundColor="{StaticResource Primary100}"
+                                HeightRequest="44"
+                                StrokeShape="RoundRectangle 10,10,10,10"
+                                WidthRequest="44">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Warehouse}"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                HorizontalOptions="EndAndExpand"
+                                Spacing="4">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="1,145 SACOS"
+                                    TextColor="{StaticResource Primary700}" />
+                                <Label
+                                    FontAttributes="None"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="28,625 KG"
+                                    TextColor="{StaticResource Primary900}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="{StaticResource Primary50}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmStoreDetailCommand}" />
+                    </Frame.GestureRecognizers>
+
+                    <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                        <Label
+                            Grid.Row="0"
+                            Style="{StaticResource RegularLabel}"
+                            Text="Total en transporte"
+                            TextColor="{StaticResource OnSecondary}" />
+
+                        <FlexLayout
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            JustifyContent="SpaceBetween">
+                            <Border
+                                BackgroundColor="{StaticResource Primary100}"
+                                HeightRequest="44"
+                                StrokeShape="RoundRectangle 10,10,10,10"
+                                WidthRequest="44">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Local_shipping}"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                HorizontalOptions="EndAndExpand"
+                                Spacing="4">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="198 SACOS"
+                                    TextColor="{StaticResource Primary700}" />
+                                <Label
+                                    FontAttributes="None"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="4,950 KG"
+                                    TextColor="{StaticResource Primary900}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="{StaticResource Primary50}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmWallInvetoryCommand}" />
+                    </Frame.GestureRecognizers>
+
+                    <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                        <Label
+                            Grid.Row="0"
+                            Style="{StaticResource RegularLabel}"
+                            Text="Total en muros"
+                            TextColor="{StaticResource OnSecondary}" />
+
+                        <FlexLayout
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            JustifyContent="SpaceBetween">
+                            <Border
+                                BackgroundColor="{StaticResource Primary100}"
+                                HeightRequest="44"
+                                StrokeShape="RoundRectangle 10,10,10,10"
+                                WidthRequest="44">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.View_agenda}"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                HorizontalOptions="EndAndExpand"
+                                Spacing="4">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="360 SACOS"
+                                    TextColor="{StaticResource Primary700}" />
+                                <Label
+                                    FontAttributes="None"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="9,000 KG"
+                                    TextColor="{StaticResource Primary900}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="{StaticResource Secondary}">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmWallInvetoryCommand}" />
+                    </Frame.GestureRecognizers>
+
+                    <Grid RowDefinitions="Auto, *" RowSpacing="8">
+                        <Label
+                            Grid.Row="0"
+                            Style="{StaticResource RegularLabel}"
+                            Text="Total en tolvas"
+                            TextColor="{StaticResource OnSecondary}" />
+
+                        <FlexLayout
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            JustifyContent="SpaceBetween">
+                            <Border
+                                BackgroundColor="{StaticResource Primary50}"
+                                HeightRequest="44"
+                                StrokeShape="RoundRectangle 10,10,10,10"
+                                WidthRequest="44">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Takeout_dining}"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                HorizontalOptions="EndAndExpand"
+                                Spacing="4">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="160 SACOS"
+                                    TextColor="{StaticResource Primary700}" />
+                                <Label
+                                    FontAttributes="None"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="4,000 KG"
+                                    TextColor="{StaticResource Primary900}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Grid>
+                </Frame>
+
+                <Frame BackgroundColor="{StaticResource Secondary}">
+                    <Grid RowDefinitions="Auto, *" RowSpacing="8">
+
+                        <FlexLayout HorizontalOptions="FillAndExpand" JustifyContent="SpaceBetween">
+                            <Label
+                                Grid.Row="0"
+                                Style="{StaticResource RegularLabel}"
+                                Text="Consumo del día anterior"
+                                TextColor="{StaticResource OnSecondary}" />
+
+                            <Label
+                                Grid.Row="0"
+                                FontAttributes="None"
+                                Text="{Binding ShortPreviousDate}"
+                                TextColor="{StaticResource OnSecondary}"
+                                VerticalOptions="Center" />
+                        </FlexLayout>
+
+                        <FlexLayout
+                            Grid.Row="1"
+                            HorizontalOptions="FillAndExpand"
+                            JustifyContent="SpaceBetween">
+
+                            <Border
+                                BackgroundColor="{StaticResource Primary50}"
+                                HeightRequest="44"
+                                StrokeShape="RoundRectangle 10,10,10,10"
+                                WidthRequest="44">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Waves}"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </Border>
+
+                            <VerticalStackLayout
+                                Grid.Column="1"
+                                HorizontalOptions="EndAndExpand"
+                                Spacing="4">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="530 SACOS"
+                                    TextColor="{StaticResource Primary700}" />
+                                <Label
+                                    FontAttributes="None"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="13,250 KG"
+                                    TextColor="{StaticResource Primary900}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+                    </Grid>
+                </Frame>
+
+                <FlexLayout Margin="0,16,0,0" JustifyContent="SpaceBetween">
+                    <Label Text="Últimos movimientos" TextColor="{StaticResource OnSecondary}" />
+                    <Label Text="Ver más" TextColor="{StaticResource Primary}" />
+                </FlexLayout>
+            </VerticalStackLayout>
+
+            <ScrollView
+                Padding="16,0,0,0"
+                HorizontalScrollBarVisibility="Never"
+                Orientation="Horizontal">
+                <HorizontalStackLayout Padding="0,0,16,0" Spacing="8">
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_downward}"
+                                    TextColor="{StaticResource Red500}" />
+                                <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="MA001"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="40 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="1,000 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_downward}"
+                                    TextColor="{StaticResource Red500}" />
+
+                                <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="MA002"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="30 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="750 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_downward}"
+                                    TextColor="{StaticResource Red500}" />
+
+                                <Label Text="08/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="MA002"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="30 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="750 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_upward}"
+                                    TextColor="{StaticResource Green500}" />
+
+                                <Label Text="07/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="PESJOYA"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="264 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="6,600 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="{StaticResource SurfaceLowContainer}"
+                        HeightRequest="132"
+                        VerticalOptions="EndAndExpand"
+                        WidthRequest="132">
+                        <VerticalStackLayout
+                            Grid.Column="0"
+                            HorizontalOptions="FillAndExpand"
+                            Spacing="8"
+                            VerticalOptions="Center">
+                            <FlexLayout JustifyContent="SpaceBetween">
+                                <Label
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Arrow_upward}"
+                                    TextColor="{StaticResource Green500}" />
+
+                                <Label Text="07/10/2024" TextColor="{StaticResource OnSecondary}" />
+                            </FlexLayout>
+
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="PESJOYA"
+                                TextColor="{StaticResource Primary700}" />
+
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="198 SACOS"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    HorizontalOptions="End"
+                                    Text="4,950 KG"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </HorizontalStackLayout>
+
+            </ScrollView>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

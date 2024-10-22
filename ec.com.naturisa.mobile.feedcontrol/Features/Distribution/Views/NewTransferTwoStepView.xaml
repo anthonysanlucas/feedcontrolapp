@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewTransferTwoStepView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Title="Nueva transferencia"
+    Padding="0"
+    x:DataType="viewModels:NewTransferTwoStepViewModel"
+    BackgroundColor="{StaticResource Primary900}"
+    Shell.BackgroundColor="{StaticResource Primary900}"
+    Shell.ForegroundColor="{StaticResource Primary100}">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="None"
+            Style="{StaticResource LargeLabel}"
+            Text="Nueva transferencia"
+            TextColor="{StaticResource Primary100}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto, *" RowSpacing="16">
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="16"
+            Spacing="8">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Image Source="icon_sync_alt_white.svg" WidthRequest="16" />
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Transferencia a Bodega"
+                    TextColor="{StaticResource Primary100}" />
+            </HorizontalStackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding LongDate}"
+                TextColor="{StaticResource White}" />
+            <Grid
+                Grid.Row="2"
+                Margin="0,16,0,0"
+                RowDefinitions="auto,auto"
+                RowSpacing="8">
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary800}"
+                        CornerRadius="100"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="1"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Image Source="icon_trending_flat.svg" />
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary100}"
+                        CornerRadius="100"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="2"
+                            TextColor="{StaticResource Primary900}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Image Source="icon_trending_flat.svg" />
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary800}"
+                        CornerRadius="100"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="3"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </HorizontalStackLayout>
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="None"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource SmallLabel}"
+                    Text="Detalle de transferencia"
+                    TextColor="{StaticResource Primary100}" />
+            </Grid>
+        </VerticalStackLayout>
+
+        <Border
+            Grid.Row="1"
+            Padding="16,24,16,0"
+            Background="{StaticResource White}"
+            HorizontalOptions="FillAndExpand"
+            StrokeShape="RoundRectangle 10,10,0,0"
+            StrokeThickness="0">
+            <Grid RowDefinitions="*">
+                <Grid Grid.Row="0" RowDefinitions="Auto, Auto, Auto">
+                    <!--  Table Header  -->
+                    <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
+                        <Grid ColumnDefinitions="*, auto">
+                            <Label Text="Producto" TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                HorizontalOptions="End"
+                                Text="Cantidad"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </Grid>
+                    </Frame>
+
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding ProductRows}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="viewModels:ProductRow">
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItemView Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewTransferTwoStepViewModel}}, Path=DeleteProductRowCommand}" CommandParameter="{Binding .}">
+                                                <Border
+                                                    Padding="8"
+                                                    BackgroundColor="IndianRed"
+                                                    StrokeShape="RoundRectangle 0,10,0,10">
+                                                    <VerticalStackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                        <Image Source="icon_delete_wite.svg" WidthRequest="16" />
+                                                        <Label
+                                                            FontAttributes="None"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            Style="{StaticResource SmallLabel}"
+                                                            Text="Eliminar"
+                                                            TextColor="{StaticResource White}" />
+                                                    </VerticalStackLayout>
+                                                </Border>
+                                            </SwipeItemView>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <Grid
+                                        Padding="8"
+                                        BackgroundColor="{StaticResource Primary50}"
+                                        ColumnDefinitions="*, auto"
+                                        ColumnSpacing="8">
+                                        <Frame
+                                            Grid.Column="0"
+                                            Padding="8,0"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{StaticResource Slate400}">
+                                            <Picker
+                                                Title="Selecciona un producto"
+                                                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewTransferTwoStepViewModel}}, Path=AvailableProducts}"
+                                                SelectedItem="{Binding SelectedProduct}"
+                                                TextColor="{StaticResource OnSecondary}"
+                                                TitleColor="{StaticResource Primary900}" />
+                                        </Frame>
+
+                                        <Frame
+                                            Grid.Column="1"
+                                            Padding="8,0"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{StaticResource Slate400}">
+                                            <Entry
+                                                HorizontalOptions="End"
+                                                HorizontalTextAlignment="End"
+                                                Keyboard="Numeric"
+                                                Placeholder="SACOS"
+                                                PlaceholderColor="{StaticResource OnSecondary}"
+                                                Text="{Binding QuantitySacks}" />
+                                        </Frame>
+                                    </Grid>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <!--  Table Footer  -->
+                    <Grid
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="auto, auto">
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,8"
+                            BackgroundColor="{StaticResource Gray200}"
+                            HeightRequest="1" />
+
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            FontAttributes="None"
+                            Text="TOTAL"
+                            TextColor="{StaticResource OnSecondary}"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Center" />
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalOptions="End">
+                            <Label
+                                HorizontalOptions="End"
+                                Text="{Binding TotalQuantitySacks, StringFormat='{}{0:N0} SACOS'}"
+                                TextColor="{StaticResource Primary700}" />
+                            <Label
+                                FontSize="14"
+                                HorizontalOptions="End"
+                                Text="{Binding TotalWeightInKilos, StringFormat='{}{0:N0} KG'}"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+
+                <Grid
+                    Grid.Row="0"
+                    Padding="0,0,0,16"
+                    ColumnDefinitions="*, Auto"
+                    ColumnSpacing="16"
+                    VerticalOptions="End">
+                    <Button
+                        Grid.Column="0"
+                        BackgroundColor="{StaticResource Primary700}"
+                        Command="{Binding GoToNewTransferThreeStepCommand}"
+                        HeightRequest="62"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Siguiente"
+                        TextColor="White" />
+
+                    <Button
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource OnSecondary}"
+                        Command="{Binding AddProductRowCommand}"
+                        HeightRequest="44"
+                        HorizontalOptions="FillAndExpand"
+                        ImageSource="icon_add_white.svg"
+                        TextColor="White" />
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</ContentPage>

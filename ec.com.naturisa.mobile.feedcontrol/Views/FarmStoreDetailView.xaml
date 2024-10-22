@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.FarmStoreDetailView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Inventario en bodega">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="Bold"
+            Style="{StaticResource LargeLabel}"
+            Text="Balanceado en bodega"
+            TextColor="{StaticResource Primary900}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+    <ScrollView>
+        <VerticalStackLayout Spacing="24">
+
+            <Grid ColumnDefinitions="*,*">
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Total"
+                        TextColor="{StaticResource Gray400}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Style="{StaticResource RegularLabel}"
+                        Text="1,145 SACOS"
+                        TextColor="{StaticResource Primary900}" />
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource RegularLabel}"
+                        Text="28,625 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Spacing="4"
+                    VerticalOptions="Start">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Aproximadamente"
+                        TextColor="{StaticResource Gray400}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Style="{StaticResource RegularLabel}"
+                        Text="19 PALLETS"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout Grid.Row="1" Padding="0">
+                <!--  Encabezado de la tabla  -->
+                <Frame
+                    Grid.Column="0"
+                    Padding="8"
+                    BackgroundColor="{StaticResource OnSecondary}"
+                    HasShadow="False">
+                    <Grid ColumnDefinitions="*, auto" ColumnSpacing="0">
+                        <Label
+                            FontAttributes="Bold"
+                            Text="Producto"
+                            TextColor="White" />
+
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            Text="Cantidad"
+                            TextColor="White" />
+                    </Grid>
+                </Frame>
+
+                <!--  Contenido de la tabla  -->
+                <Grid
+                    ColumnDefinitions="Auto, *"
+                    RowDefinitions="Auto, Auto, Auto, Auto"
+                    RowSpacing="8">
+
+                    <!--  Primera fila  -->
+                    <VerticalStackLayout
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="8">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            MaximumWidthRequest="300"
+                            Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
+                            TextColor="{StaticResource Primary900}" />
+                        <Label
+                            FontSize="14"
+                            Text="SKU 13449"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="8"
+                        HorizontalOptions="End">
+                        <Label
+                            FontAttributes="Bold"
+                            Style="{StaticResource RegularLabel}"
+                            Text="400 SACOS"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontAttributes="None"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="End"
+                            Style="{StaticResource RegularLabel}"
+                            Text="10,000 KG"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <!--  Segunda fila  -->
+                    <VerticalStackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="8">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            MaximumWidthRequest="300"
+                            Text="ALIMENTO INICIADOR AQUAXCEL 0.6 MM."
+                            TextColor="{StaticResource Primary900}" />
+                        <Label
+                            FontSize="14"
+                            Text="SKU 13450"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Padding="8"
+                        HorizontalOptions="End">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            Style="{StaticResource RegularLabel}"
+                            Text="125 SACOS"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontAttributes="None"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="End"
+                            Style="{StaticResource RegularLabel}"
+                            Text="3,125 KG"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <!--  Tercera fila  -->
+                    <VerticalStackLayout
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Padding="8">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Start"
+                            MaximumWidthRequest="300"
+                            Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                            TextColor="{StaticResource Primary900}" />
+                        <Label
+                            FontSize="14"
+                            Text="SKU 13420"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Padding="8"
+                        HorizontalOptions="End">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="End"
+                            Style="{StaticResource RegularLabel}"
+                            Text="620 SACOS"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                        <Label
+                            FontAttributes="None"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="End"
+                            Style="{StaticResource RegularLabel}"
+                            Text="15,500 KG"
+                            TextColor="{StaticResource Primary700}"
+                            VerticalOptions="Center" />
+                    </VerticalStackLayout>
+
+                    <!--  Fila de total  -->
+                    <Grid
+                        Grid.Row="3"
+                        Grid.ColumnSpan="2"
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="auto, auto">
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,8"
+                            BackgroundColor="{StaticResource Gray200}"
+                            HeightRequest="1" />
+
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            FontAttributes="None"
+                            Text="TOTAL"
+                            TextColor="{StaticResource OnSecondary}"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Center" />
+
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalOptions="End">
+                            <Label
+                                HorizontalOptions="End"
+                                Text="1,145 SACOS"
+                                TextColor="{StaticResource Primary700}" />
+                            <Label
+                                FontSize="14"
+                                HorizontalOptions="End"
+                                Text="28,625 KG"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </StackLayout>
+                    </Grid>
+                </Grid>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

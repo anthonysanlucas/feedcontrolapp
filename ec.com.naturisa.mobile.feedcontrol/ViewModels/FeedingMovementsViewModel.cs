@@ -43,6 +43,7 @@
             if (
                 selectedTransfer.Status == Const.Status.Transfer.Received
                 || selectedTransfer.Status == Const.Status.Transfer.InRoute
+                || selectedTransfer.Status == Const.Status.Transfer.Delivered
             )
                 await Shell.Current.GoToAsync(
                     nameof(StartOfRouteView),

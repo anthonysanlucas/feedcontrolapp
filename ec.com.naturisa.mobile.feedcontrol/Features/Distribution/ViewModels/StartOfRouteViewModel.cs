@@ -15,6 +15,12 @@
         [ObservableProperty]
         private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
 
+        [ObservableProperty]
+        private bool isRecieved = false;
+
+        [ObservableProperty]
+        private bool isOnRoute = false;
+
         private readonly IFeedTransferService _feedTransferService;
 
         private readonly IFeedTransferDetailService _feedTransferDetailService;
@@ -35,7 +41,18 @@
             if (value != null)
             {
                 LoadFeedTransferDetails((int)value.IdFeedTransfer);
+
+                if (value.Status == Const.Status.Transfer.Received)
+                {
+                    IsRecieved = true;
+                }
+
+                if (value.Status == Const.Status.Transfer.InRoute)
+                {
+                    IsOnRoute = true;
+                }
             }
+
             return;
         }
 

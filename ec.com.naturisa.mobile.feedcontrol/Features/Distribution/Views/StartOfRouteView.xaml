@@ -177,6 +177,7 @@
             Command="{Binding UpdateStatusCommand}"
             HeightRequest="62"
             HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsRecieved}"
             Text="Iniciar ruta"
             TextColor="White"
             VerticalOptions="End" />
@@ -184,11 +185,12 @@
         <Button
             Grid.Row="1"
             Grid.Column="0"
-            Margin="70"
+            Margin="16"
             BackgroundColor="{StaticResource Primary700}"
             Command="{Binding UpdateDeliveredStatusCommand}"
             HeightRequest="62"
             HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsOnRoute}"
             Text="Finalizar ruta"
             TextColor="White"
             VerticalOptions="End" />

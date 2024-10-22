@@ -45,10 +45,12 @@
                 if (value.Status == Const.Status.Transfer.Received)
                 {
                     IsRecieved = true;
+                    IsOnRoute = false;
                 }
 
                 if (value.Status == Const.Status.Transfer.InRoute)
                 {
+                    IsRecieved = false;
                     IsOnRoute = true;
                 }
             }
@@ -88,6 +90,44 @@
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        [RelayCommand]
+        async Task LoadTwoFeedTransferDetails()
+        {
+            try
+            {
+                IsBusy = true;
+                IsRefreshing = true;
+                var transferDetailsResponse =
+                    await _feedTransferDetailService.GetFeedTransferDetailsConsolidated(
+                        (int)selectedTransfer.IdFeedTransfer
+                    );
+
+                if (transferDetailsResponse == null || transferDetailsResponse.Code != 200)
+                {
+                    await ToastService.ShowToastAsync("Error al cargar los detalles del viaje.");
+                    return;
+                }
+
+                SelectedTransferDetail = transferDetailsResponse.Data;
+
+                FeedTransferDetails =
+                    new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
+                        (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
+                            transferDetailsResponse.Data.FeedTransferPoolsDetail
+                        )
+                    );
+            }
+            catch (Exception ex)
+            {
+                await ToastService.ShowToastAsync($"Ocurrió un error, intente nuevamente.");
+            }
+            finally
+            {
+                IsBusy = false;
+                IsRefreshing = false;
             }
         }
 
@@ -131,6 +171,9 @@
                     SelectedTransfer.Status = Const.Status.Transfer.InRoute;
 
                     LoadFeedTransferDetails(id);
+
+                    IsRecieved = false;
+                    IsOnRoute = true;
                 }
                 else
                 {
@@ -152,6 +195,18 @@
         [RelayCommand]
         async Task UpdateDeliveredStatus()
         {
+            bool isFinalized = FeedTransferDetails.All(detail =>
+                detail.Status == Const.Status.Transfer.Delivered
+            );
+
+            if (!isFinalized)
+            {
+                await ToastService.ShowToastAsync(
+                    "Debe entregar todas las piscinas para finalizar el viaje."
+                );
+                return;
+            }
+
             try
             {
                 IsBusy = true;

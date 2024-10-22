@@ -66,7 +66,7 @@
                                     <VerticalStackLayout Grid.Column="0" Spacing="2">
                                         <Label
                                             FontAttributes="None"
-                                            Text="Viaje"
+                                            Text="Código viaje"
                                             VerticalOptions="Center" />
                                         <Label
                                             FontAttributes="None"

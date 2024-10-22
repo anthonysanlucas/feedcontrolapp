@@ -51,11 +51,11 @@
 
             <VerticalStackLayout Grid.Row="1" Grid.Column="1">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Destino" />
-                <Label Style="{StaticResource DataTextLabel}" Text="MA001 MA005" />
+                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.DestinationSubsidiaryName}" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="2" Grid.Column="0">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Vehículo" />
+                <Label Style="{StaticResource DataTitleLabel}" Text="Transporte" />
                 <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedVehiclePlate}" />
             </VerticalStackLayout>
 
@@ -118,45 +118,51 @@
                     </HorizontalStackLayout>
                 </Grid>
 
-                <CollectionView
-                    Grid.Row="1"
-                    HorizontalOptions="FillAndExpand"
-                    ItemsSource="{Binding FeedTransferDetails}"
-                    SelectionMode="None"
-                    VerticalOptions="Start">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout
-                            HorizontalItemSpacing="4"
-                            Orientation="Vertical"
-                            Span="4"
-                            VerticalItemSpacing="4" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="feedTransferModels:FeedTransferPoolDetailCustomResponse">
-                            <Frame
-                                Padding="0"
-                                BackgroundColor="{Binding Status, Converter={StaticResource StatusColorConverter}, ConverterParameter=Status}"
-                                BorderColor="{StaticResource Secondary}"
-                                HeightRequest="92"
-                                HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="CenterAndExpand"
-                                WidthRequest="92">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:StartOfRouteViewModel}}, Path=GoToPoolTransferDeliveryDetailCommand}" CommandParameter="{Binding}" />
-                                </Frame.GestureRecognizers>
-                                <Label
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Center"
-                                    HorizontalTextAlignment="Center"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="{Binding PoolCode}"
-                                    TextColor="{StaticResource White}"
-                                    VerticalOptions="Center"
-                                    VerticalTextAlignment="Center" />
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <RefreshView
+                    Grid.Row="2"
+                    Command="{Binding LoadTwoFeedTransferDetailsCommand}"
+                    IsRefreshing="{Binding IsRefreshing}"
+                    RefreshColor="Transparent">
+                    <CollectionView
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        ItemsSource="{Binding FeedTransferDetails}"
+                        SelectionMode="None"
+                        VerticalOptions="Start">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout
+                                HorizontalItemSpacing="4"
+                                Orientation="Vertical"
+                                Span="4"
+                                VerticalItemSpacing="4" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="feedTransferModels:FeedTransferPoolDetailCustomResponse">
+                                <Frame
+                                    Padding="0"
+                                    BackgroundColor="{Binding Status, Converter={StaticResource StatusColorConverter}, ConverterParameter=Status}"
+                                    BorderColor="{StaticResource Secondary}"
+                                    HeightRequest="92"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="92">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:StartOfRouteViewModel}}, Path=GoToPoolTransferDeliveryDetailCommand}" CommandParameter="{Binding}" />
+                                    </Frame.GestureRecognizers>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource RegularLabel}"
+                                        Text="{Binding PoolCode}"
+                                        TextColor="{StaticResource White}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
             </Grid>
         </Border>
 

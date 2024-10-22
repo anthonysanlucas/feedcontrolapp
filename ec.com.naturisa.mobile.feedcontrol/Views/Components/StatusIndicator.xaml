@@ -11,6 +11,7 @@
         HeightRequest="32"
         HorizontalOptions="End">
         <Label
+            FontAttributes="Bold"
             HorizontalOptions="Center"
             HorizontalTextAlignment="Center"
             Style="{StaticResource SmallLabel}"

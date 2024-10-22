@@ -202,7 +202,7 @@
                         Command="{Binding UpdateToReceivedFeedTransferStatusCommand}"
                         CommandParameter="{Binding SelectedTransfer.IdFeedTransfer}"
                         HorizontalOptions="FillAndExpand"
-                        Text="Recibir carga"
+                        Text="Confirmar recepción"
                         TextColor="White" />
                     <ActivityIndicator
                         Grid.Column="0"

@@ -15,7 +15,6 @@
     <Shell.TitleView>
         <Label Style="{StaticResource ShellTitleLabel}" Text="Detalle del viaje" />
     </Shell.TitleView>
-
     <Grid
         Background="Transparent"
         RowDefinitions="Auto ,*"
@@ -33,7 +32,7 @@
                 Grid.ColumnSpan="2"
                 JustifyContent="SpaceBetween">
                 <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                    <Label Style="{StaticResource DataTitleLabel}" Text="Código de viaje" />
+                    <Label Style="{StaticResource DataTitleLabel}" Text="Código viaje" />
                     <Label
                         FontAttributes="None"
                         Style="{StaticResource DataTextLabel}"
@@ -50,11 +49,11 @@
 
             <VerticalStackLayout Grid.Row="1" Grid.Column="1">
                 <Label Style="{StaticResource DataTitleLabel}" Text="Destino" />
-                <Label Style="{StaticResource DataTextLabel}" Text="MA001 MA005" />
+                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.DestinationSubsidiaryName}" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Row="2" Grid.Column="0">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Vehículo" />
+                <Label Style="{StaticResource DataTitleLabel}" Text="Transporte" />
                 <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedVehiclePlate}" />
             </VerticalStackLayout>
 

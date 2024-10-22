@@ -178,7 +178,7 @@
                                         <Label
                                             Grid.Column="2"
                                             HorizontalOptions="End"
-                                            Text="Cantidad Sacos"
+                                            Text="Sacos"
                                             TextColor="{StaticResource OnSecondary}" />
                                     </Grid>
                                 </Frame>

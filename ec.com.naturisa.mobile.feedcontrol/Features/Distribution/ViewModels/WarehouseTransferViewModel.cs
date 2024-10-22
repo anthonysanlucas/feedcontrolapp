@@ -1,4 +1,6 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using ec.com.naturisa.mobile.feedcontrol.Helpers;
+using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
 using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
@@ -28,10 +30,12 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
                 IncludeSupplierTransferDetails = true,
                 IncludeTransport = true,
                 Status = "ACTIVO",
-                StatusCatalogueName = [SupplierTransferConstants.Finished]
+                StatusCatalogueName = [SupplierTransferConstants.Finished, SupplierTransferConstants.Delivered]
             };
 
             GetSupplierTransfers();
+
+            
 
         }
 
@@ -75,7 +79,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             }
             else
             {
-                SupplierTransfers.Clear();
+                SupplierTransfers?.Clear();
             }
 
             IsBusy = false;

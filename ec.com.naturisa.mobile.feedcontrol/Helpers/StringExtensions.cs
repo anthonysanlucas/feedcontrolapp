@@ -30,28 +30,31 @@ namespace ec.com.naturisa.mobile.feedcontrol.Helpers
                 }
                 else if (property.PropertyType.IsArray && value is Array arrayValue)
                 {
-                    var arrayString = string.Join(",", arrayValue.Cast<object>());
-                    url.Append($"{property.Name}={arrayString}&");
+                    foreach (var item in arrayValue)
+                    {
+                        url.Append($"{property.Name}={item}&");
+                    }
                 }
-                else if (property.PropertyType == typeof(bool))
+                else if (property.PropertyType == typeof(bool) || property.PropertyType == typeof(bool?))
                 {
                     url.Append($"{property.Name}={value.ToString().ToLower()}&");
                 }
                 else if (property.PropertyType == typeof(string) && !string.IsNullOrEmpty(value.ToString()))
                 {
-                    url.Append($"{property.Name}={value}&");
+                    url.Append($"{property.Name}={Uri.EscapeDataString(value.ToString())}&");
                 }
-                else if (!property.PropertyType.IsClass || property.PropertyType == typeof(string))
+                else if (property.PropertyType.IsPrimitive || property.PropertyType.IsValueType)
                 {
                     url.Append($"{property.Name}={value}&");
                 }
             }
 
             if (url.Length > 1)
-                url.Length--; // Remover el último '&'
+                url.Length--;
 
             return url.ToString();
         }
+
 
 
     }

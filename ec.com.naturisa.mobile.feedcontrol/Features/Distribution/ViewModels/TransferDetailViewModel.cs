@@ -1,4 +1,6 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using ec.com.naturisa.mobile.feedcontrol.Helpers;
+using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
 using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
@@ -34,6 +36,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
                     "Operación realizada con éxito.",
                     ToastDuration.Long
                 );
+                //WeakReferenceMessenger.Default.Send(new RefreshDataMessenger(true));
+
                 await Shell.Current.GoToAsync($"//{nameof(WarehouseTransferView)}");
             }
             catch (Exception e)

@@ -178,7 +178,7 @@
                                 Grid.Column="0" HorizontalOptions="FillAndExpand">
                                             <Label Text="{Binding TotalEquivalenceSacks}" 
                                        VerticalOptions="Center" 
-                                       FontSize="32"
+                                       FontSize="28"
                                        FontAttributes="Bold"
                                         Style="{StaticResource RegularLabel}"
                                         TextColor="{StaticResource Primary900}"

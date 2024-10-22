@@ -46,6 +46,7 @@
             builder.Services.AddSingleton<WarehouseTransferViewModel>();
             builder.Services.AddTransient<PoolTransferViewModel>();
             builder.Services.AddTransient<PoolTransferReceptionViewModel>();
+            builder.Services.AddTransient<PoolTransferDeliveryDetailViewModel>();
             builder.Services.AddTransient<PoolTransferDetailViewModel>();
             builder.Services.AddTransient<NewTransferOneStepViewModel>();
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
@@ -85,6 +86,7 @@
             builder.Services.AddTransient<PoolTransferView>();
             builder.Services.AddTransient<PoolTransferDetailView>();
             builder.Services.AddTransient<PoolTransferReceptionView>();
+            builder.Services.AddTransient<PoolTransferDeliveryDetailView>();
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();
             builder.Services.AddTransient<NewTransferThreeStepView>();

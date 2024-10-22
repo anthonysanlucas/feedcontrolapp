@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.PoolTransferDeliveryDetailView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:distributionViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    x:DataType="distributionViewModels:PoolTransferDeliveryDetailViewModel">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Entrega a piscina" />
+    </Shell.TitleView>
+
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding SelectedTransferPoolDetail.PoolCode}"
+            VerticalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

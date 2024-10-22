@@ -139,13 +139,20 @@
                                 BackgroundColor="{Binding Status, Converter={StaticResource StatusColorConverter}, ConverterParameter=Status}"
                                 BorderColor="{StaticResource Secondary}"
                                 HeightRequest="92"
-                                VerticalOptions="Center"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand"
                                 WidthRequest="92">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:StartOfRouteViewModel}}, Path=GoToPoolTransferDeliveryDetailCommand}" CommandParameter="{Binding}" />
+                                </Frame.GestureRecognizers>
                                 <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Center"
                                     HorizontalTextAlignment="Center"
                                     Style="{StaticResource RegularLabel}"
                                     Text="{Binding PoolCode}"
                                     TextColor="{StaticResource White}"
+                                    VerticalOptions="Center"
                                     VerticalTextAlignment="Center" />
                             </Frame>
                         </DataTemplate>

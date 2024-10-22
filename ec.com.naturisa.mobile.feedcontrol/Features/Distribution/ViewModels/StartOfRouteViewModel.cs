@@ -10,6 +10,9 @@
         private FeedTransferDetailCustomResponseModel selectedTransferDetail;
 
         [ObservableProperty]
+        private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;
+
+        [ObservableProperty]
         private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
 
         private readonly IFeedTransferDetailService _feedTransferDetailService;
@@ -66,5 +69,27 @@
                 IsBusy = false;
             }
         }
+
+        #region Commands
+
+        [RelayCommand]
+        async Task GoToPoolTransferDeliveryDetail(
+            FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail
+        )
+        {
+            if (selectedTransferPoolDetail == null)
+                return;
+
+            await Shell.Current.GoToAsync(
+                nameof(PoolTransferDeliveryDetailView),
+                true,
+                new Dictionary<string, object>
+                {
+                    { "SelectedTransferPoolDetail", selectedTransferPoolDetail }
+                }
+            );
+        }
+
+        #endregion
     }
 }

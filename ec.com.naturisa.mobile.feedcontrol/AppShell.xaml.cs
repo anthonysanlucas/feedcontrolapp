@@ -44,6 +44,10 @@
                 nameof(PoolTransferReceptionView),
                 typeof(PoolTransferReceptionView)
             );
+            Routing.RegisterRoute(
+                nameof(PoolTransferDeliveryDetailView),
+                typeof(PoolTransferDeliveryDetailView)
+            );
             Routing.RegisterRoute(nameof(PoolTransferDetailView), typeof(PoolTransferDetailView));
             Routing.RegisterRoute(nameof(NewTransferOneStepView), typeof(NewTransferOneStepView));
             Routing.RegisterRoute(nameof(NewTransferTwoStepView), typeof(NewTransferTwoStepView));

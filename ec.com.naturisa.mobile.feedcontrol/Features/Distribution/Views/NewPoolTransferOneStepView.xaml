@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewPoolTransferOneStepView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Padding="0"
+    x:DataType="viewModels:NewPoolTransferOneStepViewModel"
+    BackgroundColor="{StaticResource Primary900}"
+    Shell.BackgroundColor="{StaticResource Primary900}"
+    Shell.ForegroundColor="{StaticResource Primary100}">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="None"
+            Style="{StaticResource LargeLabel}"
+            Text="Nuevo viaje"
+            TextColor="{StaticResource Primary100}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto, *" RowSpacing="16">
+        <!--  Header  -->
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="16"
+            Spacing="8">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Image Source="icon_sync_alt_white.svg" WidthRequest="16" />
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Asignación de viaje"
+                    TextColor="{StaticResource Primary100}" />
+            </HorizontalStackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding LongDate}"
+                TextColor="{StaticResource White}" />
+            <Grid
+                Grid.Row="2"
+                Margin="0,16,0,0"
+                RowDefinitions="auto,auto"
+                RowSpacing="8">
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary100}"
+                        CornerRadius="100"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="1"
+                            TextColor="{StaticResource Primary900}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Image Source="icon_trending_flat.svg" />
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary800}"
+                        CornerRadius="100"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="2"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                    <Image Source="icon_trending_flat.svg" />
+                    <Frame
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary800}"
+                        CornerRadius="100"
+                        HasShadow="False"
+                        HeightRequest="32"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="32">
+                        <Label
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            Text="3"
+                            TextColor="{StaticResource White}"
+                            VerticalOptions="Center" />
+                    </Frame>
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1">
+            <Border
+                Background="{StaticResource White}"
+                HorizontalOptions="FillAndExpand"
+                StrokeShape="RoundRectangle 10,10,0,0"
+                StrokeThickness="0">
+                <Grid RowDefinitions="*">
+                    <ScrollView>
+                        <VerticalStackLayout
+                            Padding="16,24,16,0"
+                            Spacing="8"
+                            VerticalOptions="FillAndExpand">
+
+                            <Frame BackgroundColor="{StaticResource Secondary}">
+                                <VerticalStackLayout Spacing="4">
+                                    <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
+                                    <Label
+                                        Style="{StaticResource RegularLabel}"
+                                        Text="{Binding OriginBranch}"
+                                        TextColor="{StaticResource Primary700}" />
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <VerticalStackLayout Spacing="4">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="Bodega origen"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Frame
+                                    Padding="8"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{StaticResource Slate400}"
+                                    HasShadow="False"
+                                    HeightRequest="62">
+                                    <Picker
+                                        Title="Selecciona un destino"
+                                        FontSize="16"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        ItemsSource="{Binding OriginWarehouses}"
+                                        SelectedItem="{Binding SelectedOriginWharehouse}"
+                                        TextColor="{StaticResource Primary700}"
+                                        TitleColor="{StaticResource OnSecondary}" />
+                                </Frame>
+                            </VerticalStackLayout>
+
+                            <!--  Vehículo  -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="Vehículo"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Frame
+                                    Padding="8"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{StaticResource Slate400}"
+                                    HeightRequest="62">
+                                    <Picker
+                                        Title="Selecciona un vehículo"
+                                        FontSize="16"
+                                        ItemDisplayBinding="{Binding Plate}"
+                                        ItemsSource="{Binding Transports}"
+                                        SelectedItem="{Binding SelectedTransport}"
+                                        TextColor="{StaticResource Primary700}"
+                                        TitleColor="{StaticResource OnSecondary}" />
+                                </Frame>
+                            </VerticalStackLayout>
+
+                            <!--  Transportista  -->
+                            <VerticalStackLayout Spacing="8">
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="Transportista"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Frame
+                                    Padding="8"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{StaticResource Slate400}"
+                                    HasShadow="False"
+                                    HeightRequest="62">
+                                    <Picker
+                                        Title="Selecciona un transportista"
+                                        FontSize="16"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        ItemsSource="{Binding Carriers}"
+                                        SelectedItem="{Binding SelectedCarrier}"
+                                        TextColor="{StaticResource Primary700}"
+                                        TitleColor="{StaticResource OnSecondary}" />
+                                </Frame>
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </ScrollView>
+
+                    <Frame
+                        Grid.Row="0"
+                        Margin="16"
+                        Padding="0"
+                        BackgroundColor="{StaticResource Primary700}"
+                        BorderColor="Transparent"
+                        CornerRadius="8"
+                        HasShadow="True"
+                        HeightRequest="62"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End">
+                        <Frame.Shadow>
+                            <Shadow
+                                Brush="{StaticResource Primary700}"
+                                Opacity="0.5"
+                                Radius="80"
+                                Offset="10,-20" />
+                        </Frame.Shadow>
+                        <Grid ColumnDefinitions="*" HorizontalOptions="Fill">
+                            <Button
+                                Grid.Column="0"
+                                BackgroundColor="Transparent"
+                                Command="{Binding GoToPoolTransferTwoStepCommand}"
+                                HorizontalOptions="FillAndExpand"
+                                Text="Siguiente"
+                                TextColor="White" />
+                            <ActivityIndicator
+                                Grid.Column="0"
+                                HeightRequest="32"
+                                IsRunning="{Binding IsBusy}"
+                                IsVisible="{Binding IsBusy}"
+                                Color="White" />
+                        </Grid>
+                    </Frame>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

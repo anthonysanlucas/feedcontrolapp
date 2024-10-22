@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.InventoryIncomeView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Ingresos de Inventario">
+    <VerticalStackLayout>
+        <Label Text="Transferencias por recibir" VerticalOptions="Center" />
+
+        <Frame
+            Margin="0,0,0,24"
+            BorderColor="{StaticResource Secondary}"
+            HasShadow="False">
+            <!--
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FarmInventoryViewModel}}, Path=GoToFarmStoreDetailCommand}" />
+            </Frame.GestureRecognizers>
+            -->
+            <Grid ColumnDefinitions="*,*">
+                <VerticalStackLayout
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    Spacing="4">
+                    <Label
+                        FontAttributes="Bold"
+                        Style="{StaticResource LargeLabel}"
+                        Text="1.250 SACOS"
+                        TextColor="{StaticResource Primary}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Style="{StaticResource RegularLabel}"
+                        Text="31.250 KG"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    Spacing="4"
+                    VerticalOptions="End">
+                    <Label
+                        FontAttributes="None"
+                        Style="{StaticResource RegularLabel}"
+                        Text="Aproximadamente"
+                        TextColor="{StaticResource Gray400}" />
+                    <Label
+                        FontAttributes="Bold"
+                        Style="{StaticResource RegularLabel}"
+                        Text="19 PALLETS"
+                        TextColor="{StaticResource Primary900}" />
+                </VerticalStackLayout>
+            </Grid>
+        </Frame>
+    </VerticalStackLayout>
+</ContentPage>

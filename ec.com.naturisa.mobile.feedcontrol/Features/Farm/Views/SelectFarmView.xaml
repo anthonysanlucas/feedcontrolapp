@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Farm.Views.SelectFarmView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="SelectFarmView">
+    <Shell.TitleView>
+        <Label
+            FontAttributes="Bold"
+            Style="{StaticResource LargeLabel}"
+            Text="Fincas"
+            TextColor="{StaticResource Primary900}"
+            VerticalOptions="CenterAndExpand" />
+    </Shell.TitleView>
+    <VerticalStackLayout Spacing="8" VerticalOptions="CenterAndExpand">
+        <Image Source="icon_orders_onsecondary.svg" WidthRequest="64" />
+        <Label
+            HorizontalOptions="Center"
+            Style="{StaticResource RegularLabel}"
+            Text="No tienes fincas asignadas"
+            TextColor="{StaticResource OnSecondary}" />
+    </VerticalStackLayout>
+</ContentPage>

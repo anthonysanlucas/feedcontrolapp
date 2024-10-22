@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.PoolTransferDeliveryDetailView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:distributionViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    Padding="0"
+    x:DataType="distributionViewModels:PoolTransferDeliveryDetailViewModel"
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Entrega a piscina" />
+    </Shell.TitleView>
+
+    <Grid
+        Background="Transparent"
+        RowDefinitions="Auto ,*"
+        RowSpacing="16">
+        <Grid
+            Padding="16"
+            ColumnDefinitions="128, *"
+            ColumnSpacing="8"
+            HorizontalOptions="Start"
+            RowDefinitions="Auto, Auto, Auto"
+            RowSpacing="16" />
+        <Border
+            Grid.Row="1"
+            Padding="16,24,16,0"
+            Background="{StaticResource White}"
+            HorizontalOptions="FillAndExpand"
+            StrokeShape="RoundRectangle 16,16,0,0"
+            StrokeThickness="0">
+            <VerticalStackLayout>
+                <HorizontalStackLayout
+                    Margin="0,0,0,24"
+                    HorizontalOptions="Center"
+                    Spacing="4">
+                    <Label
+                        FontSize="16"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Waves}"
+                        TextColor="{StaticResource Primary700}"
+                        VerticalOptions="End" />
+                    <Label
+                        Style="{StaticResource RegularLabel}"
+                        Text="{Binding SelectedTransferPoolDetail.PoolCode}"
+                        TextColor="{StaticResource Primary700}" />
+                </HorizontalStackLayout>
+
+                <Frame Padding="6" BackgroundColor="{StaticResource Secondary}">
+                    <Grid ColumnDefinitions="64,*,Auto" ColumnSpacing="4">
+                        <Label
+                            Grid.Column="0"
+                            HorizontalOptions="Start"
+                            Text="Piscina"
+                            TextColor="{StaticResource OnSecondary}" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="Start"
+                            Text="Producto"
+                            TextColor="{StaticResource OnSecondary}" />
+                        <Label
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="Sacos"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </Grid>
+                </Frame>
+                <Grid
+                    Padding="8"
+                    BackgroundColor="{StaticResource Primary50}"
+                    ColumnDefinitions="64, *, Auto"
+                    ColumnSpacing="8">
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource RegularLabel}"
+                        Text="{Binding SelectedTransferPoolDetail.PoolCode}"
+                        TextColor="{StaticResource OnSecondary}"
+                        VerticalOptions="Start" />
+
+                    <VerticalStackLayout Grid.Column="1">
+                        <Label
+                            HorizontalOptions="Start"
+                            MaximumWidthRequest="300"
+                            Text="{Binding SelectedTransferPoolDetail.ProductName}"
+                            TextColor="{StaticResource Primary900}" />
+                        <Label
+                            FontSize="14"
+                            Text="{Binding SelectedTransferPoolDetail.ProductId, StringFormat='SKU {0:F0}'}"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
+
+                    <Label
+                        Grid.Column="2"
+                        Style="{StaticResource RegularLabel}"
+                        Text="{Binding SelectedTransferPoolDetail.QuantitySacks}"
+                        TextColor="{StaticResource Primary700}"
+                        VerticalOptions="Start" />
+                </Grid>
+                <Grid
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    ColumnDefinitions="*,*"
+                    RowDefinitions="Auto, Auto">
+                    <BoxView
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,0,8"
+                        BackgroundColor="{StaticResource Gray200}"
+                        HeightRequest="1" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        FontAttributes="None"
+                        Text="TOTAL"
+                        TextColor="{StaticResource OnSecondary}"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Center" />
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalOptions="End">
+                        <Label
+                            HorizontalOptions="End"
+                            Style="{StaticResource RegularLabel}"
+                            Text="{Binding SelectedTransferPoolDetail.QuantitySacks, StringFormat='{}{0:N0} sacos'}"
+                            TextColor="{StaticResource Primary700}" />
+                    </StackLayout>
+                </Grid>
+
+                <Label
+                    Margin="0,32,0,4"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Observación (opcional)"
+                    TextColor="{StaticResource Primary900}" />
+
+                <Frame
+                    Margin="0"
+                    Padding="0"
+                    BorderColor="{StaticResource Slate400}"
+                    HasShadow="False"
+                    HeightRequest="80"
+                    VerticalOptions="StartAndExpand">
+                    <VerticalStackLayout>
+                        <Editor
+                            AutoSize="Disabled"
+                            FontSize="16"
+                            Keyboard="Text"
+                            MaxLength="500"
+                            Placeholder="Escriba alguna observación"
+                            PlaceholderColor="{StaticResource Black-text-light}"
+                            TextColor="{StaticResource Black-text}"
+                            VerticalTextAlignment="Start" />
+                    </VerticalStackLayout>
+                </Frame>
+            </VerticalStackLayout>
+        </Border>
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="16"
+            BackgroundColor="{StaticResource Primary700}"
+            Command="{Binding UpdateToDeliveryStatusCommand}"
+            HeightRequest="62"
+            HorizontalOptions="FillAndExpand"
+            Text="Confirmar entrega"
+            TextColor="White"
+            VerticalOptions="End" />
+
+        <components:ViewLoader
+            Grid.Row="1"
+            Margin="16"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}"
+            Opacity="1"
+            VerticalOptions="FillAndExpand" />
+    </Grid>
+
+    <!--
+    <VerticalStackLayout>
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding SelectedTransferPoolDetail.PoolCode}"
+            VerticalOptions="Center" />
+
+        <Label
+            HorizontalOptions="Center"
+            Text="{Binding SelectedTransferPoolDetail.ProductName}"
+            VerticalOptions="Center" />
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="16"
+            BackgroundColor="{StaticResource Primary700}"
+            Command="{Binding UpdateToDeliveryStatusCommand}"
+            HeightRequest="62"
+            HorizontalOptions="FillAndExpand"
+            Text="Confirmar entrega"
+            TextColor="White"
+            VerticalOptions="End" />
+    </VerticalStackLayout>
+    -->
+</ContentPage>

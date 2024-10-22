@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Views.Components.ViewLoader"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="Transparent">
+    <Grid
+        HorizontalOptions="Center"
+        RowDefinitions="44, Auto"
+        VerticalOptions="Center">
+        <ActivityIndicator
+            Grid.Row="0"
+            HeightRequest="44"
+            IsRunning="True"
+            WidthRequest="44"
+            Color="{StaticResource Primary700}" />
+        <Label
+            Grid.Row="1"
+            HorizontalOptions="Center"
+            Text="Cargando..."
+            TextColor="{StaticResource OnSecondary}"
+            VerticalOptions="Center" />
+    </Grid>
+</Grid>

@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewPoolTransferThreeStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
     x:DataType="viewModels:NewPoolTransferThreeStepViewModel"
@@ -13,7 +14,7 @@
         <Label
             FontAttributes="None"
             Style="{StaticResource LargeLabel}"
-            Text="Nueva transferencia"
+            Text="Nuevo viaje"
             TextColor="{StaticResource Primary100}"
             VerticalOptions="CenterAndExpand" />
     </Shell.TitleView>
@@ -28,7 +29,7 @@
                 <Label
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
-                    Text="Distribución de balanceado"
+                    Text="Asignación de viaje"
                     TextColor="{StaticResource Primary100}" />
             </HorizontalStackLayout>
             <Label
@@ -96,13 +97,6 @@
                             VerticalOptions="Center" />
                     </Frame>
                 </HorizontalStackLayout>
-                <Label
-                    Grid.Row="1"
-                    FontAttributes="None"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource SmallLabel}"
-                    Text="Resumen de transferencia"
-                    TextColor="{StaticResource Primary100}" />
             </Grid>
         </VerticalStackLayout>
 
@@ -128,7 +122,7 @@
                                 <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="Maricultura"
+                                    Text="{Binding PoolTransferOneStepSelection.OriginBranch}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -139,7 +133,7 @@
                                 <Label Text="Destino" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="MA001, MA002, MA003"
+                                    Text="{Binding DestinationPools}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -150,7 +144,7 @@
                                 <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="GCT 5936"
+                                    Text="{Binding PoolTransferOneStepSelection.SelectedTransport.Plate}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -161,151 +155,73 @@
                                 <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="NELSON ZAMBRANO"
+                                    Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
-
                         </Grid>
                     </Frame>
 
-                    <Grid Grid.Row="1" RowDefinitions="Auto, Auto, Auto">
-                        <!--  Table Header  -->
-                        <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
-                            <Grid ColumnDefinitions="Auto,*, auto">
-                                <Label
-                                    Grid.Column="0"
-                                    Text="Piscina"
-                                    TextColor="{StaticResource OnSecondary}" />
-                                <Label
-                                    Grid.Column="1"
-                                    HorizontalOptions="Center"
-                                    Text="Producto"
-                                    TextColor="{StaticResource OnSecondary}" />
-                                <Label
-                                    Grid.Column="2"
-                                    HorizontalOptions="End"
-                                    Text="Cantidad"
-                                    TextColor="{StaticResource OnSecondary}" />
-                            </Grid>
-                        </Frame>
+                    <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
+                        <CollectionView Grid.Row="0" ItemsSource="{Binding PoolTransferTwoStepSelectionModels}">
+                            <CollectionView.Header>
+                                <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
+                                    <Grid ColumnDefinitions="Auto,*, auto">
+                                        <Label
+                                            Grid.Column="0"
+                                            Text="Piscina"
+                                            TextColor="{StaticResource OnSecondary}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="Center"
+                                            Text="Producto"
+                                            TextColor="{StaticResource OnSecondary}" />
+                                        <Label
+                                            Grid.Column="2"
+                                            HorizontalOptions="End"
+                                            Text="Sacos"
+                                            TextColor="{StaticResource OnSecondary}" />
+                                    </Grid>
+                                </Frame>
+                            </CollectionView.Header>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:PoolTransferTwoStepSelectionModel">
+                                    <Grid
+                                        Padding="8"
+                                        BackgroundColor="{StaticResource Primary50}"
+                                        ColumnDefinitions="Auto, *, Auto"
+                                        ColumnSpacing="8">
+                                        <Label
+                                            Grid.Column="0"
+                                            Style="{StaticResource RegularLabel}"
+                                            Text="{Binding SelectedPool.PoolCode}"
+                                            TextColor="{StaticResource OnSecondary}"
+                                            VerticalOptions="Start" />
 
-                        <VerticalStackLayout Grid.Row="1">
-                            <!--  Primera fila  -->
-                            <Grid
-                                Padding="8"
-                                BackgroundColor="{StaticResource Primary100}"
-                                ColumnDefinitions="Auto, *, Auto"
-                                ColumnSpacing="8">
+                                        <VerticalStackLayout Grid.Column="1" Padding="8,0">
+                                            <Label
+                                                HorizontalOptions="Start"
+                                                MaximumWidthRequest="300"
+                                                Text="{Binding SelectedProduct.ProductName}"
+                                                TextColor="{StaticResource Primary900}" />
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding SelectedProduct.ProductId, StringFormat='SKU {0:F0}'}"
+                                                TextColor="{StaticResource OnSecondary}" />
+                                        </VerticalStackLayout>
 
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="MA001"
-                                    TextColor="{StaticResource OnSecondary}"
-                                    VerticalOptions="Start" />
+                                        <Label
+                                            Grid.Column="2"
+                                            Style="{StaticResource RegularLabel}"
+                                            Text="{Binding QuantitySacks}"
+                                            TextColor="{StaticResource Primary700}"
+                                            VerticalOptions="Start" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
 
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Padding="8,0">
-                                    <Label
-                                        HorizontalOptions="Start"
-                                        MaximumWidthRequest="300"
-                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                        TextColor="{StaticResource Primary900}" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="SKU 13449"
-                                        TextColor="{StaticResource OnSecondary}" />
-                                </VerticalStackLayout>
-
-
-                                <Label
-                                    Grid.Column="2"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="30 SACOS"
-                                    TextColor="{StaticResource Primary700}"
-                                    VerticalOptions="Center" />
-
-
-                            </Grid>
-
-                            <Grid
-                                Padding="8"
-                                BackgroundColor="{StaticResource Primary100}"
-                                ColumnDefinitions="Auto, *, Auto"
-                                ColumnSpacing="8">
-
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="MA002"
-                                    TextColor="{StaticResource OnSecondary}"
-                                    VerticalOptions="Start" />
-
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Padding="8,0">
-                                    <Label
-                                        HorizontalOptions="Start"
-                                        MaximumWidthRequest="300"
-                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                        TextColor="{StaticResource Primary900}" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="SKU 13449"
-                                        TextColor="{StaticResource OnSecondary}" />
-                                </VerticalStackLayout>
-
-
-                                <Label
-                                    Grid.Column="2"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="30 SACOS"
-                                    TextColor="{StaticResource Primary700}"
-                                    VerticalOptions="Center" />
-                            </Grid>
-
-
-                            <Grid
-                                Padding="8"
-                                BackgroundColor="{StaticResource Primary100}"
-                                ColumnDefinitions="Auto, *, Auto"
-                                ColumnSpacing="8">
-
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="MA003"
-                                    TextColor="{StaticResource OnSecondary}"
-                                    VerticalOptions="Start" />
-
-                                <VerticalStackLayout
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Padding="8,0">
-                                    <Label
-                                        HorizontalOptions="Start"
-                                        MaximumWidthRequest="300"
-                                        Text="ALIMENTO INICIADOR AQUAXCEL 0.4 MM."
-                                        TextColor="{StaticResource Primary900}" />
-                                    <Label
-                                        FontSize="14"
-                                        Text="SKU 13449"
-                                        TextColor="{StaticResource OnSecondary}" />
-                                </VerticalStackLayout>
-
-
-                                <Label
-                                    Grid.Column="2"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="25 SACOS"
-                                    TextColor="{StaticResource Primary700}"
-                                    VerticalOptions="Center" />
-                            </Grid>
-                        </VerticalStackLayout>
-
-                        <!--  Table Footer  -->
                         <Grid
-                            Grid.Row="2"
+                            Grid.Row="1"
                             Grid.ColumnSpan="2"
                             ColumnDefinitions="*,*"
                             RowDefinitions="auto, auto">
@@ -324,19 +240,18 @@
                                 TextColor="{StaticResource OnSecondary}"
                                 VerticalOptions="Start"
                                 VerticalTextAlignment="Center" />
-
                             <StackLayout
                                 Grid.Row="1"
                                 Grid.Column="1"
                                 HorizontalOptions="End">
                                 <Label
                                     HorizontalOptions="End"
-                                    Text="85 SACOS"
+                                    Text="{Binding TotalQuantitySacks, StringFormat='{}{0:N0} sacos'}"
                                     TextColor="{StaticResource Primary700}" />
                                 <Label
                                     FontSize="14"
                                     HorizontalOptions="End"
-                                    Text="2,125 KG"
+                                    Text="{Binding TotalWeight, StringFormat='{}{0:N0} kg'}"
                                     TextColor="{StaticResource OnSecondary}" />
                             </StackLayout>
                         </Grid>
@@ -351,7 +266,7 @@
                     Command="{Binding GoToPoolTransferViewCommand}"
                     HeightRequest="62"
                     HorizontalOptions="FillAndExpand"
-                    Text="Realizar transferencia"
+                    Text="Confirmar recepción"
                     TextColor="White"
                     VerticalOptions="End" />
             </Grid>

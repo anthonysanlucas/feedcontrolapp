@@ -136,7 +136,14 @@
 	  <MauiXaml Update="Features\Distribution\Views\NewTransferTwoStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\PoolTransferDeliveryDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\PoolTransferDetailView.xaml">
 	  <MauiXaml Update="Features\Distribution\Views\InventoryReceptionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\PoolTransferReceptionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\PoolTransferView.xaml">
@@ -158,6 +165,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Profile\Views\ProfileDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\WarehouseReception.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\AppLogoAndName.xaml">

@@ -41,6 +41,15 @@
             Routing.RegisterRoute(nameof(StartOfRouteView), typeof(StartOfRouteView));
             Routing.RegisterRoute(nameof(WarehouseTransferView), typeof(WarehouseTransferView));
             Routing.RegisterRoute(nameof(PoolTransferView), typeof(PoolTransferView));
+            Routing.RegisterRoute(
+                nameof(PoolTransferReceptionView),
+                typeof(PoolTransferReceptionView)
+            );
+            Routing.RegisterRoute(
+                nameof(PoolTransferDeliveryDetailView),
+                typeof(PoolTransferDeliveryDetailView)
+            );
+            Routing.RegisterRoute(nameof(PoolTransferDetailView), typeof(PoolTransferDetailView));
             Routing.RegisterRoute(nameof(InventoryReceptionView), typeof(InventoryReceptionView));
             Routing.RegisterRoute(nameof(NewTransferOneStepView), typeof(NewTransferOneStepView));
             Routing.RegisterRoute(nameof(NewTransferTwoStepView), typeof(NewTransferTwoStepView));

@@ -7,8 +7,8 @@
     xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
     xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    Title="PoolTransferView"
     x:DataType="viewModels:PoolTransferViewModel">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="Auto, *">
@@ -45,19 +45,28 @@
                                 BackgroundColor="{StaticResource SurfaceLowContainer}"
                                 BorderColor="{StaticResource Secondary}">
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PoolTransferViewModel}}, Path=GoToPoolTransferDetailCommand}" CommandParameter="{Binding}" />
                                 </Frame.GestureRecognizers>
-                                
                                 <Grid
                                     ColumnDefinitions="*,Auto"
                                     ColumnSpacing="8"
-                                    RowDefinitions="Auto,Auto,Auto,Auto"
+                                    RowDefinitions="Auto,Auto,Auto"
                                     RowSpacing="8">
+
+                                    <Label
+                                        Grid.Row="2"
+                                        Grid.Column="1"
+                                        FontSize="32"
+                                        HorizontalOptions="End"
+                                        Style="{StaticResource GoogleFont}"
+                                        Text="{x:Static models:IconFont.Chevron_right}"
+                                        TextColor="{StaticResource OnSecondary}"
+                                        VerticalOptions="End" />
 
                                     <VerticalStackLayout Grid.Column="0" Spacing="2">
                                         <Label
                                             FontAttributes="None"
-                                            Text="Número de movimiento"
+                                            Text="Código viaje"
                                             VerticalOptions="Center" />
                                         <Label
                                             FontAttributes="None"
@@ -86,22 +95,6 @@
                                             FontAttributes="None"
                                             Style="{StaticResource RegularLabel}"
                                             Text="{Binding AssignedCarrierName}"
-                                            TextColor="{StaticResource OnSecondary}"
-                                            VerticalOptions="Center" />
-                                    </VerticalStackLayout>
-
-                                    <VerticalStackLayout
-                                        Grid.Row="3"
-                                        Grid.Column="0"
-                                        Spacing="2">
-                                        <Label
-                                            FontAttributes="None"
-                                            Text="Vehículo"
-                                            VerticalOptions="Center" />
-                                        <Label
-                                            FontAttributes="None"
-                                            Style="{StaticResource RegularLabel}"
-                                            Text="{Binding AssignedVehiclePlate}"
                                             TextColor="{StaticResource OnSecondary}"
                                             VerticalOptions="Center" />
                                     </VerticalStackLayout>
@@ -181,28 +174,28 @@
 
         <Frame
             Grid.Row="0"
-            Margin="0"
-            BackgroundColor="{StaticResource Secondary}"
-            BorderColor="{StaticResource Primary700}"
-            CornerRadius="100"
-            HeightRequest="52"
             HorizontalOptions="End"
-            VerticalOptions="End"
-            WidthRequest="220">
-            <Frame.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding CreateTransferCommand}" />
-            </Frame.GestureRecognizers>
+            Style="{StaticResource SecondaryBtnFrame}"
+            VerticalOptions="End">
+            <Frame.Behaviors>
+                <toolkit:TouchBehavior
+                    Command="{Binding CreateTransferCommand}"
+                    DefaultAnimationDuration="32"
+                    DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                    DefaultOpacity="1"
+                    PressedOpacity="0.6" />
+            </Frame.Behaviors>
             <HorizontalStackLayout
                 Grid.Column="0"
                 HorizontalOptions="CenterAndExpand"
-                Spacing="8">
+                Spacing="4">
                 <Label
+                    FontSize="18"
                     HorizontalOptions="Center"
                     Style="{StaticResource GoogleFont}"
                     Text="{x:Static models:IconFont.Add}"
                     TextColor="{StaticResource Primary700}"
                     VerticalOptions="Center" />
-
                 <Label
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
@@ -211,16 +204,13 @@
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
-
         <components:ViewLoader
             Grid.Row="0"
             BackgroundColor="White"
             HorizontalOptions="FillAndExpand"
             IsVisible="{Binding IsBusy}"
-            Opacity="0.9"
             VerticalOptions="FillAndExpand" />
     </Grid>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:TruncateTextConverter x:Key="TruncateTextConverter" />

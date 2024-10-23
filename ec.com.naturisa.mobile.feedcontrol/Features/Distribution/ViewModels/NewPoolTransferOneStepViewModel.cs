@@ -3,56 +3,83 @@
     public partial class NewPoolTransferOneStepViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private ObservableCollection<string> availablePools;
-
-        [ObservableProperty]
         private string originBranch;
 
         [ObservableProperty]
-        private List<string> originWarehouses;
+        private PoolTransferOneStepSelection poolTransferOneStepSelection;
 
         [ObservableProperty]
-        private List<string> transporters;
+        private List<WarehouseModel> originWarehouses;
 
         [ObservableProperty]
-        private List<string> vehiclePlates;
+        private List<CarrierModel> carriers;
 
         [ObservableProperty]
-        private string selectedOriginWharehouse;
+        private List<TransportModel> transports;
 
         [ObservableProperty]
-        private string selectedTransporter;
+        private WarehouseModel selectedOriginWharehouse;
 
         [ObservableProperty]
-        private string selectedVehiclePlate;
+        private CarrierModel selectedCarrier;
+
+        [ObservableProperty]
+        private TransportModel selectedTransport;
 
         public NewPoolTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            OriginBranch = "MARICULTURA";
+            OriginBranch = "Maricultura";
 
-            originWarehouses = ["Bodega de Balanceado"];
+            OriginWarehouses = new List<WarehouseModel>
+            {
+                new WarehouseModel { Id = 1, Name = "Bodega de Balanceado" }
+            };
 
-            transporters = ["NELSON ZAMBRANO"];
-            vehiclePlates = ["GCT 5936"];
+            Carriers = new List<CarrierModel>
+            {
+                new CarrierModel { Id = 16, Name = "Nelson Zambrano" }
+            };
+
+            Transports = new List<TransportModel>
+            {
+                new TransportModel { Id = 10, Plate = "GCT5936" }
+            };
+
+            SelectedOriginWharehouse = OriginWarehouses.FirstOrDefault();
         }
 
         [RelayCommand]
         async Task GoToPoolTransferTwoStep()
         {
-            await Shell.Current.GoToAsync(nameof(NewPoolTransferTwoStepView));
-        }
-
-        private void SortAvailablePools()
-        {
-            var sortedPools = AvailablePools.OrderBy(p => p).ToList();
-
-            // Limpiar la colección actual y agregar los elementos ordenados
-            AvailablePools.Clear();
-            foreach (var pool in sortedPools)
+            if (
+                SelectedOriginWharehouse == null
+                || OriginBranch is null
+                || SelectedCarrier is null
+                || SelectedTransport is null
+            )
             {
-                AvailablePools.Add(pool);
+                await ToastService.ShowToastAsync("Debes completar todos los campos.");
+                return;
             }
+            ;
+
+            PoolTransferOneStepSelection = new()
+            {
+                OriginBranch = OriginBranch,
+                SelectedWarehouse = SelectedOriginWharehouse,
+                SelectedCarrier = SelectedCarrier,
+                SelectedTransport = SelectedTransport
+            };
+
+            await Shell.Current.GoToAsync(
+                nameof(NewPoolTransferTwoStepView),
+                true,
+                new Dictionary<string, object>
+                {
+                    ["PoolTransferOneStepSelection"] = PoolTransferOneStepSelection,
+                }
+            );
         }
     }
 }

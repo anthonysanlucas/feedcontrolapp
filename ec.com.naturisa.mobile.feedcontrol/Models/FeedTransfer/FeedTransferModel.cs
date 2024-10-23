@@ -3,7 +3,7 @@
     public class FeedTransferModel
     {
         [JsonPropertyName("idFeedTransfer")]
-        public int IdFeedTransfer { get; set; }
+        public int? IdFeedTransfer { get; set; }
 
         [JsonPropertyName("originSubsidiaryId")]
         public int OriginSubsidiaryId { get; set; }
@@ -50,8 +50,7 @@
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
-        // Descomentar y ajustar según sea necesario
-        //[JsonPropertyName("feedTransferDetails")]
-        //public List<FeedTransferDetail> FeedTransferDetails { get; set; }
+        [JsonPropertyName("feedTransferDetails")]
+        public List<FeedTransferDetailModel>? FeedTransferDetails { get; set; }
     }
 }

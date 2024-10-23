@@ -30,6 +30,11 @@ namespace ec.com.naturisa.mobile.feedcontrol
 
             // DISTRIBUTION
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
+            builder.Services.AddSingleton<IFeedTransferDetailService, FeedTransferDetailService>();
+            builder.Services.AddSingleton<
+                IFeedTransferDetailPoolService,
+                FeedTransferDetailPoolService
+            >();
             #endregion
 
             #region ViewModels
@@ -51,11 +56,16 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddTransient<FeedingPoolTwoStepViewModel>();
             builder.Services.AddSingleton<StartOfRouteViewModel>();
             builder.Services.AddTransient<FoodReceptionByCarrierViewModel>();
+            builder.Services.AddSingleton<WarehouseTransferViewModel>();
             builder.Services.AddTransient<PoolTransferViewModel>();
+            builder.Services.AddTransient<PoolTransferReceptionViewModel>();
+            builder.Services.AddTransient<PoolTransferDeliveryDetailViewModel>();
+            builder.Services.AddTransient<PoolTransferDetailViewModel>();
             builder.Services.AddTransient<InventoryReceptionViewModel>();
             builder.Services.AddTransient<NewTransferOneStepViewModel>();
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewTransferThreeStepViewModel>();
+            builder.Services.AddTransient<TransferDetailViewModel>();
             builder.Services.AddTransient<NewPoolTransferOneStepViewModel>();
             builder.Services.AddTransient<NewPoolTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewPoolTransferThreeStepViewModel>();
@@ -94,6 +104,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
 
 
             builder.Services.AddTransient<PoolTransferView>();
+            builder.Services.AddTransient<PoolTransferDetailView>();
+            builder.Services.AddTransient<PoolTransferReceptionView>();
+            builder.Services.AddTransient<PoolTransferDeliveryDetailView>();
             builder.Services.AddTransient<InventoryReceptionView>();
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();

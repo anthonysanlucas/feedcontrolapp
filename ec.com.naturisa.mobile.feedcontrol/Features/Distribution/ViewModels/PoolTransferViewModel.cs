@@ -22,23 +22,45 @@
         }
 
         [RelayCommand]
+        async Task GoToPoolTransferDetail(FeedTransferModel selectedTransfer)
+        {
+            if (selectedTransfer == null)
+                return;
+
+            await Shell.Current.GoToAsync(
+                nameof(PoolTransferDetailView),
+                true,
+                new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
+            );
+        }
+
+        [RelayCommand]
         async Task GetFeedTransfers()
         {
             IsNotBusy = false;
             IsBusy = true;
             IsRefreshing = false;
 
-            var response = await _feedTransferService.GetFeedTransfers();
-
-            if (response != null && response.Data != null && response.Data.Data.Any())
+            try
             {
-                var feedTransferModels = response.Data.Data;
+                var response = await _feedTransferService.GetFeedTransfers();
 
-                FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
+                if (response != null && response.Data != null && response.Data.Data.Any())
+                {
+                    var feedTransferModels = response.Data.Data;
+
+                    FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
+                }
             }
-
-            IsBusy = false;
-            IsNotBusy = true;
+            catch (Exception ex)
+            {
+                await ToastService.ShowToastAsync("Ha ocurrido un error, intente nuevamente.");
+            }
+            finally
+            {
+                IsBusy = false;
+                IsNotBusy = true;
+            }
         }
     }
 }

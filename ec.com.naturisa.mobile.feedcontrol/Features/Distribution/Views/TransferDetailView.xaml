@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.TransferDetailView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     x:DataType="viewModels:TransferDetailViewModel">
@@ -10,89 +11,134 @@
         <Label
             FontAttributes="Bold"
             Style="{StaticResource LargeLabel}"
-            Text="Información de la transferencia"
+            Text="Información del Viaje"
             TextColor="{StaticResource Primary900}"
             VerticalOptions="CenterAndExpand" />
     </Shell.TitleView>
 
-    <Grid RowDefinitions="auto,*,auto" RowSpacing="24">
+    <Grid RowDefinitions="auto,*,auto" RowSpacing="10">
         <VerticalStackLayout Grid.Row="0">
+            <Grid RowSpacing="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
 
-            <Grid
-                ColumnDefinitions="*,*"
-                ColumnSpacing="8"
-                RowDefinitions="auto,auto,auto"
-                RowSpacing="8">
-                <VerticalStackLayout>
-                    <Label
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Text="ID Guia"
-                        VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Style="{StaticResource LargeLabel}"
-                        Text="75610"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
+                </Grid.RowDefinitions>
 
-                <components:StatusIndicator
-                    Grid.Column="1"
-                    HorizontalOptions="End"
-                    Status="EN CURSO" />
+                <Grid.ColumnDefinitions>
 
-                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                    <Label
-                        FontAttributes="None"
-                        Text="Cantidad total"
-                        VerticalOptions="Center" />
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
 
-                    <Label
-                        FontAttributes="None"
-                        Style="{StaticResource RegularLabel}"
-                        Text="264 SACOS - 6,600 KG"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
 
-                <Grid
-                    Grid.Row="2"
+                <Label
                     Grid.ColumnSpan="2"
-                    ColumnDefinitions="auto,auto,*"
-                    ColumnSpacing="8"
-                    RowDefinitions="auto, auto"
-                    RowSpacing="6">
+                    Grid.Column="0" 
+                    Grid.Row="0"
+                    FontAttributes="None"
+                    Text="Viaje"
+                    VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="0"
-                        FontAttributes="None"
-                        Text="Ruta"
-                        VerticalOptions="Center" />
+                <!--  Header Row with Feed Information  -->
+                <Label
+                    Grid.Column="0" Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Bold"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.Code}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Style="{StaticResource RegularLabel}"
-                        Text="PESJOYA"
-                        TextColor="{StaticResource Primary900}"
-                        VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0" 
+                    Grid.Row="3"
+                    FontAttributes="None"
+                    Text="Origen"
+                    VerticalOptions="Center" />
+                <!--  Status Box and Label  -->
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0" 
+                    Grid.Row="4"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.OriginSupplierName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
 
-                    <Image
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Source="trending_flat_icon.svg" />
+                <Label
+                     Grid.ColumnSpan="2"
+                     Grid.Column="0" 
+                     Grid.Row="5"
+                     FontAttributes="None"
+                     Text="Destino"
+                     VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0" 
+                    Grid.Row="6"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.DestinationWarehouseName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
 
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Style="{StaticResource RegularLabel}"
-                        Text="MARICULTURA"
-                        TextColor="{StaticResource Primary700}" />
-                </Grid>
+                <Label
+                     Grid.ColumnSpan="2"
+                     Grid.Column="2" 
+                     Grid.Row="3"
+                     FontAttributes="None"
+                     Text="Gabarra"
+                     VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="2" 
+                    Grid.Row="4"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.TransportName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <Label
+                     Grid.ColumnSpan="2"
+                     Grid.Column="2" 
+                     Grid.Row="5"
+                     FontAttributes="None"
+                     Text="Capitán"
+                     VerticalOptions="Center" />
+                <Label
+                    Grid.ColumnSpan="2"
+                    Grid.Column="2" 
+                    Grid.Row="6"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.FreightTransporterName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+                
+                <components:StatusIndicator
+                    Grid.Column="2"
+                    Grid.ColumnSpan ="2"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    HorizontalOptions="EndAndExpand"
+                    Status="{Binding SelectedTransfer.LastStatusCatalogueName}"
+                    VerticalOptions="CenterAndExpand" />
+
             </Grid>
         </VerticalStackLayout>
 
@@ -100,36 +146,67 @@
             <!--  Encabezado de la tabla  -->
             <Frame
                 Grid.Column="0"
-                Padding="8"
-                BackgroundColor="{StaticResource OnSecondary}"
+                Padding="0"
+                BackgroundColor="#183d5b"
                 HasShadow="False">
-                <Grid ColumnDefinitions="*, auto" ColumnSpacing="0">
-                    <Label
+                <Grid  ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="20*"/>
+                    </Grid.ColumnDefinitions>
+                        <Label
+                            Padding="8"
+                        Grid.Column="0"
                         FontAttributes="Bold"
                         Text="Producto"
                         TextColor="White" />
-
+                    <BoxView 
+                        Grid.Column="1"
+                        BackgroundColor="AliceBlue"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="End"
+                        WidthRequest="2"></BoxView>
                     <Label
+                        Padding="8"
+                        Grid.Column="2"
                         FontAttributes="Bold"
                         HorizontalOptions="End"
-                        Text="Cantidad"
+                        Text="Sacos"
                         TextColor="White" />
                 </Grid>
             </Frame>
 
-            <!--  Contenido de la tabla  -->
-            <Grid
-                ColumnDefinitions="Auto, *"
-                RowDefinitions="Auto, Auto, Auto"
-                RowSpacing="10">
+            <CollectionView 
+                ItemsSource="{Binding SelectedTransfer.SupplierTransferDetails}" 
+                Grid.Row="1"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="supplierTransferModels:SupplierTransferDetailResponse">
+                        <!--  Contenido de la tabla  -->
+            <Grid>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="20*"/>
+                </Grid.ColumnDefinitions>
+                
                 <!--  Primera fila  -->
                 <VerticalStackLayout
                     Grid.Row="0"
                     Grid.Column="0"
                     Padding="0"
                     VerticalOptions="FillAndExpand">
-                    <CheckBox Margin="0" VerticalOptions="Start" />
+                    <CheckBox 
+                        Margin="0" 
+                        VerticalOptions="Start" 
+                        IsChecked="{Binding IsChecked}"/>
                 </VerticalStackLayout>
 
                 <VerticalStackLayout
@@ -140,11 +217,11 @@
                         FontAttributes="Bold"
                         HorizontalOptions="Start"
                         MaximumWidthRequest="300"
-                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
+                        Text="{Binding ProductName}"
                         TextColor="{StaticResource Primary900}" />
                     <Label
                         FontSize="14"
-                        Text="13449"
+                        Text="{Binding ProductSupplierCode}"
                         TextColor="{StaticResource OnSecondary}" />
                 </VerticalStackLayout>
 
@@ -156,103 +233,80 @@
                     <Label
                         FontAttributes="Bold"
                         Style="{StaticResource RegularLabel}"
-                        Text="198 SACOS"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                    <Label
-                        FontAttributes="None"
-                        HorizontalOptions="End"
-                        Style="{StaticResource RegularLabel}"
-                        Text="4,950 KG"
+                        Text="{Binding EquivalenceSacks}"
                         TextColor="{StaticResource Primary700}"
                         VerticalOptions="Center" />
                 </VerticalStackLayout>
 
-                <!--  Segunda fila  -->
-                <VerticalStackLayout
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Padding="0"
-                    VerticalOptions="FillAndExpand">
-                    <CheckBox Margin="0" VerticalOptions="Start" />
-                </VerticalStackLayout>
 
-                <VerticalStackLayout
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Padding="8">
-                    <Label
-                        FontAttributes="Bold"
-                        HorizontalOptions="Start"
-                        MaximumWidthRequest="300"
-                        Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
-                        TextColor="{StaticResource Primary900}" />
-                    <Label
-                        FontSize="14"
-                        Text="SKU 13449"
-                        TextColor="{StaticResource OnSecondary}" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout
-                    Grid.Row="1"
-                    Grid.Column="2"
-                    Padding="8"
-                    HorizontalOptions="End">
-                    <Label
-                        FontAttributes="Bold"
-                        HorizontalOptions="End"
-                        Style="{StaticResource RegularLabel}"
-                        Text="66 SACOS"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                    <Label
-                        FontAttributes="None"
-                        HorizontalOptions="End"
-                        Style="{StaticResource RegularLabel}"
-                        Text="1,650 KG"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
-
-                <!--  Fila de total  -->
-                <Grid
-                    Grid.Row="2"
-                    Grid.ColumnSpan="2"
-                    ColumnDefinitions="*,*"
-                    RowDefinitions="auto, auto">
-                    <BoxView
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Margin="0,8"
-                        BackgroundColor="{StaticResource Gray200}"
-                        HeightRequest="1" />
-
-                    <Label
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        FontAttributes="None"
-                        Text="TOTAL"
-                        TextColor="{StaticResource OnSecondary}"
-                        VerticalOptions="Start"
-                        VerticalTextAlignment="Center" />
-
-                    <StackLayout
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        HorizontalOptions="End">
-                        <Label
-                            HorizontalOptions="End"
-                            Text="264 SACOS"
-                            TextColor="{StaticResource Primary700}" />
-                        <Label
-                            FontSize="14"
-                            HorizontalOptions="End"
-                            Text="6,600 KG"
-                            TextColor="{StaticResource OnSecondary}" />
-                    </StackLayout>
-                </Grid>
+                
             </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+            <!--  Fila de total  -->
+            <Grid
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                ColumnDefinitions="*,*"
+                RowDefinitions="auto, auto">
+                <BoxView
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,8"
+                    BackgroundColor="{StaticResource Gray200}"
+                    HeightRequest="1" />
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="None"
+                    Text="TOTAL"
+                    TextColor="{StaticResource OnSecondary}"
+                    VerticalOptions="Start"
+                    VerticalTextAlignment="Center" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="End">
+                    <Label
+                        HorizontalOptions="End"
+                        Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0} Sacos'}"
+                        TextColor="{StaticResource Primary700}" />
+                    <Label
+                        FontSize="14"
+                        HorizontalOptions="End"
+                        Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} Pallets'}"
+                        TextColor="{StaticResource OnSecondary}" />
+                </StackLayout>
+            </Grid>
+            <Frame
+                Margin="0, 50, 0, 0"
+                Padding="0"
+                BorderColor="{StaticResource Slate400}"
+                HasShadow="False"
+                HeightRequest="80"
+                VerticalOptions="StartAndExpand">
+                <VerticalStackLayout>
+                    <Editor
+                        AutoSize="Disabled"
+                        FontSize="16"
+                        Keyboard="Text"
+                        MaxLength="500"
+                        Placeholder="Escriba alguna observación"
+                        PlaceholderColor="{StaticResource Black-text-light}"
+                        TextColor="{StaticResource Black-text}"
+                        Text="{Binding SelectedTransfer.Observation}"
+                        VerticalTextAlignment="Start" />
+                </VerticalStackLayout>
+            </Frame>
         </StackLayout>
+
+        
 
         <Frame
             Grid.Row="2"
@@ -272,8 +326,8 @@
                     BackgroundColor="Transparent"
                     Command="{Binding ReceptTransferCommand}"
                     HorizontalOptions="FillAndExpand"
-                    SemanticProperties.Hint="Registrar recepción"
-                    Text="Registrar recepción"
+                    SemanticProperties.Hint="Registrar Recepción"
+                    Text="Registrar Recepción"
                     TextColor="White" />
             </Grid>
         </Frame>

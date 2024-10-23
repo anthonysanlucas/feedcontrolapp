@@ -1,4 +1,9 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol
+﻿using CommunityToolkit.Maui;
+using ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
+using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
+using Microsoft.Extensions.Logging;
+
+namespace ec.com.naturisa.mobile.feedcontrol
 {
     public static class MauiProgram
     {
@@ -20,6 +25,9 @@
             builder.Services.AddSingleton<IToastService, ToastService>();
             builder.Services.AddSingleton<BaseHttpService>();
 
+            // SUPPLY
+            builder.Services.AddSingleton<ISupplierTransferService, SupplierTransferService>();
+
             // DISTRIBUTION
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
             builder.Services.AddSingleton<IFeedTransferDetailService, FeedTransferDetailService>();
@@ -30,6 +38,7 @@
             #endregion
 
             #region ViewModels
+
             builder.Services.AddSingleton<InitialLoadingViewModel>();
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<FeedingPoolViewModel>();
@@ -52,6 +61,7 @@
             builder.Services.AddTransient<PoolTransferReceptionViewModel>();
             builder.Services.AddTransient<PoolTransferDeliveryDetailViewModel>();
             builder.Services.AddTransient<PoolTransferDetailViewModel>();
+            builder.Services.AddTransient<InventoryReceptionViewModel>();
             builder.Services.AddTransient<NewTransferOneStepViewModel>();
             builder.Services.AddTransient<NewTransferTwoStepViewModel>();
             builder.Services.AddTransient<NewTransferThreeStepViewModel>();
@@ -66,6 +76,7 @@
             builder.Services.AddSingleton<NotificationsDetailView>();
             builder.Services.AddSingleton<SelectFarmView>();
             builder.Services.AddSingleton<ProfileDetailView>();
+
             builder.Services.AddSingleton<InitialLoadingView>();
             builder.Services.AddSingleton<LoginView>();
             builder.Services.AddSingleton<FeedingPoolView>();
@@ -85,12 +96,18 @@
             builder.Services.AddSingleton<FeedingPoolOneStepView>();
             builder.Services.AddTransient<FeedingPoolTwoStepView>();
             builder.Services.AddSingleton<StartOfRouteView>();
+
             builder.Services.AddTransient<WarehouseTransferView>();
+            builder.Services.AddTransient<WarehouseTransferViewModel>();
             builder.Services.AddTransient<TransferDetailView>();
+            builder.Services.AddTransient<TransferDetailViewModel>();
+
+
             builder.Services.AddTransient<PoolTransferView>();
             builder.Services.AddTransient<PoolTransferDetailView>();
             builder.Services.AddTransient<PoolTransferReceptionView>();
             builder.Services.AddTransient<PoolTransferDeliveryDetailView>();
+            builder.Services.AddTransient<InventoryReceptionView>();
             builder.Services.AddTransient<NewTransferOneStepView>();
             builder.Services.AddTransient<NewTransferTwoStepView>();
             builder.Services.AddTransient<NewTransferThreeStepView>();

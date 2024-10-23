@@ -6,5 +6,6 @@ public partial class TransferDetailView : ContentPage
     {
         InitializeComponent();
         BindingContext = transferDetailViewModel;
+        transferDetailViewModel.Initialize();
     }
 }

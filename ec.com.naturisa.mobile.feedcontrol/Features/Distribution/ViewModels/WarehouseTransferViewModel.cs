@@ -1,9 +1,43 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿using CommunityToolkit.Mvvm.Messaging;
+using ec.com.naturisa.mobile.feedcontrol.Helpers;
+using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
+using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
+
+namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     public partial class WarehouseTransferViewModel : BaseViewModel
     {
+        private readonly SupplierTransferService _supplierTransferService;
+
+        [ObservableProperty]
+        private ObservableCollection<SupplierTransferResponse> supplierTransfers;
+
+        [ObservableProperty]
+        private SupplierTransferQuery filterQuery;
+
+
         public WarehouseTransferViewModel(IToastService toastService)
-            : base(toastService) { }
+            : base(toastService) {
+            _supplierTransferService = new SupplierTransferService();
+            FilterQuery = new SupplierTransferQuery
+            {
+                AssignmentDate = DateTime.Now,
+                IncludeFreightTransporter = true,
+                DestinationOperatorWarehouseUserId = App.UserData.IdUser,
+                IncludeStatusCatalogue = true,
+                IncludeStatusCatalogueList = true,
+                IncludeSupplier = true,
+                IncludeSupplierTransferDetails = true,
+                IncludeTransport = true,
+                Status = "ACTIVO",
+                StatusCatalogueName = [SupplierTransferConstants.Finished, SupplierTransferConstants.Delivered]
+            };
+
+            GetSupplierTransfers();
+
+            
+
+        }
 
         #region Commands
         [RelayCommand]
@@ -13,10 +47,50 @@
         }
 
         [RelayCommand]
-        async Task GoToTransferDetail()
+        async Task GoToTransferDetail(SupplierTransferResponse selectedTransfer)
         {
-            await Shell.Current.GoToAsync(nameof(TransferDetailView));
+            if (selectedTransfer != null)
+            {
+                var navigationParameter = new Dictionary<string, object>
+                {
+                    { "SelectedTransfer", selectedTransfer }
+                };
+
+                await Shell.Current.GoToAsync(nameof(TransferDetailView), navigationParameter);
+            }
+
         }
+
+
+        [RelayCommand]
+        async Task GetSupplierTransfers()
+        {
+            IsNotBusy = false;
+            IsBusy = true;
+            IsRefreshing = false;
+
+            var response = await _supplierTransferService.GetSupplierTransfers(FilterQuery);
+
+            if (response != null && response.Data != null && response.Data.Data.Any())
+            {
+                var data = response.Data.Data;
+
+                SupplierTransfers = new ObservableCollection<SupplierTransferResponse>(data);
+            }
+            else
+            {
+                SupplierTransfers?.Clear();
+            }
+
+            IsBusy = false;
+            IsNotBusy = true;
+        }
+
+        public async  Task OnConfirmReceptionClicked(object sender, EventArgs e)
+        {
+            await GetSupplierTransfers();
+        }
+
 
         #endregion
     }

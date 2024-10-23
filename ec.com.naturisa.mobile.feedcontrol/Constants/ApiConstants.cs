@@ -10,5 +10,6 @@
 
         public const string AUTH_URL = "https://dev-gateway.naturisa.com.ec/seguridad";
         public const string API_FEED_CONTROL = $"{API_URL}/feedcontrol/api";
+        public const string API_FEED_CONTROL_LOCAL = $"https://adbf-186-3-139-203.ngrok-free.app/api";
     }
 }

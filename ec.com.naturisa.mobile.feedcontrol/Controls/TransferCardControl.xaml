@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Controls.TransferCardControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    x:Name="TransferCard">
+    <Grid
+        ColumnDefinitions="*,Auto"
+        ColumnSpacing="4"
+        RowDefinitions="Auto,Auto,Auto"
+        RowSpacing="8">
+
+        <VerticalStackLayout Grid.Column="0" Spacing="2">
+            <Label
+                FontAttributes="None"
+                Text="Código viaje"
+                VerticalOptions="Center" />
+            <Label
+                FontAttributes="None"
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=TransferCode}"
+                TextColor="{StaticResource OnSecondary}"
+                VerticalOptions="Center" />
+        </VerticalStackLayout>
+
+        <components:StatusIndicator
+            Grid.Column="1"
+            HorizontalOptions="End"
+            Status="{Binding Source={x:Reference TransferCard}, Path=Status}"
+            VerticalOptions="Start" />
+
+        <Grid
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            ColumnDefinitions="Auto,Auto,*"
+            RowDefinitions="Auto,Auto"
+            RowSpacing="0">
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                FontAttributes="None"
+                Text="Ruta"
+                VerticalOptions="Center" />
+
+            <HorizontalStackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Spacing="4">
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding Source={x:Reference TransferCard}, Path=OriginSubsidiaryName}"
+                    TextColor="{StaticResource Primary700}"
+                    VerticalOptions="Center" />
+                <Label
+                    FontSize="16"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Chevron_right}"
+                    TextColor="{StaticResource OnSecondary}"
+                    VerticalOptions="End" />
+                <Label
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding Source={x:Reference TransferCard}, Path=DestinationSubsidiaryName, Converter={StaticResource TruncateTextConverter}, ConverterParameter=2}"
+                    TextColor="{StaticResource Primary}"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+        </Grid>
+
+        <VerticalStackLayout
+            Grid.Row="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Spacing="2">
+            <Label
+                FontAttributes="None"
+                Text="Transportista"
+                VerticalOptions="Center" />
+            <Label
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=AssignedCarrierName}"
+                TextColor="{StaticResource OnSecondary}"
+                VerticalOptions="Center" />
+        </VerticalStackLayout>
+
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            ColumnDefinitions="Auto, Auto, Auto"
+            ColumnSpacing="4"
+            RowDefinitions="18, Auto"
+            VerticalOptions="Center">
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0"
+                HorizontalOptions="Center"
+                Style="{StaticResource DataTextLabel}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=PrimaryUnit, StringFormat='{}{0:N0}'}" />
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0"
+                HorizontalOptions="Center"
+                Style="{StaticResource DataTextLabel}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=PrimaryUnitText}" />
+
+            <BoxView
+                Grid.RowSpan="2"
+                Grid.Column="1"
+                BackgroundColor="LightGrey"
+                HeightRequest="32"
+                VerticalOptions="Center"
+                WidthRequest="1" />
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="2"
+                Margin="0"
+                HorizontalOptions="Center"
+                Style="{StaticResource DataTitleLabel}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=SecondaryUnit, StringFormat='{}{0:N0}'}"
+                VerticalOptions="Start" />
+
+            <Label
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="0"
+                HorizontalOptions="Center"
+                Style="{StaticResource DataTitleLabel}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=SecondaryUnitText}"
+                VerticalOptions="Start" />
+        </Grid>
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            FontSize="28"
+            HorizontalOptions="End"
+            Style="{StaticResource GoogleFont}"
+            Text="{x:Static models:IconFont.Chevron_right}"
+            TextColor="{StaticResource OnSecondary}"
+            VerticalOptions="End" />
+    </Grid>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+</ContentView>

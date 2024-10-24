@@ -1,7 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using ec.com.naturisa.mobile.feedcontrol.Helpers;
-using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
-using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
+﻿using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
@@ -17,7 +14,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
 
         public WarehouseTransferViewModel(IToastService toastService)
-            : base(toastService) {
+            : base(toastService)
+        {
             _supplierTransferService = new SupplierTransferService();
             FilterQuery = new SupplierTransferQuery
             {
@@ -35,7 +33,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
             GetSupplierTransfers();
 
-            
+
 
         }
 
@@ -86,7 +84,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             IsNotBusy = true;
         }
 
-        public async  Task OnConfirmReceptionClicked(object sender, EventArgs e)
+        public async Task OnConfirmReceptionClicked(object sender, EventArgs e)
         {
             await GetSupplierTransfers();
         }

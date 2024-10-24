@@ -7,7 +7,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService
     {
         private static class SupplierTransferEndpoints
         {
-            public const string SupplierTransfer = $"{ApiConstants.API_FEED_CONTROL_LOCAL}/supplier_transfers";
+            public const string SupplierTransfer = $"{ApiConstants.API_FEED_CONTROL}/supplier_transfers";
             public const string SupplierTransferDetails =
                 $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_details";
             public const string SupplierTransferDetailPools =

@@ -140,6 +140,8 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\PoolTransferDetailView.xaml">
+		  <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\InventoryReceptionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

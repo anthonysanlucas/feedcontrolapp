@@ -24,7 +24,7 @@ public partial class TransferCardControl : ContentView
         BindableProperty.Create(nameof(AssignedCarrierName), typeof(string), typeof(TransferCardControl), string.Empty);
 
     public static readonly BindableProperty PrimaryUnitProperty =
-        BindableProperty.Create(nameof(PrimaryUnitProperty), typeof(int), typeof(TransferCardControl), 0);
+        BindableProperty.Create(nameof(PrimaryUnit), typeof(int), typeof(TransferCardControl), 0);
 
     public static readonly BindableProperty PrimaryUnitTextProperty = BindableProperty.Create(nameof(PrimaryUnitText), typeof(string), typeof(TransferCardControl), string.Empty);
 

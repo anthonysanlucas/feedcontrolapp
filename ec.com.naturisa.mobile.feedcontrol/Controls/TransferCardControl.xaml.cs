@@ -7,7 +7,6 @@ public partial class TransferCardControl : ContentView
 		InitializeComponent();
 	}
 
-    // Propiedades Bindable
     public static readonly BindableProperty TransferCodeProperty =
         BindableProperty.Create(nameof(TransferCode), typeof(string), typeof(TransferCardControl), string.Empty);
 

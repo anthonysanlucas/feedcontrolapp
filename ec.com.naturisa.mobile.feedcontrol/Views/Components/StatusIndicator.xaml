@@ -4,19 +4,20 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="StatusIndicatorControl">
-    <!--  BackgroundColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusColor}"  -->
+    <!--  BackgroundColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusColor}"
     <Frame
-        Padding="0"
-        BackgroundColor="Transparent"
-        HeightRequest="32"
-        HorizontalOptions="End">
-        <Label
-            FontAttributes="Bold"
-            HorizontalOptions="Center"
-            HorizontalTextAlignment="Center"
-            Style="{StaticResource SmallLabel}"
-            Text="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusText}"
-            TextColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusTextColor}"
-            VerticalOptions="Center" />
+    Padding="0"
+    BackgroundColor="Transparent"
+    HeightRequest="32"
+    HorizontalOptions="End">
     </Frame>
+    -->
+    <Label
+        FontAttributes="Bold"
+        HorizontalOptions="Center"
+        HorizontalTextAlignment="Center"
+        Style="{StaticResource SmallLabel}"
+        Text="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusText}"
+        TextColor="{Binding Source={x:Reference StatusIndicatorControl}, Path=StatusTextColor}"
+        VerticalOptions="Center" />
 </ContentView>

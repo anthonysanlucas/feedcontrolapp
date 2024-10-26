@@ -1,5 +1,4 @@
 ﻿using System.Net.Http.Headers;
-using ec.com.naturisa.mobile.feedcontrol.Models.Api;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
 {
@@ -8,9 +7,13 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-        public BaseHttpService(string baseAddress)
+        public BaseHttpService(string baseAddress, int timeoutInMinutes = 1)
         {
-            _httpClient = new HttpClient { BaseAddress = new Uri(baseAddress) };
+            _httpClient = new HttpClient
+            { 
+                BaseAddress = new Uri(baseAddress),
+                Timeout = TimeSpan.FromMinutes(timeoutInMinutes)
+            };
 
             _jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -36,7 +39,22 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
 
             var request = new HttpRequestMessage(method, endpoint) { Content = content };
 
-            return await _httpClient.SendAsync(request);
+            try
+            {
+                return await _httpClient.SendAsync(request);
+            }
+            catch (TaskCanceledException)
+            {               
+                return new HttpResponseMessage
+                {
+                    StatusCode = System.Net.HttpStatusCode.RequestTimeout,
+                    ReasonPhrase = "Tiempo de espera alcanzado"
+                };
+            }
+            catch (Exception ex)
+            {               
+                throw new Exception($"Error en la solicitud: {ex.Message}", ex);
+            }
         }
 
         protected async Task<ApiResponse<T>> ProcessResponse<T>(HttpResponseMessage response)
@@ -44,8 +62,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync();
-
-                // Determinar si el tipo T es una PagedApiResponse o no.
+                
                 var isPagedResponse =
                     typeof(T).IsGenericType
                     && typeof(T).GetGenericTypeDefinition() == typeof(PagedApiResponse<>);

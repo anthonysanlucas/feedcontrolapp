@@ -4,248 +4,86 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
-    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Title="WarehouseTransferView"
-     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     x:DataType="viewModels:WarehouseTransferViewModel">
 
     <Grid RowDefinitions="auto,*">
         <Grid ColumnSpacing="10">
             <Grid.RowDefinitions>
-                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*" />
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
 
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*" />
+                <ColumnDefinition Width="50*" />
             </Grid.ColumnDefinitions>
-            
+
             <VerticalStackLayout
                 Grid.Column="0"
                 Padding="0"
-                HorizontalOptions="FillAndExpand"
-                BackgroundColor="{StaticResource Secondary}">
+                BackgroundColor="{StaticResource Secondary}"
+                HorizontalOptions="FillAndExpand">
                 <DatePicker
+                    Date="{Binding FilterQuery.AssignmentDate}"
                     Format="dd/MM/yyyy"
                     MaximumDate="2050-12-31"
                     MinimumDate="2020-01-01"
-                    Date="{Binding FilterQuery.AssignmentDate}"
                     TextColor="{StaticResource OnSecondary}" />
             </VerticalStackLayout>
 
-            <VerticalStackLayout
-                Grid.Column="1"
-                HorizontalOptions="FillAndExpand">
-                <Button 
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="FillAndExpand">
+                <Button
+                    BackgroundColor="{StaticResource White}"
+                    BorderColor="{StaticResource Gray500}"
+                    BorderWidth="1"
                     Command="{Binding GetSupplierTransfersCommand}"
                     Text="Consultar"
-                    BackgroundColor="{StaticResource White}" 
-                    TextColor="{StaticResource Gray500}" 
-                    BorderColor="{StaticResource Gray500}" 
-                    BorderWidth="1" ></Button>
+                    TextColor="{StaticResource Gray500}" />
             </VerticalStackLayout>
         </Grid>
-        
-            
+
+
 
 
         <RefreshView
-                Grid.Row="2"
-                Command="{Binding GetSupplierTransfersCommand}"
-                IsRefreshing="{Binding IsRefreshing}"
-                RefreshColor="Transparent">
-                <CollectionView 
-                    ItemsSource="{Binding SupplierTransfers}" 
-                    SelectionMode="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">
+            Grid.Row="2"
+            Command="{Binding GetSupplierTransfersCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
+            RefreshColor="Transparent">
+            <CollectionView ItemsSource="{Binding SupplierTransfers}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">
+                        <Frame
+                            Margin="0,8"
+                            BackgroundColor="{StaticResource SurfaceLowContainer}"
+                            BorderColor="{StaticResource Secondary}"
+                            HasShadow="False"
+                            HorizontalOptions="FillAndExpand">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
 
-                            <Frame
-                                Margin="0,8"
-                                HorizontalOptions="FillAndExpand"
-                                BackgroundColor="{StaticResource SurfaceLowContainer}"
-                                BorderColor="{StaticResource Secondary}"
-                                HasShadow="False">
+                            <controls:TransferCardControl
+                                AssignedCarrierName="{Binding FreightTransporterName}"
+                                DestinationSubsidiaryName="{Binding DestinationWarehouseName}"
+                                OriginSubsidiaryName="{Binding OriginSupplierName}"
+                                PrimaryUnit="{Binding TotalEquivalencePallets}"
+                                PrimaryUnitText="pallets"
+                                SecondaryUnit="{Binding TotalEquivalenceSacks}"
+                                SecondaryUnitText="sacos"
+                                Status="{Binding LastStatusCatalogueName}"
+                                TransferCode="{Binding Code}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:WarehouseTransferViewModel}}, Path=GoToTransferDetailCommand}" CommandParameter="{Binding .}" />
+        </RefreshView>
 
-                                </Frame.GestureRecognizers>
-
-
-                                <Grid RowSpacing="3">
-
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20*"/>
-                                        <RowDefinition Height="20*"/>
-                                        <RowDefinition Height="20*"/>
-                                        <RowDefinition Height="20*"/>
-                                        <RowDefinition Height="20*"/>
-                                        <RowDefinition Height="20*"/>
-
-
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-
-                                        <ColumnDefinition Width="20*"/>
-                                        <ColumnDefinition Width="20*"/>
-                                        <ColumnDefinition Width="20*"/>
-                                        <ColumnDefinition Width="20*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Label
-                        Grid.ColumnSpan="2"
-                        Grid.Column="0" 
-                        Grid.Row="0"
-                        FontAttributes="None"
-                        Text="Viaje"
-                        VerticalOptions="Center" />
-
-                                    <!--  Header Row with Feed Information  -->
-                                    <Label
-                            Grid.Column="0" Grid.Row="1"
-                            Grid.ColumnSpan="2"
-                            FontAttributes="None"
-                            Style="{StaticResource RegularLabel}"
-                            Text="{Binding Code}"
-                            TextColor="{StaticResource Primary900}"
-                            VerticalOptions="Center" />
-
-                                    <Label
-                            Grid.ColumnSpan="2"
-                            Grid.Column="0" 
-                            Grid.Row="2"
-                            FontAttributes="None"
-                            Text="Origen"
-                            VerticalOptions="Center" />
-                                    <!--  Status Box and Label  -->
-                                    <Label
-                            Grid.ColumnSpan="2"
-                            Grid.Column="0" 
-                            Grid.Row="3"
-                                FontAttributes="None"
-                                Style="{StaticResource RegularLabel}"
-                                Text="{Binding OriginSupplierName}"
-                                TextColor="{StaticResource Primary900}"
-                                VerticalOptions="Center" />
-
-                                    <Label
-                             Grid.ColumnSpan="2"
-                             Grid.Column="0" 
-                             Grid.Row="4"
-                             FontAttributes="None"
-                             Text="Destino"
-                             VerticalOptions="Center" />
-                                    <Label
-                            Grid.ColumnSpan="2"
-                             Grid.Column="0" 
-                             Grid.Row="5"
-                              FontAttributes="None"
-                              Style="{StaticResource RegularLabel}"
-                              Text="{Binding DestinationWarehouseName}"
-                              TextColor="{StaticResource Primary900}"
-                              VerticalOptions="Center" />
-                                    <components:StatusIndicator
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="0"
-                        HorizontalOptions="EndAndExpand"
-                        Status="{Binding LastStatusCatalogueName}"
-                        VerticalOptions="Center" />
-
-
-                                    <Grid 
-                        Grid.Column="2"
-                        Grid.ColumnSpan="2" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="StartAndExpand" 
-                        Grid.Row="1" 
-                        Grid.RowSpan="4">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="20*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="48*"/>
-                                            <ColumnDefinition Width="4*"/>
-                                            <ColumnDefinition Width="48*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <VerticalStackLayout
-                                Grid.Column="0" HorizontalOptions="FillAndExpand" Padding="0,0,5,0">
-                                            <Label 
-                                                Text="{Binding TotalEquivalenceSacks}" 
-                                               VerticalOptions="End"
-                                                HorizontalOptions="End"
-                                               FontSize="28"
-                                               FontAttributes="Bold"
-                                                Style="{StaticResource RegularLabel}"
-                                                TextColor="{StaticResource Primary900}"
-                                />
-                                            <Label 
-                                    Text="Sacos" 
-                                    FontAttributes="Bold"
-                                                HorizontalOptions="End"
-                                    Style="{StaticResource RegularLabel}"/>
-
-                                        </VerticalStackLayout>
-                                        <BoxView 
-                            Grid.Column="1"
-                            BackgroundColor="LightGrey"
-                            VerticalOptions="EndAndExpand"
-                            HeightRequest="40"
-                            WidthRequest="1"></BoxView>
-                                        <VerticalStackLayout
-                            Grid.Column="2" 
-                            Padding="0,0,0,1"
-                            HorizontalOptions="StartAndExpand" 
-                            VerticalOptions="EndAndExpand">
-                                            <Label 
-                                    Text="{Binding TotalEquivalencePallets}"
-                                    FontSize="20"
-                                    HorizontalOptions="CenterAndExpand"
-                                    FontAttributes="Bold"
-                                    Style="{StaticResource RegularLabel}"
-                                    TextColor="{StaticResource Primary900}"
-/>
-                                            <Label 
-                                    Text="Pallets" 
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Style="{StaticResource SmallLabel}"/>
-
-                                        </VerticalStackLayout>
-
-
-                                    </Grid>
-
-                                    <Label
-                        Grid.Column="3"
-                        Grid.Row="4"
-                        Grid.RowSpan="2"
-                         FontSize="38"
-                        HorizontalOptions="CenterAndExpand"
-                        FontAttributes="Bold"
-                         Style="{StaticResource GoogleFont}"
-                         Text="{x:Static models:IconFont.Chevron_right}"
-                         TextColor="{StaticResource OnSecondary}"
-                         VerticalOptions="End" />
-
-
-                                </Grid>
-
-
-
-                            </Frame>
-
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-
-            </RefreshView>
-       
     </Grid>
 </ContentPage>

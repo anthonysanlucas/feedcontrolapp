@@ -36,5 +36,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer
         public IList<SupplierTransferDetailResponse> SupplierTransferDetails { get; set; }
 
         public string Observation { get; set; }
+      
+        public int? TotalPallets => TotalEquivalenceReceivedPallets ?? TotalEquivalencePallets;
+        public int? TotalSacks => TotalEquivalenceReceivedSacks ?? TotalEquivalenceSacks;
     }
 }

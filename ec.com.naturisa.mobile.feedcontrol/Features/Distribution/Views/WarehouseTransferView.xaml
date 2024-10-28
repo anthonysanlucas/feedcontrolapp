@@ -72,9 +72,9 @@
                                 AssignedCarrierName="{Binding FreightTransporterName}"
                                 DestinationSubsidiaryName="{Binding DestinationWarehouseName}"
                                 OriginSubsidiaryName="{Binding OriginSupplierName}"
-                                PrimaryUnit="{Binding TotalEquivalencePallets}"
+                                PrimaryUnit="{Binding TotalPallets}"
                                 PrimaryUnitText="pallets"
-                                SecondaryUnit="{Binding TotalEquivalenceSacks}"
+                                SecondaryUnit="{Binding TotalSacks}"
                                 SecondaryUnitText="sacos"
                                 Status="{Binding LastStatusCatalogueName}"
                                 TransferCode="{Binding Code}" />

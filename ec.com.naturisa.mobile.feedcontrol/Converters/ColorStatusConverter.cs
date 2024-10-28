@@ -22,7 +22,7 @@
                 if ((string)value == Const.Status.Transfer.InRoute)
                     return Sky600;
 
-                if ((string)value == Const.Status.Transfer.Finalized)
+                if ((string)value == Const.Status.Transfer.AtDestination)
                     return Indigo600;
 
                 if ((string)value == Const.Status.Transfer.Delivered)

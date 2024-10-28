@@ -12,7 +12,7 @@ public class Const
             public const string Assigned = "ASIGNADO";
             public const string Received = "RECIBIDO";
             public const string InRoute = "EN RUTA";
-            public const string Finalized = "FINALIZADO";
+            public const string AtDestination = "EN DESTINO";
             public const string Delivered = "ENTREGADO";
             public const string Paused = "PAUSADO";
         }

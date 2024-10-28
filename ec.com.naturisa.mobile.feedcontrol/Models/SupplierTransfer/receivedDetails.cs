@@ -2,8 +2,10 @@
 {
    public class ReceivedDetails
     {
-        public long IdSupplierTransferDetail;
+        [JsonPropertyName("idSupplierTransferDetail")]
+        public long IdSupplierTransferDetail { get; set; }
 
-        public int QuantityReceivedSacks;
+        [JsonPropertyName("quantityReceivedSacks")]
+        public int QuantityReceivedSacks { get; set; }
     }
 }

@@ -29,7 +29,7 @@
                     var obj = new ReceivedDetails
                     {
                         IdSupplierTransferDetail = item.IdSupplierTransferDetail,
-                        QuantityReceivedSacks = item.Quantity
+                        QuantityReceivedSacks = item.EquivalenceSacks
                     };
 
                     receivedDetails.Add(obj);
@@ -63,12 +63,6 @@
 
             }
 
-        }
-
-        public void Initialize()
-        {
-            Console.WriteLine(SelectedTransfer?.Code);
-        }
-
+        }    
     }
 }

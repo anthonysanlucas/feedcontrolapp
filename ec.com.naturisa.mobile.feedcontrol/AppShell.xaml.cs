@@ -35,7 +35,6 @@
             );
 
             #region Distribution
-
             Routing.RegisterRoute(nameof(FeedingPoolOneStepView), typeof(FeedingPoolOneStepView));
             Routing.RegisterRoute(nameof(FeedingPoolTwoStepView), typeof(FeedingPoolTwoStepView));
             Routing.RegisterRoute(nameof(StartOfRouteView), typeof(StartOfRouteView));
@@ -70,6 +69,12 @@
                 nameof(NewPoolTransferThreeStepView),
                 typeof(NewPoolTransferThreeStepView)
             );
+
+            #endregion
+
+
+            #region Supplying
+            Routing.RegisterRoute(nameof(TransferReceptionView), typeof(TransferReceptionView));
 
             #endregion
 

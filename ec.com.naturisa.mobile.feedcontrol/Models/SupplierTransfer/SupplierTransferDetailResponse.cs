@@ -19,6 +19,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer
         public int EquivalenceKilograms { get; set; }
         public int EquivalenceSacks { get; set; }
         public int EquivalencePallets { get; set; }
+        public int? EquivalenceReceivedKilograms { get; set; }
+        public int? EquivalenceReceivedSacks { get; set; }
+        public int? EquivalenceReceivedPallets { get; set; }
         public string PurchaseOrderCode { get; set; }
         public string Status { get; set; }
         public DateTime CreatedAt { get; set; }

@@ -160,6 +160,9 @@
 	  <MauiXaml Update="Features\Distribution\Views\TransferDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\TransferReceptionView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\WarehouseTransferView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

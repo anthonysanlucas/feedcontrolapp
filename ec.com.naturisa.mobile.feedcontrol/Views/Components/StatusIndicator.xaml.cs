@@ -54,7 +54,7 @@ public partial class StatusIndicator : ContentView
             "ASIGNADO" => GetResourceColor("Amber500"),
             "RECIBIDO" => GetResourceColor("Yellow400"),
             "EN RUTA" => GetResourceColor("Sky600"),            
-            "FINALIZADO" => GetResourceColor("Indigo600"),
+            "EN DESTINO" => GetResourceColor("Indigo600"),
             "ENTREGADO" => GetResourceColor("Green600"),
             "PAUSADO" => GetResourceColor("Neutral500"),
             _ => Colors.DarkGray
@@ -77,7 +77,7 @@ public partial class StatusIndicator : ContentView
             "ASIGNADO" => GetResourceColor("Amber50"),
             "RECIBIDO" => GetResourceColor("Primary100"),
             "TRANSITO" => GetResourceColor("Primary100"),
-            "FINALIZADO" => GetResourceColor("Green100"),
+            "EN DESTINO" => GetResourceColor("Green100"),
             "ENTREGADO" => GetResourceColor("Primary100"),
             _ => Colors.DarkGray
         };

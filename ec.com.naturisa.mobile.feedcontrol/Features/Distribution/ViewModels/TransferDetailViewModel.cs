@@ -1,14 +1,10 @@
-﻿using CommunityToolkit.Mvvm.Messaging;
-using ec.com.naturisa.mobile.feedcontrol.Helpers;
-using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
-using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
-
-namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     [QueryProperty(nameof(SelectedTransfer), "SelectedTransfer")]
     public partial class TransferDetailViewModel : BaseViewModel
     {
         private readonly SupplierTransferService _supplierTransferService;
+
         [ObservableProperty]
         private SupplierTransferResponse selectedTransfer;
 
@@ -26,7 +22,20 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
             try
             {
-                var response = await _supplierTransferService.ChangeStatus(SelectedTransfer.IdSupplierTransfer, SupplierTransferConstants.Delivered, SelectedTransfer.Observation);
+                List<ReceivedDetails> receivedDetails = new List<ReceivedDetails>();
+
+                foreach (var item in SelectedTransfer.SupplierTransferDetails)
+                {
+                    var obj = new ReceivedDetails
+                    {
+                        IdSupplierTransferDetail = item.IdSupplierTransferDetail,
+                        QuantityReceivedSacks = item.Quantity
+                    };
+
+                    receivedDetails.Add(obj);
+                }
+
+                var response = await _supplierTransferService.ChangeStatus(SelectedTransfer.IdSupplierTransfer, SupplierTransferConstants.Delivered, SelectedTransfer.Observation, receivedDetails);
 
                 if (response != null && response.Code != 200)
                 {

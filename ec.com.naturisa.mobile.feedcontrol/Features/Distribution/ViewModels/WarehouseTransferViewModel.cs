@@ -21,14 +21,14 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             {
                 AssignmentDate = DateTime.Now,
                 IncludeFreightTransporter = true,
-                DestinationOperatorWarehouseUserId = App.UserData.IdUser,
+                DestinationOperatorWarehouseUserId = 20051,
                 IncludeStatusCatalogue = true,
                 IncludeStatusCatalogueList = true,
                 IncludeSupplier = true,
                 IncludeSupplierTransferDetails = true,
                 IncludeTransport = true,
                 Status = "ACTIVO",
-                StatusCatalogueName = [SupplierTransferConstants.Finished, SupplierTransferConstants.Delivered]
+                StatusCatalogueName = [Const.Status.Transfer.AtDestination, SupplierTransferConstants.Delivered]
             };
 
             GetSupplierTransfers();

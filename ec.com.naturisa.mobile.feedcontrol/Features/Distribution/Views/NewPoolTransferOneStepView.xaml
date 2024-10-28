@@ -3,40 +3,39 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewPoolTransferOneStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
     x:DataType="viewModels:NewPoolTransferOneStepViewModel"
-    BackgroundColor="{StaticResource Primary900}"
-    Shell.BackgroundColor="{StaticResource Primary900}"
-    Shell.ForegroundColor="{StaticResource Primary100}">
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
-        <Label
-            FontAttributes="None"
-            Style="{StaticResource LargeLabel}"
-            Text="Nuevo viaje"
-            TextColor="{StaticResource Primary100}"
-            VerticalOptions="CenterAndExpand" />
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Nuevo viaje" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">
-        <!--  Header  -->
         <VerticalStackLayout
             Grid.Row="0"
             Padding="16"
             Spacing="8">
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
-                <Image Source="icon_sync_alt_white.svg" WidthRequest="16" />
                 <Label
-                    FontAttributes="None"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Route}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Label
                     Style="{StaticResource RegularLabel}"
-                    Text="Asignación de viaje"
-                    TextColor="{StaticResource Primary100}" />
+                    Text="Datos del viaje"
+                    TextColor="{StaticResource OnSecondary}" />
             </HorizontalStackLayout>
             <Label
                 HorizontalOptions="Center"
                 Style="{StaticResource RegularLabel}"
                 Text="{Binding LongDate}"
-                TextColor="{StaticResource White}" />
+                TextColor="{StaticResource Primary900}" />
             <Grid
                 Grid.Row="2"
                 Margin="0,16,0,0"
@@ -46,66 +45,31 @@
                     Grid.Row="0"
                     HorizontalOptions="Center"
                     Spacing="8">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary100}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="1"
-                            TextColor="{StaticResource Primary900}"
-                            VerticalOptions="Center" />
+                    <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                        <Label Style="{StaticResource SteperRoundAccentLabel}" Text="1" />
                     </Frame>
-                    <Image Source="icon_trending_flat.svg" />
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary800}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="2"
-                            TextColor="{StaticResource White}"
-                            VerticalOptions="Center" />
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="2" />
                     </Frame>
-                    <Image Source="icon_trending_flat.svg" />
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary800}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="3"
-                            TextColor="{StaticResource White}"
-                            VerticalOptions="Center" />
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="3" />
                     </Frame>
                 </HorizontalStackLayout>
             </Grid>
         </VerticalStackLayout>
 
         <Grid Grid.Row="1">
-            <Border
-                Background="{StaticResource White}"
-                HorizontalOptions="FillAndExpand"
-                StrokeShape="RoundRectangle 10,10,0,0"
-                StrokeThickness="0">
+            <Border Style="{StaticResource RoundedWhiteBorder}">
                 <Grid RowDefinitions="*">
                     <ScrollView>
                         <VerticalStackLayout
@@ -124,10 +88,7 @@
                             </Frame>
 
                             <VerticalStackLayout Spacing="4">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Bodega origen"
-                                    TextColor="{StaticResource Primary900}" />
+                                <Label Style="{StaticResource DataTitleLabel}" Text="Bodega origen" />
                                 <Frame
                                     Padding="8"
                                     BackgroundColor="Transparent"
@@ -145,12 +106,8 @@
                                 </Frame>
                             </VerticalStackLayout>
 
-                            <!--  Vehículo  -->
-                            <VerticalStackLayout Spacing="8">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Vehículo"
-                                    TextColor="{StaticResource Primary900}" />
+                            <VerticalStackLayout Spacing="4">
+                                <Label Style="{StaticResource DataTitleLabel}" Text="Vehículo" />
                                 <Frame
                                     Padding="8"
                                     BackgroundColor="Transparent"
@@ -167,12 +124,8 @@
                                 </Frame>
                             </VerticalStackLayout>
 
-                            <!--  Transportista  -->
-                            <VerticalStackLayout Spacing="8">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Transportista"
-                                    TextColor="{StaticResource Primary900}" />
+                            <VerticalStackLayout Spacing="4">
+                                <Label Style="{StaticResource DataTitleLabel}" Text="Transportista" />
                                 <Frame
                                     Padding="8"
                                     BackgroundColor="Transparent"
@@ -187,6 +140,25 @@
                                         SelectedItem="{Binding SelectedCarrier}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
+                                </Frame>
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Spacing="4">
+                                <Label Style="{StaticResource DataTitleLabel}" Text="Ayudantes" />
+                                <Frame
+                                    Grid.Column="2"
+                                    Padding="8,0"
+                                    BackgroundColor="Transparent"
+                                    BorderColor="{StaticResource Slate400}">
+                                    <Entry
+                                        HeightRequest="62"
+                                        HorizontalOptions="FillAndExpand"
+                                        HorizontalTextAlignment="End"
+                                        Keyboard="Numeric"
+                                        Placeholder="sacos"
+                                        PlaceholderColor="{StaticResource OnSecondary}"
+                                        Text="{Binding AssistantsNumber}"
+                                        TextColor="{StaticResource Primary700}" />
                                 </Frame>
                             </VerticalStackLayout>
                         </VerticalStackLayout>

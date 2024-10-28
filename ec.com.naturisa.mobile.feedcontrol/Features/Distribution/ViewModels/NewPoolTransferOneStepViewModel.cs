@@ -26,6 +26,9 @@
         [ObservableProperty]
         private TransportModel selectedTransport;
 
+        [ObservableProperty]
+        private int assistantsNumber;
+
         public NewPoolTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {

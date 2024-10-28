@@ -3,8 +3,8 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.TransferDetailView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     x:DataType="viewModels:TransferDetailViewModel">
     <Shell.TitleView>
@@ -20,40 +20,41 @@
         <VerticalStackLayout Grid.Row="0">
             <Grid RowSpacing="4">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
 
 
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
 
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="20*"/>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
                 </Grid.ColumnDefinitions>
 
 
                 <Label
-                    Grid.ColumnSpan="2"
-                    Grid.Column="0" 
                     Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     FontAttributes="None"
                     Text="Viaje"
                     VerticalOptions="Center" />
 
                 <!--  Header Row with Feed Information  -->
                 <Label
-                    Grid.Column="0" Grid.Row="1"
+                    Grid.Row="1"
+                    Grid.Column="0"
                     Grid.ColumnSpan="2"
                     FontAttributes="Bold"
                     Style="{StaticResource RegularLabel}"
@@ -62,17 +63,17 @@
                     VerticalOptions="Center" />
 
                 <Label
-                    Grid.ColumnSpan="2"
-                    Grid.Column="0" 
                     Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     FontAttributes="None"
                     Text="Origen"
                     VerticalOptions="Center" />
                 <!--  Status Box and Label  -->
                 <Label
-                    Grid.ColumnSpan="2"
-                    Grid.Column="0" 
                     Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding SelectedTransfer.OriginSupplierName}"
@@ -80,16 +81,16 @@
                     VerticalOptions="Center" />
 
                 <Label
-                     Grid.ColumnSpan="2"
-                     Grid.Column="0" 
-                     Grid.Row="5"
-                     FontAttributes="None"
-                     Text="Destino"
-                     VerticalOptions="Center" />
-                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    Grid.Column="0" 
+                    FontAttributes="None"
+                    Text="Destino"
+                    VerticalOptions="Center" />
+                <Label
                     Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding SelectedTransfer.DestinationWarehouseName}"
@@ -97,16 +98,16 @@
                     VerticalOptions="Center" />
 
                 <Label
-                     Grid.ColumnSpan="2"
-                     Grid.Column="2" 
-                     Grid.Row="3"
-                     FontAttributes="None"
-                     Text="Gabarra"
-                     VerticalOptions="Center" />
-                <Label
+                    Grid.Row="3"
+                    Grid.Column="2"
                     Grid.ColumnSpan="2"
-                    Grid.Column="2" 
+                    FontAttributes="None"
+                    Text="Gabarra"
+                    VerticalOptions="Center" />
+                <Label
                     Grid.Row="4"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding SelectedTransfer.TransportName}"
@@ -114,27 +115,27 @@
                     VerticalOptions="Center" />
 
                 <Label
-                     Grid.ColumnSpan="2"
-                     Grid.Column="2" 
-                     Grid.Row="5"
-                     FontAttributes="None"
-                     Text="Capitán"
-                     VerticalOptions="Center" />
-                <Label
+                    Grid.Row="5"
+                    Grid.Column="2"
                     Grid.ColumnSpan="2"
-                    Grid.Column="2" 
+                    FontAttributes="None"
+                    Text="Capitán"
+                    VerticalOptions="Center" />
+                <Label
                     Grid.Row="6"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
                     FontAttributes="None"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding SelectedTransfer.FreightTransporterName}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center" />
-                
+
                 <components:StatusIndicator
-                    Grid.Column="2"
-                    Grid.ColumnSpan ="2"
                     Grid.Row="0"
                     Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
                     HorizontalOptions="EndAndExpand"
                     Status="{Binding SelectedTransfer.LastStatusCatalogueName}"
                     VerticalOptions="CenterAndExpand" />
@@ -149,27 +150,27 @@
                 Padding="0"
                 BackgroundColor="#183d5b"
                 HasShadow="False">
-                <Grid  ColumnSpacing="0">
+                <Grid ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80*"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="20*"/>
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="20*" />
                     </Grid.ColumnDefinitions>
-                        <Label
-                            Padding="8"
+                    <Label
                         Grid.Column="0"
+                        Padding="8"
                         FontAttributes="Bold"
                         Text="Producto"
                         TextColor="White" />
-                    <BoxView 
+                    <BoxView
                         Grid.Column="1"
                         BackgroundColor="AliceBlue"
-                        VerticalOptions="FillAndExpand"
                         HorizontalOptions="End"
-                        WidthRequest="2"></BoxView>
+                        VerticalOptions="FillAndExpand"
+                        WidthRequest="2" />
                     <Label
-                        Padding="8"
                         Grid.Column="2"
+                        Padding="8"
                         FontAttributes="Bold"
                         HorizontalOptions="End"
                         Text="Sacos"
@@ -177,70 +178,86 @@
                 </Grid>
             </Frame>
 
-            <CollectionView 
-                ItemsSource="{Binding SelectedTransfer.SupplierTransferDetails}" 
+            <CollectionView
                 Grid.Row="1"
+                ItemsSource="{Binding SelectedTransfer.SupplierTransferDetails}"
                 SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="supplierTransferModels:SupplierTransferDetailResponse">
                         <!--  Contenido de la tabla  -->
-            <Grid>
+                        <Grid>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="20*"/>
-                    <RowDefinition Height="20*"/>
-                </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="20*" />
+                            </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10*"/>
-                    <ColumnDefinition Width="60*"/>
-                    <ColumnDefinition Width="20*"/>
-                </Grid.ColumnDefinitions>
-                
-                <!--  Primera fila  -->
-                <VerticalStackLayout
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Padding="0"
-                    VerticalOptions="FillAndExpand">
-                    <CheckBox 
-                        Margin="0" 
-                        VerticalOptions="Start" 
-                        IsChecked="{Binding IsChecked}"/>
-                </VerticalStackLayout>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="60*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
 
-                <VerticalStackLayout
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Padding="8">
-                    <Label
-                        FontAttributes="Bold"
-                        HorizontalOptions="Start"
-                        MaximumWidthRequest="300"
-                        Text="{Binding ProductName}"
-                        TextColor="{StaticResource Primary900}" />
-                    <Label
-                        FontSize="14"
-                        Text="{Binding ProductSupplierCode}"
-                        TextColor="{StaticResource OnSecondary}" />
-                </VerticalStackLayout>
+                            <!--  Primera fila  -->
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Padding="0"
+                                VerticalOptions="FillAndExpand">
+                                <CheckBox
+                                    Margin="0"
+                                    IsChecked="{Binding IsChecked}"
+                                    VerticalOptions="Start" />
+                            </VerticalStackLayout>
 
-                <VerticalStackLayout
-                    Grid.Row="0"
-                    Grid.Column="2"
-                    Padding="8"
-                    HorizontalOptions="End">
-                    <Label
-                        FontAttributes="Bold"
-                        Style="{StaticResource RegularLabel}"
-                        Text="{Binding EquivalenceSacks}"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="8">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    MaximumWidthRequest="300"
+                                    Text="{Binding ProductName}"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding ProductSupplierCode}"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
 
+                            <!--
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Padding="8"
+                                HorizontalOptions="End">
+                                <Label
+                                    FontAttributes="Bold"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="{Binding EquivalenceSacks}"
+                                    TextColor="{StaticResource Primary700}"
+                                    VerticalOptions="Center" />
+                            </VerticalStackLayout>
+                            -->
 
-                
-            </Grid>
+                            <Frame
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Padding="2"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Slate400}"
+                                HeightRequest="44"
+                                HorizontalOptions="End">
+                                <Entry
+                                    HorizontalOptions="End"
+                                    HorizontalTextAlignment="End"
+                                    Keyboard="Numeric"
+                                    Placeholder="sacos"
+                                    PlaceholderColor="{StaticResource OnSecondary}"
+                                    Text="{Binding EquivalenceSacks, Mode=TwoWay}" />
+                            </Frame>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
@@ -285,7 +302,7 @@
                 </StackLayout>
             </Grid>
             <Frame
-                Margin="0, 50, 0, 0"
+                Margin="0,50,0,0"
                 Padding="0"
                 BorderColor="{StaticResource Slate400}"
                 HasShadow="False"
@@ -299,14 +316,14 @@
                         MaxLength="500"
                         Placeholder="Escriba alguna observación"
                         PlaceholderColor="{StaticResource Black-text-light}"
-                        TextColor="{StaticResource Black-text}"
                         Text="{Binding SelectedTransfer.Observation}"
+                        TextColor="{StaticResource Black-text}"
                         VerticalTextAlignment="Start" />
                 </VerticalStackLayout>
             </Frame>
         </StackLayout>
 
-        
+
 
         <Frame
             Grid.Row="2"

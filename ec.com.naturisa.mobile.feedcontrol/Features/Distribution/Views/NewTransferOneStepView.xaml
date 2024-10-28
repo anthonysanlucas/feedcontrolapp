@@ -7,15 +7,10 @@
     Padding="0"
     x:DataType="viewModels:NewTransferOneStepViewModel"
     BackgroundColor="{StaticResource Primary900}"
-    Shell.BackgroundColor="{StaticResource Primary900}"
+    Shell.BackgroundColor="{StaticResource Secondary}"
     Shell.ForegroundColor="{StaticResource Primary100}">
     <Shell.TitleView>
-        <Label
-            FontAttributes="None"
-            Style="{StaticResource LargeLabel}"
-            Text="Nueva transferencia"
-            TextColor="{StaticResource Primary100}"
-            VerticalOptions="CenterAndExpand" />
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Nueva transferencia" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">

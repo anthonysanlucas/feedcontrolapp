@@ -8,16 +8,10 @@
     Title="Alimentación de piscina MA008"
     Padding="0"
     x:DataType="viewModels:FeedingPoolTwoStepViewModel"
-    BackgroundColor="{StaticResource Primary900}"
-    Shell.BackgroundColor="{StaticResource Primary900}"
-    Shell.ForegroundColor="{StaticResource Primary100}">
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
-        <Label
-            FontAttributes="None"
-            Style="{StaticResource LargeLabel}"
-            Text="Alimentación de piscina"
-            TextColor="{StaticResource Primary100}"
-            VerticalOptions="CenterAndExpand" />
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Alimentación de piscina" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">
@@ -27,83 +21,45 @@
             Spacing="8">
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
-                    HorizontalOptions="Center"
+                    FontSize="16"
+                    HorizontalOptions="End"
                     Style="{StaticResource GoogleFont}"
-                    Text="{x:Static models:IconFont.Water}"
-                    TextColor="{StaticResource White}"
-                    VerticalOptions="Center" />
+                    Text="{x:Static models:IconFont.Done_all}"
+                    TextColor="{StaticResource OnSecondary}" />
                 <Label
-                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Datos al terminar de alimentar"
+                    TextColor="{StaticResource OnSecondary}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
                     Style="{StaticResource LargeLabel}"
                     Text="MA008"
-                    TextColor="{StaticResource Primary100}"
-                    VerticalOptions="Center" />
+                    TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
-            <Label
-                HorizontalOptions="Center"
-                Style="{StaticResource RegularLabel}"
-                Text="{Binding LongDate}"
-                TextColor="{StaticResource White}" />
-            <Grid
+
+            <HorizontalStackLayout
                 Grid.Row="2"
-                Margin="0,16,0,0"
-                RowDefinitions="auto,auto"
-                RowSpacing="8">
-                <HorizontalStackLayout
-                    Grid.Row="0"
-                    HorizontalOptions="Center"
-                    Spacing="8">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary800}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="1"
-                            TextColor="{StaticResource White}"
-                            VerticalOptions="Center" />
-                    </Frame>
-                    <Image Source="icon_trending_flat.svg" />
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary100}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="2"
-                            TextColor="{StaticResource Primary900}"
-                            VerticalOptions="Center" />
-                    </Frame>
-                </HorizontalStackLayout>
+                Margin="0,8,0,0"
+                HorizontalOptions="Center"
+                Spacing="8">
+                <Frame Style="{StaticResource SteperRoundFrame}">
+                    <Label Style="{StaticResource SteperRoundLabel}" Text="1" />
+                </Frame>
                 <Label
-                    Grid.Row="1"
-                    FontAttributes="None"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource SmallLabel}"
-                    Text="Datos al terminar de alimentar la piscina"
-                    TextColor="{StaticResource Primary100}" />
-            </Grid>
+                    FontSize="18"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Arrow_right_alt}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                    <Label Style="{StaticResource SteperRoundAccentLabel}" Text="2" />
+                </Frame>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
 
         <Grid Grid.Row="1">
-            <Border
-                Grid.Row="0"
-                Background="{StaticResource White}"
-                HorizontalOptions="FillAndExpand"
-                StrokeShape="RoundRectangle 10,10,0,0"
-                StrokeThickness="0">
+            <Border Style="{StaticResource RoundedWhiteBorder}">
                 <Grid RowDefinitions="*">
                     <ScrollView>
                         <VerticalStackLayout
@@ -111,56 +67,23 @@
                             Padding="16,24,16,82"
                             VerticalOptions="FillAndExpand">
                             <VerticalStackLayout Grid.Row="1" Spacing="8">
-                                <VerticalStackLayout Spacing="0">
-                                    <Label
-                                        Style="{StaticResource RegularLabel}"
-                                        Text="Orden de alimentación"
-                                        TextColor="{StaticResource OnSecondary}" />
-
-                                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
-                                        <Label
-                                            MaximumWidthRequest="1000"
-                                            Style="{StaticResource RegularLabel}"
-                                            Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
-                                            TextColor="{StaticResource OnSecondary}"
-                                            VerticalOptions="Center" />
-
-                                        <Frame
-                                            Padding="4"
-                                            BackgroundColor="{StaticResource Secondary}"
-                                            VerticalOptions="Start">
-                                            <Label
-                                                MaximumWidthRequest="1000"
-                                                Style="{StaticResource RegularLabel}"
-                                                Text="30 SACOS"
-                                                TextColor="{StaticResource OnSecondary}" />
-                                        </Frame>
-                                    </FlexLayout>
-                                </VerticalStackLayout>
-
                                 <VerticalStackLayout Spacing="4">
-                                    <Label
-                                        Style="{StaticResource RegularLabel}"
-                                        Text="Alimento a cargar en tolvas"
-                                        TextColor="{StaticResource OnSecondary}" />
-
+                                    <Label Style="{StaticResource DataTitleLabel}" Text="Alimento a cargar en tolvas" />
                                     <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
                                         <Label
-                                            MaximumWidthRequest="1000"
-                                            Style="{StaticResource RegularLabel}"
+                                            MaximumWidthRequest="262"
+                                            Style="{StaticResource DataTextLabel}"
                                             Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
                                             TextColor="{StaticResource Primary700}"
                                             VerticalOptions="Center" />
-
                                         <Frame
                                             Padding="4"
-                                            BackgroundColor="{StaticResource Primary900}"
+                                            BackgroundColor="{StaticResource SurfaceLowContainer}"
                                             VerticalOptions="Start">
                                             <Label
                                                 MaximumWidthRequest="1000"
-                                                Style="{StaticResource RegularLabel}"
-                                                Text="25 SACOS"
-                                                TextColor="{StaticResource White}" />
+                                                Style="{StaticResource DataTextLabel}"
+                                                Text="25 sacos" />
                                         </Frame>
                                     </FlexLayout>
                                 </VerticalStackLayout>
@@ -169,28 +92,29 @@
                             <VerticalStackLayout Grid.Row="2">
                                 <Label
                                     Margin="0,12,0,4"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Tolvas cargadas"
-                                    TextColor="{StaticResource Primary900}" />
-
+                                    Style="{StaticResource DataTitleLabel}"
+                                    Text="Tolvas cargadas" />
                                 <Frame
                                     Margin="0"
-                                    Padding="0"
+                                    Padding="4"
                                     BorderColor="{StaticResource Slate400}"
                                     HasShadow="False"
-                                    HeightRequest="62"
+                                    HeightRequest="52"
+                                    HorizontalOptions="FillAndExpand"
                                     VerticalOptions="CenterAndExpand">
-
-                                    <Entry
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        Keyboard="Numeric"
-                                        MaxLength="2"
-                                        Placeholder="Ingresa el número de tolvas cargadas"
-                                        PlaceholderColor="{StaticResource Black-text-light}"
-                                        TextColor="{StaticResource Black-text}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
+                                    <VerticalStackLayout>
+                                        <Entry
+                                            Grid.Column="0"
+                                            FontSize="16"
+                                            HorizontalTextAlignment="End"
+                                            Keyboard="Numeric"
+                                            MaxLength="3"
+                                            Placeholder="Número de tolvas cargadas"
+                                            PlaceholderColor="{StaticResource OnSecondary}"
+                                            TextColor="{StaticResource Primary700}"
+                                            VerticalOptions="Center"
+                                            VerticalTextAlignment="Center" />
+                                    </VerticalStackLayout>
                                 </Frame>
 
                                 <Label
@@ -280,53 +204,35 @@
                                 <Label
                                     Margin="0,12,0,4"
                                     MaximumWidthRequest="1000"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Sacos sobrantes en el muro al terminar de alimentar"
-                                    TextColor="{StaticResource Primary900}" />
+                                    Style="{StaticResource DataTitleLabel}"
+                                    Text="Sacos sobrantes en el muro al terminar de alimentar" />
                                 <Frame
                                     Margin="0"
-                                    Padding="0"
+                                    Padding="4"
                                     BorderColor="{StaticResource Slate400}"
                                     HasShadow="False"
-                                    HeightRequest="62"
+                                    HeightRequest="52"
+                                    HorizontalOptions="FillAndExpand"
                                     VerticalOptions="CenterAndExpand">
-                                    <Grid
-                                        ColumnDefinitions="*, Auto"
-                                        ColumnSpacing="8"
-                                        HorizontalOptions="Fill">
+                                    <VerticalStackLayout>
                                         <Entry
                                             Grid.Column="0"
                                             FontSize="16"
+                                            HorizontalTextAlignment="End"
                                             Keyboard="Numeric"
-                                            MaxLength="2"
-                                            Placeholder="Ingresa el número de sacos"
-                                            PlaceholderColor="{StaticResource Black-text-light}"
-                                            TextColor="{StaticResource Secondary}"
+                                            MaxLength="3"
+                                            Placeholder="Sacos sobrantes"
+                                            PlaceholderColor="{StaticResource OnSecondary}"
+                                            TextColor="{StaticResource Primary700}"
                                             VerticalOptions="Center"
                                             VerticalTextAlignment="Center" />
-                                        <Frame
-                                            Grid.Column="1"
-                                            BackgroundColor="{StaticResource Secondary}"
-                                            HeightRequest="60"
-                                            VerticalOptions="FillAndExpand">
-                                            <Label
-                                                HorizontalOptions="CenterAndExpand"
-                                                HorizontalTextAlignment="Center"
-                                                Style="{StaticResource RegularLabel}"
-                                                Text="0 KG"
-                                                TextColor="{StaticResource OnSecondary}"
-                                                VerticalOptions="Center"
-                                                VerticalTextAlignment="Center"
-                                                WidthRequest="80" />
-                                        </Frame>
-                                    </Grid>
+                                    </VerticalStackLayout>
                                 </Frame>
 
                                 <Label
                                     Margin="0,12,0,4"
-                                    Style="{StaticResource RegularLabel}"
-                                    Text="Observación (opcional)"
-                                    TextColor="{StaticResource Primary900}" />
+                                    Style="{StaticResource DataTitleLabel}"
+                                    Text="Observación (opcional)" />
 
                                 <CollectionView
                                     Grid.Row="2"

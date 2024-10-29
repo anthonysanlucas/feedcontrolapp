@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    Title="Alimentación de piscina MA008"
+    Title="Alimentación de piscina"
     Padding="0"
     x:DataType="viewModels:FeedingPoolTwoStepViewModel"
     BackgroundColor="{StaticResource Secondary}"
@@ -78,7 +78,7 @@
                                             VerticalOptions="Center" />
                                         <Frame
                                             Padding="4"
-                                            BackgroundColor="{StaticResource SurfaceLowContainer}"
+                                            BackgroundColor="{StaticResource Secondary}"
                                             VerticalOptions="Start">
                                             <Label
                                                 MaximumWidthRequest="1000"
@@ -126,8 +126,9 @@
                                 <Grid
                                     ColumnDefinitions="*,*"
                                     ColumnSpacing="8"
-                                    RowDefinitions="auto,auto,auto"
+                                    RowDefinitions="Auto,Auto,Auto"
                                     RowSpacing="8">
+
                                     <Label
                                         Grid.Row="0"
                                         Grid.Column="0"
@@ -136,32 +137,22 @@
                                         Text="Alimentador automático"
                                         TextColor="{StaticResource Gray400}" />
 
-                                    <HorizontalStackLayout
+                                    <VerticalStackLayout
                                         Grid.Row="1"
                                         Grid.Column="0"
-                                        Padding="0"
-                                        HorizontalOptions="Start"
-                                        Spacing="4">
-                                        <CheckBox Margin="0" HorizontalOptions="Start" />
-                                        <Label
-                                            Text="Canoa"
+                                        Spacing="8">
+                                        <RadioButton
+                                            Content="Canoa"
+                                            GroupName="AutomaticFeederGroup"
                                             TextColor="{StaticResource Primary900}"
                                             VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout
-                                        Grid.Row="2"
-                                        Grid.Column="0"
-                                        Padding="0"
-                                        HorizontalOptions="Start"
-                                        Spacing="4"
-                                        VerticalOptions="Center">
-                                        <CheckBox Margin="0" HorizontalOptions="Start" />
-                                        <Label
-                                            Text="Muelle"
+                                        <RadioButton
+                                            Content="Muelle"
+                                            GroupName="AutomaticFeederGroup"
                                             TextColor="{StaticResource Primary900}"
                                             VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
+                                    </VerticalStackLayout>
 
                                     <Label
                                         Grid.Row="0"
@@ -172,33 +163,22 @@
                                         Text="Voleo"
                                         TextColor="{StaticResource Gray400}" />
 
-                                    <HorizontalStackLayout
+                                    <VerticalStackLayout
                                         Grid.Row="1"
                                         Grid.Column="1"
-                                        Padding="0"
-                                        HorizontalOptions="Start"
-                                        Spacing="4"
-                                        VerticalOptions="Center">
-                                        <CheckBox Margin="0" HorizontalOptions="Start" />
-                                        <Label
-                                            Text="Canoa"
+                                        Spacing="8">
+                                        <RadioButton
+                                            Content="Canoa"
+                                            GroupName="BroadcastGroup"
                                             TextColor="{StaticResource Primary900}"
                                             VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
 
-                                    <HorizontalStackLayout
-                                        Grid.Row="2"
-                                        Grid.Column="1"
-                                        Padding="0"
-                                        HorizontalOptions="Start"
-                                        Spacing="4"
-                                        VerticalOptions="Center">
-                                        <CheckBox Margin="0" HorizontalOptions="Start" />
-                                        <Label
-                                            Text="Orilla"
+                                        <RadioButton
+                                            Content="Orilla"
+                                            GroupName="BroadcastGroup"
                                             TextColor="{StaticResource Primary900}"
                                             VerticalOptions="Center" />
-                                    </HorizontalStackLayout>
+                                    </VerticalStackLayout>
                                 </Grid>
 
                                 <Label

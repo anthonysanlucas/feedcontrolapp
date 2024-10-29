@@ -1,12 +1,331 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.TransferReceptionView"
-             Title="TransferReceptionView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.TransferReceptionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
+    xmlns:supplyingViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels"
+    x:DataType="supplyingViewModels:TransferReceptionViewModel">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Recepción de carga" />
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="auto,*,auto" RowSpacing="10">
+        <VerticalStackLayout Grid.Row="0">
+            <Grid RowSpacing="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="20*" />
+
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Text="Viaje"
+                    VerticalOptions="Center" />
+
+                <!--  Header Row with Feed Information  -->
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="Bold"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.Code}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Text="Origen"
+                    VerticalOptions="Center" />
+                <!--  Status Box and Label  -->
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.OriginSupplierName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Text="Destino"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.DestinationWarehouseName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Text="Gabarra"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.TransportName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Text="Capitán"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="6"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="{Binding SelectedTransfer.FreightTransporterName}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center" />
+
+                <components:StatusIndicator
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    HorizontalOptions="EndAndExpand"
+                    Status="{Binding SelectedTransfer.LastStatusCatalogueName}"
+                    VerticalOptions="CenterAndExpand" />
+
+            </Grid>
+        </VerticalStackLayout>
+
+        <StackLayout Grid.Row="1" Padding="0">
+            <!--  Encabezado de la tabla  -->
+            <Frame
+                Grid.Column="0"
+                Padding="0"
+                BackgroundColor="#183d5b"
+                HasShadow="False">
+                <Grid ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="20*" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        Padding="8"
+                        FontAttributes="Bold"
+                        Text="Producto"
+                        TextColor="White" />
+                    <BoxView
+                        Grid.Column="1"
+                        BackgroundColor="AliceBlue"
+                        HorizontalOptions="End"
+                        VerticalOptions="FillAndExpand"
+                        WidthRequest="2" />
+                    <Label
+                        Grid.Column="2"
+                        Padding="8"
+                        FontAttributes="Bold"
+                        HorizontalOptions="End"
+                        Text="Sacos"
+                        TextColor="White" />
+                </Grid>
+            </Frame>
+
+            <CollectionView
+                Grid.Row="1"
+                ItemsSource="{Binding SelectedTransfer.SupplierTransferDetails}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="supplierTransferModels:SupplierTransferDetailResponse">
+                        <!--  Contenido de la tabla  -->
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20*" />
+                                <RowDefinition Height="20*" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="60*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!--  Primera fila  -->
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Padding="0"
+                                VerticalOptions="FillAndExpand">
+                                <CheckBox
+                                    Margin="0"
+                                    IsChecked="{Binding IsChecked}"
+                                    VerticalOptions="Start" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Padding="8">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    MaximumWidthRequest="300"
+                                    Text="{Binding ProductName}"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding ProductSupplierCode}"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                            <Frame
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                Padding="2"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource Slate400}"
+                                HeightRequest="44"
+                                HorizontalOptions="End">
+                                <Entry
+                                    HorizontalOptions="End"
+                                    HorizontalTextAlignment="End"
+                                    Keyboard="Numeric"
+                                    Placeholder="sacos"
+                                    PlaceholderColor="{StaticResource OnSecondary}"
+                                    Text="{Binding EquivalenceSacks, Mode=TwoWay}" />
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+
+            <!--  Fila de total  -->
+            <Grid
+                Grid.Row="2"
+                Grid.ColumnSpan="2"
+                ColumnDefinitions="*,*"
+                RowDefinitions="auto, auto">
+                <BoxView
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,8"
+                    BackgroundColor="{StaticResource Gray200}"
+                    HeightRequest="1" />
+
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    FontAttributes="None"
+                    Text="TOTAL"
+                    TextColor="{StaticResource OnSecondary}"
+                    VerticalOptions="Start"
+                    VerticalTextAlignment="Center" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="End">
+                    <Label
+                        HorizontalOptions="End"
+                        Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0} Sacos'}"
+                        TextColor="{StaticResource Primary700}" />
+                    <Label
+                        FontSize="14"
+                        HorizontalOptions="End"
+                        Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} Pallets'}"
+                        TextColor="{StaticResource OnSecondary}" />
+                </StackLayout>
+            </Grid>
+            <Frame
+                Margin="0,50,0,0"
+                Padding="0"
+                BorderColor="{StaticResource Slate400}"
+                HasShadow="False"
+                HeightRequest="80"
+                VerticalOptions="StartAndExpand">
+                <VerticalStackLayout>
+                    <Editor
+                        AutoSize="Disabled"
+                        FontSize="16"
+                        Keyboard="Text"
+                        MaxLength="500"
+                        Placeholder="Escriba alguna observación"
+                        PlaceholderColor="{StaticResource Black-text-light}"
+                        Text="{Binding SelectedTransfer.Observation}"
+                        TextColor="{StaticResource Black-text}"
+                        VerticalTextAlignment="Start" />
+                </VerticalStackLayout>
+            </Frame>
+        </StackLayout>
+
+
+
+        <Frame
+            Grid.Row="2"
+            Margin="0,16,0,0"
+            Padding="0"
+            BackgroundColor="{StaticResource Primary700}"
+            BorderColor="Transparent"
+            CornerRadius="8"
+            HeightRequest="52"
+            HorizontalOptions="FillAndExpand">
+            <Grid
+                ColumnDefinitions="*"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill">
+                <Button
+                    Grid.Column="0"
+                    BackgroundColor="Transparent"
+                    Command="{Binding ReceptTransferCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    SemanticProperties.Hint="Registrar Recepción"
+                    Text="Registrar Recepción"
+                    TextColor="White" />
+            </Grid>
+        </Frame>
+    </Grid>
 </ContentPage>

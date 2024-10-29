@@ -7,16 +7,10 @@
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
     x:DataType="viewModels:FeedingPoolOneStepViewModel"
-    BackgroundColor="{StaticResource Primary900}"
-    Shell.BackgroundColor="{StaticResource Primary900}"
-    Shell.ForegroundColor="{StaticResource Primary100}">
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
-        <Label
-            FontAttributes="None"
-            Style="{StaticResource LargeLabel}"
-            Text="Alimentación de piscina"
-            TextColor="{StaticResource Primary100}"
-            VerticalOptions="CenterAndExpand" />
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Alimentación de piscina" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">
@@ -26,83 +20,45 @@
             Spacing="8">
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
-                    HorizontalOptions="Center"
+                    FontSize="16"
+                    HorizontalOptions="End"
                     Style="{StaticResource GoogleFont}"
-                    Text="{x:Static models:IconFont.Water}"
-                    TextColor="{StaticResource White}"
-                    VerticalOptions="Center" />
+                    Text="{x:Static models:IconFont.Feed}"
+                    TextColor="{StaticResource OnSecondary}" />
                 <Label
-                    FontAttributes="None"
+                    Style="{StaticResource RegularLabel}"
+                    Text="Datos al llegar a la piscina"
+                    TextColor="{StaticResource OnSecondary}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
                     Style="{StaticResource LargeLabel}"
                     Text="MA008"
-                    TextColor="{StaticResource Primary100}"
-                    VerticalOptions="Center" />
+                    TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
-            <Label
-                HorizontalOptions="Center"
-                Style="{StaticResource RegularLabel}"
-                Text="{Binding LongDate}"
-                TextColor="{StaticResource White}" />
-            <Grid
+
+            <HorizontalStackLayout
                 Grid.Row="2"
-                Margin="0,16,0,0"
-                RowDefinitions="auto,auto"
-                RowSpacing="8">
-                <HorizontalStackLayout
-                    Grid.Row="0"
-                    HorizontalOptions="Center"
-                    Spacing="8">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary100}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="1"
-                            TextColor="{StaticResource Primary900}"
-                            VerticalOptions="Center" />
-                    </Frame>
-                    <Image Source="icon_trending_flat.svg" />
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary800}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="2"
-                            TextColor="{StaticResource White}"
-                            VerticalOptions="Center" />
-                    </Frame>
-                </HorizontalStackLayout>
+                Margin="0,8,0,0"
+                HorizontalOptions="Center"
+                Spacing="8">
+                <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                    <Label Style="{StaticResource SteperRoundAccentLabel}" Text="1" />
+                </Frame>
                 <Label
-                    Grid.Row="1"
-                    FontAttributes="None"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource SmallLabel}"
-                    Text="Datos al llegar a la piscina"
-                    TextColor="{StaticResource Primary100}" />
-            </Grid>
+                    FontSize="18"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Arrow_right_alt}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Frame Style="{StaticResource SteperRoundFrame}">
+                    <Label Style="{StaticResource SteperRoundLabel}" Text="2" />
+                </Frame>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
 
         <Grid Grid.Row="1">
-            <Border
-                Grid.Row="0"
-                Background="{StaticResource White}"
-                HorizontalOptions="FillAndExpand"
-                StrokeShape="RoundRectangle 10,10,0,0"
-                StrokeThickness="0">
+            <Border Style="{StaticResource RoundedWhiteBorder}">
                 <Grid RowDefinitions="*">
                     <ScrollView Grid.Row="0">
                         <VerticalStackLayout
@@ -111,93 +67,57 @@
                             VerticalOptions="FillAndExpand">
                             <Label
                                 Margin="0,0,0,4"
-                                Style="{StaticResource RegularLabel}"
-                                Text="Sacos encontrados en el muro"
-                                TextColor="{StaticResource Primary900}" />
-
+                                Style="{StaticResource DataTitleLabel}"
+                                Text="Sacos encontrados en el muro" />
                             <Frame
                                 Margin="0"
-                                Padding="0"
+                                Padding="4"
                                 BorderColor="{StaticResource Slate400}"
                                 HasShadow="False"
-                                HeightRequest="62"
+                                HeightRequest="52"
+                                HorizontalOptions="FillAndExpand"
                                 VerticalOptions="CenterAndExpand">
-                                <Grid
-                                    ColumnDefinitions="*, Auto"
-                                    ColumnSpacing="8"
-                                    HorizontalOptions="Fill">
+                                <VerticalStackLayout>
                                     <Entry
                                         Grid.Column="0"
                                         FontSize="16"
+                                        HorizontalTextAlignment="End"
                                         Keyboard="Numeric"
-                                        MaxLength="2"
+                                        MaxLength="3"
                                         Placeholder="Ingresa el número de sacos"
                                         PlaceholderColor="{StaticResource OnSecondary}"
                                         TextColor="{StaticResource Primary700}"
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center" />
-
-                                    <Frame
-                                        Grid.Column="1"
-                                        BackgroundColor="{StaticResource Secondary}"
-                                        HeightRequest="60"
-                                        VerticalOptions="FillAndExpand">
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            HorizontalTextAlignment="Center"
-                                            Style="{StaticResource RegularLabel}"
-                                            Text="0 KG"
-                                            TextColor="{StaticResource OnSecondary}"
-                                            VerticalOptions="Center"
-                                            VerticalTextAlignment="Center"
-                                            WidthRequest="80" />
-                                    </Frame>
-                                </Grid>
+                                </VerticalStackLayout>
                             </Frame>
 
                             <Label
                                 Margin="0,12,0,4"
-                                Style="{StaticResource RegularLabel}"
-                                Text="Sacos sobrantes en tolvas"
-                                TextColor="{StaticResource Primary900}" />
+                                Style="{StaticResource DataTitleLabel}"
+                                Text="Sacos sobrantes en tolvas" />
 
                             <Frame
                                 Margin="0"
-                                Padding="0"
+                                Padding="4"
                                 BorderColor="{StaticResource Slate400}"
                                 HasShadow="False"
-                                HeightRequest="62"
+                                HeightRequest="52"
+                                HorizontalOptions="FillAndExpand"
                                 VerticalOptions="CenterAndExpand">
-                                <Grid
-                                    ColumnDefinitions="*, Auto"
-                                    ColumnSpacing="8"
-                                    HorizontalOptions="Fill">
+                                <VerticalStackLayout>
                                     <Entry
                                         Grid.Column="0"
                                         FontSize="16"
+                                        HorizontalTextAlignment="End"
                                         Keyboard="Numeric"
-                                        MaxLength="2"
+                                        MaxLength="3"
                                         Placeholder="Ingresa el número de sacos"
                                         PlaceholderColor="{StaticResource OnSecondary}"
                                         TextColor="{StaticResource Primary700}"
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center" />
-                                    <Frame
-                                        Grid.Column="1"
-                                        BackgroundColor="{StaticResource Secondary}"
-                                        HeightRequest="60"
-                                        VerticalOptions="FillAndExpand">
-                                        <Label
-                                            HorizontalOptions="CenterAndExpand"
-                                            HorizontalTextAlignment="Center"
-                                            Style="{StaticResource RegularLabel}"
-                                            Text="0 KG"
-                                            TextColor="{StaticResource OnSecondary}"
-                                            VerticalOptions="Center"
-                                            VerticalTextAlignment="Center"
-                                            WidthRequest="80" />
-                                    </Frame>
-                                </Grid>
+                                </VerticalStackLayout>
                             </Frame>
                         </VerticalStackLayout>
                     </ScrollView>
@@ -230,16 +150,13 @@
                                 Command="{Binding GoToFeedingPoolTwoStepCommand}"
                                 HorizontalOptions="FillAndExpand"
                                 SemanticProperties.Hint="Siguiente paso"
-                                Text="Siguiente"
+                                Text="Registrar datos"
                                 TextColor="White" />
                         </Grid>
                     </Frame>
                 </Grid>
             </Border>
         </Grid>
-
     </Grid>
-
-
 
 </ContentPage>

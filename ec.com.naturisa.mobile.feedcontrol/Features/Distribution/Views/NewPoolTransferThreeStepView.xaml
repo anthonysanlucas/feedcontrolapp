@@ -146,7 +146,6 @@
                         </VerticalStackLayout>
                     </Grid>
 
-
                     <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
                         <CollectionView Grid.Row="0" ItemsSource="{Binding PoolTransferTwoStepSelectionModels}">
                             <CollectionView.Header>

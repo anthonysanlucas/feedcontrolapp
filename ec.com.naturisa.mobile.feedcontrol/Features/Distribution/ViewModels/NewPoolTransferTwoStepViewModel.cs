@@ -28,18 +28,23 @@
             {
                 new FeedTransferDetailModel
                 {
-                    ProductId = 22392,
-                    ProductName = "AQUAXCEL MW354 GROWER NG1.8MM"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 13655,
-                    ProductName = "AQUAXCEL MW 424 SLD STARTER 0.8 MM"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 2489,
+                    ProductId = 1,
                     ProductName = "ALIMENTO INICIADOR AQUAXCEL 0.6 MM"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 3,
+                    ProductName = "NATURISA STARTER 0.8MM"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 2,
+                    ProductName = "NATURISA ADVANCE STD 1.2MM"
+                },
+                 new FeedTransferDetailModel
+                {
+                    ProductId = 4,
+                    ProductName = "AQUAXCEL MW354 GROWER NG 1.8"
                 },
             };
 

@@ -2,8 +2,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views;
 
 public partial class TransferReceptionView : ContentPage
 {
-	public TransferReceptionView()
+	public TransferReceptionView(TransferReceptionViewModel transferReceptionViewModel)
 	{
 		InitializeComponent();
+		BindingContext = transferReceptionViewModel;
 	}
 }

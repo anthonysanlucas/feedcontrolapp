@@ -4,94 +4,70 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:supplierTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer"
     xmlns:supplyingViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels"
     Padding="0"
-    x:DataType="supplyingViewModels:TransferReceptionViewModel">
+    x:DataType="supplyingViewModels:TransferReceptionViewModel"
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
         <Label Style="{StaticResource ShellTitleLabel}" Text="Recepción de carga" />
     </Shell.TitleView>
 
-    <Grid RowDefinitions="auto,*,auto" RowSpacing="10">
-        <Grid
-            Padding="16"
-            ColumnDefinitions="128, *"
-            ColumnSpacing="8"
-            HorizontalOptions="Start"
-            RowDefinitions="Auto, Auto, Auto"
-            RowSpacing="16">
-            <FlexLayout
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                JustifyContent="SpaceBetween">
-                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                    <Label Style="{StaticResource DataTitleLabel}" Text="Código viaje" />
-                    <Label
-                        FontAttributes="None"
-                        Style="{StaticResource DataTextLabel}"
-                        Text="{Binding SelectedTransfer.Code}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
-                <components:StatusIndicator Status="{Binding SelectedTransfer.LastStatusCatalogueName}" />
-            </FlexLayout>
-
-            <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Origen" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.OriginSupplierName}" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Destino" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.DestinationWarehouseName}" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Grid.Row="2" Grid.Column="0">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Transporte" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.TransportName}" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Grid.Row="2" Grid.Column="1">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Transportista" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.FreightTransporterName}" />
-            </VerticalStackLayout>
-        </Grid>
+    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="10">
+        <controls:TransferDetailHeaderControl
+            Grid.Row="0"
+            AssignedCarrierName="{Binding SelectedTransfer.FreightTransporterName}"
+            AssignedVehiclePlate="{Binding SelectedTransfer.TransportName}"
+            DestinationSubsidiaryName="{Binding SelectedTransfer.DestinationWarehouseName}"
+            OriginSubsidiaryName="{Binding SelectedTransfer.OriginSupplierName}"
+            Status="{Binding SelectedTransfer.LastStatusCatalogueName}"
+            TransferCode="{Binding SelectedTransfer.Code}" />
 
         <Border
             Grid.Row="1"
             Padding="16,24,16,0"
             Style="{StaticResource RoundedWhiteBorder}">
-
             <Grid RowDefinitions="*">
                 <StackLayout Grid.Row="1" Padding="0">
-                    <!--  Encabezado de la tabla  -->
-                    <Frame
-                        Grid.Column="0"
-                        Padding="0"
-                        BackgroundColor="{StaticResource Secondary}">
-                        <Grid ColumnSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80*" />
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="20*" />
-                            </Grid.ColumnDefinitions>
+                    <Frame Padding="6" BackgroundColor="{StaticResource Secondary}">
+                        <Grid ColumnDefinitions="*,Auto" ColumnSpacing="8">
                             <Label
                                 Grid.Column="0"
-                                Padding="8"
+                                HorizontalOptions="Start"
                                 Text="Producto"
                                 TextColor="{StaticResource OnSecondary}" />
-                            <BoxView
+
+                            <Grid
                                 Grid.Column="1"
-                                BackgroundColor="AliceBlue"
-                                HorizontalOptions="End"
-                                VerticalOptions="FillAndExpand"
-                                WidthRequest="2" />
-                            <Label
-                                Grid.Column="2"
-                                Padding="8"
-                                HorizontalOptions="End"
-                                Text="Sacos"
-                                TextColor="{StaticResource OnSecondary}" />
+                                ColumnDefinitions="60,60"
+                                ColumnSpacing="8"
+                                RowDefinitions="Auto, Auto"
+                                RowSpacing="4">
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Center"
+                                    Text="Sacos"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    HorizontalOptions="Start"
+                                    Opacity="0.8"
+                                    Style="{StaticResource DataTitleLabel}"
+                                    Text="Enviados"
+                                    TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    Opacity="0.8"
+                                    Text="Recibidos"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </Grid>
                         </Grid>
                     </Frame>
 
@@ -101,78 +77,71 @@
                         SelectionMode="None">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="supplierTransferModels:SupplierTransferDetailResponse">
-                                <!--  Contenido de la tabla  -->
-                                <Grid>
+                                <Grid
+                                    Padding="8"
+                                    BackgroundColor="{StaticResource Primary50}"
+                                    ColumnDefinitions="*, Auto"
+                                    ColumnSpacing="8">
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20*" />
-                                        <RowDefinition Height="20*" />
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10*" />
-                                        <ColumnDefinition Width="60*" />
-                                        <ColumnDefinition Width="20*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <!--  Primera fila  -->
-                                    <VerticalStackLayout
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Padding="0"
-                                        VerticalOptions="FillAndExpand">
-                                        <CheckBox
-                                            Margin="0"
-                                            IsChecked="{Binding IsChecked}"
-                                            VerticalOptions="Start" />
-                                    </VerticalStackLayout>
-
-                                    <VerticalStackLayout
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Padding="8">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            HorizontalOptions="Start"
-                                            MaximumWidthRequest="300"
-                                            Text="{Binding ProductName}"
-                                            TextColor="{StaticResource Primary900}" />
+                                    <VerticalStackLayout Grid.Column="0">
                                         <Label
                                             FontSize="14"
+                                            HorizontalOptions="Start"
+                                            MaximumWidthRequest="260"
+                                            Style="{StaticResource DataTextLabel}"
+                                            Text="{Binding ProductName}" />
+                                        <Label
+                                            FontSize="12"
                                             Text="{Binding ProductSupplierCode, StringFormat='SKU {0:F0}'}"
                                             TextColor="{StaticResource OnSecondary}" />
                                     </VerticalStackLayout>
-                                    <Frame
-                                        Grid.Row="0"
-                                        Grid.Column="2"
-                                        Padding="2"
-                                        BackgroundColor="Transparent"
-                                        BorderColor="{StaticResource Slate400}"
-                                        HeightRequest="44"
-                                        HorizontalOptions="End">
-                                        <Entry
+
+                                    <Grid
+                                        Grid.Column="1"
+                                        ColumnDefinitions="60,60"
+                                        ColumnSpacing="8">
+                                        <Label
+                                            Grid.Column="0"
                                             HorizontalOptions="End"
-                                            HorizontalTextAlignment="End"
-                                            Keyboard="Numeric"
-                                            Placeholder="sacos"
-                                            PlaceholderColor="{StaticResource OnSecondary}"
-                                            Text="{Binding EquivalenceSacks, Mode=TwoWay}" />
-                                    </Frame>
+                                            Style="{StaticResource RegularLabel}"
+                                            Text="{Binding EquivalenceSacks}"
+                                            TextColor="{StaticResource OnSecondary}"
+                                            VerticalOptions="Center" />
+                                        <Frame
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Padding="2"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{StaticResource Slate400}"
+                                            HeightRequest="44"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Start">
+                                            <VerticalStackLayout>
+                                                <Entry
+                                                    HorizontalOptions="End"
+                                                    HorizontalTextAlignment="End"
+                                                    Keyboard="Numeric"
+                                                    Placeholder="sacos"
+                                                    PlaceholderColor="{StaticResource OnSecondary}"
+                                                    Text="{Binding EquivalenceSacks, Mode=TwoWay}"
+                                                    VerticalOptions="Start" />
+                                            </VerticalStackLayout>
+                                        </Frame>
+                                    </Grid>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
 
-                    <!--  Fila de total  -->
                     <Grid
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
-                        ColumnDefinitions="*,*"
-                        RowDefinitions="auto, auto">
+                        ColumnDefinitions="*, 80, 80"
+                        RowDefinitions="Auto, Auto">
                         <BoxView
                             Grid.Row="0"
-                            Grid.ColumnSpan="2"
-                            Margin="0,8"
+                            Grid.ColumnSpan="3"
+                            Margin="0,0,0,8"
                             BackgroundColor="{StaticResource Gray200}"
                             HeightRequest="1" />
 
@@ -185,23 +154,42 @@
                             VerticalOptions="Start"
                             VerticalTextAlignment="Center" />
 
-                        <StackLayout
+                        <VerticalStackLayout
                             Grid.Row="1"
                             Grid.Column="1"
                             HorizontalOptions="End">
                             <Label
                                 HorizontalOptions="End"
-                                Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0} Sacos'}"
+                                Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0}'}"
+                                TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                FontSize="14"
+                                HorizontalOptions="End"
+                                Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} pallets'}"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            HorizontalOptions="End">
+                            <Label
+                                HorizontalOptions="End"
+                                Text="{Binding SelectedTransfer.TotalEquivalenceReceivedSacks, StringFormat='{0}'}"
                                 TextColor="{StaticResource Primary700}" />
                             <Label
                                 FontSize="14"
                                 HorizontalOptions="End"
-                                Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} Pallets'}"
+                                Text="{Binding SelectedTransfer.TotalEquivalenceReceivedPallets, StringFormat='{0} pallets'}"
                                 TextColor="{StaticResource OnSecondary}" />
-                        </StackLayout>
+                        </VerticalStackLayout>
                     </Grid>
+
+                    <Label
+                        Margin="0,32,0,8"
+                        Style="{StaticResource DataTitleLabel}"
+                        Text="Observación (opcional)" />
                     <Frame
-                        Margin="0,50,0,0"
                         Padding="0"
                         BorderColor="{StaticResource Slate400}"
                         HasShadow="False"

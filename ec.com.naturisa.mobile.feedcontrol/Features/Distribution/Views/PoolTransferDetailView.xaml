@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
@@ -19,49 +20,14 @@
         Background="Transparent"
         RowDefinitions="Auto ,*"
         RowSpacing="16">
-        <Grid
-            Padding="16"
-            ColumnDefinitions="128, *"
-            ColumnSpacing="8"
-            HorizontalOptions="Start"
-            RowDefinitions="Auto, Auto, Auto"
-            RowSpacing="16">
-            <FlexLayout
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                JustifyContent="SpaceBetween">
-                <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                    <Label Style="{StaticResource DataTitleLabel}" Text="Código viaje" />
-                    <Label
-                        FontAttributes="None"
-                        Style="{StaticResource DataTextLabel}"
-                        Text="{Binding SelectedTransfer.TransferCode}"
-                        VerticalOptions="Center" />
-                </VerticalStackLayout>
-                <components:StatusIndicator Status="{Binding SelectedTransfer.Status}" />
-            </FlexLayout>
-
-            <VerticalStackLayout Grid.Row="1" Grid.Column="0">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Finca origen" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.OriginSubsidiaryName}" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Grid.Row="1" Grid.Column="1">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Destino" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.DestinationSubsidiaryName}" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Grid.Row="2" Grid.Column="0">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Transporte" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedVehiclePlate}" />
-            </VerticalStackLayout>
-
-            <VerticalStackLayout Grid.Row="2" Grid.Column="1">
-                <Label Style="{StaticResource DataTitleLabel}" Text="Transportista" />
-                <Label Style="{StaticResource DataTextLabel}" Text="{Binding SelectedTransfer.AssignedCarrierName}" />
-            </VerticalStackLayout>
-        </Grid>
+        <controls:TransferDetailHeaderControl
+            Grid.Row="0"
+            AssignedCarrierName="{Binding SelectedTransfer.AssignedCarrierName}"
+            AssignedVehiclePlate="{Binding SelectedTransfer.AssignedVehiclePlate}"
+            DestinationSubsidiaryName="{Binding SelectedTransfer.DestinationSubsidiaryName}"
+            OriginSubsidiaryName="{Binding SelectedTransfer.OriginSubsidiaryName}"
+            Status="{Binding SelectedTransfer.Status}"
+            TransferCode="{Binding SelectedTransfer.TransferCode}" />
         <Border
             Grid.Row="1"
             Padding="16,24,16,0"

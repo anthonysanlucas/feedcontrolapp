@@ -115,6 +115,9 @@
 	  <MauiXaml Update="Controls\TransferCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\TransferDetailHeaderControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\FeedingPoolOneStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

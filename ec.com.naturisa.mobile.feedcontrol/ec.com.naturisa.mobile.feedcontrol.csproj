@@ -244,10 +244,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Features\Distribution\Services\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Compile Update="Features\Distribution\Views\NewTransferOneStepView.xaml.cs">
 	    <DependentUpon>NewTransferOneStepView.xaml</DependentUpon>
 	  </Compile>

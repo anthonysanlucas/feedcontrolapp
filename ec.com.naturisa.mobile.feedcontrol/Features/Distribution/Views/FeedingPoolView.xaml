@@ -4,10 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
+    xmlns:distributionViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
-    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
     Title="Alimentación de Piscina"
-    x:DataType="viewModels:FeedingPoolViewModel">
+    x:DataType="distributionViewModels:FeedingPoolViewModel">
     <ContentPage.Resources>
         <converters:PoolColorStateConverter x:Key="PoolColorStateConverter" />
         <converters:PoolListSpanConverter x:Key="PoolListSpanConverter" />
@@ -108,7 +108,7 @@
                         VerticalOptions="Center"
                         WidthRequest="84">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FeedingPoolViewModel}}, Path=GoToFeedingPoolOneStepCommand}" CommandParameter="{Binding PoolName}" />
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type distributionViewModels:FeedingPoolViewModel}}, Path=GoToFeedingPoolOneStepCommand}" CommandParameter="{Binding PoolName}" />
                         </Frame.GestureRecognizers>
                         <Label
                             FontSize="18"

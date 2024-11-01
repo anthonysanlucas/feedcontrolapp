@@ -27,9 +27,10 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
             builder.Services.AddSingleton<IFeedTransferDetailService, FeedTransferDetailService>();
             builder.Services.AddSingleton<IFeedTransferDetailPoolService, FeedTransferDetailPoolService>();
+            builder.Services.AddSingleton<IFeedService, FeedService>();
             #endregion
-          
-            
+
+
             FormHandler.RemoveBorders();            
 
             var assembly = Assembly.GetExecutingAssembly();

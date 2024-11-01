@@ -12,25 +12,57 @@
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     x:DataType="viewModels:PoolTransferViewModel">
     <Grid RowDefinitions="*">
-        <Grid RowDefinitions="Auto, *">
-            <Grid ColumnDefinitions="*, Auto" ColumnSpacing="8">
-                <SearchBar
-                    Grid.Column="0"
-                    BackgroundColor="White"
-                    FontSize="14"
-                    Placeholder="Buscar por piscina o transportista" />
-
+        <Grid RowDefinitions="Auto, *" RowSpacing="24">
+            <Grid RowDefinitions="Auto, Auto" RowSpacing="8">
                 <Frame
-                    Grid.Column="1"
+                    Grid.Row="0"
                     Padding="0"
                     BackgroundColor="{StaticResource Secondary}">
-                    <DatePicker
-                        Format="dd/MM/yyyy"
-                        HorizontalOptions="FillAndExpand"
-                        MaximumDate="2030-12-31"
-                        MinimumDate="2020-01-01"
-                        TextColor="{StaticResource OnSecondary}" />
+                    <VerticalStackLayout>
+                        <DatePicker
+                            Format="dd/MM/yyyy"
+                            HorizontalOptions="FillAndExpand"
+                            MaximumDate="2030-12-31"
+                            MinimumDate="2020-01-01"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
                 </Frame>
+
+                <!--
+                <Frame
+                    Grid.Row="1"
+                    Padding="2"
+                    BackgroundColor="{StaticResource Primary50}">
+                    <VerticalStackLayout>
+                        <SearchBar
+                            Grid.Row="1"
+                            FontSize="14"
+                            Placeholder="Buscar viaje" />
+                    </VerticalStackLayout>
+                </Frame>
+                -->
+
+                <CollectionView
+                    Grid.Row="2"
+                    Margin="0"
+                    BackgroundColor="Transparent"
+                    HorizontalScrollBarVisibility="Never"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding FilterStatuses}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:FilterStatus">
+                            <Button
+                                Margin="0,0,8,0"
+                                BackgroundColor="{StaticResource Primary50}"
+                                BorderColor="{StaticResource Secondary}"
+                                BorderWidth="1"
+                                CornerRadius="20"
+                                FontSize="12"
+                                Text="{Binding Status}"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
             </Grid>
 
             <RefreshView
@@ -41,8 +73,7 @@
                 <CollectionView ItemsSource="{Binding FeedingTrips}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
-                            <Frame
-                                Margin="0,6"
+                            <Frame                                Margin="0,6"
                                 BackgroundColor="{StaticResource SurfaceLowContainer}"
                                 BorderColor="{StaticResource Secondary}">
                                 <Frame.GestureRecognizers>

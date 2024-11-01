@@ -7,12 +7,25 @@
         [ObservableProperty]
         private ObservableCollection<FeedTransferModel> feedingTrips;
 
+        [ObservableProperty]
+        private ObservableCollection<FilterStatus> filterStatuses;
+
         public PoolTransferViewModel(IToastService toastService)
             : base(toastService)
         {
             _feedTransferService = new FeedTransferService();
 
             GetFeedTransfers();
+
+            FilterStatuses =
+            [
+                new FilterStatus { Status = "TODOS" },
+                new FilterStatus { Status = "ASIGNADO" },
+                new FilterStatus { Status = "RECIBIDO" },
+                new FilterStatus { Status = "EN RUTA" },
+                new FilterStatus { Status = "ENTREGADO" },                
+                new FilterStatus { Status = "PAUSADO" }
+            ];
         }
 
         [RelayCommand]

@@ -37,3 +37,5 @@ global using Microsoft.Extensions.Logging;
 global using ec.com.naturisa.mobile.feedcontrol.Services.SupplierTransferService;
 global using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed;

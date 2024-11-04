@@ -4,7 +4,12 @@
     {
         public ObservableCollection<PoolFeedingAndRemainingState> PoolFeedingList { get; set; }
 
+        public ObservableCollection<FeedResponse> Feeds { get; set; }
+
         private readonly IFeedService _feedService;
+
+        [ObservableProperty]
+        private FeedQuery feedQuery;
 
         public FeedingPoolViewModel(IToastService toastService, IFeedService feedService)
             : base(toastService)
@@ -87,7 +92,16 @@
                     }
                 };
 
-            GetFeeds();
+            feedQuery = new FeedQuery
+            {
+                Date = new DateTime(2024, 10, 29),
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+                StatusCatalogueName = [Const.Status.Feed.Assigned, Const.Status.Feed.OnCourse, Const.Status.Feed.Fed],
+                IncludeStatusCatalogue = true
+            };            
+
+            Task.Run(async () => await GetFeeds());
         }
 
         #region commands
@@ -107,9 +121,25 @@
         [RelayCommand]
         async Task GetFeeds()
         {
-            var response = await _feedService.GetFeeds(new FeedQuery());
+            try
+            {
+                IsBusy = true;
+                var response = await _feedService.GetFeeds(FeedQuery);
 
-            Console.WriteLine(response);
+                if(response.Data != null && response.Data.Data != null)
+                {
+                    Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
+                }
+
+            
+            } catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                IsBusy = false;
+            }   
         }
 
         #endregion

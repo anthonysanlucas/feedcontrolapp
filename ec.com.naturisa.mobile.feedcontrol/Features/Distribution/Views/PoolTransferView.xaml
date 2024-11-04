@@ -68,12 +68,12 @@
             <RefreshView
                 Grid.Row="2"
                 Command="{Binding GetFeedTransfersCommand}"
-                IsRefreshing="{Binding IsRefreshing}"
-                RefreshColor="Transparent">
+                IsRefreshing="{Binding IsRefreshing}">
                 <CollectionView ItemsSource="{Binding FeedingTrips}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
-                            <Frame                                Margin="0,6"
+                            <Frame
+                                Margin="0,6"
                                 BackgroundColor="{StaticResource SurfaceLowContainer}"
                                 BorderColor="{StaticResource Secondary}">
                                 <Frame.GestureRecognizers>

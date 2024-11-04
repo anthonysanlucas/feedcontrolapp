@@ -16,5 +16,12 @@ public class Const
             public const string Delivered = "ENTREGADO";
             public const string Paused = "PAUSADO";
         }
+
+        public static class Feed
+        {
+            public const string Assigned = "ASIGNADO";           
+            public const string OnCourse = "EN CURSO";
+            public const string Fed = "ALIMENTADO";                      
+        }
     }
 }

@@ -5,8 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
     xmlns:distributionViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
-    Title="Alimentación de Piscina"
+    xmlns:feedModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed"
     x:DataType="distributionViewModels:FeedingPoolViewModel">
     <ContentPage.Resources>
         <converters:PoolColorStateConverter x:Key="PoolColorStateConverter" />
@@ -78,47 +77,49 @@
             </Grid>
         </Frame>
 
-        <CollectionView
-            x:Name="poolListCollectionView"
+        <RefreshView
             Grid.Row="3"
-            HorizontalOptions="StartAndExpand"
-            ItemsSource="{Binding PoolFeedingList}"
-            SelectionMode="None"
-            VerticalOptions="FillAndExpand">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout
-                    HorizontalItemSpacing="4"
-                    Orientation="Vertical"
-                    Span="4"
-                    VerticalItemSpacing="4" />
-            </CollectionView.ItemsLayout>
+            Command="{Binding GetFeedsCommand}"
+            Style="{StaticResource RefreshViewStyle}">
+            <CollectionView
+                x:Name="poolListCollectionView"
+                HorizontalOptions="StartAndExpand"
+                ItemsSource="{Binding Feeds}"
+                SelectionMode="None"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        HorizontalItemSpacing="4"
+                        Orientation="Vertical"
+                        Span="4"
+                        VerticalItemSpacing="4" />
+                </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:PoolFeedingAndRemainingState">
-
-                    <Frame
-                        Margin="6"
-                        Padding="0"
-                        BackgroundColor="{Binding IsFeeding, Converter={StaticResource PoolColorStateConverter}, ConverterParameter=IsFeeding}"
-                        BorderColor="{StaticResource Secondary}"
-                        CornerRadius="8"
-                        HasShadow="False"
-                        HeightRequest="84"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="84">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type distributionViewModels:FeedingPoolViewModel}}, Path=GoToFeedingPoolOneStepCommand}" CommandParameter="{Binding PoolName}" />
-                        </Frame.GestureRecognizers>
-                        <Label
-                            FontSize="18"
-                            HorizontalTextAlignment="Center"
-                            Text="{Binding PoolName}"
-                            TextColor="White"
-                            VerticalTextAlignment="Center" />
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="feedModels:FeedResponse">
+                        <Frame
+                            Margin="6"
+                            Padding="0"
+                            BorderColor="{StaticResource Secondary}"
+                            CornerRadius="8"
+                            HasShadow="False"
+                            HeightRequest="84"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="84">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type distributionViewModels:FeedingPoolViewModel}}, Path=GoToFeedingPoolOneStepCommand}" CommandParameter="{Binding IdFeed}" />
+                            </Frame.GestureRecognizers>
+                            <Label
+                                FontSize="18"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding PoolCode}"
+                                TextColor="White"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </Grid>
 </ContentPage>

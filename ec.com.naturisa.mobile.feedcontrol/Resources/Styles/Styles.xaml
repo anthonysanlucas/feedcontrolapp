@@ -334,6 +334,10 @@
         <Setter Property="RefreshControlColor" Value="{StaticResource Secondary}" />
     </Style>
 
+    <Style x:Key="RefreshViewStyle" TargetType="RefreshView">
+        <Setter Property="RefreshColor" Value="{StaticResource Primary700}" />
+    </Style>
+
     <Style TargetType="Shadow">
         <Setter Property="Radius" Value="15" />
         <Setter Property="Opacity" Value="0.5" />

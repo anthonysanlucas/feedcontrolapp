@@ -19,13 +19,13 @@
                 if ((string)value == Const.Status.Transfer.Received)
                     return Yellow400;
 
-                if ((string)value == Const.Status.Transfer.InRoute)
-                    return Sky600;
+                if ((string)value == Const.Status.Transfer.InRoute || (string)value == Const.Status.Feed.OnCourse)
+                    return Sky600;               
 
                 if ((string)value == Const.Status.Transfer.AtDestination)
                     return Indigo600;
 
-                if ((string)value == Const.Status.Transfer.Delivered)
+                if ((string)value == Const.Status.Transfer.Delivered || (string)value == Const.Status.Feed.Fed)
                     return Green500;
 
                 if ((string)value == Const.Status.Transfer.Paused)

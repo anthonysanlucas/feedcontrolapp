@@ -4,7 +4,8 @@
     {
         public ObservableCollection<PoolFeedingAndRemainingState> PoolFeedingList { get; set; }
 
-        public ObservableCollection<FeedResponse> Feeds { get; set; }
+        [ObservableProperty]
+        private ObservableCollection<FeedResponse> feeds;       
 
         private readonly IFeedService _feedService;
 
@@ -123,7 +124,7 @@
         {
             try
             {
-                IsBusy = true;
+                IsBusy = true;                
                 var response = await _feedService.GetFeeds(FeedQuery);
 
                 if(response.Data != null && response.Data.Data != null)
@@ -139,6 +140,7 @@
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }   
         }
 

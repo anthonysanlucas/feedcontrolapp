@@ -8,8 +8,7 @@
     xmlns:feedModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed"
     x:DataType="distributionViewModels:FeedingPoolViewModel">
     <ContentPage.Resources>
-        <converters:PoolColorStateConverter x:Key="PoolColorStateConverter" />
-        <converters:PoolListSpanConverter x:Key="PoolListSpanConverter" />
+        <converters:StatusColorConverter x:Key="StatusColorConverter" />
     </ContentPage.Resources>
 
     <Grid RowDefinitions="auto, auto, auto, *" RowSpacing="8">
@@ -80,6 +79,7 @@
         <RefreshView
             Grid.Row="3"
             Command="{Binding GetFeedsCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
             Style="{StaticResource RefreshViewStyle}">
             <CollectionView
                 x:Name="poolListCollectionView"
@@ -100,6 +100,7 @@
                         <Frame
                             Margin="6"
                             Padding="0"
+                            BackgroundColor="{Binding StatusCatalogueName, Converter={StaticResource StatusColorConverter}, ConverterParameter=StatusCatalogueName}"
                             BorderColor="{StaticResource Secondary}"
                             CornerRadius="8"
                             HasShadow="False"

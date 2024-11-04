@@ -39,3 +39,5 @@ global using ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.FeedDetail;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.FeedDetail;

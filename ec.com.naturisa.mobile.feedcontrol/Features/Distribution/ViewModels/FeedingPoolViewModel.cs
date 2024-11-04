@@ -3,7 +3,7 @@
     public partial class FeedingPoolViewModel : BaseViewModel
     {        
         [ObservableProperty]
-        private ObservableCollection<FeedResponse> feeds;       
+        private ObservableCollection<FeedResponse> feeds;
 
         [ObservableProperty]
         private FeedQuery feedQuery;
@@ -36,9 +36,13 @@
         }
 
         [RelayCommand]
-        async Task GoToFeedingPoolOneStep()
+        async Task GoToFeedingPoolOneStep(FeedResponse feed)
         {
-            await Shell.Current.GoToAsync(nameof(FeedingPoolOneStepView));
+            if (feed == null)
+                return;
+
+            await Shell.Current.GoToAsync(nameof(FeedingPoolOneStepView), true,
+                new Dictionary<string, object> { { "Feed", feed } });
         }
 
         [RelayCommand]

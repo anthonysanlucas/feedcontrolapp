@@ -34,7 +34,7 @@
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
                     Style="{StaticResource LargeLabel}"
-                    Text="MA008"
+                    Text="{Binding Feed.PoolCode}"
                     TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
 

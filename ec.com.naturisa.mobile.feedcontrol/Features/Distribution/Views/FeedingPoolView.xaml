@@ -109,7 +109,7 @@
                             VerticalOptions="Center"
                             WidthRequest="84">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type distributionViewModels:FeedingPoolViewModel}}, Path=GoToFeedingPoolOneStepCommand}" CommandParameter="{Binding IdFeed}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type distributionViewModels:FeedingPoolViewModel}}, Path=GoToFeedingPoolOneStepCommand}" CommandParameter="{Binding}" />
                             </Frame.GestureRecognizers>
                             <Label
                                 FontSize="18"

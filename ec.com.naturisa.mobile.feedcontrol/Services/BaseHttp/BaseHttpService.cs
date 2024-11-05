@@ -7,12 +7,11 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
         private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-        public BaseHttpService(string baseAddress, int timeoutInMinutes = 2)
+        public BaseHttpService(string baseAddress)
         {
             _httpClient = new HttpClient
             { 
-                BaseAddress = new Uri(baseAddress),
-                Timeout = TimeSpan.FromMinutes(timeoutInMinutes)
+                BaseAddress = new Uri(baseAddress),                
             };
 
             _jsonSerializerOptions = new JsonSerializerOptions

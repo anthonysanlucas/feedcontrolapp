@@ -2,7 +2,8 @@
 {
     public partial class FeedingRemainingViewModel : BaseViewModel
     {
-        public ObservableCollection<PoolFeedingAndRemainingState> PoolFeedingRemainingList { get; set; }
+        [ObservableProperty]
+        public ObservableCollection<PoolFeedingAndRemainingState> poolFeedingRemainingList;
 
         public FeedingRemainingViewModel(IToastService toastService)
             : base(toastService)
@@ -11,17 +12,64 @@
             {
                 new()
                 {
-                    PoolName = "MA 003",
-                    IsFeeding = true,
+                    PoolName = "MA003",
+                    IsFeeding = false,
                     IsRemaining = false
                 },
                 new()
                 {
-                    PoolName = "MA 004",
-                    IsFeeding = true,
-                    IsRemaining = true
-                },                
+                    PoolName = "MA004",
+                    IsFeeding = false,
+                    IsRemaining = false
+                },
+                new()
+                {
+                    PoolName = "MA005",
+                    IsFeeding = false,
+                    IsRemaining = false
+                },
+                 new()
+                {
+                    PoolName = "MA006",
+                    IsFeeding = false,
+                    IsRemaining = false
+                },
+                  new()
+                {
+                    PoolName = "MA007",
+                    IsFeeding = false,
+                    IsRemaining = false
+                },
+                  new()
+                {
+                    PoolName = "MA008",
+                    IsFeeding = false,
+                    IsRemaining = false
+                },
             };
+        }
+
+        public void SetRemainingStatus(string poolName)
+        {
+            // Encuentra el índice del elemento en la colección
+            var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == poolName));
+
+            if (index != -1)
+            {
+                GoToFeedingRemainingDetail();
+
+                // Captura el registro y actualiza el valor de IsRemaining
+                var pool = PoolFeedingRemainingList[index];
+                var updatedPool = new PoolFeedingAndRemainingState
+                {
+                    PoolName = pool.PoolName,
+                    IsFeeding = true,
+                    IsRemaining = true 
+                };
+
+                // Reemplaza el elemento en la colección
+                PoolFeedingRemainingList[index] = updatedPool;
+            }
         }
 
         #region commands
@@ -30,6 +78,12 @@
         async Task GoToFeedingRemainingDetail()
         {
             await Shell.Current.GoToAsync(nameof(FeedingRemainingDetailView));
+        }
+
+        [RelayCommand]
+        public void UpdateRemainingStatus(string poolName)
+        {
+            SetRemainingStatus(poolName);
         }
 
         #endregion

@@ -6,7 +6,6 @@
     xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
-    Title="Estimación de Sobrante"
     x:DataType="viewModels:FeedingRemainingViewModel">
     <ContentPage.Resources>
         <converters:PoolColorStateConverter x:Key="PoolColorStateConverter" />
@@ -27,7 +26,7 @@
                     Grid.ColumnSpan="3"
                     HorizontalOptions="Start"
                     Style="{StaticResource DataTitleLabel}"
-                    Text="Estados de alimentación"
+                    Text="Estados de estimación sobrante"
                     TextColor="{StaticResource OnSecondary}" />
 
                 <HorizontalStackLayout
@@ -57,7 +56,7 @@
                         WidthRequest="16" />
                     <Label
                         Style="{StaticResource SmallLabel}"
-                        Text="ESTIMADO"
+                        Text="COMPLETADO"
                         TextColor="{StaticResource OnSecondary}" />
                 </HorizontalStackLayout>
             </Grid>
@@ -96,7 +95,7 @@
                         WidthRequest="84">
 
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FeedingRemainingViewModel}}, Path=GoToFeedingRemainingDetailCommand}" CommandParameter="{Binding PoolName}" />
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FeedingRemainingViewModel}}, Path=UpdateRemainingStatusCommand}" CommandParameter="{Binding PoolName}" />
                         </Frame.GestureRecognizers>
 
                         <Label

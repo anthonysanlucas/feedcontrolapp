@@ -74,6 +74,53 @@
         CreatedAt = DateTime.Parse("2024-10-29T08:16:53.143"),
         CreatedBy = "btufino",
         FeedDetails = new List<FeedDetail>()
+    },
+    new FeedResponse
+    {
+        IdFeed = 1,
+        PoolCode = "MA005",
+        Date = DateTime.Parse("2024-10-29T08:16:25"),
+        StatusCatalogueName = "ASIGNADO",
+        Status = "ACTIVO",
+        CreatedAt = DateTime.Parse("2024-10-29T08:16:53.143"),
+        CreatedBy = "btufino",
+        FeedDetails = new List<FeedDetail>()
+    }
+    ,
+    new FeedResponse
+    {
+        IdFeed = 1,
+        PoolCode = "MA006",
+        Date = DateTime.Parse("2024-10-29T08:16:25"),
+        StatusCatalogueName = "ASIGNADO",
+        Status = "ACTIVO",
+        CreatedAt = DateTime.Parse("2024-10-29T08:16:53.143"),
+        CreatedBy = "btufino",
+        FeedDetails = new List<FeedDetail>()
+    }
+    ,
+    new FeedResponse
+    {
+        IdFeed = 1,
+        PoolCode = "MA007",
+        Date = DateTime.Parse("2024-10-29T08:16:25"),
+        StatusCatalogueName = "ASIGNADO",
+        Status = "ACTIVO",
+        CreatedAt = DateTime.Parse("2024-10-29T08:16:53.143"),
+        CreatedBy = "btufino",
+        FeedDetails = new List<FeedDetail>()
+    }
+     ,
+    new FeedResponse
+    {
+        IdFeed = 1,
+        PoolCode = "MA008",
+        Date = DateTime.Parse("2024-10-29T08:16:25"),
+        StatusCatalogueName = "ASIGNADO",
+        Status = "ACTIVO",
+        CreatedAt = DateTime.Parse("2024-10-29T08:16:53.143"),
+        CreatedBy = "btufino",
+        FeedDetails = new List<FeedDetail>()
     }
 };
                 //var response = await _feedService.GetFeeds(FeedQuery);

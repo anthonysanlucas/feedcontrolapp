@@ -49,13 +49,19 @@
             };
         }
 
-        public void SetRemainingStatus(string poolName)
+        public async void SetRemainingStatus(PoolFeedingAndRemainingState item)
         {
-            var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == poolName));
+            if (item.IsRemaining)
+            {
+                await ShowToastAsync("El sobrante ha sido registrado en esta piscina.");
+                return;
+            }
+
+            var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == item.PoolName));
 
             if (index != -1)
             {
-                GoToFeedingRemainingDetail(poolName);
+                GoToFeedingRemainingDetail(item.PoolName);
 
                 var pool = PoolFeedingRemainingList[index];
                 var updatedPool = new PoolFeedingAndRemainingState
@@ -78,9 +84,9 @@
         }
 
         [RelayCommand]
-        public void UpdateRemainingStatus(string poolName)
+        public void UpdateRemainingStatus(PoolFeedingAndRemainingState item)
         {
-            SetRemainingStatus(poolName);
+            SetRemainingStatus(item);
         }
 
         #endregion

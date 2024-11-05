@@ -27,7 +27,7 @@
                     TextColor="{StaticResource OnSecondary}" />
                 <Label
                     Style="{StaticResource RegularLabel}"
-                    Text="Datos al llegar a la piscina"
+                    Text="Registro de sobrante por piscina"
                     TextColor="{StaticResource OnSecondary}" />
             </HorizontalStackLayout>
 
@@ -70,8 +70,9 @@
                                         HorizontalTextAlignment="End"
                                         Keyboard="Numeric"
                                         MaxLength="3"
-                                        Placeholder="Ingresa el número de sacos"
+                                        Placeholder="Número de sacos"
                                         PlaceholderColor="{StaticResource OnSecondary}"
+                                        Text="{Binding RemainingHoppers}"
                                         TextColor="{StaticResource Primary700}"
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center" />
@@ -101,8 +102,9 @@
                                         HorizontalTextAlignment="End"
                                         Keyboard="Numeric"
                                         MaxLength="3"
-                                        Placeholder="Ingresa el número de tolvas con fallas"
+                                        Placeholder="Tolvas con fallas"
                                         PlaceholderColor="{StaticResource OnSecondary}"
+                                        Text="{Binding RemainingSacks}"
                                         TextColor="{StaticResource Primary700}"
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center" />

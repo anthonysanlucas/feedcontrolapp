@@ -34,7 +34,7 @@
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
                     Style="{StaticResource LargeLabel}"
-                    Text="MA004"
+                    Text="{Binding PoolCode}"
                     TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>

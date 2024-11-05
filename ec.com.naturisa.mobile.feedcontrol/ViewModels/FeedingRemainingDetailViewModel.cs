@@ -1,8 +1,9 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels
 {
+    [QueryProperty(nameof(PoolCode), "poolCode")]
     public partial class FeedingRemainingDetailViewModel : BaseViewModel
     {
-        [ObservableProperty]                
+        [ObservableProperty]
         private bool isBtnVisible = true;
 
         [ObservableProperty]
@@ -10,7 +11,6 @@
 
         public FeedingRemainingDetailViewModel(IToastService toastService)
             : base(toastService) { }
-
 
         [RelayCommand]
         async Task GoToFeedingRemaining()
@@ -21,10 +21,6 @@
             await Task.Delay(2000);
 
             await ShowToastAsync("Sobrante registrado correctamente");
-
-            // await Shell.Current.GoToAsync($"//{nameof(FeedingRemainingDetailView)}");
-
-            // await Shell.Current.GoToAsync("..");
 
             await Shell.Current.Navigation.PopAsync(true);
         }

@@ -51,23 +51,20 @@
 
         public void SetRemainingStatus(string poolName)
         {
-            // Encuentra el índice del elemento en la colección
             var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == poolName));
 
             if (index != -1)
             {
-                GoToFeedingRemainingDetail();
+                GoToFeedingRemainingDetail(poolName);
 
-                // Captura el registro y actualiza el valor de IsRemaining
                 var pool = PoolFeedingRemainingList[index];
                 var updatedPool = new PoolFeedingAndRemainingState
                 {
                     PoolName = pool.PoolName,
                     IsFeeding = true,
-                    IsRemaining = true 
+                    IsRemaining = true
                 };
 
-                // Reemplaza el elemento en la colección
                 PoolFeedingRemainingList[index] = updatedPool;
             }
         }
@@ -75,9 +72,9 @@
         #region commands
 
         [RelayCommand]
-        async Task GoToFeedingRemainingDetail()
+        async Task GoToFeedingRemainingDetail(string poolName)
         {
-            await Shell.Current.GoToAsync(nameof(FeedingRemainingDetailView));
+            await Shell.Current.GoToAsync($"{nameof(FeedingRemainingDetailView)}?poolCode={poolName}");
         }
 
         [RelayCommand]

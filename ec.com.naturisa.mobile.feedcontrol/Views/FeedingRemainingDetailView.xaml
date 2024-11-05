@@ -156,9 +156,16 @@
                             BackgroundColor="Transparent"
                             Command="{Binding GoToFeedingRemainingCommand}"
                             HorizontalOptions="FillAndExpand"
+                            IsVisible="{Binding IsBtnVisible}"
                             SemanticProperties.Hint="Registrar sobrante"
                             Text="Registrar sobrante"
                             TextColor="White" />
+                        <ActivityIndicator
+                            Grid.Column="0"
+                            HeightRequest="32"
+                            IsRunning="{Binding IsBusy}"
+                            IsVisible="{Binding IsBusy}"
+                            Color="White" />
                     </Grid>
                 </Frame>
             </Grid>

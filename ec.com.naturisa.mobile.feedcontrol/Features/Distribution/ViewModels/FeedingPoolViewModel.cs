@@ -24,36 +24,39 @@
                 IncludeStatusCatalogue = true
             };
 
-            Task.Run(async () =>
+            InitializeAsync();
+        }
+
+
+        private async void InitializeAsync()
+        {
+            try
             {
-                try
+                using var httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromSeconds(30);
+
+                // URL de prueba para verificar conectividad
+                var testUrl = "https://jsonplaceholder.typicode.com/todos/1";
+                var response = await httpClient.GetAsync(testUrl);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    using var httpClient = new HttpClient();
-                    httpClient.Timeout = TimeSpan.FromSeconds(30);
-
-                    // URL de prueba para verificar conectividad
-                    var testUrl = "https://jsonplaceholder.typicode.com/todos/1";
-                    var response = await httpClient.GetAsync(testUrl);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var content = await response.Content.ReadAsStringAsync();
-                        Console.WriteLine("Respuesta de la prueba de conectividad:");
-                        Console.WriteLine(content);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Error en la solicitud de prueba: {response.StatusCode}");
-                    }
+                    var content = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine("Respuesta de la prueba de conectividad:");
+                    Console.WriteLine(content);
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine($"Error en la prueba de conexión: {ex.Message}");
+                    Console.WriteLine($"Error en la solicitud de prueba: {response.StatusCode}");
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en la prueba de conexión: {ex.Message}");
+            }
 
-                // Luego de la prueba de conectividad, llama a GetFeeds
-                await GetFeeds();
-            });
+            // Luego de la prueba de conectividad, llama a GetFeeds
+            await GetFeeds();
         }
 
         #region commands

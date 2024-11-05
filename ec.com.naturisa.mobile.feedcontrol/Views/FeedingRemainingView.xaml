@@ -14,58 +14,54 @@
     </ContentPage.Resources>
 
     <Grid RowDefinitions=" auto, auto, *" RowSpacing="8">
-        <Label
-            Grid.Row="0"
-            Style="{StaticResource RegularLabel}"
-            Text="Estimación de sobrante por piscinas"
-            TextColor="{StaticResource OnSecondary}" />
-
-        <!--  Color Leyend  -->
-        <Grid
-            Grid.Row="1"
-            Margin="0,8"
-            ColumnDefinitions="auto, auto, auto"
-            ColumnSpacing="16"
-            HorizontalOptions="CenterAndExpand">
-            <HorizontalStackLayout
-                Grid.Column="0"
-                Spacing="4"
-                VerticalOptions="CenterAndExpand">
-                <BoxView
-                    BackgroundColor="{StaticResource Amber500}"
-                    CornerRadius="2"
-                    HeightRequest="12"
-                    WidthRequest="12" />
+        <Frame BackgroundColor="{StaticResource SurfaceLowContainer}">
+            <Grid
+                Grid.Row="2"
+                ColumnDefinitions="Auto, Auto"
+                ColumnSpacing="12"
+                HorizontalOptions="FillAndExpand"
+                RowDefinitions="Auto, Auto"
+                RowSpacing="8">
                 <Label
-                    Style="{StaticResource RegularLabel}"
-                    Text="PENDIENTE"
-                    TextColor="{StaticResource Gray500}" />
-            </HorizontalStackLayout>
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    HorizontalOptions="Start"
+                    Style="{StaticResource DataTitleLabel}"
+                    Text="Estados de alimentación"
+                    TextColor="{StaticResource OnSecondary}" />
 
-            <HorizontalStackLayout Grid.Column="1" Spacing="4">
-                <BoxView
-                    BackgroundColor="{StaticResource Primary400}"
-                    CornerRadius="2"
-                    HeightRequest="12"
-                    WidthRequest="12" />
-                <Label
-                    Style="{StaticResource RegularLabel}"
-                    Text="EN CURSO"
-                    TextColor="{StaticResource Gray500}" />
-            </HorizontalStackLayout>
+                <HorizontalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Spacing="4"
+                    VerticalOptions="CenterAndExpand">
+                    <BoxView
+                        BackgroundColor="{StaticResource Amber500}"
+                        CornerRadius="2"
+                        HeightRequest="16"
+                        WidthRequest="16" />
+                    <Label
+                        Style="{StaticResource SmallLabel}"
+                        Text="ASIGNADO"
+                        TextColor="{StaticResource OnSecondary}" />
+                </HorizontalStackLayout>
 
-            <HorizontalStackLayout Grid.Column="2" Spacing="4">
-                <BoxView
-                    BackgroundColor="{StaticResource Green500}"
-                    CornerRadius="2"
-                    HeightRequest="12"
-                    WidthRequest="12" />
-                <Label
-                    Style="{StaticResource RegularLabel}"
-                    Text="COMPLETADA"
-                    TextColor="{StaticResource Gray500}" />
-            </HorizontalStackLayout>
-        </Grid>
+                <HorizontalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    Spacing="4">
+                    <BoxView
+                        BackgroundColor="{StaticResource Green500}"
+                        CornerRadius="2"
+                        HeightRequest="16"
+                        WidthRequest="16" />
+                    <Label
+                        Style="{StaticResource SmallLabel}"
+                        Text="ESTIMADO"
+                        TextColor="{StaticResource OnSecondary}" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Frame>
 
 
         <!--  Pool list  -->
@@ -76,17 +72,12 @@
             ItemsSource="{Binding PoolFeedingRemainingList}"
             SelectionMode="None"
             VerticalOptions="FillAndExpand">
-
-            <!--
-                Configuración del Layout de cuadrícula
-                Span="{Binding CollectionViewWidth, Converter={StaticResource PoolListSpanConverter}, ConverterParameter=CollectionViewWidth}"
-            -->
             <CollectionView.ItemsLayout>
                 <GridItemsLayout
-                    HorizontalItemSpacing="0"
+                    HorizontalItemSpacing="4"
                     Orientation="Vertical"
-                    Span="6"
-                    VerticalItemSpacing="0" />
+                    Span="4"
+                    VerticalItemSpacing="4" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>

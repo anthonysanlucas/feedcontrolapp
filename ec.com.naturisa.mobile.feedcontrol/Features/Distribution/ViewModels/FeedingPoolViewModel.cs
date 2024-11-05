@@ -26,7 +26,7 @@
 
             GetFeeds();
         }
-      
+
         #region commands
 
         [RelayCommand]
@@ -51,12 +51,37 @@
             try
             {
                 IsBusy = true;
-                var response = await _feedService.GetFeeds(FeedQuery);
-
-                if (response.Data != null && response.Data.Data != null)
+                Feeds = new ObservableCollection<FeedResponse>
                 {
-                    Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
-                }
+    new FeedResponse
+    {
+        IdFeed = 2,
+        PoolCode = "MA003",
+        Date = DateTime.Parse("2024-10-29T09:53:19.943"),
+        StatusCatalogueName = "ASIGNADO",
+        Status = "ACTIVO",
+        CreatedAt = DateTime.Parse("2024-10-29T09:53:20.697"),
+        CreatedBy = "btufino",
+        FeedDetails = new List<FeedDetail>()
+    },
+    new FeedResponse
+    {
+        IdFeed = 1,
+        PoolCode = "MA004",
+        Date = DateTime.Parse("2024-10-29T08:16:25"),
+        StatusCatalogueName = "ASIGNADO",
+        Status = "ACTIVO",
+        CreatedAt = DateTime.Parse("2024-10-29T08:16:53.143"),
+        CreatedBy = "btufino",
+        FeedDetails = new List<FeedDetail>()
+    }
+};
+                //var response = await _feedService.GetFeeds(FeedQuery);
+
+                //if (response.Data != null && response.Data.Data != null)
+                //{
+                //    Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
+                //}
 
 
             }

@@ -19,7 +19,7 @@
             {
                 AssignmentDate = DateTime.Now,
                 IncludeFreightTransporter = true,
-                DestinationOperatorWarehouseUserId = App.UserData.IdUser,
+                DestinationOperatorWarehouseUserId = 2005,
                 IncludeStatusCatalogue = true,
                 IncludeStatusCatalogueList = true,
                 IncludeSupplier = true,

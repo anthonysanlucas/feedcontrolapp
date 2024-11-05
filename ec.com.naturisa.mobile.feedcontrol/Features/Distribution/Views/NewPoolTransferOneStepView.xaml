@@ -144,7 +144,7 @@
                             </VerticalStackLayout>
 
                             <VerticalStackLayout Spacing="4">
-                                <Label Style="{StaticResource DataTitleLabel}" Text="Ayudantes" />
+                                <Label Style="{StaticResource DataTitleLabel}" Text="Número de ayudantes" />
                                 <Frame
                                     Grid.Column="2"
                                     Padding="8,0"
@@ -155,7 +155,7 @@
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="End"
                                         Keyboard="Numeric"
-                                        Placeholder="sacos"
+                                        Placeholder="Ayudantes"
                                         PlaceholderColor="{StaticResource OnSecondary}"
                                         Text="{Binding AssistantsNumber}"
                                         TextColor="{StaticResource Primary700}" />

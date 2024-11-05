@@ -38,6 +38,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
 
             var request = new HttpRequestMessage(method, endpoint) { Content = content };
 
+            request.Headers.Add("ngrok-skip-browser-warning", "1");
+            request.Headers.UserAgent.ParseAdd("feedControl/1.0");
+
             try
             {
                 return await _httpClient.SendAsync(request);

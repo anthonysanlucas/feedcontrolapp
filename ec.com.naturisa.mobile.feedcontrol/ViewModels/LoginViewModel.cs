@@ -33,6 +33,12 @@
             if (IsBusy)
                 return;
 
+            await SecureStorage.Default.SetAsync("auth_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiYnR1ZmlubyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMjAwNTEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9naXZlbm5hbWUiOiJCcnlhbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3N1cm5hbWUiOiJUdWZpw7FvIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZW1haWxhZGRyZXNzIjoiYnR1Zmlub0BuYXR1cmlzYS5jb20uZWMiLCJjb2RlQXBwbGljYWNpb24iOiJmZTFkNWI0ZC04MGViLTQ5NzgtYWM4MS1mZGEyMzRiOTEyNzUiLCJleHAiOjE3MzIwNjY0MzYsImlzcyI6Im5hdHVyaXNhLmNvbS5lYyIsImF1ZCI6ImFwaS1jb3JlIn0.Nui2eVT89fpe9OdFimiK7QJGhRSuPyFtsYABtFk1is4");
+
+            await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
+
+            return;
+
             if (string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(Password))
             {
                 await ShowToastAsync("Usuario o contraseña no pueden estar vacíos.");

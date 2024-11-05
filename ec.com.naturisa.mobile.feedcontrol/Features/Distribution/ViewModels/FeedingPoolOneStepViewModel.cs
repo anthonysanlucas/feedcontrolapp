@@ -47,16 +47,16 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             try
             {
                 IsBusy = true;
-                var feedDetailsResponse = await _feedDetailService.GetFeedDetails(detailQuery);
+                //var feedDetailsResponse = await _feedDetailService.GetFeedDetails(detailQuery);
             
 
-                if (feedDetailsResponse == null || feedDetailsResponse.Code != 200)
-                {
-                    await ToastService.ShowToastAsync("Error al cargar los detalles de la alimentación.");
-                    return;
-                }
+                //if (feedDetailsResponse == null || feedDetailsResponse.Code != 200)
+                //{
+                //    await ToastService.ShowToastAsync("Error al cargar los detalles de la alimentación.");
+                //    return;
+                //}
 
-                FeedDetails = new ObservableCollection<FeedDetailResponse>(feedDetailsResponse.Data.Data);
+                //FeedDetails = new ObservableCollection<FeedDetailResponse>(feedDetailsResponse.Data.Data);
             }
             catch (Exception ex)
             {

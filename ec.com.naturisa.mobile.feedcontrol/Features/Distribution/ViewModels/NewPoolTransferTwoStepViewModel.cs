@@ -28,22 +28,22 @@
             {
                 new FeedTransferDetailModel
                 {
-                    ProductId = 1,
+                    ProductId = 22392,
                     ProductName = "ALIMENTO INICIADOR AQUAXCEL 0.6 MM"
                 },
                 new FeedTransferDetailModel
                 {
-                    ProductId = 3,
+                    ProductId = 24811,
                     ProductName = "NATURISA STARTER 0.8MM"
                 },
                 new FeedTransferDetailModel
                 {
-                    ProductId = 2,
+                    ProductId = 25633,
                     ProductName = "NATURISA ADVANCE STD 1.2MM"
                 },
                  new FeedTransferDetailModel
                 {
-                    ProductId = 4,
+                    ProductId = 13655,
                     ProductName = "AQUAXCEL MW354 GROWER NG 1.8"
                 },
             };

@@ -12,7 +12,13 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         private FeedDetailQuery detailQuery;
 
         [ObservableProperty]
+        private int sacksRemainingHoppers;
+
+        [ObservableProperty]
         private ObservableCollection<FeedDetailResponse> feedDetails;
+
+        [ObservableProperty]
+        private ObservableCollection<FeedOneStep> feedOneSteps;
 
         private readonly IFeedDetailService _feedDetailService;
 
@@ -40,6 +46,26 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         [RelayCommand]
         async Task GoToFeedingPoolTwoStep()
         {
+            if (FeedOneSteps == null || FeedOneSteps.Count == 0)
+            {
+                await ToastService.ShowToastAsync("No se han cargado los detalles de la alimentación.");
+                return;
+            }
+
+            var newFeedOneSteps = new List<FeedOneStep>();
+
+            foreach (var feedOneStep in FeedOneSteps)
+            {
+                var feedStep = new FeedOneStep
+                {
+                    ProductId = feedOneStep.ProductId,
+                    SacksFoundWall = feedOneStep.SacksFoundWall,
+                    SacksRemainingHoppers = SacksRemainingHoppers
+                };
+
+                newFeedOneSteps.Add(feedStep);
+            }           
+
             await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView));
         }
 
@@ -57,6 +83,20 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
                 }
 
                 FeedDetails = new ObservableCollection<FeedDetailResponse>(feedDetailsResponse.Data);
+
+                FeedOneSteps = new ObservableCollection<FeedOneStep>();
+
+                foreach (var feedDetail in FeedDetails)
+                {
+                    FeedOneStep feedOneStep = new FeedOneStep
+                    {
+                        ProductId = feedDetail.ProductId,
+                        ProductName = feedDetail.ProductName,
+
+                    };
+
+                    FeedOneSteps.Add(feedOneStep);
+                }
             }
             catch (Exception ex)
             {

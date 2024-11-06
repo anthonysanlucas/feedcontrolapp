@@ -3,6 +3,8 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.FeedingPoolOneStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:feedDetailModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.FeedDetail"
+    xmlns:feedModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
@@ -69,34 +71,51 @@
                                 Margin="0,0,0,4"
                                 Style="{StaticResource DataTitleLabel}"
                                 Text="Sacos encontrados en el muro" />
-                            <Frame
-                                Margin="0"
-                                Padding="4"
-                                BorderColor="{StaticResource Slate400}"
-                                HasShadow="False"
-                                HeightRequest="52"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="CenterAndExpand">
-                                <VerticalStackLayout>
-                                    <Entry
-                                        Grid.Column="0"
-                                        FontSize="16"
-                                        HorizontalTextAlignment="End"
-                                        Keyboard="Numeric"
-                                        MaxLength="3"
-                                        Placeholder="Ingresa el número de sacos"
-                                        PlaceholderColor="{StaticResource OnSecondary}"
-                                        TextColor="{StaticResource Primary700}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-                                </VerticalStackLayout>
-                            </Frame>
+
+                            <CollectionView
+                                Margin="0,4,0,0"
+                                ItemsSource="{Binding FeedOneSteps}"
+                                SelectionMode="None">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="feedModels:FeedOneStep">
+                                        <Grid ColumnDefinitions="*,*">
+                                            <Label
+                                                FontSize="14"
+                                                Text="{Binding ProductName}"
+                                                TextColor="{StaticResource Primary700}"
+                                                VerticalOptions="Center" />
+                                            <Frame
+                                                Grid.Column="1"
+                                                Margin="0,8,0,0"
+                                                Padding="4"
+                                                BorderColor="{StaticResource Slate400}"
+                                                HasShadow="False"
+                                                HeightRequest="52"
+                                                HorizontalOptions="FillAndExpand"
+                                                VerticalOptions="CenterAndExpand">
+                                                <VerticalStackLayout>
+                                                    <Entry
+                                                        FontSize="16"
+                                                        HorizontalTextAlignment="End"
+                                                        Keyboard="Numeric"
+                                                        MaxLength="3"
+                                                        Placeholder="Ingresa el número de sacos"
+                                                        PlaceholderColor="{StaticResource OnSecondary}"
+                                                        Text="{Binding SacksFoundWall}"
+                                                        TextColor="{StaticResource Primary700}"
+                                                        VerticalOptions="Center"
+                                                        VerticalTextAlignment="Center" />
+                                                </VerticalStackLayout>
+                                            </Frame>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
 
                             <Label
                                 Margin="0,12,0,4"
                                 Style="{StaticResource DataTitleLabel}"
                                 Text="Sacos sobrantes en tolvas" />
-
                             <Frame
                                 Margin="0"
                                 Padding="4"
@@ -112,8 +131,9 @@
                                         HorizontalTextAlignment="End"
                                         Keyboard="Numeric"
                                         MaxLength="3"
-                                        Placeholder="Ingresa el número de sacos"
+                                        Placeholder="Sacos"
                                         PlaceholderColor="{StaticResource OnSecondary}"
+                                        Text="{Binding SacksRemainingHoppers}"
                                         TextColor="{StaticResource Primary700}"
                                         VerticalOptions="Center"
                                         VerticalTextAlignment="Center" />

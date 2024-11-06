@@ -2,6 +2,6 @@
 {
     public interface IFeedDetailService
     {
-        Task<ApiResponse<PagedApiResponse<FeedDetailResponse>>> GetFeedDetails(FeedDetailQuery feedDetailQuery);
+        Task<ApiResponse<List<FeedDetailResponse>>> GetFeedDetails(FeedDetailQuery feedDetailQuery);
     }
 }

@@ -14,7 +14,7 @@
         public FeedDetailService() : base(ApiConstants.API_FEED_CONTROL)
         {}
 
-        public async Task<ApiResponse<PagedApiResponse<FeedDetailResponse>>> GetFeedDetails(FeedDetailQuery feedDetailQuery)
+        public async Task<ApiResponse<List<FeedDetailResponse>>> GetFeedDetails(FeedDetailQuery feedDetailQuery)
         {
             string queryParams = StringExtensions.BuildQueryString(feedDetailQuery);
             var response = await SendRequestAsync(
@@ -22,7 +22,7 @@
                 FeedDetailEndpoints.GetGroupedFeedDetails + queryParams
             );
 
-            return await ProcessResponse<PagedApiResponse<FeedDetailResponse>>(response);
+            return await ProcessResponse<List<FeedDetailResponse>>(response);
         }       
 
     }

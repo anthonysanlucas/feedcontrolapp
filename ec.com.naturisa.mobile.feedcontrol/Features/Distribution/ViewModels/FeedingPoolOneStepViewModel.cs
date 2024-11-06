@@ -17,7 +17,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         private readonly IFeedDetailService _feedDetailService;
 
         public FeedingPoolOneStepViewModel(IToastService toastService, IFeedDetailService feedTransferDetailService)
-            : base(toastService) {
+            : base(toastService)
+        {
             _feedDetailService = feedTransferDetailService;
         }
 
@@ -47,7 +48,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             try
             {
                 IsBusy = true;
-                    var feedDetailsResponse = await _feedDetailService.GetFeedDetails(detailQuery);
+                var feedDetailsResponse = await _feedDetailService.GetFeedDetails(detailQuery);
 
                 if (feedDetailsResponse == null || feedDetailsResponse.Code != 200)
                 {
@@ -55,7 +56,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
                     return;
                 }
 
-                FeedDetails = new ObservableCollection<FeedDetailResponse>(feedDetailsResponse.Data.Data);
+                FeedDetails = new ObservableCollection<FeedDetailResponse>(feedDetailsResponse.Data);
             }
             catch (Exception ex)
             {

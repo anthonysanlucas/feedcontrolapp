@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
+﻿using System.Net.Http.Json;
+
+namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
 {
     public class FeedService : BaseHttpService, IFeedService
     {
@@ -6,7 +8,9 @@
         {
             public const string Feed = $"{ApiConstants.API_FEED_CONTROL}/feeds";
 
-            public static string FeedTransferById(int id) => $"{Feed}/{id}/change_status";
+            public static string FeedStatusOneStep(int id) => $"{Feed}/{id}/step_one";
+
+            public static string FeedStatusTwoStep(int id) => $"{Feed}/{id}/step_two";
         }
 
         public FeedService() : base(ApiConstants.API_FEED_CONTROL)
@@ -21,6 +25,19 @@
             );
 
             return await ProcessResponse<PagedApiResponse<FeedResponse>>(response);
+        }
+
+        public async Task<ApiResponse<object>> ChangeFeedStatusOneStep(List<FeedOneStep> feedOneSteps)
+        {
+            var content = JsonContent.Create(feedOneSteps);
+            var response = await SendRequestAsync(
+                HttpMethod.Post,
+                FeedEndpoints.FeedStatusOneStep(1),
+                content
+            );
+
+            var processedResponse = await ProcessResponse<ApiResponse<object>>(response);
+            return processedResponse.Data;
         }
     }
 }

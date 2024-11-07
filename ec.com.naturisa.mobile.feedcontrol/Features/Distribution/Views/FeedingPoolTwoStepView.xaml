@@ -121,6 +121,7 @@
                                             MaxLength="3"
                                             Placeholder="Número de tolvas cargadas"
                                             PlaceholderColor="{StaticResource OnSecondary}"
+                                            Text="{Binding LoadedHoppers}"
                                             TextColor="{StaticResource Primary700}"
                                             VerticalOptions="Center"
                                             VerticalTextAlignment="Center" />
@@ -155,13 +156,15 @@
                                             Content="Canoa"
                                             GroupName="AutomaticFeederGroup"
                                             TextColor="{StaticResource Primary900}"
-                                            VerticalOptions="Center" />
+                                            VerticalOptions="Center"
+                                            Value="{Binding AutomaticFeed}" />
 
                                         <RadioButton
                                             Content="Muelle"
                                             GroupName="AutomaticFeederGroup"
                                             TextColor="{StaticResource Primary900}"
-                                            VerticalOptions="Center" />
+                                            VerticalOptions="Center"
+                                            Value="{Binding AutomaticFeed}" />
                                     </VerticalStackLayout>
 
                                     <Label
@@ -181,13 +184,15 @@
                                             Content="Canoa"
                                             GroupName="BroadcastGroup"
                                             TextColor="{StaticResource Primary900}"
-                                            VerticalOptions="Center" />
+                                            VerticalOptions="Center"
+                                            Value="{Binding VoleoFeed}" />
 
                                         <RadioButton
                                             Content="Orilla"
                                             GroupName="BroadcastGroup"
                                             TextColor="{StaticResource Primary900}"
-                                            VerticalOptions="Center" />
+                                            VerticalOptions="Center"
+                                            Value="{Binding VoleoFeed}" />
                                     </VerticalStackLayout>
                                 </Grid>
 
@@ -213,6 +218,7 @@
                                             MaxLength="3"
                                             Placeholder="Sacos sobrantes"
                                             PlaceholderColor="{StaticResource OnSecondary}"
+                                            Text="{Binding SacksRemaining}"
                                             TextColor="{StaticResource Primary700}"
                                             VerticalOptions="Center"
                                             VerticalTextAlignment="Center" />
@@ -264,6 +270,7 @@
                                             MaxLength="500"
                                             Placeholder="Escriba alguna observación"
                                             PlaceholderColor="{StaticResource Black-text-light}"
+                                            Text="{Binding Observation}"
                                             TextColor="{StaticResource Black-text}"
                                             VerticalTextAlignment="Start" />
                                     </VerticalStackLayout>

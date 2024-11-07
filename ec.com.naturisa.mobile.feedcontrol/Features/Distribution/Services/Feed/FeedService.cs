@@ -38,5 +38,17 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
 
             return await ProcessResponse<object>(response);            
         }
+
+        public async Task<ApiResponse<object>> ChangeFeedStatusTwoStep(long idFeed, List<FeedTwoStep> feedTwoSteps)
+        {
+            var content = JsonContent.Create(feedTwoSteps);
+            var response = await SendRequestAsync(
+                HttpMethod.Patch,
+                FeedEndpoints.FeedStatusTwoStep(idFeed),
+                content
+            );
+
+            return await ProcessResponse<object>(response);
+        }
     }
 }

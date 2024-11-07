@@ -23,6 +23,21 @@
         [ObservableProperty]
         private string _additionalObservation;
 
+        [ObservableProperty]
+        private int loadedHoppers;
+
+        [ObservableProperty]
+        private string automaticFeed;
+
+        [ObservableProperty]
+        private string voleoFeed;
+
+        [ObservableProperty]
+        private int sacksRemaining;
+
+        [ObservableProperty]
+        private string observation;
+
         private readonly IFeedService _feedService;
 
         private readonly IFeedDetailService _feedDetailService;
@@ -61,12 +76,35 @@
 
         [RelayCommand]
         async Task CompleteFeed()
-        {
-            var selectedObs = SelectedObservation?.Name ?? "Sin observación";
-            var additionalObs = AdditionalObservation;
+        {          
+            List<FeedTwoStep> NewFeedTwoSteps = new List<FeedTwoStep>();
 
+            foreach (var feedDetail in FeedDetails)
+            {
+                FeedTwoStep feedTwoStep = new FeedTwoStep
+                {
+                    ProductId = feedDetail.ProductId,
+                    LoadedHoppers = LoadedHoppers,
+                    Observation = Observation,
+                    SacksRemainingWallAfterFeeding = SacksRemaining,
+                    AutomaticFeeding = "CANOA",
+                    ThrowFeeding = "VOLEO"
+                };
 
-            await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView));
+                NewFeedTwoSteps.Add(feedTwoStep);
+            }            
+
+            var response = await _feedService.ChangeFeedStatusTwoStep(DetailQuery.IdFeed, NewFeedTwoSteps);
+
+            if (response == null || response.Code != 200)
+            {
+                await ShowToastAsync("Error al cambiar el estado de la alimentación.");
+                return;
+            }
+
+            await ShowToastAsync("Datos registrados correctamente.");
+
+            await Shell.Current.Navigation.PopAsync(true);
         }
 
         #endregion

@@ -19,14 +19,14 @@
             {
                 AssignmentDate = DateTime.Now,
                 IncludeFreightTransporter = true,
-                DestinationOperatorWarehouseUserId = 2005,
+                DestinationOperatorWarehouseUserId = 20051,
                 IncludeStatusCatalogue = true,
                 IncludeStatusCatalogueList = true,
                 IncludeSupplier = true,
                 IncludeSupplierTransferDetails = true,
                 IncludeTransport = true,
                 Status = "ACTIVO",
-                StatusCatalogueName = [Const.Status.Transfer.AtDestination, SupplierTransferConstants.Delivered]
+                StatusCatalogueName = [Const.Status.Transfer.Assigned, Const.Status.Transfer.Received, Const.Status.Transfer.InRoute, Const.Status.Transfer.Paused, Const.Status.Transfer.AtDestination, SupplierTransferConstants.Delivered]
             };
             
             Task.Run(async () => await GetSupplierTransfers());

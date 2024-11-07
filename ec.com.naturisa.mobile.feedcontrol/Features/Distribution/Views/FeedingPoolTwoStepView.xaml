@@ -3,6 +3,8 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.FeedingPoolTwoStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:feedDetailModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.FeedDetail"
+    xmlns:feedModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Title="Alimentación de piscina"
@@ -35,7 +37,7 @@
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
                     Style="{StaticResource LargeLabel}"
-                    Text="MA008"
+                    Text="{Binding Feed.PoolCode}"
                     TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
 
@@ -69,23 +71,31 @@
                             <VerticalStackLayout Grid.Row="1" Spacing="8">
                                 <VerticalStackLayout Spacing="4">
                                     <Label Style="{StaticResource DataTitleLabel}" Text="Alimento a cargar en tolvas" />
-                                    <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
-                                        <Label
-                                            MaximumWidthRequest="262"
-                                            Style="{StaticResource DataTextLabel}"
-                                            Text="AQUAXCEL MW 424 SLD STARTER 0.8 MM."
-                                            TextColor="{StaticResource Primary700}"
-                                            VerticalOptions="Center" />
-                                        <Frame
-                                            Padding="4"
-                                            BackgroundColor="{StaticResource Secondary}"
-                                            VerticalOptions="Start">
-                                            <Label
-                                                MaximumWidthRequest="1000"
-                                                Style="{StaticResource DataTextLabel}"
-                                                Text="25 sacos" />
-                                        </Frame>
-                                    </FlexLayout>
+
+                                    <CollectionView
+                                        Margin="0,4,0,0"
+                                        ItemsSource="{Binding FeedDetails}"
+                                        SelectionMode="None">
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate x:DataType="feedDetailModels:FeedDetailResponse">
+                                                <FlexLayout JustifyContent="SpaceBetween" VerticalOptions="Center">
+                                                    <Label
+                                                        MaximumWidthRequest="262"
+                                                        Style="{StaticResource DataTextLabel}"
+                                                        Text="{Binding ProductName}"
+                                                        TextColor="{StaticResource Primary700}"
+                                                        VerticalOptions="Center" />
+                                                    <Frame
+                                                        Padding="4"
+                                                        BackgroundColor="{StaticResource Secondary}"
+                                                        VerticalOptions="Start">
+                                                        <Label Style="{StaticResource DataTextLabel}" Text="{Binding QuantitySacks}" />
+                                                    </Frame>
+                                                </FlexLayout>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
                                 </VerticalStackLayout>
                             </VerticalStackLayout>
 

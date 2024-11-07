@@ -41,8 +41,21 @@
             if (feed == null)
                 return;
 
-            await Shell.Current.GoToAsync(nameof(FeedingPoolOneStepView), true,
+            if (feed.StatusCatalogueName == Const.Status.Feed.Assigned)
+            {
+                await Shell.Current.GoToAsync(nameof(FeedingPoolOneStepView), true,
                 new Dictionary<string, object> { { "Feed", feed } });
+
+                return;
+            }
+
+            if (feed.StatusCatalogueName == Const.Status.Feed.OnCourse)
+            {
+                await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView), true,
+                new Dictionary<string, object> { { "Feed", feed } });
+
+                return;
+            }            
         }
 
         [RelayCommand]
@@ -51,7 +64,7 @@
             try
             {
                 IsBusy = true;
-                
+
                 var response = await _feedService.GetFeeds(FeedQuery);
 
                 if (response.Data != null && response.Data != null)

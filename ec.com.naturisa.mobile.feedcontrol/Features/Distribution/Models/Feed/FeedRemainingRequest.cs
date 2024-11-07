@@ -6,7 +6,5 @@
         public int? SacksRemainingHoppers { get; set; }
         public int? FailedHoppers { get; set; }
         public string? Observation { get; set; }
-
-
     }
 }

@@ -2,7 +2,7 @@
 {
     public class ApiConstants
     {
-        
+        // https://hot-quickly-mosquito.ngrok-free.app
         // {API_URL}/api
         // https://dev-gateway.naturisa.com.ec
         // {API_URL}/feedcontrol/api

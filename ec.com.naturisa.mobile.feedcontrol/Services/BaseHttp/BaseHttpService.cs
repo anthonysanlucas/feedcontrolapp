@@ -13,7 +13,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
             { 
                 BaseAddress = new Uri(baseAddress),                
             };
-
+          
             _jsonSerializerOptions = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
@@ -37,7 +37,6 @@ namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
             }
 
             var request = new HttpRequestMessage(method, endpoint) { Content = content };
-
             request.Headers.Add("ngrok-skip-browser-warning", "1");
             request.Headers.UserAgent.ParseAdd("feedControl/1.0");
 

@@ -19,6 +19,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Models.SupplierTransfer
         public bool IncludeStatusCatalogueList { get; set; }
         public bool IncludeSupplier { get; set; }
         public bool IncludeSupplierTransferDetails { get; set; }
+        public bool IncludeDestinationWarehouse { get; set; }
 
     }
 }

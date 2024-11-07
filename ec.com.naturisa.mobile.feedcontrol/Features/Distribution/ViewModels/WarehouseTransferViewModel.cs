@@ -24,6 +24,7 @@
                 IncludeStatusCatalogueList = true,
                 IncludeSupplier = true,
                 IncludeSupplierTransferDetails = true,
+                IncludeDestinationWarehouse = true,
                 IncludeTransport = true,
                 Status = "ACTIVO",
                 StatusCatalogueName = [Const.Status.Transfer.Assigned, Const.Status.Transfer.Received, Const.Status.Transfer.InRoute, Const.Status.Transfer.Paused, Const.Status.Transfer.AtDestination, SupplierTransferConstants.Delivered]

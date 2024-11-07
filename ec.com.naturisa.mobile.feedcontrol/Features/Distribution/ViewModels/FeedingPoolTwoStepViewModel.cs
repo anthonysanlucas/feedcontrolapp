@@ -18,6 +18,9 @@
         private Observation _selectedObservation;
 
         [ObservableProperty]
+        private ObservableCollection<FeedTwoStep> feedTwoSteps;
+
+        [ObservableProperty]
         private string _additionalObservation;
 
         private readonly IFeedService _feedService;
@@ -62,6 +65,7 @@
             var selectedObs = SelectedObservation?.Name ?? "Sin observación";
             var additionalObs = AdditionalObservation;
 
+
             await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView));
         }
 
@@ -82,19 +86,17 @@
 
                 FeedDetails = new ObservableCollection<FeedDetailResponse>(feedDetailsResponse.Data);
 
-                //FeedOneSteps = new ObservableCollection<FeedOneStep>();
+                FeedTwoSteps = new ObservableCollection<FeedTwoStep>();
 
-                //foreach (var feedDetail in FeedDetails)
-                //{
-                //    FeedOneStep feedOneStep = new FeedOneStep
-                //    {
-                //        ProductId = feedDetail.ProductId,
-                //        ProductName = feedDetail.ProductName,
+                foreach (var feedDetail in FeedDetails)
+                {
+                    FeedTwoStep feedTwoStep = new FeedTwoStep
+                    {
+                        ProductId = feedDetail.ProductId,                        
+                    };
 
-                //    };
-
-                //    FeedOneSteps.Add(feedOneStep);
-                //}
+                    FeedTwoSteps.Add(feedTwoStep);
+                }
             }
             catch (Exception ex)
             {

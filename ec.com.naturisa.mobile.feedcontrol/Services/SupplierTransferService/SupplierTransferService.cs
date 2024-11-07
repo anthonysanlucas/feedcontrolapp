@@ -6,9 +6,7 @@
         {
             public const string SupplierTransfer = $"{ApiConstants.API_FEED_CONTROL}/supplier_transfers";
             public const string SupplierTransferDetails =
-                $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_details";
-            public const string SupplierTransferDetailPools =
-                $"{ApiConstants.API_FEED_CONTROL}/feed_transfer_detail_pools";
+                $"{ApiConstants.API_FEED_CONTROL}/supplier_transfer_details";            
         }
 
         public SupplierTransferService()
@@ -47,6 +45,26 @@
             );
 
             return await ProcessResponse<dynamic>(response);
+        }
+
+        public async Task<ApiResponse<PagedApiResponse<SupplierTransferDetailResponse>>> GetSupplierTransfersDetail(long IdSupplierTranfer)
+        {
+            try
+            {
+                //tring queryParams = StringExtensions.BuildQueryString(query);
+                var response = await SendRequestAsync(
+                    HttpMethod.Get,
+                    SupplierTransferEndpoints.SupplierTransferDetails + $"?IdSupplierTransfer={IdSupplierTranfer}&IncludeProduct=true"
+                );
+
+                return await ProcessResponse<PagedApiResponse<SupplierTransferDetailResponse>>(response);
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
         }
 
 

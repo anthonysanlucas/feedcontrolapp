@@ -5,5 +5,7 @@
         Task<ApiResponse<PagedApiResponse<SupplierTransferResponse>>> GetSupplierTransfers(SupplierTransferQuery query);
 
         Task<ApiResponse<dynamic>> ChangeStatus(long id, string nextStatus, string observation, List<ReceivedDetails> receivedDetails);
+
+        Task<ApiResponse<PagedApiResponse<SupplierTransferDetailResponse>>> GetSupplierTransfersDetail(long IdSupplierTranfer);
     }
 }

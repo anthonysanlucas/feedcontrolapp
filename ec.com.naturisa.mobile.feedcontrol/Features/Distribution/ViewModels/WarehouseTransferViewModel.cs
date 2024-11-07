@@ -55,6 +55,13 @@
                 Const.Status.Transfer.Delivered
             };
 
+            var response = await _supplierTransferService.GetSupplierTransfersDetail(selectedTransfer.IdSupplierTransfer);
+
+            if (response?.Data?.Data != null && response.Data.Data.Any())
+            {
+                selectedTransfer.SupplierTransferDetails = response.Data.Data;
+            }
+
             if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName))
             {
                 await Shell.Current.GoToAsync(nameof(TransferDetailView), true, new Dictionary<string, object>

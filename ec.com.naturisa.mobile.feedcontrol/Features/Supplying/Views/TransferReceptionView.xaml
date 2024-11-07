@@ -175,12 +175,12 @@
                             HorizontalOptions="End">
                             <Label
                                 HorizontalOptions="End"
-                                Text="{Binding SelectedTransfer.TotalEquivalenceReceivedSacks, StringFormat='{0}'}"
+                                Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0}', TargetNullValue='0'}"
                                 TextColor="{StaticResource Primary700}" />
                             <Label
                                 FontSize="14"
                                 HorizontalOptions="End"
-                                Text="{Binding SelectedTransfer.TotalEquivalenceReceivedPallets, StringFormat='{0} pallets'}"
+                                Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} pallets', TargetNullValue='0 pallets'}"
                                 TextColor="{StaticResource OnSecondary}" />
                         </VerticalStackLayout>
                     </Grid>

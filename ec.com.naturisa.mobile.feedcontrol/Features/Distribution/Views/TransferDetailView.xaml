@@ -43,7 +43,7 @@
 
                         <Grid
                             Grid.Column="1"
-                            ColumnDefinitions="60,60"
+                            ColumnDefinitions="65,65"
                             ColumnSpacing="8"
                             RowDefinitions="Auto, Auto"
                             RowSpacing="4">
@@ -60,7 +60,7 @@
                                 HorizontalOptions="Start"
                                 Opacity="0.8"
                                 Style="{StaticResource DataTitleLabel}"
-                                Text="Enviados"
+                                Text="Esperados"
                                 TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Grid.Row="1"
@@ -100,7 +100,7 @@
 
                                 <Grid
                                     Grid.Column="1"
-                                    ColumnDefinitions="60,60"
+                                    ColumnDefinitions="65,65"
                                     ColumnSpacing="8">
                                     <Label
                                         Grid.Column="0"
@@ -113,7 +113,7 @@
                                         Grid.Column="1"
                                         HorizontalOptions="End"
                                         Style="{StaticResource RegularLabel}"
-                                        Text="{Binding EquivalenceReceivedSacks}"
+                                        Text="{Binding EquivalenceReceivedSacks, TargetNullValue='0'}"
                                         TextColor="{StaticResource Primary700}"
                                         VerticalOptions="Start" />
                                 </Grid>
@@ -121,7 +121,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-               
+
                 <Grid
                     Grid.Row="2"
                     Grid.ColumnSpan="2"
@@ -169,7 +169,7 @@
                         <Label
                             FontSize="14"
                             HorizontalOptions="End"
-                            Text="{Binding SelectedTransfer.TotalEquivalenceReceivedPallets, StringFormat='{0} pallets'}"
+                            Text="{Binding SelectedTransfer.TotalEquivalenceReceivedPallets, StringFormat='{0} pallets', TargetNullValue='0 pallets'}"
                             TextColor="{StaticResource OnSecondary}" />
                     </VerticalStackLayout>
                 </Grid>

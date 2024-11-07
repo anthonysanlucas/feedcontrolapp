@@ -8,9 +8,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
         {
             public const string Feed = $"{ApiConstants.API_FEED_CONTROL}/feeds";
 
-            public static string FeedStatusOneStep(int id) => $"{Feed}/{id}/step_one";
+            public static string FeedStatusOneStep(long id) => $"{Feed}/{id}/step_one";
 
-            public static string FeedStatusTwoStep(int id) => $"{Feed}/{id}/step_two";
+            public static string FeedStatusTwoStep(long id) => $"{Feed}/{id}/step_two";
         }
 
         public FeedService() : base(ApiConstants.API_FEED_CONTROL)
@@ -27,17 +27,16 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
             return await ProcessResponse<PagedApiResponse<FeedResponse>>(response);
         }
 
-        public async Task<ApiResponse<object>> ChangeFeedStatusOneStep(List<FeedOneStep> feedOneSteps)
+        public async Task<ApiResponse<object>> ChangeFeedStatusOneStep(long idFeed, List<FeedOneStep> feedOneSteps)
         {
             var content = JsonContent.Create(feedOneSteps);
             var response = await SendRequestAsync(
-                HttpMethod.Post,
-                FeedEndpoints.FeedStatusOneStep(1),
+                HttpMethod.Patch,
+                FeedEndpoints.FeedStatusOneStep(idFeed),
                 content
             );
 
-            var processedResponse = await ProcessResponse<ApiResponse<object>>(response);
-            return processedResponse.Data;
+            return await ProcessResponse<object>(response);            
         }
     }
 }

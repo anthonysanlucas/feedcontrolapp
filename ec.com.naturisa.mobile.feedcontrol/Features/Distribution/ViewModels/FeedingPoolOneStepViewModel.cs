@@ -20,11 +20,14 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         [ObservableProperty]
         private ObservableCollection<FeedOneStep> feedOneSteps;
 
+        private readonly IFeedService _feedService;
+
         private readonly IFeedDetailService _feedDetailService;
 
-        public FeedingPoolOneStepViewModel(IToastService toastService, IFeedDetailService feedTransferDetailService)
+        public FeedingPoolOneStepViewModel(IToastService toastService, IFeedService feedService ,IFeedDetailService feedTransferDetailService)
             : base(toastService)
         {
+            _feedService = feedService;
             _feedDetailService = feedTransferDetailService;
         }
 
@@ -64,9 +67,19 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
                 };
 
                 newFeedOneSteps.Add(feedStep);
-            }           
+            }
+            
+            var response = await _feedService.ChangeFeedStatusOneStep(DetailQuery.IdFeed ,newFeedOneSteps);
 
-            await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView));
+            if (response == null || response.Code != 200)
+            {
+                await ShowToastAsync("Error al cambiar el estado de la alimentación.");
+                return;
+            }
+            
+            await ShowToastAsync("Datos registrados correctamente.");
+
+            await Shell.Current.Navigation.PopAsync(true);            
         }
 
         private async void LoadFeedDetails(FeedDetailQuery detailQuery)

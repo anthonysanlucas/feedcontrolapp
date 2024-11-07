@@ -6,7 +6,7 @@
         // {API_URL}/api
         // https://dev-gateway.naturisa.com.ec
         // {API_URL}/feedcontrol/api
-        private const string API_URL = "https://hot-quickly-mosquito.ngrok-free.app";
+        private const string API_URL = "https://20d283789e40d94d742bbca4514b5a08.serveo.net";
 
         public const string AUTH_URL = "https://dev-gateway.naturisa.com.ec/seguridad";
         public const string API_FEED_CONTROL = $"{API_URL}/api";

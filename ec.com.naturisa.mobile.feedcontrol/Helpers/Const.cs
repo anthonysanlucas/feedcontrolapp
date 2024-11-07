@@ -23,5 +23,11 @@ public class Const
             public const string OnCourse = "EN CURSO";
             public const string Fed = "ALIMENTADO";                      
         }
+
+        public static class FeedRemaining
+        {
+            public const string Assigned = "ASIGNADO";            
+            public const string Completed = "COMPLETADO";
+        }
     }
 }

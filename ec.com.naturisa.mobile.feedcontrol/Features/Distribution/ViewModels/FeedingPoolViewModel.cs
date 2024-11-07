@@ -17,7 +17,7 @@
 
             FeedQuery = new FeedQuery
             {
-                Date = DateTime.Now,
+                Date = DateTime.Now.ToString("yyyy-MM-dd"),
                 StartDate = DateTime.Now,
                 EndDate = DateTime.Now,
                 StatusCatalogueName = [Const.Status.Feed.Assigned, Const.Status.Feed.OnCourse, Const.Status.Feed.Fed],

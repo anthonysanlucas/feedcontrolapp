@@ -5,48 +5,31 @@
         [ObservableProperty]
         public ObservableCollection<PoolFeedingAndRemainingState> poolFeedingRemainingList;
 
-        public FeedingRemainingViewModel(IToastService toastService)
+        [ObservableProperty]
+        private ObservableCollection<FeedResponse> feeds;
+
+        [ObservableProperty]
+        private FeedRemaningQuery feedRemainingQuery;
+
+        private readonly IFeedService _feedService;
+
+        public FeedingRemainingViewModel(IToastService toastService, IFeedService feedService)
             : base(toastService)
         {
-            PoolFeedingRemainingList = new ObservableCollection<PoolFeedingAndRemainingState>
+            _feedService = feedService;
+
+            FeedRemainingQuery = new FeedRemaningQuery
             {
-                new()
-                {
-                    PoolName = "MA003",
-                    IsFeeding = false,
-                    IsRemaining = false
-                },
-                new()
-                {
-                    PoolName = "MA004",
-                    IsFeeding = false,
-                    IsRemaining = false
-                },
-                new()
-                {
-                    PoolName = "MA005",
-                    IsFeeding = false,
-                    IsRemaining = false
-                },
-                 new()
-                {
-                    PoolName = "MA006",
-                    IsFeeding = false,
-                    IsRemaining = false
-                },
-                  new()
-                {
-                    PoolName = "MA007",
-                    IsFeeding = false,
-                    IsRemaining = false
-                },
-                  new()
-                {
-                    PoolName = "MA008",
-                    IsFeeding = false,
-                    IsRemaining = false
-                },
+                Date = DateTime.Now.ToString("yyyy-MM-dd"),
+                //StartDate = DateTime.Now,
+                //EndDate = DateTime.Now,
+                StatusCatalogueName = [Const.Status.FeedRemaining.Assigned, Const.Status.FeedRemaining.Completed],
+                IncludeStatusCatalogue = true
             };
+
+            GetFeeds();
+
+           
         }
 
         public async void SetRemainingStatus(PoolFeedingAndRemainingState item)
@@ -87,6 +70,31 @@
         public void UpdateRemainingStatus(PoolFeedingAndRemainingState item)
         {
             SetRemainingStatus(item);
+        }
+
+        [RelayCommand]
+        async Task GetFeeds()
+        {
+            try
+            {
+                IsBusy = true;
+
+                var response = await _feedService.GetFeedRemainings(FeedRemainingQuery);
+
+                if (response.Data != null && response.Data != null)
+                {
+                    Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                IsBusy = false;
+                IsRefreshing = false;
+            }
         }
 
         #endregion

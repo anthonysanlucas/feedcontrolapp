@@ -8,6 +8,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
         {
             public const string Feed = $"{ApiConstants.API_FEED_CONTROL}/feeds";
 
+            public const string FeedRemaining = $"{ApiConstants.API_FEED_CONTROL}/feeds/remainings";
+
             public static string FeedStatusOneStep(long id) => $"{Feed}/{id}/step_one";
 
             public static string FeedStatusTwoStep(long id) => $"{Feed}/{id}/step_two";
@@ -22,6 +24,17 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
             var response = await SendRequestAsync(
                 HttpMethod.Get,
                 FeedEndpoints.Feed + queryParams
+            );
+
+            return await ProcessResponse<PagedApiResponse<FeedResponse>>(response);
+        }
+
+        public async Task<ApiResponse<PagedApiResponse<FeedResponse>>> GetFeedRemainings(FeedRemaningQuery feedQuery)
+        {
+            string queryParams = StringExtensions.BuildQueryString(feedQuery);
+            var response = await SendRequestAsync(
+                HttpMethod.Get,
+                FeedEndpoints.FeedRemaining + queryParams
             );
 
             return await ProcessResponse<PagedApiResponse<FeedResponse>>(response);

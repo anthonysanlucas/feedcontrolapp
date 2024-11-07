@@ -90,10 +90,19 @@
                                             MaximumWidthRequest="260"
                                             Style="{StaticResource DataTextLabel}"
                                             Text="{Binding ProductName}" />
-                                        <Label
-                                            FontSize="12"
-                                            Text="{Binding ProductSupplierCode, StringFormat='SKU {0:F0}'}"
-                                            TextColor="{StaticResource OnSecondary}" />
+
+                                        <Grid ColumnDefinitions="82, *">
+                                            <Label
+                                                FontSize="12"
+                                                Text="{Binding ProductSupplierCode, StringFormat='SKU {0:F0}'}"
+                                                TextColor="{StaticResource OnSecondary}" />
+
+                                            <Label
+                                                Grid.Column="1"
+                                                FontSize="12"
+                                                Text="{Binding PurchaseOrderCode, StringFormat='OC {0:F0}'}"
+                                                TextColor="{StaticResource OnSecondary}" />
+                                        </Grid>
                                     </VerticalStackLayout>
 
                                     <Grid

@@ -43,30 +43,7 @@
                 };
             }
             return;
-        }
-
-        [RelayCommand]
-        async Task GoToFeedingRemaining()
-        {
-            // Validación de valores nulos en lugar de 0
-            if (RemainingSacks == null || RemainingHoppers == null)
-            {
-                await ShowToastAsync("Por favor, ingrese todos los datos");
-                return;
-            }
-
-            IsBtnVisible = false;
-            IsBusy = true;
-
-            await Task.Delay(2000);
-
-            await ShowToastAsync("Sobrante registrado correctamente");
-
-            await Shell.Current.Navigation.PopAsync(true);
-
-            IsBtnVisible = true;
-            IsBusy = false;
-        }
+        }      
 
         [RelayCommand]
         async Task CompleteRemaining()

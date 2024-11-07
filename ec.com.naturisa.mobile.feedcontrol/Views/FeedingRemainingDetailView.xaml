@@ -34,7 +34,7 @@
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
                     Style="{StaticResource LargeLabel}"
-                    Text="{Binding}"
+                    Text="{Binding Feed.PoolCode}"
                     TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
@@ -157,7 +157,7 @@
                         <Button
                             Grid.Column="0"
                             BackgroundColor="Transparent"
-                            Command="{Binding GoToFeedingRemainingCommand}"
+                            Command="{Binding CompleteRemainingCommand}"
                             HorizontalOptions="FillAndExpand"
                             IsVisible="{Binding IsBtnVisible}"
                             SemanticProperties.Hint="Registrar sobrante"

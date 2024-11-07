@@ -1,6 +1,6 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels
 {
-    [QueryProperty(nameof(PoolCode), "poolCode")]
+    [QueryProperty(nameof(Feed), nameof(Feed))]
     public partial class FeedingRemainingDetailViewModel : BaseViewModel
     {
         [ObservableProperty]
@@ -9,15 +9,41 @@
         [ObservableProperty]
         private string poolCode;
 
-        // Cambiar a tipos int? para permitir valores nulos
+        [ObservableProperty]
+        private FeedResponse feed;
+
+        [ObservableProperty]
+        private FeedDetailQuery detailQuery;
+
         [ObservableProperty]
         private int? remainingSacks;
 
         [ObservableProperty]
         private int? remainingHoppers;
 
-        public FeedingRemainingDetailViewModel(IToastService toastService)
-            : base(toastService) { }
+        [ObservableProperty]
+        private string remainingObservation;
+
+        private readonly IFeedService _feedService;
+
+        public FeedingRemainingDetailViewModel(IToastService toastService, IFeedService feedService)
+            : base(toastService)
+        {
+            _feedService = feedService;
+        }
+
+        partial void OnFeedChanged(FeedResponse value)
+        {
+            if (value != null)
+            {
+                DetailQuery = new FeedDetailQuery
+                {
+                    IdFeed = value.IdFeed,
+                    IncludeFeed = true
+                };
+            }
+            return;
+        }
 
         [RelayCommand]
         async Task GoToFeedingRemaining()
@@ -40,6 +66,46 @@
 
             IsBtnVisible = true;
             IsBusy = false;
+        }
+
+        [RelayCommand]
+        async Task CompleteRemaining()
+        {            
+            if (RemainingSacks == null || RemainingHoppers == null)
+            {
+                await ShowToastAsync("Por favor, ingrese todos los datos");
+                return;
+            }
+
+            try
+            {
+                IsBusy = true;
+
+                FeedRemainingRequest feedRemainingRequest = new FeedRemainingRequest
+                {
+                    SacksRemainingHoppers = RemainingSacks.Value,
+                    FailedHoppers = RemainingHoppers.Value,
+                    Observation = RemainingObservation
+                };
+
+                var response = await _feedService.ChangeFeedRemainingStatus(Feed.IdFeed, feedRemainingRequest);
+
+                if (response.Code == 200)
+                {
+                    await ShowToastAsync("Sobrante registrado correctamente");
+
+                    await Shell.Current.Navigation.PopAsync(true);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                IsBtnVisible = false;
+                IsBusy = true;
+            }
         }
     }
 }

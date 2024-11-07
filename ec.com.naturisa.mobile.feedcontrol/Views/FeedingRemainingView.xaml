@@ -97,7 +97,7 @@
                             VerticalOptions="Center"
                             WidthRequest="84">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FeedingRemainingViewModel}}, Path=UpdateRemainingStatusCommand}" CommandParameter="{Binding}" />
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:FeedingRemainingViewModel}}, Path=GoToFeedingRemainingDetail}" CommandParameter="{Binding}" />
                             </Frame.GestureRecognizers>
                             <Label
                                 FontSize="18"

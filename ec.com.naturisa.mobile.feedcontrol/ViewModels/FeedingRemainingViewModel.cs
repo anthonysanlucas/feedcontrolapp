@@ -1,9 +1,12 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels
-{
+{    
     public partial class FeedingRemainingViewModel : BaseViewModel
     {
         [ObservableProperty]
         public ObservableCollection<PoolFeedingAndRemainingState> poolFeedingRemainingList;
+
+        [ObservableProperty]
+        private FeedResponse feed;        
 
         [ObservableProperty]
         private ObservableCollection<FeedResponse> feeds;
@@ -27,49 +30,53 @@
                 IncludeStatusCatalogue = true
             };
 
-            GetFeeds();
-
-           
+            GetFeeds();           
         }
 
-        public async void SetRemainingStatus(PoolFeedingAndRemainingState item)
-        {
-            if (item.IsRemaining)
-            {
-                await ShowToastAsync("El sobrante ha sido registrado en esta piscina.");
-                return;
-            }
+        
 
-            var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == item.PoolName));
+        //public async void SetRemainingStatus(PoolFeedingAndRemainingState item)
+        //{
+        //    if (item.IsRemaining)
+        //    {
+        //        await ShowToastAsync("El sobrante ha sido registrado en esta piscina.");
+        //        return;
+        //    }
 
-            if (index != -1)
-            {
-                GoToFeedingRemainingDetail(item.PoolName);
+        //    var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == item.PoolName));
 
-                var pool = PoolFeedingRemainingList[index];
-                var updatedPool = new PoolFeedingAndRemainingState
-                {
-                    PoolName = pool.PoolName,
-                    IsFeeding = true,
-                    IsRemaining = true
-                };
+        //    if (index != -1)
+        //    {
+        //        GoToFeedingRemainingDetail(item.PoolName);
 
-                PoolFeedingRemainingList[index] = updatedPool;
-            }
-        }
+        //        var pool = PoolFeedingRemainingList[index];
+        //        var updatedPool = new PoolFeedingAndRemainingState
+        //        {
+        //            PoolName = pool.PoolName,
+        //            IsFeeding = true,
+        //            IsRemaining = true
+        //        };
+
+        //        PoolFeedingRemainingList[index] = updatedPool;
+        //    }
+        //}
 
         #region commands
 
         [RelayCommand]
-        async Task GoToFeedingRemainingDetail(string poolName)
+        async Task GoToFeedingRemainingDetail(FeedResponse feed)
         {
-            await Shell.Current.GoToAsync($"{nameof(FeedingRemainingDetailView)}?poolCode={poolName}");
+            if(feed == null)
+                return;
+
+            await Shell.Current.GoToAsync(nameof(FeedingRemainingDetailView), true,
+               new Dictionary<string, object> { { "Feed", feed } });            
         }
 
         [RelayCommand]
         public void UpdateRemainingStatus(PoolFeedingAndRemainingState item)
         {
-            SetRemainingStatus(item);
+            //SetRemainingStatus(item);
         }
 
         [RelayCommand]

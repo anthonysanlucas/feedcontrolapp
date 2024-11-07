@@ -13,6 +13,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
             public static string FeedStatusOneStep(long id) => $"{Feed}/{id}/step_one";
 
             public static string FeedStatusTwoStep(long id) => $"{Feed}/{id}/step_two";
+            
+            public static string FeedRemainingStatus(long id) => $"{Feed}/{id}/estimate_remaining";
         }
 
         public FeedService() : base(ApiConstants.API_FEED_CONTROL)
@@ -58,6 +60,18 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.Feed
             var response = await SendRequestAsync(
                 HttpMethod.Patch,
                 FeedEndpoints.FeedStatusTwoStep(idFeed),
+                content
+            );
+
+            return await ProcessResponse<object>(response);
+        }
+
+        public async Task<ApiResponse<object>> ChangeFeedRemainingStatus(long idFeed, FeedRemainingRequest feedRemainingRequest)
+        {
+            var content = JsonContent.Create(feedRemainingRequest);
+            var response = await SendRequestAsync(
+                HttpMethod.Patch,
+                FeedEndpoints.FeedRemainingStatus(idFeed),
                 content
             );
 

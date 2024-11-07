@@ -34,7 +34,7 @@
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
                 <Label
                     Style="{StaticResource LargeLabel}"
-                    Text="{Binding PoolCode}"
+                    Text="{Binding}"
                     TextColor="{StaticResource Primary700}" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
@@ -132,6 +132,7 @@
                                         MaxLength="500"
                                         Placeholder="Escriba alguna observación"
                                         PlaceholderColor="{StaticResource Black-text-light}"
+                                        Text="{Binding RemainingObservation}"
                                         TextColor="{StaticResource Black-text}"
                                         VerticalTextAlignment="Start" />
                                 </VerticalStackLayout>

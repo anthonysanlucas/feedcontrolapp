@@ -25,7 +25,7 @@
                 if ((string)value == Const.Status.Transfer.AtDestination)
                     return Indigo600;
 
-                if ((string)value == Const.Status.Transfer.Delivered || (string)value == Const.Status.Feed.Fed)
+                if ((string)value == Const.Status.Transfer.Delivered || (string)value == Const.Status.Feed.Fed || (string)value == Const.Status.FeedRemaining.Completed)
                     return Green500;
 
                 if ((string)value == Const.Status.Transfer.Paused)

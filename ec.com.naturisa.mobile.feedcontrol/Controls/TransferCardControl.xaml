@@ -10,7 +10,7 @@
     <Grid
         ColumnDefinitions="*,Auto"
         ColumnSpacing="4"
-        RowDefinitions="Auto,Auto,Auto"
+        RowDefinitions="Auto,Auto,Auto,Auto"
         RowSpacing="8">
 
         <VerticalStackLayout Grid.Column="0" Spacing="2">
@@ -139,7 +139,7 @@
         </Grid>
 
         <Label
-            Grid.Row="2"
+            Grid.Row="3"
             Grid.Column="1"
             FontSize="28"
             HorizontalOptions="End"
@@ -147,6 +147,50 @@
             Text="{x:Static models:IconFont.Chevron_right}"
             TextColor="{StaticResource OnSecondary}"
             VerticalOptions="End" />
+
+        <Grid
+            Grid.Row="3"
+            Grid.Column="0"
+            ColumnDefinitions="Auto, Auto"
+            ColumnSpacing="8"
+            RowDefinitions="18, Auto"
+            VerticalOptions="Center">
+            <HorizontalStackLayout Spacing="2">
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Calendar_today}"
+                    TextColor="{StaticResource OnSecondary}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource DataTitleLabel}"
+                    Text="27-07-10"
+                    VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Grid.Column="1" Spacing="2">
+                <Label
+                    FontSize="14"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Timer}"
+                    TextColor="{StaticResource OnSecondary}" />
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Margin="0"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource DataTitleLabel}"
+                    Text="09:00"
+                    VerticalOptions="Start" />
+            </HorizontalStackLayout>
+        </Grid>
     </Grid>
     <ContentView.Resources>
         <ResourceDictionary>

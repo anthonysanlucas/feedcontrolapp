@@ -32,35 +32,7 @@
 
             GetFeeds();           
         }
-
-        
-
-        //public async void SetRemainingStatus(PoolFeedingAndRemainingState item)
-        //{
-        //    if (item.IsRemaining)
-        //    {
-        //        await ShowToastAsync("El sobrante ha sido registrado en esta piscina.");
-        //        return;
-        //    }
-
-        //    var index = PoolFeedingRemainingList.IndexOf(PoolFeedingRemainingList.FirstOrDefault(p => p.PoolName == item.PoolName));
-
-        //    if (index != -1)
-        //    {
-        //        GoToFeedingRemainingDetail(item.PoolName);
-
-        //        var pool = PoolFeedingRemainingList[index];
-        //        var updatedPool = new PoolFeedingAndRemainingState
-        //        {
-        //            PoolName = pool.PoolName,
-        //            IsFeeding = true,
-        //            IsRemaining = true
-        //        };
-
-        //        PoolFeedingRemainingList[index] = updatedPool;
-        //    }
-        //}
-
+      
         #region commands
 
         [RelayCommand]
@@ -72,13 +44,7 @@
             await Shell.Current.GoToAsync(nameof(FeedingRemainingDetailView), true,
                new Dictionary<string, object> { { "Feed", feed } });            
         }
-
-        [RelayCommand]
-        public void UpdateRemainingStatus(PoolFeedingAndRemainingState item)
-        {
-            //SetRemainingStatus(item);
-        }
-
+       
         [RelayCommand]
         async Task GetFeeds()
         {

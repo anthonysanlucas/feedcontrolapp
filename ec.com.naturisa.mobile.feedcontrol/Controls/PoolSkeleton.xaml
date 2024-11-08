@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Controls.PoolSkeleton"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <FlexLayout
+        AlignContent="Start"
+        BackgroundColor="White"
+        JustifyContent="Start"
+        VerticalOptions="FillAndExpand"
+        Wrap="Wrap">
+        <Frame
+            Margin="6"
+            Padding="0"
+            BackgroundColor="{StaticResource SurfaceLowContainer}"
+            BorderColor="{StaticResource SurfaceLowContainer}"
+            CornerRadius="8"
+            HasShadow="False"
+            HeightRequest="84"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="84" />
+
+        <Frame
+            Margin="6"
+            Padding="0"
+            BackgroundColor="{StaticResource SurfaceLowContainer}"
+            BorderColor="{StaticResource SurfaceLowContainer}"
+            CornerRadius="8"
+            HasShadow="False"
+            HeightRequest="84"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="84" />
+
+        <Frame
+            Margin="6"
+            Padding="0"
+            BackgroundColor="{StaticResource SurfaceLowContainer}"
+            BorderColor="{StaticResource SurfaceLowContainer}"
+            CornerRadius="8"
+            HasShadow="False"
+            HeightRequest="84"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="84" />
+
+        <Frame
+            Margin="6"
+            Padding="0"
+            BackgroundColor="{StaticResource SurfaceLowContainer}"
+            BorderColor="{StaticResource SurfaceLowContainer}"
+            CornerRadius="8"
+            HasShadow="False"
+            HeightRequest="84"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="84" />
+
+        <Frame
+            Margin="6"
+            Padding="0"
+            BackgroundColor="{StaticResource SurfaceLowContainer}"
+            BorderColor="{StaticResource SurfaceLowContainer}"
+            CornerRadius="8"
+            HasShadow="False"
+            HeightRequest="84"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="84" />
+    </FlexLayout>
+</ContentView>

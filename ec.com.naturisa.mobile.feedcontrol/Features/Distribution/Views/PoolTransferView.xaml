@@ -27,21 +27,6 @@
                             TextColor="{StaticResource OnSecondary}" />
                     </VerticalStackLayout>
                 </Frame>
-
-                <!--
-                <Frame
-                    Grid.Row="1"
-                    Padding="2"
-                    BackgroundColor="{StaticResource Primary50}">
-                    <VerticalStackLayout>
-                        <SearchBar
-                            Grid.Row="1"
-                            FontSize="14"
-                            Placeholder="Buscar viaje" />
-                    </VerticalStackLayout>
-                </Frame>
-                -->
-
                 <CollectionView
                     Grid.Row="2"
                     Margin="0"
@@ -103,8 +88,9 @@
                     </CollectionView.EmptyView>
                 </CollectionView>
             </RefreshView>
-        </Grid>
 
+            <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
+        </Grid>
         <Frame
             Grid.Row="0"
             HorizontalOptions="End"
@@ -137,12 +123,6 @@
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
-        <components:ViewLoader
-            Grid.Row="0"
-            BackgroundColor="White"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding IsBusy}"
-            VerticalOptions="FillAndExpand" />
     </Grid>
     <ContentPage.Resources>
         <ResourceDictionary>

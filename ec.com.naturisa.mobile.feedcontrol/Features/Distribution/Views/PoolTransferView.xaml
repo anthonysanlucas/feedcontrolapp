@@ -11,6 +11,11 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     x:DataType="viewModels:PoolTransferViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="Auto, *" RowSpacing="24">
             <Grid RowDefinitions="Auto, Auto" RowSpacing="8">
@@ -124,9 +129,4 @@
             </HorizontalStackLayout>
         </Frame>
     </Grid>
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 </ContentPage>

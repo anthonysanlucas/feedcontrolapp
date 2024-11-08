@@ -36,7 +36,6 @@
                         TextColor="{StaticResource OnSecondary}" />
                 </Frame>
             </Grid>
-
             <RefreshView
                 Grid.Row="2"
                 Command="{Binding GetFeedTransfersCommand}"
@@ -84,6 +83,7 @@
                     </CollectionView.EmptyView>
                 </CollectionView>
             </RefreshView>
+            <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
         </Grid>
 
         <Frame
@@ -119,12 +119,6 @@
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
-        <components:ViewLoader
-            Grid.Row="0"
-            BackgroundColor="White"
-            HorizontalOptions="FillAndExpand"
-            IsVisible="{Binding IsBusy}"
-            VerticalOptions="FillAndExpand" />
     </Grid>
 
     <ContentPage.Resources>

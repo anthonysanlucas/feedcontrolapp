@@ -10,8 +10,7 @@
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Title="WarehouseTransferView"
     x:DataType="viewModels:WarehouseTransferViewModel">
-
-    <Grid RowDefinitions="auto,*">
+    <Grid RowDefinitions="auto,*" RowSpacing="24">
         <Grid ColumnSpacing="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*" />
@@ -47,9 +46,6 @@
             </VerticalStackLayout>
         </Grid>
 
-
-
-
         <RefreshView
             Grid.Row="2"
             Command="{Binding GetSupplierTransfersCommand}"
@@ -59,7 +55,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">
                         <Frame
-                            Margin="0,8"
+                            Margin="0,6"
                             BackgroundColor="{StaticResource SurfaceLowContainer}"
                             BorderColor="{StaticResource Secondary}"
                             HasShadow="False"
@@ -82,8 +78,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </RefreshView>
 
+        <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
     </Grid>
 </ContentPage>

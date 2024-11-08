@@ -21,13 +21,31 @@
         Background="Transparent"
         RowDefinitions="Auto ,*"
         RowSpacing="16">
-        <Grid
+        <VerticalStackLayout
+            Grid.Row="0"
             Padding="16"
-            ColumnDefinitions="128, *"
-            ColumnSpacing="8"
-            HorizontalOptions="Start"
-            RowDefinitions="Auto, Auto, Auto"
-            RowSpacing="16" />
+            Spacing="8">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Table_view}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Label
+                    Style="{StaticResource RegularLabel}"
+                    Text="Datos de entrega a piscina"
+                    TextColor="{StaticResource OnSecondary}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
+                    Style="{StaticResource LargeLabel}"
+                    Text="{Binding SelectedTransferPoolDetail.PoolCode}"
+                    TextColor="{StaticResource Primary700}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
         <Border
             Grid.Row="1"
             Padding="16,24,16,0"
@@ -36,22 +54,6 @@
             StrokeShape="RoundRectangle 16,16,0,0"
             StrokeThickness="0">
             <VerticalStackLayout>
-                <HorizontalStackLayout
-                    Margin="0,0,0,24"
-                    HorizontalOptions="Center"
-                    Spacing="4">
-                    <Label
-                        FontSize="16"
-                        Style="{StaticResource GoogleFont}"
-                        Text="{x:Static models:IconFont.Waves}"
-                        TextColor="{StaticResource Primary700}"
-                        VerticalOptions="End" />
-                    <Label
-                        Style="{StaticResource RegularLabel}"
-                        Text="{Binding SelectedTransferPoolDetail.PoolCode}"
-                        TextColor="{StaticResource Primary700}" />
-                </HorizontalStackLayout>
-
                 <Frame Padding="6" BackgroundColor="{StaticResource Secondary}">
                     <Grid ColumnDefinitions="64,*,Auto" ColumnSpacing="4">
                         <Label

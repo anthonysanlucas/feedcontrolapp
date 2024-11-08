@@ -10,7 +10,7 @@
         VerticalOptions="FillAndExpand"
         Wrap="Wrap">
         <Frame
-            Margin="6"
+            Margin="2"
             Padding="0"
             BackgroundColor="{StaticResource SurfaceLowContainer}"
             BorderColor="{StaticResource SurfaceLowContainer}"
@@ -22,7 +22,7 @@
             WidthRequest="84" />
 
         <Frame
-            Margin="6"
+            Margin="2"
             Padding="0"
             BackgroundColor="{StaticResource SurfaceLowContainer}"
             BorderColor="{StaticResource SurfaceLowContainer}"
@@ -34,7 +34,7 @@
             WidthRequest="84" />
 
         <Frame
-            Margin="6"
+            Margin="2"
             Padding="0"
             BackgroundColor="{StaticResource SurfaceLowContainer}"
             BorderColor="{StaticResource SurfaceLowContainer}"
@@ -46,7 +46,7 @@
             WidthRequest="84" />
 
         <Frame
-            Margin="6"
+            Margin="2"
             Padding="0"
             BackgroundColor="{StaticResource SurfaceLowContainer}"
             BorderColor="{StaticResource SurfaceLowContainer}"
@@ -58,7 +58,7 @@
             WidthRequest="84" />
 
         <Frame
-            Margin="6"
+            Margin="2"
             Padding="0"
             BackgroundColor="{StaticResource SurfaceLowContainer}"
             BorderColor="{StaticResource SurfaceLowContainer}"

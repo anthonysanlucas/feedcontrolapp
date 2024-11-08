@@ -202,7 +202,7 @@
             if (!isFinalized)
             {
                 await ToastService.ShowToastAsync(
-                    "Debe entregar todas las piscinas para finalizar el viaje."
+                    "Debe entregar todas las piscinas para finalizar el viaje"
                 );
                 return;
             }

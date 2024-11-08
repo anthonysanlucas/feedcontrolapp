@@ -78,7 +78,7 @@
                                 SelectionMode="None">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="feedModels:FeedOneStep">
-                                        <Grid ColumnDefinitions="*,*">
+                                        <Grid ColumnDefinitions="*,Auto">
                                             <Label
                                                 FontSize="14"
                                                 Text="{Binding ProductName}"
@@ -92,6 +92,7 @@
                                                 HasShadow="False"
                                                 HeightRequest="52"
                                                 HorizontalOptions="FillAndExpand"
+                                                MaximumWidthRequest="92"
                                                 VerticalOptions="CenterAndExpand">
                                                 <VerticalStackLayout>
                                                     <Entry
@@ -99,7 +100,7 @@
                                                         HorizontalTextAlignment="End"
                                                         Keyboard="Numeric"
                                                         MaxLength="3"
-                                                        Placeholder="Ingresa el número de sacos"
+                                                        Placeholder="sacos"
                                                         PlaceholderColor="{StaticResource OnSecondary}"
                                                         Text="{Binding SacksFoundWall}"
                                                         TextColor="{StaticResource Primary700}"

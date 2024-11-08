@@ -29,22 +29,27 @@
                 new FeedTransferDetailModel
                 {
                     ProductId = 1,
-                    ProductName = "ALIMENTO INICIADOR AQUAXCEL 0.6 MM"
+                    ProductName = "Aquaxel MW354 Grower NG 1.8"
                 },
                 new FeedTransferDetailModel
                 {
                     ProductId = 2,
-                    ProductName = "NATURISA STARTER 0.8MM"
+                    ProductName = "Purina Aquafeed 354 CRE NG LS 2.0mm"
                 },
                 new FeedTransferDetailModel
                 {
                     ProductId = 3,
-                    ProductName = "NATURISA ADVANCE STD 1.2MM"
+                    ProductName = "Cargill Aquaxel MW 354 START NG ext 35% 1.2 mm"
                 },
                  new FeedTransferDetailModel
                 {
                     ProductId = 4,
-                    ProductName = "AQUAXCEL MW354 GROWER NG 1.8"
+                    ProductName = "Aquaxel MW 424 SLD Starter 0.8 mm"
+                },
+                 new FeedTransferDetailModel
+                {
+                    ProductId = 5,
+                    ProductName = "Alimento Iniciador Aquaxel 0.6 MM"
                 },
             };
 

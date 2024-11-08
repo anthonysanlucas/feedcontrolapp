@@ -12,7 +12,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         private FeedDetailQuery detailQuery;
 
         [ObservableProperty]
-        private int sacksRemainingHoppers;
+        private int? sacksRemainingHoppers;
 
         [ObservableProperty]
         private ObservableCollection<FeedDetailResponse> feedDetails;

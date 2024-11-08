@@ -24,7 +24,7 @@
         private string _additionalObservation;
 
         [ObservableProperty]
-        private int loadedHoppers;
+        private int? loadedHoppers;
 
         [ObservableProperty]
         private string automaticFeed;
@@ -33,7 +33,7 @@
         private string voleoFeed;
 
         [ObservableProperty]
-        private int sacksRemaining;
+        private int? sacksRemaining;
 
         [ObservableProperty]
         private string observation;
@@ -84,9 +84,9 @@
                 FeedTwoStep feedTwoStep = new FeedTwoStep
                 {
                     ProductId = feedDetail.ProductId,
-                    LoadedHoppers = LoadedHoppers,
+                    LoadedHoppers = (int)LoadedHoppers,
                     Observation = Observation,
-                    SacksRemainingWallAfterFeeding = SacksRemaining,
+                    SacksRemainingWallAfterFeeding = (int)SacksRemaining,
                     AutomaticFeeding = "CANOA",
                     ThrowFeeding = "VOLEO"
                 };

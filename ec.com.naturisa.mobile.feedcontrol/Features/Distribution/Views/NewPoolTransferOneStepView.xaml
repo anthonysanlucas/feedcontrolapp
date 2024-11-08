@@ -73,7 +73,7 @@
                 <Grid RowDefinitions="*">
                     <ScrollView>
                         <VerticalStackLayout
-                            Padding="16,24,16,0"
+                            Padding="16,24,16,92"
                             Spacing="8"
                             VerticalOptions="FillAndExpand">
 
@@ -151,7 +151,7 @@
                                     BackgroundColor="Transparent"
                                     BorderColor="{StaticResource Slate400}">
                                     <Entry
-                                        HeightRequest="62"
+                                        HeightRequest="52"
                                         HorizontalOptions="FillAndExpand"
                                         HorizontalTextAlignment="End"
                                         Keyboard="Numeric"

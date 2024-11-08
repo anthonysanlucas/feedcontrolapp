@@ -134,7 +134,7 @@
                         Grid.Row="1"
                         Padding="8"
                         BackgroundColor="{StaticResource Secondary}">
-                        <Grid ColumnDefinitions="96, *, auto" ColumnSpacing="8">
+                        <Grid ColumnDefinitions="76, *, auto" ColumnSpacing="8">
                             <Label
                                 Grid.Column="0"
                                 Text="Piscina"
@@ -180,7 +180,7 @@
                                     <Grid
                                         Padding="8"
                                         BackgroundColor="{StaticResource Primary50}"
-                                        ColumnDefinitions="96, *, auto"
+                                        ColumnDefinitions="76, *, auto"
                                         ColumnSpacing="8">
                                         <Frame
                                             Grid.Column="0"
@@ -203,6 +203,7 @@
                                             BorderColor="{StaticResource Slate400}">
                                             <Picker
                                                 Title="Selecciona un producto"
+                                                FontSize="Small"
                                                 ItemDisplayBinding="{Binding ProductName}"
                                                 ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=AvailableProducts}"
                                                 SelectedItem="{Binding SelectedProduct}"

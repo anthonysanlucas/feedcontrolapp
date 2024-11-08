@@ -10,7 +10,7 @@
     <Grid
         ColumnDefinitions="*,Auto"
         ColumnSpacing="4"
-        RowDefinitions="Auto,Auto,Auto,Auto"
+        RowDefinitions="Auto,Auto,Auto"
         RowSpacing="8">
 
         <VerticalStackLayout Grid.Column="0" Spacing="2">
@@ -148,6 +148,7 @@
             TextColor="{StaticResource OnSecondary}"
             VerticalOptions="End" />
 
+        <!--
         <Grid
             Grid.Row="3"
             Grid.Column="0"
@@ -191,6 +192,7 @@
                     VerticalOptions="Start" />
             </HorizontalStackLayout>
         </Grid>
+        -->
     </Grid>
     <ContentView.Resources>
         <ResourceDictionary>

@@ -99,7 +99,7 @@
                                 BackgroundColor="{StaticResource Primary50}"
                                 ColumnDefinitions="24,64,*,Auto"
                                 ColumnSpacing="8"
-                                RowDefinitions="24,16"
+                                RowDefinitions="34,16"
                                 VerticalOptions="StartAndExpand">
 
                                 <CheckBox

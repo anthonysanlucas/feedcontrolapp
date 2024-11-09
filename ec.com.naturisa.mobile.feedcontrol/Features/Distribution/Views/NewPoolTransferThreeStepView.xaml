@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:FeedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
@@ -243,17 +244,10 @@
                     </Grid>
                 </Grid>
 
-                <Button
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="0,0,0,16"
-                    BackgroundColor="{StaticResource Primary700}"
+                <controls:MainButtonControl
                     Command="{Binding GoToPoolTransferViewCommand}"
-                    HeightRequest="62"
-                    HorizontalOptions="FillAndExpand"
-                    Text="Crear viaje"
-                    TextColor="White"
-                    VerticalOptions="End" />
+                    IsBusy="{Binding IsBusy}"
+                    Text="Crear viaje" />
             </Grid>
         </Border>
     </Grid>

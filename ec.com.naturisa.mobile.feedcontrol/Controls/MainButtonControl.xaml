@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Controls.MainButtonControl"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="ButtonControl">
+    <Frame
+        Margin="16"
+        Padding="0"
+        BackgroundColor="{StaticResource Primary700}"
+        BorderColor="Transparent"
+        CornerRadius="8"
+        HasShadow="True"
+        HeightRequest="62"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="End">
+
+        <Frame.Shadow>
+            <Shadow
+                Brush="{StaticResource Primary700}"
+                Opacity="0.5"
+                Radius="80"
+                Offset="10,-20" />
+        </Frame.Shadow>
+
+        <Grid ColumnDefinitions="*" HorizontalOptions="Fill">
+            <!--  Botón que se muestra cuando no está ocupado (IsBusy == false)  -->
+            <Button
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                Command="{Binding Source={x:Reference ButtonControl}, Path=Command}"
+                CommandParameter="{Binding Source={x:Reference ButtonControl}, Path=CommandParameter}"
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding Source={x:Reference ButtonControl}, Path=Text}"
+                TextColor="White">
+                <Button.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Source={x:Reference ButtonControl}, Path=IsBusy}"
+                        TargetType="Button"
+                        Value="True">
+                        <Setter Property="IsVisible" Value="False" />
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <!--  Indicador de actividad que se muestra si IsBusy es true  -->
+            <ActivityIndicator
+                Grid.Column="0"
+                HeightRequest="32"
+                IsRunning="{Binding Source={x:Reference ButtonControl}, Path=IsBusy}"
+                IsVisible="{Binding Source={x:Reference ButtonControl}, Path=IsBusy}"
+                Color="White" />
+        </Grid>
+    </Frame>
+</ContentView>

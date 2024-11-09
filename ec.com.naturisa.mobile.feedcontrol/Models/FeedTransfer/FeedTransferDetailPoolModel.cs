@@ -15,6 +15,6 @@
         public double Weight { get; set; }
 
         [JsonPropertyName("status")]
-        public bool Status { get; set; }
+        public string? Status { get; set; }
     }
 }

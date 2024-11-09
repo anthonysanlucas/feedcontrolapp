@@ -119,6 +119,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\MainButtonControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\PoolSkeleton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

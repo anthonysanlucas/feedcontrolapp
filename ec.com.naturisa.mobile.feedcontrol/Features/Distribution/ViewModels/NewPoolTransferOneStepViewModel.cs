@@ -59,7 +59,7 @@
                 SelectedOriginWharehouse == null
                 || OriginBranch is null
                 || SelectedCarrier is null
-                || SelectedTransport is null
+                || SelectedTransport is null || AssistantsNumber is null
             )
             {
                 await ToastService.ShowToastAsync("Debes completar todos los campos.");

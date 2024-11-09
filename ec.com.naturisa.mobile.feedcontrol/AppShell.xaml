@@ -44,7 +44,6 @@
                 </Grid>
             </Frame>
 
-
             <HorizontalStackLayout Grid.Column="2">
                 <ImageButton
                     Command="{Binding OpenNotificationsDetailViewCommand}"
@@ -93,7 +92,6 @@
             <Grid
                 Margin="0,4"
                 Padding="16"
-                BackgroundColor="Red"
                 ColumnDefinitions="0.2*, 0.8*">
                 <Label
                     HeightRequest="24"
@@ -144,22 +142,22 @@
                     WidthRequest="50" />
                 <StackLayout>
                     <Label
-                        FontAttributes="Bold"
-                        FontSize="Large"
+                        FontSize="Medium"
                         Text="Anthony San Lucas"
                         TextColor="White" />
                     <Label
                         FontSize="Small"
                         Text="0951601517"
-                        TextColor="White" />
+                        TextColor="{StaticResource Secondary}" />
                 </StackLayout>
             </StackLayout>
             <BoxView
                 BackgroundColor="{StaticResource SurfaceLowContainer}"
-                HeightRequest="1"
+                HeightRequest="0.1"
                 HorizontalOptions="FillAndExpand" />
         </VerticalStackLayout>
     </Shell.FlyoutHeader>
+
 
     <FlyoutItem FlyoutItemIsVisible="False" Route="InitialLoadingView">
         <ShellContent ContentTemplate="{DataTemplate views:InitialLoadingView}" Shell.FlyoutBehavior="Disabled" />
@@ -212,17 +210,19 @@
     <FlyoutItem
         Title="Recepción de Inventario"
         FlyoutDisplayOptions="AsSingleItem"
-        Route="WarehouseTransferView"
-        Icon="{x:Static models:IconFont.Move_to_inbox}">
+        Icon="{x:Static models:IconFont.Move_to_inbox}"
+        Route="WarehouseTransferView">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" />
     </FlyoutItem>
 
+    <!--
     <FlyoutItem
         Title="Transferencia a Finca"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:NewTransferThreeStepView}"/>
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:NewTransferThreeStepView}" />
     </FlyoutItem>
+    -->
 
     <Shell.FlyoutFooter>
         <Frame

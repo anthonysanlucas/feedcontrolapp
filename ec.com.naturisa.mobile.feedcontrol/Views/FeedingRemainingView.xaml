@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Views.FeedingRemainingView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
     xmlns:feedModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed"
@@ -109,6 +110,14 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <components:EmptyView
+                        HorizontalOptions="CenterAndExpand"
+                        IsVisible="{Binding IsNotBusy}"
+                        Text="No se han encontrado piscinas para alimentar"
+                        VerticalOptions="CenterAndExpand" />
+                </CollectionView.EmptyView>
             </CollectionView>
         </RefreshView>
 

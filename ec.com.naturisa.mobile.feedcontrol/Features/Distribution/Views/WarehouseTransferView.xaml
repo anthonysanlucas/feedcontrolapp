@@ -77,6 +77,14 @@
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <components:EmptyView
+                        HorizontalOptions="CenterAndExpand"
+                        IsVisible="{Binding IsNotBusy}"
+                        Text="No se han encontrado viajes"
+                        VerticalOptions="CenterAndExpand" />
+                </CollectionView.EmptyView>
             </CollectionView>
         </RefreshView>
 

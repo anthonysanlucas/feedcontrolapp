@@ -150,14 +150,14 @@
                         <CollectionView Grid.Row="0" ItemsSource="{Binding PoolTransferTwoStepSelectionModels}">
                             <CollectionView.Header>
                                 <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
-                                    <Grid ColumnDefinitions="Auto,*, auto">
+                                    <Grid ColumnDefinitions="62,*, Auto" ColumnSpacing="8">
                                         <Label
                                             Grid.Column="0"
                                             Text="Piscina"
                                             TextColor="{StaticResource OnSecondary}" />
                                         <Label
                                             Grid.Column="1"
-                                            HorizontalOptions="Center"
+                                            HorizontalOptions="Start"
                                             Text="Producto"
                                             TextColor="{StaticResource OnSecondary}" />
                                         <Label
@@ -173,7 +173,7 @@
                                     <Grid
                                         Padding="8"
                                         BackgroundColor="{StaticResource Primary50}"
-                                        ColumnDefinitions="Auto, *, Auto"
+                                        ColumnDefinitions="62, *, Auto"
                                         ColumnSpacing="8">
                                         <Label
                                             Grid.Column="0"
@@ -182,7 +182,7 @@
                                             TextColor="{StaticResource OnSecondary}"
                                             VerticalOptions="Start" />
 
-                                        <VerticalStackLayout Grid.Column="1" Padding="8,0">
+                                        <VerticalStackLayout Grid.Column="1">
                                             <Label
                                                 HorizontalOptions="Start"
                                                 MaximumWidthRequest="300"

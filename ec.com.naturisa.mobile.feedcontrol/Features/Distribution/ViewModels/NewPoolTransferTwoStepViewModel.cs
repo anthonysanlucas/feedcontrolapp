@@ -84,19 +84,14 @@
                 OnPropertyChanged(nameof(TotalQuantitySacks));
                 OnPropertyChanged(nameof(TotalWeightInKilos));
                 OnPropertyChanged(nameof(RemainingCapacity));
+                OnPropertyChanged(nameof(RemainingCapacityVisible));
             }
         }
 
         [RelayCommand]
-        public async void AddProductRow()
+        public async Task AddProductRow()
         {
-            if (RemainingCapacity < 0)
-            {
-                await ToastService.ShowToastAsync(
-                    "No se puede superar la capacidad máxima del vehículo."
-                );
-                return;
-            }
+            if (!await ValidateFields()) return;
 
             var newRow = new PoolTransferTwoStepSelectionModel();
             newRow.PropertyChanged += ProductRow_PropertyChanged;
@@ -106,7 +101,7 @@
         }
 
         [RelayCommand]
-        public void DeleteProductRow(PoolTransferTwoStepSelectionModel row)
+        public void DeletePoolTransfertRow(PoolTransferTwoStepSelectionModel row)
         {
             if (!ProductRows.Contains(row))
                 return;
@@ -118,13 +113,7 @@
         [RelayCommand]
         public async Task GoToNewPoolTransferThreeStep()
         {
-            if (RemainingCapacity < 0)
-            {
-                await ToastService.ShowToastAsync(
-                    "No se puede superar la capacidad máxima del vehículo."
-                );
-                return;
-            }
+            if (!await ValidateFields()) return;
 
             await Shell.Current.GoToAsync(
                 nameof(NewPoolTransferThreeStepView),
@@ -145,11 +134,36 @@
 
         public int RemainingCapacity => VehicleCapacity - TotalQuantitySacks;
 
+        public int RemainingCapacityVisible => RemainingCapacity > 0 ? RemainingCapacity : 0;
+
         private void UpdateTotals()
         {
             OnPropertyChanged(nameof(TotalQuantitySacks));
             OnPropertyChanged(nameof(TotalWeightInKilos));
             OnPropertyChanged(nameof(RemainingCapacity));
+            OnPropertyChanged(nameof(RemainingCapacityVisible));
+        }
+
+        private async Task<bool> ValidateFields()
+        {
+            if (RemainingCapacity < 0)
+            {                
+                int sacks = Math.Abs(RemainingCapacity);
+
+                await ToastService.ShowToastAsync($"Tienes {sacks} sacos más de la capacidad máxima del vehículo.");
+                return false;
+            }
+
+            foreach (var row in ProductRows)
+            {
+                if (row.SelectedProduct == null || row.SelectedPool == null || row.QuantitySacks == null)
+                {
+                    await ToastService.ShowToastAsync("Todos los campos de las filas deben estar completos.");
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 

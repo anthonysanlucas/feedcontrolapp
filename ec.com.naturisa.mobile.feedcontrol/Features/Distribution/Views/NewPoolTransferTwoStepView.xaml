@@ -101,7 +101,7 @@
                                     FontAttributes="None"
                                     HorizontalOptions="End"
                                     Style="{StaticResource RegularLabel}"
-                                    Text="{Binding RemainingCapacity, StringFormat='{0} sacos'}"
+                                    Text="{Binding RemainingCapacityVisible, StringFormat='{0} sacos'}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
                         </FlexLayout>
@@ -220,6 +220,7 @@
                                                 HorizontalOptions="End"
                                                 HorizontalTextAlignment="End"
                                                 Keyboard="Numeric"
+                                                MaxLength="3"
                                                 Placeholder="sacos"
                                                 PlaceholderColor="{StaticResource OnSecondary}"
                                                 Text="{Binding QuantitySacks, Mode=TwoWay}" />

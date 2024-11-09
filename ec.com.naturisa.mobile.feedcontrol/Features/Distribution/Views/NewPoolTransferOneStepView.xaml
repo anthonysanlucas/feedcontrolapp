@@ -77,15 +77,13 @@
                             Spacing="8"
                             VerticalOptions="FillAndExpand">
 
-                            <Frame BackgroundColor="{StaticResource Secondary}">
-                                <VerticalStackLayout Spacing="4">
-                                    <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
-                                    <Label
-                                        Style="{StaticResource RegularLabel}"
-                                        Text="{Binding OriginBranch}"
-                                        TextColor="{StaticResource Primary700}" />
-                                </VerticalStackLayout>
-                            </Frame>
+                            <VerticalStackLayout Spacing="4">
+                                <Label Text="Finca origen" TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="{Binding OriginBranch}"
+                                    TextColor="{StaticResource Primary700}" />
+                            </VerticalStackLayout>
 
                             <VerticalStackLayout Spacing="4">
                                 <Label Style="{StaticResource DataTitleLabel}" Text="Bodega origen" />

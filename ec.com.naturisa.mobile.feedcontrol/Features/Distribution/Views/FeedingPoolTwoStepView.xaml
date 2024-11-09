@@ -145,7 +145,7 @@
                                         Grid.Column="0"
                                         Margin="0,0,0,4"
                                         Style="{StaticResource RegularLabel}"
-                                        Text="Alimentador automático"
+                                        Text="Automática"
                                         TextColor="{StaticResource Gray400}" />
 
                                     <VerticalStackLayout
@@ -228,7 +228,7 @@
                                 <Label
                                     Margin="0,12,0,4"
                                     Style="{StaticResource DataTitleLabel}"
-                                    Text="Observación (opcional)" />
+                                    Text="Observación" />
 
                                 <CollectionView
                                     Grid.Row="2"

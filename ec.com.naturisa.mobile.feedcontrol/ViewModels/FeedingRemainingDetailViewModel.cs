@@ -69,7 +69,8 @@
 
                 if (response.Code == 200)
                 {
-                    await ShowToastAsync("Sobrante registrado correctamente");
+                    WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
+                    await ShowToastAsync("Sobrante registrado correctamente.");
 
                     await Shell.Current.Navigation.PopAsync(true);
                 }

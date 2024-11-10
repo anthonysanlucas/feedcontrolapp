@@ -67,7 +67,7 @@
 
         <RefreshView
             Grid.Row="3"
-            Command="{Binding GetFeedsCommand}"
+            Command="{Binding GetRemainingsCommand}"
             IsRefreshing="{Binding IsRefreshing}"
             Style="{StaticResource RefreshViewStyle}">
             <CollectionView

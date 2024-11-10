@@ -1,75 +1,84 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels
-{    
-    public partial class FeedingRemainingViewModel : BaseViewModel
+﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels;
+
+public partial class FeedingRemainingViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
+{
+    [ObservableProperty]
+    public ObservableCollection<PoolFeedingAndRemainingState> poolFeedingRemainingList;
+
+    [ObservableProperty]
+    private FeedResponse feed;        
+
+    [ObservableProperty]
+    private ObservableCollection<FeedResponse> feeds;
+
+    [ObservableProperty]
+    private FeedRemaningQuery feedRemainingQuery;
+
+    private readonly IFeedService _feedService;
+
+    public FeedingRemainingViewModel(IToastService toastService, IFeedService feedService)
+        : base(toastService)
     {
-        [ObservableProperty]
-        public ObservableCollection<PoolFeedingAndRemainingState> poolFeedingRemainingList;
+        _feedService = feedService;
 
-        [ObservableProperty]
-        private FeedResponse feed;        
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
 
-        [ObservableProperty]
-        private ObservableCollection<FeedResponse> feeds;
-
-        [ObservableProperty]
-        private FeedRemaningQuery feedRemainingQuery;
-
-        private readonly IFeedService _feedService;
-
-        public FeedingRemainingViewModel(IToastService toastService, IFeedService feedService)
-            : base(toastService)
+        FeedRemainingQuery = new FeedRemaningQuery
         {
-            _feedService = feedService;
+            Date = DateTime.Now.ToString("yyyy-MM-dd"),
+            //StartDate = DateTime.Now,
+            //EndDate = DateTime.Now,
+            StatusCatalogueName = [Const.Status.FeedRemaining.Assigned, Const.Status.FeedRemaining.Completed],
+            IncludeStatusCatalogue = true
+        };
 
-            FeedRemainingQuery = new FeedRemaningQuery
-            {
-                Date = DateTime.Now.ToString("yyyy-MM-dd"),
-                //StartDate = DateTime.Now,
-                //EndDate = DateTime.Now,
-                StatusCatalogueName = [Const.Status.FeedRemaining.Assigned, Const.Status.FeedRemaining.Completed],
-                IncludeStatusCatalogue = true
-            };
+        GetRemainings();           
+    }
+  
+    #region commands
 
-            GetFeeds();           
-        }
-      
-        #region commands
+    [RelayCommand]
+    async Task GoToFeedingRemainingDetail(FeedResponse feed)
+    {
+        if(feed == null)
+            return;
 
-        [RelayCommand]
-        async Task GoToFeedingRemainingDetail(FeedResponse feed)
+        await Shell.Current.GoToAsync(nameof(FeedingRemainingDetailView), true,
+           new Dictionary<string, object> { { "Feed", feed } });            
+    }
+   
+    [RelayCommand]
+    async Task GetRemainings()
+    {
+        try
         {
-            if(feed == null)
-                return;
+            IsBusy = true;
 
-            await Shell.Current.GoToAsync(nameof(FeedingRemainingDetailView), true,
-               new Dictionary<string, object> { { "Feed", feed } });            
-        }
-       
-        [RelayCommand]
-        async Task GetFeeds()
-        {
-            try
+            var response = await _feedService.GetFeedRemainings(FeedRemainingQuery);
+
+            if (response.Data != null && response.Data != null)
             {
-                IsBusy = true;
-
-                var response = await _feedService.GetFeedRemainings(FeedRemainingQuery);
-
-                if (response.Data != null && response.Data != null)
-                {
-                    Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                IsBusy = false;
-                IsRefreshing = false;
+                Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
             }
         }
+        catch (Exception ex)
+        {
 
-        #endregion
+        }
+        finally
+        {
+            IsBusy = false;
+            IsRefreshing = false;
+        }
+    }
+
+    #endregion
+
+    public void Receive(RefreshDataMessage message)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            GetRemainings();
+        });
     }
 }

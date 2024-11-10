@@ -43,7 +43,7 @@
 
                         <Grid
                             Grid.Column="1"
-                            ColumnDefinitions="65,65"
+                            ColumnDefinitions="68,68"
                             ColumnSpacing="8"
                             RowDefinitions="Auto, Auto"
                             RowSpacing="4">
@@ -92,7 +92,7 @@
                                         MaximumWidthRequest="260"
                                         Style="{StaticResource DataTextLabel}"
                                         Text="{Binding ProductName}" />
-                                    <Grid ColumnDefinitions="82, *">
+                                    <Grid ColumnDefinitions="112, *">
                                         <Label
                                             FontSize="12"
                                             Text="{Binding ProductSupplierCode, StringFormat='SKU {0:F0}'}"
@@ -108,7 +108,7 @@
 
                                 <Grid
                                     Grid.Column="1"
-                                    ColumnDefinitions="65,65"
+                                    ColumnDefinitions="68,68"
                                     ColumnSpacing="8">
                                     <Label
                                         Grid.Column="0"
@@ -133,7 +133,7 @@
                 <Grid
                     Grid.Row="2"
                     Grid.ColumnSpan="2"
-                    ColumnDefinitions="*, 80, 80"
+                    ColumnDefinitions="*, 82, 82"
                     RowDefinitions="Auto, Auto">
                     <BoxView
                         Grid.Row="0"
@@ -157,12 +157,12 @@
                         HorizontalOptions="End">
                         <Label
                             HorizontalOptions="End"
-                            Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{0}'}"
+                            Text="{Binding SelectedTransfer.TotalEquivalenceSacks, StringFormat='{}{0:N0} sacos'}"
                             TextColor="{StaticResource OnSecondary}" />
                         <Label
                             FontSize="14"
                             HorizontalOptions="End"
-                            Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{0} pallets'}"
+                            Text="{Binding SelectedTransfer.TotalEquivalencePallets, StringFormat='{}{0:N0} pallets'}"
                             TextColor="{StaticResource OnSecondary}" />
                     </VerticalStackLayout>
 
@@ -172,12 +172,12 @@
                         HorizontalOptions="End">
                         <Label
                             HorizontalOptions="End"
-                            Text="{Binding SelectedTransfer.TotalEquivalenceReceivedSacks, StringFormat='{0}'}"
+                            Text="{Binding SelectedTransfer.TotalEquivalenceReceivedSacks, StringFormat='{}{0:N0} sacos'}"
                             TextColor="{StaticResource Primary700}" />
                         <Label
                             FontSize="14"
                             HorizontalOptions="End"
-                            Text="{Binding SelectedTransfer.TotalEquivalenceReceivedPallets, StringFormat='{0} pallets', TargetNullValue='0 pallets'}"
+                            Text="{Binding SelectedTransfer.TotalEquivalenceReceivedPallets, StringFormat='{}{0:N0} pallets', TargetNullValue='0 pallets'}"
                             TextColor="{StaticResource OnSecondary}" />
                     </VerticalStackLayout>
                 </Grid>

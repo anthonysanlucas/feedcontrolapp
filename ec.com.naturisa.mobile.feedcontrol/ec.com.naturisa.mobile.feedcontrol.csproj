@@ -21,10 +21,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>Producción Naturisa</ApplicationTitle>
+		<ApplicationTitle>Balanceado Naturisa</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.ec.com.naturisa.mobile.feedcontrol</ApplicationId>
+		<ApplicationId>ec.com.naturisa.mobile.feedcontrol</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>

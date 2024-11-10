@@ -30,11 +30,11 @@
                     FontSize="16"
                     HorizontalOptions="End"
                     Style="{StaticResource GoogleFont}"
-                    Text="{x:Static models:IconFont.Table_view}"
+                    Text="{x:Static models:IconFont.List_alt}"
                     TextColor="{StaticResource OnSecondary}" />
                 <Label
                     Style="{StaticResource RegularLabel}"
-                    Text="Datos de entrega a piscina"
+                    Text="Datos de entrega"
                     TextColor="{StaticResource OnSecondary}" />
             </HorizontalStackLayout>
 
@@ -183,30 +183,4 @@
             Opacity="1"
             VerticalOptions="FillAndExpand" />
     </Grid>
-
-    <!--
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding SelectedTransferPoolDetail.PoolCode}"
-            VerticalOptions="Center" />
-
-        <Label
-            HorizontalOptions="Center"
-            Text="{Binding SelectedTransferPoolDetail.ProductName}"
-            VerticalOptions="Center" />
-
-        <Button
-            Grid.Row="1"
-            Grid.Column="0"
-            Margin="16"
-            BackgroundColor="{StaticResource Primary700}"
-            Command="{Binding UpdateToDeliveryStatusCommand}"
-            HeightRequest="62"
-            HorizontalOptions="FillAndExpand"
-            Text="Confirmar entrega"
-            TextColor="White"
-            VerticalOptions="End" />
-    </VerticalStackLayout>
-    -->
 </ContentPage>

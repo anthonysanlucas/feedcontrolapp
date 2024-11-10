@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.FeedingPoolTwoStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:feedDetailModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.FeedDetail"
     xmlns:feedModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Feed"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
@@ -279,38 +280,10 @@
                         </VerticalStackLayout>
                     </ScrollView>
 
-                    <Frame
-                        Grid.Row="0"
-                        Margin="16"
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary700}"
-                        BorderColor="Transparent"
-                        CornerRadius="8"
-                        HasShadow="True"
-                        HeightRequest="52"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="End">
-                        <Frame.Shadow>
-                            <Shadow
-                                Brush="{StaticResource Primary700}"
-                                Opacity="0.8"
-                                Radius="80"
-                                Offset="10,-20" />
-                        </Frame.Shadow>
-                        <Grid
-                            ColumnDefinitions="*"
-                            HorizontalOptions="Fill"
-                            VerticalOptions="Fill">
-                            <Button
-                                Grid.Column="0"
-                                BackgroundColor="Transparent"
-                                Command="{Binding CompleteFeedCommand}"
-                                HorizontalOptions="FillAndExpand"
-                                SemanticProperties.Hint="Completar alimentación"
-                                Text="Completar alimentación"
-                                TextColor="White" />
-                        </Grid>
-                    </Frame>
+                    <controls:MainButtonControl
+                        Command="{Binding CompleteFeedCommand}"
+                        IsBusy="{Binding IsBusy}"
+                        Text="Registrar alimentación" />
                 </Grid>
             </Border>
         </Grid>

@@ -49,6 +49,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         [RelayCommand]
         async Task GoToFeedingPoolTwoStep()
         {
+            IsBusy = true;
+
             if (FeedOneSteps == null || FeedOneSteps.Count == 0)
             {
                 await ToastService.ShowToastAsync("No se han cargado los detalles de la alimentación.");
@@ -74,6 +76,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             if (response == null || response.Code != 200)
             {
                 await ShowToastAsync("Error al cambiar el estado de la alimentación.");
+                IsBusy = false;
                 return;
             }
 
@@ -90,13 +93,14 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             {
                 Shell.Current.Navigation.RemovePage(currentPage);
             }
+
+            IsBusy = false;
         }
 
         private async void LoadFeedDetails(FeedDetailQuery detailQuery)
         {
             try
-            {
-                IsBusy = true;
+            {                
                 var feedDetailsResponse = await _feedDetailService.GetFeedDetails(detailQuery);
 
                 if (feedDetailsResponse == null || feedDetailsResponse.Code != 200)
@@ -124,11 +128,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             catch (Exception ex)
             {
                 await ToastService.ShowToastAsync("Error al cargar los detalles de la alimentación.");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            }            
         }
     }
 }

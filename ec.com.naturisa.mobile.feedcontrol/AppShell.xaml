@@ -65,7 +65,7 @@
                     Grid.Column="1"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding Title}"
-                    TextColor="White"
+                    TextColor="{StaticResource White}"
                     VerticalTextAlignment="Center" />
 
                 <VisualStateManager.VisualStateGroups>
@@ -103,7 +103,7 @@
                     Grid.Column="1"
                     Style="{StaticResource RegularLabel}"
                     Text="{Binding Title}"
-                    TextColor="White"
+                    TextColor="{StaticResource White}"
                     VerticalTextAlignment="Start" />
 
                 <VisualStateManager.VisualStateGroups>

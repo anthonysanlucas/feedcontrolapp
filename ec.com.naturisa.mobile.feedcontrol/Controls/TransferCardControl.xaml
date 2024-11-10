@@ -15,7 +15,7 @@
 
         <VerticalStackLayout Grid.Column="0" Spacing="2">
             <Label
-                FontAttributes="None"
+                Style="{StaticResource DataTitleLabel}"
                 Text="Código viaje"
                 VerticalOptions="Center" />
             <Label
@@ -41,7 +41,7 @@
             <Label
                 Grid.Row="0"
                 Grid.Column="0"
-                FontAttributes="None"
+                Style="{StaticResource DataTitleLabel}"
                 Text="Ruta"
                 VerticalOptions="Center" />
 
@@ -78,6 +78,7 @@
             Spacing="2">
             <Label
                 FontAttributes="None"
+                Style="{StaticResource DataTitleLabel}"
                 Text="Transportista"
                 VerticalOptions="Center" />
             <Label

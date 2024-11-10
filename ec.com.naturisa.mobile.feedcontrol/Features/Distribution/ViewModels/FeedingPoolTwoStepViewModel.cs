@@ -98,10 +98,11 @@
 
             if (response == null || response.Code != 200)
             {
-                await ShowToastAsync("Error al cambiar el estado de la alimentación.");
+                await ShowToastAsync("Error al registrar alimentación, intente nuevamente.");
                 return;
             }
-
+            
+            WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
             await ShowToastAsync("Datos registrados correctamente.");
 
             await Shell.Current.Navigation.PopAsync(true);

@@ -1,6 +1,6 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
-    public partial class FeedingPoolViewModel : BaseViewModel
+    public partial class FeedingPoolViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
     {
         [ObservableProperty]
         private ObservableCollection<FeedResponse> feeds;
@@ -14,6 +14,8 @@
             : base(toastService)
         {
             _feedService = feedService;
+
+            WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
 
             FeedQuery = new FeedQuery
             {
@@ -55,7 +57,7 @@
                 new Dictionary<string, object> { { "Feed", feed } });
 
                 return;
-            }            
+            }
         }
 
         [RelayCommand]
@@ -84,5 +86,13 @@
         }
 
         #endregion
+
+        public void Receive(RefreshDataMessage message)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                GetFeeds();
+            });
+        }
     }
 }

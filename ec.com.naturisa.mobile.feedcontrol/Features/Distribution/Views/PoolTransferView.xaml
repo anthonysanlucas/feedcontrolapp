@@ -58,7 +58,8 @@
             <RefreshView
                 Grid.Row="2"
                 Command="{Binding GetFeedTransfersCommand}"
-                IsRefreshing="{Binding IsRefreshing}">
+                IsRefreshing="{Binding IsRefreshing}"
+                Style="{StaticResource RefreshViewStyle}">
                 <CollectionView ItemsSource="{Binding FeedingTrips}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">

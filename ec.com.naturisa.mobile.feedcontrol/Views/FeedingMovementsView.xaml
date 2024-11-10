@@ -40,7 +40,7 @@
                 Grid.Row="2"
                 Command="{Binding GetFeedTransfersCommand}"
                 IsRefreshing="{Binding IsRefreshing}"
-                RefreshColor="Transparent">
+                Style="{StaticResource RefreshViewStyle}">
                 <CollectionView ItemsSource="{Binding FeedingTrips}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">

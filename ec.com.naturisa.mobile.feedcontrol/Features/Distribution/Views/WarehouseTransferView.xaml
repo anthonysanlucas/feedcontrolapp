@@ -50,7 +50,7 @@
             Grid.Row="2"
             Command="{Binding GetSupplierTransfersCommand}"
             IsRefreshing="{Binding IsRefreshing}"
-            RefreshColor="Transparent">
+            Style="{StaticResource RefreshViewStyle}">
             <CollectionView ItemsSource="{Binding SupplierTransfers}" SelectionMode="None">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="supplierTransferModels:SupplierTransferResponse">

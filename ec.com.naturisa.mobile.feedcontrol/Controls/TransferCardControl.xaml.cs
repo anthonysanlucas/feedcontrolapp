@@ -17,10 +17,10 @@ public partial class TransferCardControl : ContentView
         BindableProperty.Create(nameof(OriginSubsidiaryName), typeof(string), typeof(TransferCardControl), string.Empty);
 
     public static readonly BindableProperty DestinationSubsidiaryNameProperty =
-        BindableProperty.Create(nameof(DestinationSubsidiaryName), typeof(string), typeof(TransferCardControl), string.Empty);
+        BindableProperty.Create(nameof(DestinationSubsidiaryName), typeof(string), typeof(TransferCardControl), string.Empty);   
 
-    public static readonly BindableProperty AssignedCarrierNameProperty =
-        BindableProperty.Create(nameof(AssignedCarrierName), typeof(string), typeof(TransferCardControl), string.Empty);
+    public static readonly BindableProperty AssignedTransportNameProperty =
+       BindableProperty.Create(nameof(AssignedTransportName), typeof(string), typeof(TransferCardControl), string.Empty);
 
     public static readonly BindableProperty PrimaryUnitProperty =
         BindableProperty.Create(nameof(PrimaryUnit), typeof(int), typeof(TransferCardControl), 0);
@@ -56,10 +56,10 @@ public partial class TransferCardControl : ContentView
         set => SetValue(DestinationSubsidiaryNameProperty, value);
     }
 
-    public string AssignedCarrierName
+    public string AssignedTransportName
     {
-        get => (string)GetValue(AssignedCarrierNameProperty);
-        set => SetValue(AssignedCarrierNameProperty, value);
+        get => (string)GetValue(AssignedTransportNameProperty);
+        set => SetValue(AssignedTransportNameProperty, value);
     }
 
     public int PrimaryUnit

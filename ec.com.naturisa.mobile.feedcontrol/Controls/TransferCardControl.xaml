@@ -79,11 +79,11 @@
             <Label
                 FontAttributes="None"
                 Style="{StaticResource DataTitleLabel}"
-                Text="Transportista"
+                Text="Transporte"
                 VerticalOptions="Center" />
             <Label
                 Style="{StaticResource RegularLabel}"
-                Text="{Binding Source={x:Reference TransferCard}, Path=AssignedCarrierName}"
+                Text="{Binding Source={x:Reference TransferCard}, Path=AssignedTransportName}"
                 TextColor="{StaticResource OnSecondary}"
                 VerticalOptions="Center" />
         </VerticalStackLayout>

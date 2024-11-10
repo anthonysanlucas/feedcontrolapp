@@ -71,7 +71,7 @@
                                 </Frame.GestureRecognizers>
 
                                 <controls:TransferCardControl
-                                    AssignedCarrierName="{Binding AssignedCarrierName}"
+                                    AssignedTransportName="{Binding AssignedVehiclePlate}"
                                     DestinationSubsidiaryName="{Binding DestinationSubsidiaryName}"
                                     OriginSubsidiaryName="{Binding OriginSubsidiaryName}"
                                     PrimaryUnit="{Binding TotalSacks}"

@@ -65,7 +65,7 @@
                             </Frame.GestureRecognizers>
 
                             <controls:TransferCardControl
-                                AssignedCarrierName="{Binding FreightTransporterName}"
+                                AssignedTransportName="{Binding TransportName}"
                                 DestinationSubsidiaryName="{Binding DestinationWarehouseName}"
                                 OriginSubsidiaryName="{Binding OriginSupplierName}"
                                 PrimaryUnit="{Binding TotalPallets}"

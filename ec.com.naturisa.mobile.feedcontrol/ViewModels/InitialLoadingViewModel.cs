@@ -27,7 +27,6 @@
             }
 
             await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
-
             return;
         }
     }

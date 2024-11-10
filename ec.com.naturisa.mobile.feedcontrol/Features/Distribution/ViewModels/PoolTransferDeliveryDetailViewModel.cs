@@ -4,11 +4,7 @@
     public partial class PoolTransferDeliveryDetailViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;
-
-        //private readonly IFeedTransferService _feedTransferService;
-
-        //private readonly IFeedTransferDetailService _feedTransferDetailService;
+        private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;       
 
         private readonly IFeedTransferDetailPoolService _feedTransferDetailPoolService;
 

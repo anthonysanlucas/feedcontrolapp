@@ -1,247 +1,254 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
+
+[QueryProperty(nameof(SelectedTransfer), nameof(SelectedTransfer))]
+public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDataMessage>    
 {
-    [QueryProperty(nameof(SelectedTransfer), nameof(SelectedTransfer))]
-    public partial class StartOfRouteViewModel : BaseViewModel
+    [ObservableProperty]
+    private FeedTransferModel selectedTransfer;
+
+    [ObservableProperty]
+    private FeedTransferDetailCustomResponseModel selectedTransferDetail;
+
+    [ObservableProperty]
+    private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;
+
+    [ObservableProperty]
+    private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
+
+    [ObservableProperty]
+    private bool isRecieved = false;
+
+    [ObservableProperty]
+    private bool isOnRoute = false;
+
+    private readonly IFeedTransferService _feedTransferService;
+
+    private readonly IFeedTransferDetailService _feedTransferDetailService;
+
+    public StartOfRouteViewModel(
+        IToastService toastService,
+        IFeedTransferService feedTransferService,
+        IFeedTransferDetailService feedTransferDetailService
+    )
+        : base(toastService)
     {
-        [ObservableProperty]
-        private FeedTransferModel selectedTransfer;
+        _feedTransferService = feedTransferService;
+        _feedTransferDetailService = feedTransferDetailService;
 
-        [ObservableProperty]
-        private FeedTransferDetailCustomResponseModel selectedTransferDetail;
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
+    }
 
-        [ObservableProperty]
-        private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;
-
-        [ObservableProperty]
-        private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
-
-        [ObservableProperty]
-        private bool isRecieved = false;
-
-        [ObservableProperty]
-        private bool isOnRoute = false;
-
-        private readonly IFeedTransferService _feedTransferService;
-
-        private readonly IFeedTransferDetailService _feedTransferDetailService;
-
-        public StartOfRouteViewModel(
-            IToastService toastService,
-            IFeedTransferService feedTransferService,
-            IFeedTransferDetailService feedTransferDetailService
-        )
-            : base(toastService)
+    partial void OnSelectedTransferChanged(FeedTransferModel value)
+    {
+        if (value != null)
         {
-            _feedTransferService = feedTransferService;
-            _feedTransferDetailService = feedTransferDetailService;
-        }
+            LoadFeedTransferDetails((int)value.IdFeedTransfer);
 
-        partial void OnSelectedTransferChanged(FeedTransferModel value)
-        {
-            if (value != null)
+            if (value.Status == Const.Status.Transfer.Received)
             {
-                LoadFeedTransferDetails((int)value.IdFeedTransfer);
-
-                if (value.Status == Const.Status.Transfer.Received)
-                {
-                    IsRecieved = true;
-                    IsOnRoute = false;
-                }
-
-                if (value.Status == Const.Status.Transfer.InRoute)
-                {
-                    IsRecieved = false;
-                    IsOnRoute = true;
-                }
+                IsRecieved = true;
+                IsOnRoute = false;
             }
 
+            if (value.Status == Const.Status.Transfer.InRoute)
+            {
+                IsRecieved = false;
+                IsOnRoute = true;
+            }
+        }
+
+        return;
+    }
+
+    private async void LoadFeedTransferDetails(int feedTransferId)
+    {
+        try
+        {
+            IsBusy = true;
+            var transferDetailsResponse =
+                await _feedTransferDetailService.GetFeedTransferDetailsConsolidated(
+                    feedTransferId
+                );
+
+            if (transferDetailsResponse == null || transferDetailsResponse.Code != 200)
+            {
+                await ToastService.ShowToastAsync("Error al cargar los detalles del viaje.");
+                return;
+            }
+
+            SelectedTransferDetail = transferDetailsResponse.Data;
+
+            FeedTransferDetails =
+                new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
+                    (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
+                        transferDetailsResponse.Data.FeedTransferPoolsDetail
+                    )
+                );
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToastAsync($"Ocurrió un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    async Task LoadTwoFeedTransferDetails()
+    {
+        try
+        {
+            IsBusy = true;
+            IsRefreshing = true;
+            var transferDetailsResponse =
+                await _feedTransferDetailService.GetFeedTransferDetailsConsolidated(
+                    (int)selectedTransfer.IdFeedTransfer
+                );
+
+            if (transferDetailsResponse == null || transferDetailsResponse.Code != 200)
+            {
+                await ToastService.ShowToastAsync("Error al cargar los detalles del viaje.");
+                return;
+            }
+
+            SelectedTransferDetail = transferDetailsResponse.Data;
+
+            FeedTransferDetails =
+                new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
+                    (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
+                        transferDetailsResponse.Data.FeedTransferPoolsDetail
+                    )
+                );
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToastAsync($"Ocurrió un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+            IsRefreshing = false;
+        }
+    }
+
+    #region Commands
+    [RelayCommand]
+    async Task GoToPoolTransferDeliveryDetail(
+        FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail
+    )
+    {
+        if (selectedTransferPoolDetail == null)
+            return;
+
+        await Shell.Current.GoToAsync(
+            nameof(PoolTransferDeliveryDetailView),
+            true,
+            new Dictionary<string, object>
+            {
+                { "SelectedTransferPoolDetail", selectedTransferPoolDetail }
+            }
+        );
+    }
+
+    [RelayCommand]
+    async Task UpdateStatus()
+    {
+        try
+        {
+            IsBusy = true;
+
+            int id = (int)SelectedTransfer.IdFeedTransfer;
+
+            var response = await _feedTransferService.PatchFeedTransferStatus(
+                id,
+                Const.Status.Transfer.InRoute
+            );
+
+            if (response != null && response.Code == 200)
+            {
+                await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+                SelectedTransfer.Status = Const.Status.Transfer.InRoute;
+
+                LoadFeedTransferDetails(id);
+
+                IsRecieved = false;
+                IsOnRoute = true;
+            }
+            else
+            {
+                await ToastService.ShowToastAsync(
+                    "Error al actualizar el estado, intente nuevamente."
+                );
+            }
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+
+    [RelayCommand]
+    async Task UpdateDeliveredStatus()
+    {
+        bool isFinalized = FeedTransferDetails.All(detail =>
+            detail.Status == Const.Status.Transfer.Delivered
+        );
+
+        if (!isFinalized)
+        {
+            await ToastService.ShowToastAsync(
+                "Debe entregar todas las piscinas para finalizar el viaje"
+            );
             return;
         }
 
-        private async void LoadFeedTransferDetails(int feedTransferId)
+        try
         {
-            try
-            {
-                IsBusy = true;
-                var transferDetailsResponse =
-                    await _feedTransferDetailService.GetFeedTransferDetailsConsolidated(
-                        feedTransferId
-                    );
+            IsBusy = true;
 
-                if (transferDetailsResponse == null || transferDetailsResponse.Code != 200)
-                {
-                    await ToastService.ShowToastAsync("Error al cargar los detalles del viaje.");
-                    return;
-                }
+            int id = (int)SelectedTransfer.IdFeedTransfer;
 
-                SelectedTransferDetail = transferDetailsResponse.Data;
-
-                FeedTransferDetails =
-                    new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
-                        (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
-                            transferDetailsResponse.Data.FeedTransferPoolsDetail
-                        )
-                    );
-            }
-            catch (Exception ex)
-            {
-                await ToastService.ShowToastAsync($"Ocurrió un error, intente nuevamente.");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        [RelayCommand]
-        async Task LoadTwoFeedTransferDetails()
-        {
-            try
-            {
-                IsBusy = true;
-                IsRefreshing = true;
-                var transferDetailsResponse =
-                    await _feedTransferDetailService.GetFeedTransferDetailsConsolidated(
-                        (int)selectedTransfer.IdFeedTransfer
-                    );
-
-                if (transferDetailsResponse == null || transferDetailsResponse.Code != 200)
-                {
-                    await ToastService.ShowToastAsync("Error al cargar los detalles del viaje.");
-                    return;
-                }
-
-                SelectedTransferDetail = transferDetailsResponse.Data;
-
-                FeedTransferDetails =
-                    new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
-                        (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
-                            transferDetailsResponse.Data.FeedTransferPoolsDetail
-                        )
-                    );
-            }
-            catch (Exception ex)
-            {
-                await ToastService.ShowToastAsync($"Ocurrió un error, intente nuevamente.");
-            }
-            finally
-            {
-                IsBusy = false;
-                IsRefreshing = false;
-            }
-        }
-
-        #region Commands
-
-        [RelayCommand]
-        async Task GoToPoolTransferDeliveryDetail(
-            FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail
-        )
-        {
-            if (selectedTransferPoolDetail == null)
-                return;
-
-            await Shell.Current.GoToAsync(
-                nameof(PoolTransferDeliveryDetailView),
-                true,
-                new Dictionary<string, object>
-                {
-                    { "SelectedTransferPoolDetail", selectedTransferPoolDetail }
-                }
-            );
-        }
-
-        [RelayCommand]
-        async Task UpdateStatus()
-        {
-            try
-            {
-                IsBusy = true;
-
-                int id = (int)SelectedTransfer.IdFeedTransfer;
-
-                var response = await _feedTransferService.PatchFeedTransferStatus(
-                    id,
-                    Const.Status.Transfer.InRoute
-                );
-
-                if (response != null && response.Code == 200)
-                {
-                    await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
-                    SelectedTransfer.Status = Const.Status.Transfer.InRoute;
-
-                    LoadFeedTransferDetails(id);
-
-                    IsRecieved = false;
-                    IsOnRoute = true;
-                }
-                else
-                {
-                    await ToastService.ShowToastAsync(
-                        "Error al actualizar el estado, intente nuevamente."
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        [RelayCommand]
-        async Task UpdateDeliveredStatus()
-        {
-            bool isFinalized = FeedTransferDetails.All(detail =>
-                detail.Status == Const.Status.Transfer.Delivered
+            var response = await _feedTransferService.PatchFeedTransferStatus(
+                id,
+                Const.Status.Transfer.Delivered
             );
 
-            if (!isFinalized)
+            if (response != null && response.Code == 200)
+            {
+                await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+                SelectedTransfer.Status = Const.Status.Transfer.Delivered;
+
+                await Shell.Current.GoToAsync("..");
+            }
+            else
             {
                 await ToastService.ShowToastAsync(
-                    "Debe entregar todas las piscinas para finalizar el viaje"
+                    "Error al actualizar el estado, intente nuevamente."
                 );
-                return;
-            }
-
-            try
-            {
-                IsBusy = true;
-
-                int id = (int)SelectedTransfer.IdFeedTransfer;
-
-                var response = await _feedTransferService.PatchFeedTransferStatus(
-                    id,
-                    Const.Status.Transfer.Delivered
-                );
-
-                if (response != null && response.Code == 200)
-                {
-                    await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
-                    SelectedTransfer.Status = Const.Status.Transfer.Delivered;
-
-                    await Shell.Current.GoToAsync("..");
-                }
-                else
-                {
-                    await ToastService.ShowToastAsync(
-                        "Error al actualizar el estado, intente nuevamente."
-                    );
-                }
-            }
-            catch (Exception ex)
-            {
-                await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
+    }
+    #endregion
 
-        #endregion
+    public void Receive(RefreshDataMessage message)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            LoadTwoFeedTransferDetails();
+        });
     }
 }

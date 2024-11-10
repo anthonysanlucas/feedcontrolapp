@@ -1,98 +1,97 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
+
+public partial class FeedingPoolViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
-    public partial class FeedingPoolViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
+    [ObservableProperty]
+    private ObservableCollection<FeedResponse> feeds;
+
+    [ObservableProperty]
+    private FeedQuery feedQuery;
+
+    private readonly IFeedService _feedService;
+
+    public FeedingPoolViewModel(IToastService toastService, IFeedService feedService)
+        : base(toastService)
     {
-        [ObservableProperty]
-        private ObservableCollection<FeedResponse> feeds;
+        _feedService = feedService;
 
-        [ObservableProperty]
-        private FeedQuery feedQuery;
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
 
-        private readonly IFeedService _feedService;
-
-        public FeedingPoolViewModel(IToastService toastService, IFeedService feedService)
-            : base(toastService)
+        FeedQuery = new FeedQuery
         {
-            _feedService = feedService;
+            Date = DateTime.Now.ToString("yyyy-MM-dd"),
+            StartDate = DateTime.Now,
+            EndDate = DateTime.Now,
+            StatusCatalogueName = [Const.Status.Feed.Assigned, Const.Status.Feed.OnCourse, Const.Status.Feed.Fed],
+            IncludeStatusCatalogue = true
+        };
 
-            WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
+        GetFeeds();
+    }
 
-            FeedQuery = new FeedQuery
+    #region commands
+
+    [RelayCommand]
+    async Task GoToFeedingDetail()
+    {
+        await Shell.Current.GoToAsync(nameof(FeedingPoolDetailView));
+    }
+
+    [RelayCommand]
+    async Task GoToFeedingPoolOneStep(FeedResponse feed)
+    {
+        if (feed == null)
+            return;
+
+        if (feed.StatusCatalogueName == Const.Status.Feed.Assigned)
+        {
+            await Shell.Current.GoToAsync(nameof(FeedingPoolOneStepView), true,
+            new Dictionary<string, object> { { "Feed", feed } });
+
+            return;
+        }
+
+        if (feed.StatusCatalogueName == Const.Status.Feed.OnCourse)
+        {
+            await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView), true,
+            new Dictionary<string, object> { { "Feed", feed } });
+
+            return;
+        }
+    }
+
+    [RelayCommand]
+    async Task GetFeeds()
+    {
+        try
+        {
+            IsBusy = true;
+
+            var response = await _feedService.GetFeeds(FeedQuery);
+
+            if (response.Data != null && response.Data != null)
             {
-                Date = DateTime.Now.ToString("yyyy-MM-dd"),
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                StatusCatalogueName = [Const.Status.Feed.Assigned, Const.Status.Feed.OnCourse, Const.Status.Feed.Fed],
-                IncludeStatusCatalogue = true
-            };
+                Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
+            }
+        }
+        catch (Exception ex)
+        {
 
+        }
+        finally
+        {
+            IsBusy = false;
+            IsRefreshing = false;
+        }
+    }
+
+    #endregion
+
+    public void Receive(RefreshDataMessage message)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
             GetFeeds();
-        }
-
-        #region commands
-
-        [RelayCommand]
-        async Task GoToFeedingDetail()
-        {
-            await Shell.Current.GoToAsync(nameof(FeedingPoolDetailView));
-        }
-
-        [RelayCommand]
-        async Task GoToFeedingPoolOneStep(FeedResponse feed)
-        {
-            if (feed == null)
-                return;
-
-            if (feed.StatusCatalogueName == Const.Status.Feed.Assigned)
-            {
-                await Shell.Current.GoToAsync(nameof(FeedingPoolOneStepView), true,
-                new Dictionary<string, object> { { "Feed", feed } });
-
-                return;
-            }
-
-            if (feed.StatusCatalogueName == Const.Status.Feed.OnCourse)
-            {
-                await Shell.Current.GoToAsync(nameof(FeedingPoolTwoStepView), true,
-                new Dictionary<string, object> { { "Feed", feed } });
-
-                return;
-            }
-        }
-
-        [RelayCommand]
-        async Task GetFeeds()
-        {
-            try
-            {
-                IsBusy = true;
-
-                var response = await _feedService.GetFeeds(FeedQuery);
-
-                if (response.Data != null && response.Data != null)
-                {
-                    Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                IsBusy = false;
-                IsRefreshing = false;
-            }
-        }
-
-        #endregion
-
-        public void Receive(RefreshDataMessage message)
-        {
-            MainThread.BeginInvokeOnMainThread(() =>
-            {
-                GetFeeds();
-            });
-        }
+        });
     }
 }

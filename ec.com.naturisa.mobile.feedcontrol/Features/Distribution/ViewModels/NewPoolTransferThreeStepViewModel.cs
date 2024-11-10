@@ -87,7 +87,9 @@
 
                 if (response != null && response.Code == 200 || response.Code == 201)
                 {
+                    WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
                     await ToastService.ShowToastAsync("Viaje creado correctamente.");
+
                     await Shell.Current.GoToAsync($"//{nameof(PoolTransferView)}");
                 }
                 else

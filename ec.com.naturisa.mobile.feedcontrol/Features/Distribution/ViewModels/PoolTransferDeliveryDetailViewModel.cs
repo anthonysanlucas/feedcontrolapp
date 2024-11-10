@@ -39,7 +39,8 @@
 
                 if (response != null && response.Code == 200)
                 {
-                    await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+                    WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
+                    await ToastService.ShowToastAsync("Entrega realizada correctamente.");
 
                     await Shell.Current.GoToAsync("..");
                 }

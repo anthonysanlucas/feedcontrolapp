@@ -218,9 +218,6 @@
 	  <MauiXaml Update="Views\FarmStoreDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\FeedingMovementsDetailView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\FeedingMovementsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

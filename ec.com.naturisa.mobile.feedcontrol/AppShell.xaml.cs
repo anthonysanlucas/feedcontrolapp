@@ -19,11 +19,7 @@
             Routing.RegisterRoute(nameof(WallInventoryView), typeof(WallInventoryView));
             Routing.RegisterRoute(nameof(FarmStoreDetailView), typeof(FarmStoreDetailView));
             Routing.RegisterRoute(nameof(InventoryIncomeView), typeof(InventoryIncomeView));
-            Routing.RegisterRoute(nameof(FeedingMovementsView), typeof(FeedingMovementsView));
-            Routing.RegisterRoute(
-                nameof(FeedingMovementsDetailView),
-                typeof(FeedingMovementsDetailView)
-            );
+            Routing.RegisterRoute(nameof(FeedingMovementsView), typeof(FeedingMovementsView));           
             Routing.RegisterRoute(
                 nameof(InventoryIncomeDetailView),
                 typeof(InventoryIncomeDetailView)

@@ -1,115 +1,124 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
+
+public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
-    public partial class WarehouseTransferViewModel : BaseViewModel
+    private readonly SupplierTransferService _supplierTransferService;
+
+    [ObservableProperty]
+    private ObservableCollection<SupplierTransferResponse> supplierTransfers;
+
+    [ObservableProperty]
+    private SupplierTransferQuery filterQuery;
+
+    public WarehouseTransferViewModel(IToastService toastService)
+        : base(toastService)
     {
-        private readonly SupplierTransferService _supplierTransferService;
+        _supplierTransferService = new SupplierTransferService();
 
-        [ObservableProperty]
-        private ObservableCollection<SupplierTransferResponse> supplierTransfers;
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
 
-        [ObservableProperty]
-        private SupplierTransferQuery filterQuery;
-
-        public WarehouseTransferViewModel(IToastService toastService)
-            : base(toastService)
+        FilterQuery = new SupplierTransferQuery
         {
-            _supplierTransferService = new SupplierTransferService();
+            AssignmentDate = DateTime.Now,
+            IncludeFreightTransporter = true,
+            DestinationOperatorWarehouseUserId = App.UserData.IdUser,
+            IncludeStatusCatalogue = true,
+            IncludeStatusCatalogueList = true,
+            IncludeSupplier = true,
+            IncludeSupplierTransferDetails = true,
+            IncludeDestinationWarehouse = true,
+            IncludeTransport = true,
+            Status = "ACTIVO",
+            StatusCatalogueName = [Const.Status.Transfer.Assigned, Const.Status.Transfer.Received, Const.Status.Transfer.InRoute, Const.Status.Transfer.Paused, Const.Status.Transfer.AtDestination, SupplierTransferConstants.Delivered]
+        };
+        
+        Task.Run(async () => await GetSupplierTransfers());
+    }
 
-            FilterQuery = new SupplierTransferQuery
-            {
-                AssignmentDate = DateTime.Now,
-                IncludeFreightTransporter = true,
-                DestinationOperatorWarehouseUserId = App.UserData.IdUser,
-                IncludeStatusCatalogue = true,
-                IncludeStatusCatalogueList = true,
-                IncludeSupplier = true,
-                IncludeSupplierTransferDetails = true,
-                IncludeDestinationWarehouse = true,
-                IncludeTransport = true,
-                Status = "ACTIVO",
-                StatusCatalogueName = [Const.Status.Transfer.Assigned, Const.Status.Transfer.Received, Const.Status.Transfer.InRoute, Const.Status.Transfer.Paused, Const.Status.Transfer.AtDestination, SupplierTransferConstants.Delivered]
-            };
-            
-            Task.Run(async () => await GetSupplierTransfers());
+    #region Commands
+
+    [RelayCommand]
+    private async Task CreateTransfer()
+    {
+        await Shell.Current.GoToAsync(nameof(NewTransferOneStepView));
+    }
+
+    [RelayCommand]
+    private async Task GoToTransferDetail(SupplierTransferResponse selectedTransfer)
+    {
+        if (selectedTransfer == null) return;
+
+        var detailStatuses = new[]
+        {
+            Const.Status.Transfer.Assigned,
+            Const.Status.Transfer.Received,
+            Const.Status.Transfer.InRoute,
+            Const.Status.Transfer.Paused,
+            Const.Status.Transfer.Delivered
+        };
+
+        var response = await _supplierTransferService.GetSupplierTransfersDetail(selectedTransfer.IdSupplierTransfer);
+
+        if (response?.Data?.Data != null && response.Data.Data.Any())
+        {
+            selectedTransfer.SupplierTransferDetails = response.Data.Data;
         }
 
-        #region Commands
-
-        [RelayCommand]
-        private async Task CreateTransfer()
+        if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName))
         {
-            await Shell.Current.GoToAsync(nameof(NewTransferOneStepView));
+            await Shell.Current.GoToAsync(nameof(TransferDetailView), true, new Dictionary<string, object>
+            {
+                { "SelectedTransfer", selectedTransfer }
+            });
+
+            return;
         }
 
-        [RelayCommand]
-        private async Task GoToTransferDetail(SupplierTransferResponse selectedTransfer)
+        if (selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.AtDestination)
         {
-            if (selectedTransfer == null) return;
-
-            var detailStatuses = new[]
+            await Shell.Current.GoToAsync(nameof(TransferReceptionView), true, new Dictionary<string, object>
             {
-                Const.Status.Transfer.Assigned,
-                Const.Status.Transfer.Received,
-                Const.Status.Transfer.InRoute,
-                Const.Status.Transfer.Paused,
-                Const.Status.Transfer.Delivered
-            };
+                { "SelectedTransfer", selectedTransfer }
+            });
 
-            var response = await _supplierTransferService.GetSupplierTransfersDetail(selectedTransfer.IdSupplierTransfer);
+            return;
+        }
+    }
 
-            if (response?.Data?.Data != null && response.Data.Data.Any())
-            {
-                selectedTransfer.SupplierTransferDetails = response.Data.Data;
-            }
+    [RelayCommand]
+    private async Task GetSupplierTransfers()
+    {
+        IsBusy = true;
+        IsNotBusy = false;
+        IsRefreshing = false;
 
-            if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName))
-            {
-                await Shell.Current.GoToAsync(nameof(TransferDetailView), true, new Dictionary<string, object>
-                {
-                    { "SelectedTransfer", selectedTransfer }
-                });
+        var response = await _supplierTransferService.GetSupplierTransfers(FilterQuery);
 
-                return;
-            }
-
-            if (selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.AtDestination)
-            {
-                await Shell.Current.GoToAsync(nameof(TransferReceptionView), true, new Dictionary<string, object>
-                {
-                    { "SelectedTransfer", selectedTransfer }
-                });
-
-                return;
-            }
+        if (response?.Data?.Data != null && response.Data.Data.Any())
+        {
+            SupplierTransfers = new ObservableCollection<SupplierTransferResponse>(response.Data.Data);
+        }
+        else
+        {
+            SupplierTransfers?.Clear();
         }
 
-        [RelayCommand]
-        private async Task GetSupplierTransfers()
+        IsBusy = false;
+        IsNotBusy = true;
+    }
+
+    public async Task OnConfirmReceptionClicked(object sender, EventArgs e)
+    {
+        await GetSupplierTransfers();
+    }
+
+    #endregion
+
+    public void Receive(RefreshDataMessage message)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
         {
-            IsBusy = true;
-            IsNotBusy = false;
-            IsRefreshing = false;
-
-            var response = await _supplierTransferService.GetSupplierTransfers(FilterQuery);
-
-            if (response?.Data?.Data != null && response.Data.Data.Any())
-            {
-                SupplierTransfers = new ObservableCollection<SupplierTransferResponse>(response.Data.Data);
-            }
-            else
-            {
-                SupplierTransfers?.Clear();
-            }
-
-            IsBusy = false;
-            IsNotBusy = true;
-        }
-
-        public async Task OnConfirmReceptionClicked(object sender, EventArgs e)
-        {
-            await GetSupplierTransfers();
-        }
-
-        #endregion
+            GetSupplierTransfers();
+        });
     }
 }

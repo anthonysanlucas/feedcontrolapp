@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Views.FeedingRemainingDetailView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
     Padding="0"
@@ -141,36 +142,11 @@
                     </VerticalStackLayout>
                 </ScrollView>
 
-                <Frame
-                    Margin="16"
-                    Padding="0"
-                    BackgroundColor="{StaticResource Primary700}"
-                    BorderColor="Transparent"
-                    CornerRadius="8"
-                    HeightRequest="52"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="End">
-                    <Grid
-                        ColumnDefinitions="*"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill">
-                        <Button
-                            Grid.Column="0"
-                            BackgroundColor="Transparent"
-                            Command="{Binding CompleteRemainingCommand}"
-                            HorizontalOptions="FillAndExpand"
-                            IsVisible="{Binding IsBtnVisible}"
-                            SemanticProperties.Hint="Registrar sobrante"
-                            Text="Registrar sobrante"
-                            TextColor="White" />
-                        <ActivityIndicator
-                            Grid.Column="0"
-                            HeightRequest="32"
-                            IsRunning="{Binding IsBusy}"
-                            IsVisible="{Binding IsBusy}"
-                            Color="White" />
-                    </Grid>
-                </Frame>
+                <controls:MainButtonControl
+                    Command="{Binding CompleteRemainingCommand}"
+                    IsBusy="{Binding IsBusy}"
+                    Text="Registrar sobrante" />
+
             </Grid>
         </Border>
     </Grid>

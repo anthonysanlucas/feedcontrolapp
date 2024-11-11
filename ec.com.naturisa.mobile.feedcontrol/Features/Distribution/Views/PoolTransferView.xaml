@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid RowDefinitions="*">
-        <Grid RowDefinitions="Auto, *" RowSpacing="24">
+        <Grid RowDefinitions="Auto, *" RowSpacing="16">
             <Grid RowDefinitions="Auto, Auto" RowSpacing="8">
                 <Frame
                     Grid.Row="0"
@@ -42,12 +42,14 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:FilterStatus">
                             <Button
-                                Margin="0,0,8,0"
-                                BackgroundColor="{StaticResource Primary50}"
-                                BorderColor="{StaticResource Secondary}"
-                                BorderWidth="1"
+                                Margin="0,0,6,0"
+                                Padding="12,6"
+                                BackgroundColor="Transparent"
+                                BorderColor="{StaticResource OnSecondary}"
+                                BorderWidth="0.25"
                                 CornerRadius="20"
                                 FontSize="12"
+                                HeightRequest="32"
                                 Text="{Binding Status}"
                                 TextColor="{StaticResource OnSecondary}" />
                         </DataTemplate>

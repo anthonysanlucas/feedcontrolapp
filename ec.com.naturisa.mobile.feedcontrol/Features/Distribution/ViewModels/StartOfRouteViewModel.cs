@@ -221,8 +221,9 @@ public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDa
 
             if (response != null && response.Code == 200)
             {
-                await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+                await ToastService.ShowToastAsync("Ruta finalizada correctamente.");
                 SelectedTransfer.Status = Const.Status.Transfer.Delivered;
+                WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
 
                 await Shell.Current.GoToAsync("..");
             }

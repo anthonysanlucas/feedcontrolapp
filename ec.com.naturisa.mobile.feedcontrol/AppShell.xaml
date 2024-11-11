@@ -31,14 +31,14 @@
                 </Frame.GestureRecognizers>
 
                 <Grid ColumnDefinitions="16, auto" ColumnSpacing="4">
-                    <Image Source="icon_location_on.svg" WidthRequest="16" />
+                    <Image Source="icon_location_on.svg" WidthRequest="12" />
                     <Label
                         Grid.Column="1"
                         FontAttributes="Bold"
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource RegularLabel}"
-                        Text="MA"
+                        Text="NA"
                         TextColor="White"
                         VerticalOptions="Center" />
                 </Grid>

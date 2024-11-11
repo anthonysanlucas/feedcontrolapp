@@ -32,7 +32,7 @@
         public NewPoolTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            OriginBranch = "Maricultura";
+            OriginBranch = "Naturisa";
 
             OriginWarehouses = new List<WarehouseModel>
             {

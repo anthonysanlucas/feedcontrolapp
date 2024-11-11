@@ -10,6 +10,9 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
     [ObservableProperty]
     private ObservableCollection<FeedTransferModel> feedingTrips;
 
+    [ObservableProperty]
+    private ObservableCollection<FilterStatus> filterStatuses;
+
     public FeedingMovementsViewModel(
         IToastService toastService,
         IFeedTransferService feedTransferService
@@ -21,6 +24,24 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
         WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
 
         GetFeedTransfers();
+
+        FilterStatuses = new ObservableCollection<FilterStatus>
+        {
+            new FilterStatus { Status = "TODOS", IsSelected = true },
+            new FilterStatus { Status = "ASIGNADO" },
+            new FilterStatus { Status = "RECIBIDO" },
+            new FilterStatus { Status = "EN RUTA" },
+            new FilterStatus { Status = "ENTREGADO" }           
+         };
+    }
+
+    [RelayCommand]
+    private void SelectFilter(string status)
+    {
+        foreach (var filter in FilterStatuses)
+        {
+            filter.IsSelected = filter.Status == status;
+        }
     }
 
     [RelayCommand]

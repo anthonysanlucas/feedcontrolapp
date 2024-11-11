@@ -147,7 +147,7 @@
                     <controls:MainButtonControl
                         Command="{Binding GoToFeedingPoolTwoStepCommand}"
                         IsBusy="{Binding IsBusy}"
-                        Text="Crear viaje" />
+                        Text="Registrar datos" />
                 </Grid>
             </Border>
         </Grid>

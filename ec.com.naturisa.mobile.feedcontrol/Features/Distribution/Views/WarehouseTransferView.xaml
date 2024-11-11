@@ -10,6 +10,40 @@
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Title="WarehouseTransferView"
     x:DataType="viewModels:WarehouseTransferViewModel">
+    <Shell.TitleView>
+        <Grid
+            ColumnDefinitions="*, auto, auto"
+            ColumnSpacing="8"
+            VerticalOptions="FillAndExpand">
+            <components:ShellTitle />
+
+            <Frame
+                Grid.Column="1"
+                Padding="8"
+                BackgroundColor="{StaticResource Primary700}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+
+                <Grid ColumnDefinitions="16, auto" ColumnSpacing="4">
+                    <Image Source="icon_location_on.svg" WidthRequest="12" />
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource RegularLabel}"
+                        Text="PE"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <HorizontalStackLayout Grid.Column="2">
+                <ImageButton HeightRequest="24" Source="icon_notifications.svg" />
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
     <Grid RowDefinitions="auto,*" RowSpacing="24">
         <Grid ColumnSpacing="10">
             <Grid.RowDefinitions>
@@ -17,7 +51,6 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-
                 <ColumnDefinition Width="50*" />
                 <ColumnDefinition Width="50*" />
             </Grid.ColumnDefinitions>

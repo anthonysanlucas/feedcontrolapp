@@ -71,7 +71,7 @@ public partial class LoginViewModel : BaseViewModel
 
             if (loginResponse != null)
             {
-                await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
+                await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
 
                 UserName = string.Empty;
                 Password = string.Empty;

@@ -25,8 +25,7 @@ public partial class PoolTransferViewModel : BaseViewModel, IRecipient<RefreshDa
             new FilterStatus { Status = "ASIGNADO" },
             new FilterStatus { Status = "RECIBIDO" },
             new FilterStatus { Status = "EN RUTA" },
-            new FilterStatus { Status = "ENTREGADO" },
-            new FilterStatus { Status = "PAUSADO" }
+            new FilterStatus { Status = "ENTREGADO" }
         };
     }
 

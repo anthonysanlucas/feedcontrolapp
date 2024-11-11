@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>Balanceado Naturisa</ApplicationTitle>
+		<ApplicationTitle>Balanceado</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>ec.com.naturisa.mobile.feedcontrol</ApplicationId>

@@ -37,31 +37,6 @@
                     Grid.Row="2"
                     FilterSelectedCommand="{Binding SelectFilterCommand}"
                     Filters="{Binding FilterStatuses}" />
-                <!--
-                <CollectionView
-                    Grid.Row="2"
-                    Margin="0"
-                    BackgroundColor="Transparent"
-                    HorizontalScrollBarVisibility="Never"
-                    ItemsLayout="HorizontalList"
-                    ItemsSource="{Binding FilterStatuses}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:FilterStatus">
-                            <Button
-                                Margin="0,0,6,0"
-                                Padding="12,6"
-                                BackgroundColor="Transparent"
-                                BorderColor="{StaticResource OnSecondary}"
-                                BorderWidth="0.25"
-                                CornerRadius="20"
-                                FontSize="12"
-                                HeightRequest="32"
-                                Text="{Binding Status}"
-                                TextColor="{StaticResource OnSecondary}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-                -->
             </Grid>
 
             <RefreshView

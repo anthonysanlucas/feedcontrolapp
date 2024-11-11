@@ -55,13 +55,13 @@
 
             AvailablePools = new()
             {
-                new FeedTransferDetailPoolModel { PoolId = 1, PoolCode = "MA001" },
-                new FeedTransferDetailPoolModel { PoolId = 2, PoolCode = "MA002" },
-                new FeedTransferDetailPoolModel { PoolId = 3, PoolCode = "MA003" },
-                new FeedTransferDetailPoolModel { PoolId = 4, PoolCode = "MA004" },
-                new FeedTransferDetailPoolModel { PoolId = 5, PoolCode = "MA005" },
-                new FeedTransferDetailPoolModel { PoolId = 6, PoolCode = "MA006" },
-                new FeedTransferDetailPoolModel { PoolId = 7, PoolCode = "MA007" },
+                new FeedTransferDetailPoolModel { PoolId = 1, PoolCode = "NA001" },
+                new FeedTransferDetailPoolModel { PoolId = 2, PoolCode = "NA002" },
+                new FeedTransferDetailPoolModel { PoolId = 3, PoolCode = "NA003" },
+                new FeedTransferDetailPoolModel { PoolId = 4, PoolCode = "NA004" },
+                new FeedTransferDetailPoolModel { PoolId = 5, PoolCode = "NA005" },
+                new FeedTransferDetailPoolModel { PoolId = 6, PoolCode = "NA006" },
+                new FeedTransferDetailPoolModel { PoolId = 7, PoolCode = "NA007" },
             };
 
             ProductRows = new ObservableCollection<PoolTransferTwoStepSelectionModel> { new() };

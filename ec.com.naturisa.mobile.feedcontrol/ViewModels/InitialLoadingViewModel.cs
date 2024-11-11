@@ -20,7 +20,7 @@
                 if (userData != null)
                 {
                     App.UserData = userData;
-                    await Shell.Current.GoToAsync($"//{nameof(FeedingPoolView)}");
+                    await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
 
                     return;
                 }

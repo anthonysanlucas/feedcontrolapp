@@ -41,7 +41,7 @@
 
                             <Grid
                                 Grid.Column="1"
-                                ColumnDefinitions="65,65"
+                                ColumnDefinitions="68,68"
                                 ColumnSpacing="8"
                                 RowDefinitions="Auto, Auto"
                                 RowSpacing="4">
@@ -107,7 +107,7 @@
 
                                     <Grid
                                         Grid.Column="1"
-                                        ColumnDefinitions="65,65"
+                                        ColumnDefinitions="68,68"
                                         ColumnSpacing="8">
                                         <Label
                                             Grid.Column="0"
@@ -197,7 +197,7 @@
                     <Label
                         Margin="0,32,0,8"
                         Style="{StaticResource DataTitleLabel}"
-                        Text="Observación (opcional)" />
+                        Text="Observación" />
                     <Frame
                         Padding="0"
                         BorderColor="{StaticResource Slate400}"

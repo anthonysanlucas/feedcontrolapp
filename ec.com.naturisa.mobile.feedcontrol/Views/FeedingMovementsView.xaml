@@ -12,29 +12,33 @@
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
     x:DataType="viewModels:FeedingMovementsViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid>
         <Grid RowDefinitions="Auto, *">
-            <Grid
-                Grid.Row="0"
-                ColumnDefinitions="*, Auto"
-                ColumnSpacing="8">
-                <SearchBar
-                    Grid.Column="0"
-                    BackgroundColor="White"
-                    FontSize="14"
-                    Placeholder="Buscar por piscina o transportista" />
-
+            <Grid RowDefinitions="Auto, Auto" RowSpacing="8">
                 <Frame
-                    Grid.Column="1"
+                    Grid.Row="0"
                     Padding="0"
                     BackgroundColor="{StaticResource Secondary}">
-                    <DatePicker
-                        Format="dd/MM/yyyy"
-                        HorizontalOptions="FillAndExpand"
-                        MaximumDate="2030-12-31"
-                        MinimumDate="2020-01-01"
-                        TextColor="{StaticResource OnSecondary}" />
+                    <VerticalStackLayout>
+                        <DatePicker
+                            Format="dd/MM/yyyy"
+                            HorizontalOptions="FillAndExpand"
+                            MaximumDate="2030-12-31"
+                            MinimumDate="2020-01-01"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
                 </Frame>
+
+                <controls:StatusFilterControl
+                    Grid.Row="2"
+                    FilterSelectedCommand="{Binding SelectFilterCommand}"
+                    Filters="{Binding FilterStatuses}" />
             </Grid>
             <RefreshView
                 Grid.Row="2"
@@ -86,6 +90,7 @@
             <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
         </Grid>
 
+        <!--
         <Frame
             Grid.Row="0"
             HorizontalOptions="End"
@@ -119,11 +124,6 @@
                     VerticalOptions="Center" />
             </HorizontalStackLayout>
         </Frame>
+        -->
     </Grid>
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:TruncateTextConverter x:Key="TruncateTextConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 </ContentPage>

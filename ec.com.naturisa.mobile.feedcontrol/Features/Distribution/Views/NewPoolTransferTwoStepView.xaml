@@ -181,34 +181,38 @@
                                         Padding="8"
                                         BackgroundColor="{StaticResource Primary50}"
                                         ColumnDefinitions="76, *, auto"
-                                        ColumnSpacing="8">
+                                        ColumnSpacing="4">
                                         <Frame
                                             Grid.Column="0"
-                                            Padding="0"
+                                            Padding="4,0"
                                             BackgroundColor="Transparent"
                                             BorderColor="{StaticResource Slate400}">
                                             <Picker
                                                 Title="Piscina"
+                                                HorizontalOptions="FillAndExpand"
                                                 ItemDisplayBinding="{Binding PoolCode}"
                                                 ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=AvailablePools}"
                                                 SelectedItem="{Binding SelectedPool}"
                                                 TextColor="{StaticResource OnSecondary}"
-                                                TitleColor="{StaticResource Primary900}" />
+                                                TitleColor="{StaticResource Primary900}"
+                                                VerticalOptions="FillAndExpand" />
                                         </Frame>
 
                                         <Frame
                                             Grid.Column="1"
-                                            Padding="0"
+                                            Padding="4,0"
                                             BackgroundColor="Transparent"
                                             BorderColor="{StaticResource Slate400}">
                                             <Picker
                                                 Title="Selecciona un producto"
                                                 FontSize="Small"
+                                                HorizontalOptions="FillAndExpand"
                                                 ItemDisplayBinding="{Binding ProductName}"
                                                 ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=AvailableProducts}"
                                                 SelectedItem="{Binding SelectedProduct}"
                                                 TextColor="{StaticResource OnSecondary}"
-                                                TitleColor="{StaticResource Primary900}" />
+                                                TitleColor="{StaticResource Primary900}"
+                                                VerticalOptions="FillAndExpand" />
                                         </Frame>
 
                                         <Frame

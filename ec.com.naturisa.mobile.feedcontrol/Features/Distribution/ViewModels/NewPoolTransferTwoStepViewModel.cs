@@ -26,6 +26,21 @@
         {
             AvailableProducts = new()
             {
+                 new FeedTransferDetailModel
+                {
+                    ProductId = 5,
+                    ProductName = "Alimento Iniciador Aquaxel 0.6 MM"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 4,
+                    ProductName = "Aquaxel MW 424 SLD Starter 0.8 mm"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 3,
+                    ProductName = "Cargill Aquaxel MW 354 START NG ext 35% 1.2 mm"
+                },
                 new FeedTransferDetailModel
                 {
                     ProductId = 1,
@@ -35,22 +50,7 @@
                 {
                     ProductId = 2,
                     ProductName = "Purina Aquafeed 354 CRE NG LS 2.0mm"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 3,
-                    ProductName = "Cargill Aquaxel MW 354 START NG ext 35% 1.2 mm"
-                },
-                 new FeedTransferDetailModel
-                {
-                    ProductId = 4,
-                    ProductName = "Aquaxel MW 424 SLD Starter 0.8 mm"
-                },
-                 new FeedTransferDetailModel
-                {
-                    ProductId = 5,
-                    ProductName = "Alimento Iniciador Aquaxel 0.6 MM"
-                },
+                }
             };
 
             AvailablePools = new()
@@ -147,7 +147,7 @@
         private async Task<bool> ValidateFields()
         {
             if (RemainingCapacity < 0)
-            {                
+            {
                 int sacks = Math.Abs(RemainingCapacity);
 
                 await ToastService.ShowToastAsync($"Tienes {sacks} sacos más de la capacidad máxima del vehículo.");

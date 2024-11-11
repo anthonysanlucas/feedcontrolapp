@@ -32,6 +32,12 @@
                             TextColor="{StaticResource OnSecondary}" />
                     </VerticalStackLayout>
                 </Frame>
+
+                <controls:StatusFilterControl
+                    Grid.Row="2"
+                    FilterSelectedCommand="{Binding SelectFilterCommand}"
+                    Filters="{Binding FilterStatuses}" />
+                <!--
                 <CollectionView
                     Grid.Row="2"
                     Margin="0"
@@ -55,6 +61,7 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                -->
             </Grid>
 
             <RefreshView

@@ -1,7 +1,9 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Models
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Models;
+
+public partial class FilterStatus : ObservableObject
 {
-    public class FilterStatus
-    {
-        public string Status { get; set; }
-    }
+    public required string Status { get; set; }
+
+    [ObservableProperty]
+    private bool isSelected;
 }

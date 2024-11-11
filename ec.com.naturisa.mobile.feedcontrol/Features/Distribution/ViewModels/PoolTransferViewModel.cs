@@ -19,15 +19,24 @@ public partial class PoolTransferViewModel : BaseViewModel, IRecipient<RefreshDa
 
         GetFeedTransfers();
 
-        FilterStatuses =
-        [
-            new FilterStatus { Status = "TODOS" },
+        FilterStatuses = new ObservableCollection<FilterStatus>
+        {
+            new FilterStatus { Status = "TODOS", IsSelected = true },
             new FilterStatus { Status = "ASIGNADO" },
             new FilterStatus { Status = "RECIBIDO" },
             new FilterStatus { Status = "EN RUTA" },
-            new FilterStatus { Status = "ENTREGADO" },                
+            new FilterStatus { Status = "ENTREGADO" },
             new FilterStatus { Status = "PAUSADO" }
-        ];
+        };
+    }
+
+    [RelayCommand]
+    private void SelectFilter(string status)
+    {        
+        foreach (var filter in FilterStatuses)
+        {
+            filter.IsSelected = filter.Status == status;
+        }
     }
 
     [RelayCommand]

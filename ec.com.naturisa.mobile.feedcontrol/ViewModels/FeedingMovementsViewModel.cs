@@ -31,7 +31,7 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
             new FilterStatus { Status = "ASIGNADO" },
             new FilterStatus { Status = "RECIBIDO" },
             new FilterStatus { Status = "EN RUTA" },
-            new FilterStatus { Status = "ENTREGADO" }           
+            new FilterStatus { Status = "ENTREGADO" }
          };
     }
 
@@ -91,6 +91,10 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
                 var feedTransferModels = response.Data.Data;
 
                 FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
+            }
+            else
+            {
+                FeedingTrips?.Clear();
             }
         }
         catch (Exception ex)

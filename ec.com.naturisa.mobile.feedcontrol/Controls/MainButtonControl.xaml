@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Name="ButtonControl">
     <Frame
-        Margin="16"
+        Margin="16,8"
         Padding="0"
         BackgroundColor="{StaticResource Primary700}"
         BorderColor="Transparent"

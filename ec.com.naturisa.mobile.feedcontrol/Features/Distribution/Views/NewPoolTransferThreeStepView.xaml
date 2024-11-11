@@ -117,23 +117,26 @@
                             Grid.Row="1"
                             Grid.Column="1"
                             Spacing="4">
-                            <Label Text="Capacidad" TextColor="{StaticResource OnSecondary}" />
+                            <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
                                 Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
 
+
+                        <!--
                         <VerticalStackLayout
                             Grid.Row="2"
                             Grid.Column="0"
                             Spacing="4">
-                            <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
+                            <Label Text="Capacidad" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
                                 Text="{Binding PoolTransferOneStepSelection.SelectedTransport.Plate}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
+
 
                         <VerticalStackLayout
                             Grid.Row="2"
@@ -145,6 +148,7 @@
                                 Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
+                        -->
                     </Grid>
 
                     <Grid Grid.Row="1" RowDefinitions="Auto, Auto">

@@ -71,7 +71,12 @@ public partial class FeedingPoolViewModel : BaseViewModel, IRecipient<RefreshDat
 
             if (response.Data != null && response.Data != null)
             {
-                Feeds = new ObservableCollection<FeedResponse>(response.Data.Data);
+                var sortedData = response.Data.Data.OrderBy(feed => feed.PoolCode).ToList();
+                Feeds = new ObservableCollection<FeedResponse>(sortedData);
+            }
+            else
+            {
+                Feeds?.Clear();
             }
         }
         catch (Exception ex)

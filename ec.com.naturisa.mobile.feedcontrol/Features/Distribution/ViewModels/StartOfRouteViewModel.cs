@@ -1,7 +1,7 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
 
 [QueryProperty(nameof(SelectedTransfer), nameof(SelectedTransfer))]
-public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDataMessage>    
+public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
     [ObservableProperty]
     private FeedTransferModel selectedTransfer;
@@ -78,10 +78,12 @@ public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDa
 
             SelectedTransferDetail = transferDetailsResponse.Data;
 
+
+            var sortedData = transferDetailsResponse.Data.FeedTransferPoolsDetail.OrderBy(feed => feed.PoolCode).ToList();
             FeedTransferDetails =
                 new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
                     (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
-                        transferDetailsResponse.Data.FeedTransferPoolsDetail
+                       sortedData
                     )
                 );
         }
@@ -115,10 +117,11 @@ public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDa
 
             SelectedTransferDetail = transferDetailsResponse.Data;
 
+            var sortedData = transferDetailsResponse.Data.FeedTransferPoolsDetail.OrderBy(feed => feed.PoolCode).ToList();
             FeedTransferDetails =
                 new ObservableCollection<FeedTransferPoolDetailCustomResponse>(
                     (IEnumerable<FeedTransferPoolDetailCustomResponse>)(
-                        transferDetailsResponse.Data.FeedTransferPoolsDetail
+                       sortedData
                     )
                 );
         }

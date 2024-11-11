@@ -74,6 +74,10 @@ public partial class PoolTransferViewModel : BaseViewModel, IRecipient<RefreshDa
 
                 FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
             }
+            else
+            {
+                FeedingTrips?.Clear();
+            }
         }
         catch (Exception ex)
         {

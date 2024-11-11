@@ -85,7 +85,7 @@
             Style="{StaticResource RefreshViewStyle}">
             <CollectionView
                 x:Name="poolListCollectionView"
-                HorizontalOptions="StartAndExpand"
+                HorizontalOptions="FillAndExpand"
                 ItemsSource="{Binding Feeds}"
                 SelectionMode="None"
                 VerticalOptions="FillAndExpand">

@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol
+﻿using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
+
+namespace ec.com.naturisa.mobile.feedcontrol
 {
     public partial class AppShell : Shell
     {
@@ -71,7 +73,7 @@
 
             #region Supplying
             Routing.RegisterRoute(nameof(TransferReceptionView), typeof(TransferReceptionView));
-
+            Routing.RegisterRoute(nameof(FarmTransferView), typeof(FarmTransferView));
             #endregion
 
             #region GlobalRoutes

@@ -6,6 +6,7 @@
     xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:distributionViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:supplyingViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
     xmlns:views="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views"
     Title="ec.com.naturisa.mobile.feedcontrol"
@@ -215,14 +216,12 @@
         <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" />
     </FlyoutItem>
 
-    <!--
     <FlyoutItem
         Title="Transferencia a Finca"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Sync_alt}">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:NewTransferThreeStepView}" />
+        <ShellContent ContentTemplate="{DataTemplate supplyingViews:FarmTransferView}" />
     </FlyoutItem>
-    -->
 
     <Shell.FlyoutFooter>
         <Frame

@@ -149,16 +149,13 @@
 	  <MauiXaml Update="Features\Distribution\Views\NewPoolTransferThreeStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Distribution\Views\NewPoolTransferTwoStepView.xaml">
+	  <MauiXaml Update="Features\Supplying\Views\NewTransferOneStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Distribution\Views\NewTransferOneStepView.xaml">
+	  <MauiXaml Update="Features\Supplying\Views\NewTransferThreeStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Features\Distribution\Views\NewTransferThreeStepView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Features\Distribution\Views\NewTransferTwoStepView.xaml">
+	  <MauiXaml Update="Features\Supplying\Views\NewTransferTwoStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\PoolTransferDeliveryDetailView.xaml">
@@ -180,6 +177,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\TransferDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\FarmTransferView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Supplying\Views\TransferReceptionView.xaml">
@@ -260,7 +260,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Features\Distribution\Views\NewTransferOneStepView.xaml.cs">
+	  <Compile Update="Features\Supplying\Views\NewTransferOneStepView.xaml.cs">
 	    <DependentUpon>NewTransferOneStepView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Features\Distribution\Views\InventoryReceptionView.xaml.cs">

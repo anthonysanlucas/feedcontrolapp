@@ -1,12 +1,15 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels;
 
-public class InitialLoadingViewModel
+public class InitialLoadingViewModel : BaseViewModel
 {
     private readonly ISubsidiaryUsersService _subsidiaryUsersService;
+    private readonly IToastService _toastService;
 
-    public InitialLoadingViewModel(ISubsidiaryUsersService subsidiaryUsersService)
+    public InitialLoadingViewModel(IToastService toastService, ISubsidiaryUsersService subsidiaryUsersService) : base(toastService)
     {
         _subsidiaryUsersService = subsidiaryUsersService;
+        _toastService = toastService;
+
         CheckUserLoginDetails();
     }
 
@@ -30,6 +33,11 @@ public class InitialLoadingViewModel
                 };
 
                 var response = await _subsidiaryUsersService.GetSubsidiaryUsers(subsidiaryUsersQuery);
+
+                if (response.Data != null)
+                {
+                    Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>(response.Data.Data);
+                }
 
 
                 await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");

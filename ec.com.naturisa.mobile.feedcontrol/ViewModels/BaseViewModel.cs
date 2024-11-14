@@ -4,6 +4,9 @@
     {
         [ObservableProperty]
         private bool _isBusy;
+        
+        [ObservableProperty]
+        private ObservableCollection<SubsidiaryUserResponse> _subsidiaries;
 
         [ObservableProperty]
         private bool _isRefreshing;

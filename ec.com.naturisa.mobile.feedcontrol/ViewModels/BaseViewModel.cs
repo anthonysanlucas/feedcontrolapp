@@ -9,6 +9,9 @@
         private ObservableCollection<SubsidiaryUserResponse> _subsidiaries;
 
         [ObservableProperty]
+        private SubsidiaryUserResponse _selectedSubsidiary;
+
+        [ObservableProperty]
         private bool _isRefreshing;
 
         [ObservableProperty]

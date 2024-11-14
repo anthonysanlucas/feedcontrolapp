@@ -37,6 +37,11 @@ public class InitialLoadingViewModel : BaseViewModel
                 if (response.Data != null)
                 {
                     Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>(response.Data.Data);
+
+                    if (Subsidiaries.Count > 0)
+                    {
+                        SelectedSubsidiary = Subsidiaries.FirstOrDefault();
+                    }                    
                 }
 
 

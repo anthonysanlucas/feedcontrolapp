@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
+using System.Reflection;
 
 namespace ec.com.naturisa.mobile.feedcontrol
 {
@@ -23,7 +24,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<BaseHttpService>();
 
             builder.Services.AddSingleton<ISubsidiaryUsersService, SubsidiaryUsersService>();
-          
+            builder.Services.AddSingleton<IPoolsService, PoolsService>();
+
             builder.Services.AddSingleton<ISupplierTransferService, SupplierTransferService>();
           
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();

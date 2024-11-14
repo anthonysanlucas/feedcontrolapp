@@ -45,3 +45,5 @@ global using CommunityToolkit.Mvvm.Messaging;
 global using ec.com.naturisa.mobile.feedcontrol.Messages;
 global using ec.com.naturisa.mobile.feedcontrol.Models.Ap1.SubsidiaryUsers;
 global using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.SubsidiaryUsers;
+global using ec.com.naturisa.mobile.feedcontrol.Models.Ap1.Pool;
+global using ec.com.naturisa.mobile.feedcontrol.Models.Ap1.Pools;

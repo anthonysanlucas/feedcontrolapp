@@ -11,14 +11,22 @@
         [ObservableProperty]
         private ObservableCollection<Product> addedProducts;
 
+        [ObservableProperty]
+        private string vehiclePlate = "GRZ 6396";
+
+        [ObservableProperty]
+        private int vehicleCapacity = 528;
+
         public NewTransferTwoStepViewModel(IToastService toastService)
             : base(toastService)
         {
             availableProducts = new List<string>
             {
-                "AQUAXCEL MW 424 SLD STARTER 0.8 MM",
-                "AQUAXCEL MW 424 SLD STARTER 0.6 MM",
-                "AQUAXCEL SLD 1.2 MM"
+                "Alimento Iniciador Aquaxel 0.6 MM",
+                "Aquaxel MW 424 SLD Starter 0.8 mm",
+                "Cargill Aquaxel MW 354 START NG ext 35% 1.2 mm",
+                "Aquaxel MW354 Grower NG 1.8",
+                "Purina Aquafeed 354 CRE NG LS 2.0mm"
             };
 
             ProductRows = new ObservableCollection<ProductRow> { new() };

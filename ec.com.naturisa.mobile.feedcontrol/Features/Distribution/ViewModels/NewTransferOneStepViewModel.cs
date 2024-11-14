@@ -47,24 +47,23 @@
         public NewTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            originBranch = "Maricultura";
+            originBranch = "Acopio Pezjoya";
 
             originWarehouses = ["Bodega de Balanceado"];
 
-            destinationBranches = ["Kamaclusa"];
+            destinationBranches = ["Naturisa"];
 
             destinationWarehouses = ["Bodega de Balanceado"];
 
             transporters = ["NELSON ZAMBRANO"];
-            vehiclePlates = ["GCT 5936"];
+            vehiclePlates = ["GRZ 6396"];
         }
 
         [RelayCommand]
         async Task SubmitTransfer()
         {
             if (
-                string.IsNullOrEmpty(SelectedOriginWharehouse)
-                || string.IsNullOrEmpty(SelectedDestinationBranch)
+                string.IsNullOrEmpty(SelectedDestinationBranch)
                 || string.IsNullOrEmpty(SelectedDestinationWharehouse)
                 || string.IsNullOrEmpty(SelectedTransporter)
                 || string.IsNullOrEmpty(SelectedVehiclePlate)

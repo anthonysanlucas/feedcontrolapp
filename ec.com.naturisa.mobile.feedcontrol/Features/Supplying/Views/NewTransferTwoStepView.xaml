@@ -3,21 +3,15 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.NewTransferTwoStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models"
+    xmlns:distributionModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
-    Title="Nueva transferencia"
     Padding="0"
     x:DataType="viewModels:NewTransferTwoStepViewModel"
-    BackgroundColor="{StaticResource Primary900}"
-    Shell.BackgroundColor="{StaticResource Primary900}"
-    Shell.ForegroundColor="{StaticResource Primary100}">
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
-        <Label
-            FontAttributes="None"
-            Style="{StaticResource LargeLabel}"
-            Text="Nueva transferencia"
-            TextColor="{StaticResource Primary100}"
-            VerticalOptions="CenterAndExpand" />
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Nueva transferencia" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">
@@ -26,18 +20,22 @@
             Padding="16"
             Spacing="8">
             <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
-                <Image Source="icon_sync_alt_white.svg" WidthRequest="16" />
                 <Label
-                    FontAttributes="None"
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.List_alt}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Label
                     Style="{StaticResource RegularLabel}"
-                    Text="Transferencia a Bodega"
-                    TextColor="{StaticResource Primary100}" />
+                    Text="Detalle de transferencia"
+                    TextColor="{StaticResource OnSecondary}" />
             </HorizontalStackLayout>
             <Label
                 HorizontalOptions="Center"
                 Style="{StaticResource RegularLabel}"
                 Text="{Binding LongDate}"
-                TextColor="{StaticResource White}" />
+                TextColor="{StaticResource Primary900}" />
             <Grid
                 Grid.Row="2"
                 Margin="0,16,0,0"
@@ -47,64 +45,26 @@
                     Grid.Row="0"
                     HorizontalOptions="Center"
                     Spacing="8">
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary800}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="1"
-                            TextColor="{StaticResource White}"
-                            VerticalOptions="Center" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="1" />
                     </Frame>
-                    <Image Source="icon_trending_flat.svg" />
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary100}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="2"
-                            TextColor="{StaticResource Primary900}"
-                            VerticalOptions="Center" />
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                        <Label Style="{StaticResource SteperRoundAccentLabel}" Text="2" />
                     </Frame>
-                    <Image Source="icon_trending_flat.svg" />
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="{StaticResource Primary800}"
-                        CornerRadius="100"
-                        HasShadow="False"
-                        HeightRequest="32"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"
-                        WidthRequest="32">
-                        <Label
-                            FontAttributes="Bold"
-                            HorizontalOptions="Center"
-                            Text="3"
-                            TextColor="{StaticResource White}"
-                            VerticalOptions="Center" />
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="3" />
                     </Frame>
                 </HorizontalStackLayout>
-                <Label
-                    Grid.Row="1"
-                    FontAttributes="None"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource SmallLabel}"
-                    Text="Detalle de transferencia"
-                    TextColor="{StaticResource Primary100}" />
             </Grid>
         </VerticalStackLayout>
 
@@ -116,9 +76,66 @@
             StrokeShape="RoundRectangle 10,10,0,0"
             StrokeThickness="0">
             <Grid RowDefinitions="*">
-                <Grid Grid.Row="0" RowDefinitions="Auto, Auto, Auto">
+                <Grid Grid.Row="0" RowDefinitions="Auto, Auto, *, Auto">
+                    <Grid
+                        Grid.Row="0"
+                        Margin="0,0,0,8"
+                        RowDefinitions="Auto, Auto"
+                        RowSpacing="16">
+                        <FlexLayout Grid.Row="0" JustifyContent="SpaceBetween">
+                            <VerticalStackLayout Grid.Column="0" Spacing="8">
+                                <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
+                                <Label
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="{Binding VehiclePlate}"
+                                    TextColor="{StaticResource Primary700}" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label
+                                    Margin="0,0,0,8"
+                                    Text="Capacidad disponible"
+                                    TextColor="{StaticResource OnSecondary}" />
+
+                                <Label
+                                    FontAttributes="None"
+                                    HorizontalOptions="End"
+                                    Style="{StaticResource RegularLabel}"
+                                    Text="{Binding VehicleCapacity, StringFormat='{0} sacos'}"
+                                    TextColor="{StaticResource Primary700}" />
+                            </VerticalStackLayout>
+                        </FlexLayout>
+
+                        <Frame
+                            Grid.Row="1"
+                            HorizontalOptions="End"
+                            Style="{StaticResource SecondaryRectBtnFrame}"
+                            VerticalOptions="End">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddProductRowCommand}" />
+                            </Frame.GestureRecognizers>
+                            <HorizontalStackLayout Spacing="4">
+                                <Label
+                                    FontSize="18"
+                                    Style="{StaticResource GoogleFont}"
+                                    Text="{x:Static models:IconFont.Add}"
+                                    TextColor="{StaticResource Primary900}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Style="{StaticResource SmallLabel}"
+                                    Text="Añadir"
+                                    TextColor="{StaticResource Primary900}"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </Grid>
+
+
                     <!--  Table Header  -->
-                    <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
+                    <Frame
+                        Grid.Row="1"
+                        Padding="8"
+                        BackgroundColor="{StaticResource Secondary}">
                         <Grid ColumnDefinitions="*, auto">
                             <Label Text="Producto" TextColor="{StaticResource OnSecondary}" />
                             <Label
@@ -128,7 +145,7 @@
                         </Grid>
                     </Frame>
 
-                    <CollectionView Grid.Row="1" ItemsSource="{Binding ProductRows}">
+                    <CollectionView Grid.Row="2" ItemsSource="{Binding ProductRows}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="viewModels:ProductRow">
                                 <SwipeView>
@@ -192,7 +209,7 @@
 
                     <!--  Table Footer  -->
                     <Grid
-                        Grid.Row="2"
+                        Grid.Row="3"
                         Grid.ColumnSpan="2"
                         ColumnDefinitions="*,*"
                         RowDefinitions="auto, auto">
@@ -229,30 +246,17 @@
                     </Grid>
                 </Grid>
 
-                <Grid
+                <Button
                     Grid.Row="0"
-                    Padding="0,0,0,16"
-                    ColumnDefinitions="*, Auto"
-                    ColumnSpacing="16"
-                    VerticalOptions="End">
-                    <Button
-                        Grid.Column="0"
-                        BackgroundColor="{StaticResource Primary700}"
-                        Command="{Binding GoToNewTransferThreeStepCommand}"
-                        HeightRequest="62"
-                        HorizontalOptions="FillAndExpand"
-                        Text="Siguiente"
-                        TextColor="White" />
-
-                    <Button
-                        Grid.Column="1"
-                        BackgroundColor="{StaticResource OnSecondary}"
-                        Command="{Binding AddProductRowCommand}"
-                        HeightRequest="44"
-                        HorizontalOptions="FillAndExpand"
-                        ImageSource="icon_add_white.svg"
-                        TextColor="White" />
-                </Grid>
+                    Grid.Column="0"
+                    Margin="0,0,0,16"
+                    BackgroundColor="{StaticResource Primary700}"
+                    Command="{Binding GoToNewTransferThreeStepCommand}"
+                    HeightRequest="62"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Siguiente"
+                    TextColor="White"
+                    VerticalOptions="End" />
             </Grid>
         </Border>
     </Grid>

@@ -21,6 +21,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IAuthService, AuthService>();
             builder.Services.AddSingleton<IToastService, ToastService>();
             builder.Services.AddSingleton<BaseHttpService>();
+
+            builder.Services.AddSingleton<ISubsidiaryUsersService, SubsidiaryUsersService>();
           
             builder.Services.AddSingleton<ISupplierTransferService, SupplierTransferService>();
           

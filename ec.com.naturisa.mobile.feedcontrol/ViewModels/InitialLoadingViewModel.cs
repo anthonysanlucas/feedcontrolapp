@@ -1,33 +1,44 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels;
+
+public class InitialLoadingViewModel
 {
-    public class InitialLoadingViewModel
+    private readonly ISubsidiaryUsersService _subsidiaryUsersService;
+
+    public InitialLoadingViewModel(ISubsidiaryUsersService subsidiaryUsersService)
     {
-        public InitialLoadingViewModel()
-        {
-            CheckUserLoginDetails();
-        }
+        _subsidiaryUsersService = subsidiaryUsersService;
+        CheckUserLoginDetails();
+    }
 
-        private async void CheckUserLoginDetails()
-        {
-            string UserData = Preferences.Get(nameof(App.UserData), String.Empty);
+    private async void CheckUserLoginDetails()
+    {
+        string UserData = Preferences.Get(nameof(App.UserData), String.Empty);
 
-            if (!string.IsNullOrWhiteSpace(UserData))
+        if (!string.IsNullOrWhiteSpace(UserData))
+        {
+            User? userData = JsonSerializer.Deserialize<User>(UserData);
+
+            // TODO: Check the token expiration (one hour)
+
+            if (userData != null)
             {
-                User? userData = JsonSerializer.Deserialize<User>(UserData);
+                App.UserData = userData;
 
-                // TODO: Check the token expiration (one hour)
-
-                if (userData != null)
+                SubsidiaryUsersQuery subsidiaryUsersQuery = new SubsidiaryUsersQuery
                 {
-                    App.UserData = userData;
-                    await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
+                    UserId = userData.IdUser
+                };
 
-                    return;
-                }
+                var response = await _subsidiaryUsersService.GetSubsidiaryUsers(subsidiaryUsersQuery);
+
+
+                await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
+
+                return;
             }
-
-            await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
-            return;
         }
+
+        await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
+        return;
     }
 }

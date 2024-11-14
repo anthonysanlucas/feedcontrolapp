@@ -43,3 +43,5 @@ global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models.Fee
 global using ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Services.FeedDetail;
 global using CommunityToolkit.Mvvm.Messaging;
 global using ec.com.naturisa.mobile.feedcontrol.Messages;
+global using ec.com.naturisa.mobile.feedcontrol.Models.Ap1.SubsidiaryUsers;
+global using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.SubsidiaryUsers;

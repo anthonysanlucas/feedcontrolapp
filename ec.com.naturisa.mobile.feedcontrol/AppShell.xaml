@@ -13,26 +13,6 @@
     x:DataType="viewModels:AppShellViewModel"
     Shell.FlyoutBackgroundColor="{StaticResource Primary900}"
     Shell.FlyoutBehavior="Flyout">
-    <Shell.TitleView>
-        <Grid
-            ColumnDefinitions="*, auto, auto"
-            ColumnSpacing="8"
-            VerticalOptions="FillAndExpand">
-            <components:ShellTitle />
-
-            <!--  Selected Farm  -->
-
-
-
-            <HorizontalStackLayout Grid.Column="2">
-                <ImageButton
-                    Command="{Binding OpenNotificationsDetailViewCommand}"
-                    HeightRequest="24"
-                    Source="icon_notifications.svg" />
-            </HorizontalStackLayout>
-        </Grid>
-    </Shell.TitleView>
-
     <!--  Custom MenuItem  -->
     <Shell.MenuItemTemplate>
         <DataTemplate x:DataType="models:FlyoutItem">

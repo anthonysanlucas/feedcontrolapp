@@ -8,8 +8,7 @@ public partial class ShellTitleView : ContentView
         BindingContext = shellTitleViewModel;
 
         if (App.UserData != null)
-            ColaboratorName.Text = $"Colaborador: {App.UserData.FirstNames} {App.UserData.LastNames}";
-
+            ColaboratorName.Text = $"{App.UserData.FirstNames} {App.UserData.LastNames}";
 
         AvailableSubsidiaries.ItemsSource = App.Subsidiaries;
     }

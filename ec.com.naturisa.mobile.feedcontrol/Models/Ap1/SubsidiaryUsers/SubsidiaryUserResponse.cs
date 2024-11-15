@@ -1,4 +1,4 @@
-namespace ec.com.naturisa.mobile.feedcontrol.Models
+namespace ec.com.naturisa.mobile.feedcontrol.Models.Ap1.SubsidiaryUsers
 {
     public class SubsidiaryUserResponse
     {

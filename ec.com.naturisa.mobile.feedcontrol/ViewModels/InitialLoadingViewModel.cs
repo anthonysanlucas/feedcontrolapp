@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels;
+﻿using ec.com.naturisa.mobile.feedcontrol.Controls;
+
+namespace ec.com.naturisa.mobile.feedcontrol.ViewModels;
 
 public class InitialLoadingViewModel : BaseViewModel
 {
@@ -36,16 +38,21 @@ public class InitialLoadingViewModel : BaseViewModel
 
                 if (response.Data != null)
                 {
-                    Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>(response.Data.Data);
+                    //App.Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>(response.Data.Data);
+
+                    App.Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>(response.Data.Data);
 
                     if (Subsidiaries.Count > 0)
                     {
-                        SelectedSubsidiary = Subsidiaries.FirstOrDefault();
-                    }                    
+                        App.SelectedSubsidiary = Subsidiaries.FirstOrDefault();
+                    }
+
+                    ShellTitleViewModel shellTitleViewModel = new ShellTitleViewModel(_toastService);
+                    Shell.SetTitleView(Shell.Current, new ShellTitleView(shellTitleViewModel));
+
+                    await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
+
                 }
-
-
-                await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
 
                 return;
             }

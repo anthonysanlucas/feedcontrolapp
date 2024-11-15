@@ -1,4 +1,5 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
+﻿using CommunityToolkit.Maui.Views;
+using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
 
 namespace ec.com.naturisa.mobile.feedcontrol
 {
@@ -81,7 +82,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             Routing.RegisterRoute(nameof(NotificationsDetailView), typeof(NotificationsDetailView));
             Routing.RegisterRoute(nameof(SelectFarmView), typeof(SelectFarmView));
             Routing.RegisterRoute(nameof(ProfileDetailView), typeof(ProfileDetailView));
-            #endregion
-        }
+            #endregion            
+        }      
     }
 }

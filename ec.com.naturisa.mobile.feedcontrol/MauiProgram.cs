@@ -1,4 +1,5 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
+﻿using DevExpress.Maui;
+using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
 using System.Reflection;
 
 namespace ec.com.naturisa.mobile.feedcontrol
@@ -10,7 +11,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkit()               
+                .UseDevExpressControls()                
+                .UseDevExpress()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

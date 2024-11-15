@@ -21,29 +21,8 @@
             <components:ShellTitle />
 
             <!--  Selected Farm  -->
-            <Frame
-                Grid.Column="1"
-                Padding="8"
-                BackgroundColor="{StaticResource Primary700}"
-                HorizontalOptions="Center"
-                VerticalOptions="Center">
-                <Frame.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OpenSelectFarmViewCommand}" />
-                </Frame.GestureRecognizers>
 
-                <Grid ColumnDefinitions="16, auto" ColumnSpacing="4">
-                    <Image Source="icon_location_on.svg" WidthRequest="12" />
-                    <Label
-                        Grid.Column="1"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        HorizontalTextAlignment="Center"
-                        Style="{StaticResource RegularLabel}"
-                        Text="NA"
-                        TextColor="White"
-                        VerticalOptions="Center" />
-                </Grid>
-            </Frame>
+
 
             <HorizontalStackLayout Grid.Column="2">
                 <ImageButton

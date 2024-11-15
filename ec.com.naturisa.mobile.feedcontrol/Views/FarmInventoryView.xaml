@@ -263,7 +263,6 @@
                     <Label Text="Ver más" TextColor="{StaticResource Primary}" />
                 </FlexLayout>
             </VerticalStackLayout>
-
             <ScrollView
                 Padding="16,0,0,0"
                 HorizontalScrollBarVisibility="Never"
@@ -460,8 +459,6 @@
                 </HorizontalStackLayout>
 
             </ScrollView>
-
-
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

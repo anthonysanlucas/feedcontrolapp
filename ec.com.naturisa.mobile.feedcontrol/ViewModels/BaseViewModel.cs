@@ -43,6 +43,9 @@
         {
             ToastService = toastService;
             UpdateDateFormats();
+
+            Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>();
+            SelectedSubsidiary = default;
         }
 
         protected async Task ShowToastAsync(

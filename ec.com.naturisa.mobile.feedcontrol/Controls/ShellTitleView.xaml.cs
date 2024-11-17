@@ -10,6 +10,6 @@ public partial class ShellTitleView : ContentView
         if (App.UserData != null)
             ColaboratorName.Text = $"{App.UserData.FirstNames} {App.UserData.LastNames}";
 
-        AvailableSubsidiaries.ItemsSource = App.Subsidiaries;
+        // AvailableSubsidiaries.ItemsSource = App.Subsidiaries;
     }
 }

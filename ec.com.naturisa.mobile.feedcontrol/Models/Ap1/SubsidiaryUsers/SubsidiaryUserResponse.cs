@@ -16,5 +16,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Models.Ap1.SubsidiaryUsers
 
         [JsonPropertyName("nameSubsidiary")]
         public string? NameSubsidiary { get; set; }
+
+        public bool IsSelected { get; set; }
     }
 }

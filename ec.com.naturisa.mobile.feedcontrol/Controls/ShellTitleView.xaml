@@ -73,38 +73,23 @@
                     <CollectionView x:Name="AvailableSubsidiaries">
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="subsidiaryUsersModels:SubsidiaryUserResponse">
-                                <Frame
-                                    Padding="10"
+                                <Button
                                     BackgroundColor="Transparent"
-                                    CornerRadius="8"
-                                    HasShadow="False">
-                                    <Frame.Triggers>
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SubsidiarySelectedCommand}"
+                                    CommandParameter="{Binding}"
+                                    Text="{Binding NameSubsidiary}"
+                                    TextColor="{StaticResource OnSecondary}">
+
+                                    <Button.Triggers>
                                         <DataTrigger
-                                            Binding="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SelectedSubsidiary}"
-                                            TargetType="Frame"
-                                            Value="{Binding .}">
-                                            <Setter Property="BackgroundColor" Value="Blue" />
+                                            Binding="{Binding IsSelected}"
+                                            TargetType="Button"
+                                            Value="True">
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
+                                            <Setter Property="TextColor" Value="White" />
                                         </DataTrigger>
-                                    </Frame.Triggers>
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectFarmCommand, Source={RelativeSource AncestorType={x:Type ContentView}}}" CommandParameter="{Binding .}" />
-                                    </Frame.GestureRecognizers>
-                                    <Grid ColumnDefinitions="*, auto">
-                                        <Label
-                                            Text="{Binding NameSubsidiary}"
-                                            TextColor="Black"
-                                            VerticalOptions="Center">
-                                            <Label.Triggers>
-                                                <DataTrigger
-                                                    Binding="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SelectedSubsidiary}"
-                                                    TargetType="Label"
-                                                    Value="{Binding .}">
-                                                    <Setter Property="TextColor" Value="White" />
-                                                </DataTrigger>
-                                            </Label.Triggers>
-                                        </Label>
-                                    </Grid>
-                                </Frame>
+                                    </Button.Triggers>
+                                </Button>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

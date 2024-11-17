@@ -12,39 +12,35 @@ public partial class ShellTitleViewModel : BaseViewModel
     private bool _isOpenFarmList;
 
     public ShellTitleViewModel(IToastService toastService) : base(toastService)
-    {       
-        SelectedSubsidiary = App.SelectedSubsidiary;
-
-        AvailableSubsidiaries = new ObservableCollection<SubsidiaryUserResponse>(App.Subsidiaries);
+    {
+        SelectedSubsidiary = GlobalData.Instance.SelectedSubsidiary;
+        AvailableSubsidiaries = GlobalData.Instance.Subsidiaries;
     }
 
     [RelayCommand]
     async Task OpenSelectFarmView()
     {
-        IsOpenFarmList = !IsOpenFarmList;       
+        IsOpenFarmList = !IsOpenFarmList;
     }
 
     [RelayCommand]
     async Task SubsidiarySelected(SubsidiaryUserResponse subsidiary)
-    {
-        foreach (var item in AvailableSubsidiaries)
-        {
-            if (item.SubsidiaryId == subsidiary.SubsidiaryId)
-            {
-                item.IsSelected = true;
+    {        
+        IsOpenFarmList = false;
+        await ToastService.ShowToastAsync($"Has seleccionado {subsidiary.NameSubsidiary}");
 
-                await ToastService.ShowToastAsync($"Has seleccionado {subsidiary.NameSubsidiary}");
-
-                IsOpenFarmList = false;
-
-                return;
-            }
-
-            item.IsSelected = false;
-
-            return;
-        }        
+        AvailableSubsidiaries = new ObservableCollection<SubsidiaryUserResponse>(
+            AvailableSubsidiaries
+                .Select(item =>
+                {
+                    item.IsSelected = item.SubsidiaryId == subsidiary.SubsidiaryId;
+                    return item;
+                })
+        );
+     
+        OnPropertyChanged(nameof(AvailableSubsidiaries));
     }
+
 
     [RelayCommand]
     async Task SelectFarm(SubsidiaryUserResponse subsidiary)

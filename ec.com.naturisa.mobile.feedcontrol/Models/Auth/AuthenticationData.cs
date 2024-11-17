@@ -21,6 +21,6 @@
         public string Checksum { get; set; }
 
         [JsonPropertyName("usuario")]
-        public User User { get; set; }
+        public UserData User { get; set; }
     }
 }

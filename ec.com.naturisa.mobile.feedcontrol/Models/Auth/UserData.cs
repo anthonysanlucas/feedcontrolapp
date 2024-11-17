@@ -1,6 +1,6 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Models.Auth
 {
-    public class User
+    public class UserData
     {
         public int IdUser { get; set; }
         public string Identification { get; set; }

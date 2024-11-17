@@ -21,58 +21,23 @@ public class InitialLoadingViewModel : BaseViewModel
 
         string UserData = Preferences.Get(nameof(App.UserData), String.Empty);
 
-        if (!string.IsNullOrWhiteSpace(UserData))
+        await GlobalData.Instance.LoadDataAsync(_subsidiaryUsersService, _toastService);
+
+        if (GlobalData.Instance.UserData != null)
         {
-            User? userData = JsonSerializer.Deserialize<User>(UserData);
+            // Configurar la vista del título en el Shell
+            ShellTitleViewModel shellTitleViewModel = new ShellTitleViewModel(_toastService);
+            Shell.SetTitleView(Shell.Current, new ShellTitleView(shellTitleViewModel));
 
-            // TODO: Check the token expiration (one hour)
-
-            if (userData != null)
-            {
-                App.UserData = userData;
-
-                SubsidiaryUsersQuery subsidiaryUsersQuery = new SubsidiaryUsersQuery
-                {
-                    UserId = userData.IdUser
-                };                
-
-                try
-                {
-                    var response = await _subsidiaryUsersService.GetSubsidiaryUsers(subsidiaryUsersQuery);
-
-                    if (response.Data != null)
-                    {
-                        App.Subsidiaries = new ObservableCollection<SubsidiaryUserResponse>(response.Data.Data);
-
-                        if (App.Subsidiaries.Count > 0)
-                        {
-                            App.SelectedSubsidiary = App.Subsidiaries.FirstOrDefault();
-                        }                        
-                    }
-                    else
-                    {
-                        await _toastService.ShowToastAsync("No subsidiary data found.", ToastDuration.Long);
-                    }                   
-                }
-                catch (Exception ex)
-                {
-                    await _toastService.ShowToastAsync($"Error fetching subsidiary users: {ex.Message}", ToastDuration.Long);
-                }
-                finally
-                {
-                    ShellTitleViewModel shellTitleViewModel = new ShellTitleViewModel(_toastService);
-                    Shell.SetTitleView(Shell.Current, new ShellTitleView(shellTitleViewModel));
-
-                    await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
-
-                    IsBusy = false;
-                }
-
-                return;
-            }
+            // Navegar a la vista principal
+            await Shell.Current.GoToAsync($"//{nameof(FarmInventoryView)}");
         }
-
-        await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
+        else
+        {
+            // Si no hay datos del usuario, redirigir al inicio de sesión
+            await Shell.Current.GoToAsync($"//{nameof(LoginView)}");
+        }
+       
         IsBusy = false;
     }
 

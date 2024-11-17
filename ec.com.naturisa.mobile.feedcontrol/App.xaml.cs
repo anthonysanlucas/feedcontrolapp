@@ -2,7 +2,7 @@
 {
     public partial class App : Application
     {        
-        public static User? UserData;
+        public static UserData? UserData;
         
         public static ObservableCollection<SubsidiaryUserResponse>? Subsidiaries;
      

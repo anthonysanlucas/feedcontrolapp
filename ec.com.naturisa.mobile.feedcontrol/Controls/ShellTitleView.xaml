@@ -64,37 +64,37 @@
             IsOpen="{Binding IsOpenFarmList}"
             Placement="Bottom"
             PlacementTarget="{x:Reference selectFarm}">
-            <Frame
+            <Grid
                 Padding="16"
                 BackgroundColor="{StaticResource White}"
-                HeightRequest="320">
-                <Grid BackgroundColor="Transparent" RowDefinitions="Auto, *">
-                    <Label Style="{StaticResource DataTitleLabel}" Text="Selecciona una finca" />
-                    <CollectionView x:Name="AvailableSubsidiaries">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="subsidiaryUsersModels:SubsidiaryUserResponse">
-                                <Button
-                                    BackgroundColor="Transparent"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SubsidiarySelectedCommand}"
-                                    CommandParameter="{Binding}"
-                                    Text="{Binding NameSubsidiary}"
-                                    TextColor="{StaticResource OnSecondary}">
+                HeightRequest="320"
+                RowDefinitions="Auto, *"
+                RowSpacing="8">
+                <Label Style="{StaticResource DataTitleLabel}" Text="Selecciona una finca" />
+                <CollectionView x:Name="AvailableSubsidiaries" ItemsSource="{Binding AvailableSubsidiaries}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="subsidiaryUsersModels:SubsidiaryUserResponse">
+                            <Button
+                                BackgroundColor="Transparent"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SubsidiarySelectedCommand}"
+                                CommandParameter="{Binding}"
+                                Text="{Binding NameSubsidiary}"
+                                TextColor="{StaticResource OnSecondary}">
 
-                                    <Button.Triggers>
-                                        <DataTrigger
-                                            Binding="{Binding IsSelected}"
-                                            TargetType="Button"
-                                            Value="True">
-                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
-                                            <Setter Property="TextColor" Value="White" />
-                                        </DataTrigger>
-                                    </Button.Triggers>
-                                </Button>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </Grid>
-            </Frame>
+                                <Button.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsSelected}"
+                                        TargetType="Button"
+                                        Value="True">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Primary700}" />
+                                        <Setter Property="TextColor" Value="White" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
         </dxco:DXPopup>
     </Grid>
 </ContentView>

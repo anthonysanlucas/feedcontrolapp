@@ -10,12 +10,20 @@ public partial class PoolTransferViewModel : BaseViewModel, IRecipient<RefreshDa
     [ObservableProperty]
     private ObservableCollection<FilterStatus> filterStatuses;
 
+    [ObservableProperty]
+    private FeedTransferQuery transferQuery;
+
     public PoolTransferViewModel(IToastService toastService)
         : base(toastService)
     {
         _feedTransferService = new FeedTransferService();
 
         WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
+
+        TransferQuery = new FeedTransferQuery
+        {
+          Type = Const.Types.FeedTransferType.Delivery
+        };
 
         GetFeedTransfers();
 
@@ -66,7 +74,7 @@ public partial class PoolTransferViewModel : BaseViewModel, IRecipient<RefreshDa
 
         try
         {
-            var response = await _feedTransferService.GetFeedTransfers();
+            var response = await _feedTransferService.GetFeedTransfers(TransferQuery);
 
             if (response != null && response.Data != null && response.Data.Data.Any())
             {

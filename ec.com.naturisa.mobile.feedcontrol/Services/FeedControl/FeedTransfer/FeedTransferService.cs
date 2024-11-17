@@ -12,11 +12,12 @@
         public FeedTransferService()
             : base(ApiConstants.API_FEED_CONTROL) { }
 
-        public async Task<ApiResponse<PagedApiResponse<FeedTransferModel>>> GetFeedTransfers()
-        {
+        public async Task<ApiResponse<PagedApiResponse<FeedTransferModel>>> GetFeedTransfers(FeedTransferQuery query)
+        {            
+            string queryParams = StringExtensions.BuildQueryString(query);
             var response = await SendRequestAsync(
                 HttpMethod.Get,
-                FeedTransferEndpoints.FeedTransfer
+                FeedTransferEndpoints.FeedTransfer + queryParams
             );
 
             return await ProcessResponse<PagedApiResponse<FeedTransferModel>>(response);

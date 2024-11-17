@@ -7,10 +7,18 @@
         [ObservableProperty]
         private ObservableCollection<FeedTransferModel> feedingTrips;
 
+        [ObservableProperty]
+        private FeedTransferQuery transferQuery;
+
         public InventoryReceptionViewModel(IToastService toastService)
             : base(toastService)
         {
             _feedTransferService = new FeedTransferService();
+
+            TransferQuery = new FeedTransferQuery
+            {
+                Type = Const.Types.FeedTransferType.Delivery
+            };
 
             GetFeedTransfers();
         }
@@ -28,7 +36,7 @@
             IsBusy = true;
             IsRefreshing = false;
 
-            var response = await _feedTransferService.GetFeedTransfers();
+            var response = await _feedTransferService.GetFeedTransfers(TransferQuery);
 
             if (response != null && response.Data != null && response.Data.Data.Any())
             {

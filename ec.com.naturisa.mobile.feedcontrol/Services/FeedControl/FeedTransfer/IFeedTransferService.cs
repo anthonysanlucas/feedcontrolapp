@@ -2,7 +2,7 @@
 {
     public interface IFeedTransferService
     {
-        Task<ApiResponse<PagedApiResponse<FeedTransferModel>>> GetFeedTransfers();
+        Task<ApiResponse<PagedApiResponse<FeedTransferModel>>> GetFeedTransfers(FeedTransferQuery query);
 
         Task<ApiResponse<FeedTransferModel>> PostFeedTransfer(FeedTransferModel feedTransferModel);
 

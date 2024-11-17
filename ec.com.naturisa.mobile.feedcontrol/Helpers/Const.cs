@@ -22,12 +22,22 @@ public class Const
             public const string Assigned = "ASIGNADO";           
             public const string OnCourse = "EN CURSO";
             public const string Fed = "ALIMENTADO";                      
-        }
+        }       
 
         public static class FeedRemaining
         {
             public const string Assigned = "ASIGNADO";            
             public const string Completed = "COMPLETADO";
         }
+    }
+
+    public static class Types
+    {       
+        public static class FeedTransferType
+        {
+            public const string Delivery = "ENTREGA";
+            public const string Return = "DEVOLUCION";
+        }
+
     }
 }

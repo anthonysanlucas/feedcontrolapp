@@ -199,17 +199,17 @@ public partial class StartOfRouteViewModel : BaseViewModel, IRecipient<RefreshDa
     [RelayCommand]
     async Task UpdateDeliveredStatus()
     {
-        bool isFinalized = FeedTransferDetails.All(detail =>
-            detail.Status == Const.Status.Transfer.Delivered
-        );
+        //bool isFinalized = FeedTransferDetails.All(detail =>
+        //    detail.Status == Const.Status.Transfer.Delivered
+        //);
 
-        if (!isFinalized)
-        {
-            await ToastService.ShowToastAsync(
-                "Debe entregar todas las piscinas para finalizar el viaje"
-            );
-            return;
-        }
+        //if (!isFinalized)
+        //{
+        //    await ToastService.ShowToastAsync(
+        //        "Debe entregar todas las piscinas para finalizar el viaje"
+        //    );
+        //    return;
+        //}
 
         try
         {

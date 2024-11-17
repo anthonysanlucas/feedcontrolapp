@@ -25,7 +25,7 @@ public partial class ShellTitleViewModel : BaseViewModel
 
     [RelayCommand]
     async Task SubsidiarySelected(SubsidiaryUserResponse subsidiary)
-    {        
+    {
         IsOpenFarmList = false;
         await ToastService.ShowToastAsync($"Has seleccionado {subsidiary.NameSubsidiary}");
 
@@ -33,11 +33,18 @@ public partial class ShellTitleViewModel : BaseViewModel
             AvailableSubsidiaries
                 .Select(item =>
                 {
-                    item.IsSelected = item.SubsidiaryId == subsidiary.SubsidiaryId;
+                    item.IsSelected = false;
+                    if (item.SubsidiaryId == subsidiary.SubsidiaryId)
+                    {
+                        item.IsSelected = item.SubsidiaryId == subsidiary.SubsidiaryId;
+                        SelectedSubsidiary = item;
+                        GlobalData.Instance.SelectedSubsidiary = item;
+                    }
+
                     return item;
                 })
         );
-     
+
         OnPropertyChanged(nameof(AvailableSubsidiaries));
     }
 

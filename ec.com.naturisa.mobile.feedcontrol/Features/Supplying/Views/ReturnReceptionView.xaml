@@ -3,7 +3,10 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views.ReturnReceptionView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
     xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:supplyingViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="supplyingViewModels:ReturnReceptionViewModel">
@@ -29,6 +32,50 @@
                     FilterSelectedCommand="{Binding SelectFilterCommand}"
                     Filters="{Binding FilterStatuses}" />
             </Grid>
+
+            <RefreshView
+                Grid.Row="1"
+                Command="{Binding GetReturnsCommand}"
+                IsRefreshing="{Binding IsRefreshing}"
+                Style="{StaticResource RefreshViewStyle}">
+                <CollectionView ItemsSource="{Binding Returns}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
+                            <Frame
+                                Margin="0,6"
+                                BackgroundColor="{StaticResource SurfaceLowContainer}"
+                                BorderColor="{StaticResource Secondary}">
+                                <!--
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PoolTransferViewModel}}, Path=GoToPoolTransferDetailCommand}" CommandParameter="{Binding}" />
+                                </Frame.GestureRecognizers>
+                                -->
+
+                                <controls:TransferCardControl
+                                    AssignedTransportName="{Binding AssignedVehiclePlate}"
+                                    DestinationSubsidiaryName="{Binding DestinationSubsidiaryName}"
+                                    OriginSubsidiaryName="{Binding OriginSubsidiaryName}"
+                                    PrimaryUnit="{Binding TotalSacks}"
+                                    PrimaryUnitText="sacos"
+                                    SecondaryUnit="{Binding TotalWeight}"
+                                    SecondaryUnitText="kg"
+                                    Status="{Binding Status}"
+                                    TransferCode="{Binding TransferCode}" />
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <CollectionView.EmptyView>
+                        <components:EmptyView
+                            HorizontalOptions="CenterAndExpand"
+                            IsVisible="{Binding IsNotBusy}"
+                            Text="No se han encontrado viajes"
+                            VerticalOptions="CenterAndExpand" />
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+
+            <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
         </Grid>
     </Grid>
 </ContentPage>

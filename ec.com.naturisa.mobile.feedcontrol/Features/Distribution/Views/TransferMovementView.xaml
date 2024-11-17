@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views.TransferMovementView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:converters="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Converters"
+    xmlns:distributionModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models"
+    xmlns:distributionViewmodels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    xmlns:distributionViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="distributionViewmodels:TransferMovementViewModel">
+    <Grid RowDefinitions="Auto, Auto, *" RowSpacing="24">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="Auto, Auto"
+            RowSpacing="8">
+            <Frame
+                Grid.Row="0"
+                Padding="0"
+                BackgroundColor="{StaticResource Secondary}">
+                <VerticalStackLayout>
+                    <DatePicker
+                        Format="dd/MM/yyyy"
+                        HorizontalOptions="FillAndExpand"
+                        MaximumDate="2030-12-31"
+                        MinimumDate="2020-01-01"
+                        TextColor="{StaticResource OnSecondary}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <controls:StatusFilterControl
+                Grid.Row="2"
+                FilterSelectedCommand="{Binding SelectFilterCommand}"
+                Filters="{Binding FilterStatuses}" />
+        </Grid>
+
+        <Frame
+            Grid.Row="1"
+            Padding="2"
+            BackgroundColor="{StaticResource Secondary}">
+            <Grid ColumnDefinitions="*,*" HeightRequest="32">
+                <Button
+                    Padding="0"
+                    Command="{Binding SelectDeliveryCommand}"
+                    CornerRadius="8"
+                    Text="Entregas"
+                    TextColor="{StaticResource Primary900}">
+                    <Button.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsDeliveryView}"
+                            TargetType="Button"
+                            Value="True">
+                            <Setter Property="BackgroundColor" Value="White" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+
+                <Button
+                    Grid.Column="1"
+                    Padding="0"
+                    Command="{Binding SelectReturnCommand}"
+                    CornerRadius="8"
+                    Text="Devoluciones"
+                    TextColor="{StaticResource Primary900}">
+                    <Button.Triggers>
+                        <DataTrigger
+                            Binding="{Binding IsReturnView}"
+                            TargetType="Button"
+                            Value="True">
+                            <Setter Property="BackgroundColor" Value="White" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </Grid>
+        </Frame>
+
+        <RefreshView
+            Grid.Row="2"
+            Command="{Binding GetFeedTransfersCommand}"
+            IsRefreshing="{Binding IsRefreshing}"
+            Style="{StaticResource RefreshViewStyle}">
+            <CollectionView ItemsSource="{Binding FeedingTrips}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
+                        <Frame
+                            Margin="0,8"
+                            BackgroundColor="{StaticResource SurfaceLowContainer}"
+                            BorderColor="{StaticResource Secondary}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type distributionViewmodels:TransferMovementViewModel}}, Path=GoToPoolTransferReceptionCommand}" CommandParameter="{Binding}" />
+                            </Frame.GestureRecognizers>
+
+                            <Frame.Behaviors>
+                                <toolkit:TouchBehavior
+                                    DefaultAnimationDuration="32"
+                                    DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
+                                    DefaultOpacity="1"
+                                    PressedOpacity="0.6" />
+                            </Frame.Behaviors>
+
+                            <controls:TransferCardControl
+                                AssignedTransportName="{Binding AssignedVehiclePlate}"
+                                DestinationSubsidiaryName="{Binding DestinationSubsidiaryName}"
+                                OriginSubsidiaryName="{Binding OriginSubsidiaryName}"
+                                PrimaryUnit="{Binding TotalSacks}"
+                                PrimaryUnitText="sacos"
+                                SecondaryUnit="{Binding TotalWeight}"
+                                SecondaryUnitText="kg"
+                                Status="{Binding Status}"
+                                TransferCode="{Binding TransferCode}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <components:EmptyView
+                        HorizontalOptions="CenterAndExpand"
+                        Text="No se han encontrado viajes"
+                        VerticalOptions="CenterAndExpand" />
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+        <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
+    </Grid>
+</ContentPage>

@@ -11,38 +11,28 @@
         ColumnDefinitions="*, Auto, Auto"
         ColumnSpacing="8"
         VerticalOptions="FillAndExpand">
-
-        <dxco:DXPopup
-            AllowScrim="False"
-            BackgroundColor="Transparent"
-            CornerRadius="1"
-            IsOpen="{Binding IsOpenFarmList}"
-            Placement="Bottom"
-            PlacementTarget="{x:Reference selectFarmView}">
-            <Frame Padding="16" BackgroundColor="{StaticResource White}">
-                <VerticalStackLayout BackgroundColor="Transparent">
-                    <Label FontAttributes="Bold" Text="Select a Farm" />
-                    <CollectionView x:Name="AvailableSubsidiaries">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="subsidiaryUsersModels:SubsidiaryUserResponse">
-                                <Grid Padding="10" ColumnDefinitions="*, auto">
-                                    <Label Text="{Binding NameSubsidiary}" VerticalOptions="Center" />
-                                    <!--
-                                    <Button
-                                Command="{Binding BindingContext.SelectFarmCommand, Source={x:Reference Name=AppShell}}"
-                                CommandParameter="{Binding .}"
-                                Text="Select" />
-                                    -->
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </VerticalStackLayout>
-            </Frame>
-        </dxco:DXPopup>
+        <HorizontalStackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
+            <BoxView
+                Margin="0,6,6,0"
+                BackgroundColor="{StaticResource Green500}"
+                CornerRadius="8"
+                HeightRequest="12"
+                VerticalOptions="Start"
+                WidthRequest="12" />
+            <VerticalStackLayout Spacing="2">
+                <Label
+                    x:Name="ColaboratorName"
+                    FontAttributes="Bold"
+                    Style="{StaticResource RegularLabel}"
+                    TextColor="{StaticResource Primary900}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+                <Label Text="{Binding LongDate}" TextColor="{StaticResource OnSecondary}" />
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
 
         <Frame
-            x:Name="selectFarmView"
+            x:Name="selectFarm"
             Grid.Column="1"
             Padding="8"
             BackgroundColor="{StaticResource Primary700}"
@@ -66,24 +56,60 @@
             </Grid>
         </Frame>
 
-        <HorizontalStackLayout Grid.Column="0" VerticalOptions="CenterAndExpand">
-            <BoxView
-                Margin="0,6,6,0"
-                BackgroundColor="{StaticResource Green500}"
-                CornerRadius="8"
-                HeightRequest="12"
-                VerticalOptions="Start"
-                WidthRequest="12" />
-            <VerticalStackLayout Spacing="2">
-                <Label
-                    x:Name="ColaboratorName"
-                    FontAttributes="Bold"
-                    Style="{StaticResource RegularLabel}"
-                    TextColor="{StaticResource Primary900}"
-                    VerticalOptions="Center"
-                    VerticalTextAlignment="Center" />
-                <Label Text="{Binding LongDate}" TextColor="{StaticResource OnSecondary}" />
-            </VerticalStackLayout>
-        </HorizontalStackLayout>
+        <dxco:DXPopup
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Bottom"
+            BackgroundColor="Transparent"
+            CornerRadius="1"
+            IsOpen="{Binding IsOpenFarmList}"
+            Placement="Bottom"
+            PlacementTarget="{x:Reference selectFarm}">
+            <Frame
+                Padding="16"
+                BackgroundColor="{StaticResource White}"
+                HeightRequest="320">
+                <Grid BackgroundColor="Transparent" RowDefinitions="Auto, *">
+                    <Label Style="{StaticResource DataTitleLabel}" Text="Selecciona una finca" />
+                    <CollectionView x:Name="AvailableSubsidiaries">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="subsidiaryUsersModels:SubsidiaryUserResponse">
+                                <Frame
+                                    Padding="10"
+                                    BackgroundColor="Transparent"
+                                    CornerRadius="8"
+                                    HasShadow="False">
+                                    <Frame.Triggers>
+                                        <DataTrigger
+                                            Binding="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SelectedSubsidiary}"
+                                            TargetType="Frame"
+                                            Value="{Binding .}">
+                                            <Setter Property="BackgroundColor" Value="Blue" />
+                                        </DataTrigger>
+                                    </Frame.Triggers>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.SelectFarmCommand, Source={RelativeSource AncestorType={x:Type ContentView}}}" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                    <Grid ColumnDefinitions="*, auto">
+                                        <Label
+                                            Text="{Binding NameSubsidiary}"
+                                            TextColor="Black"
+                                            VerticalOptions="Center">
+                                            <Label.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ShellTitleViewModel}}, Path=SelectedSubsidiary}"
+                                                    TargetType="Label"
+                                                    Value="{Binding .}">
+                                                    <Setter Property="TextColor" Value="White" />
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Frame>
+        </dxco:DXPopup>
     </Grid>
 </ContentView>

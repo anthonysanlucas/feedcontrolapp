@@ -1,8 +1,12 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.ViewModels;
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
 
-public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
+public partial class TransferMovementViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
-    private readonly IFeedTransferService _feedTransferService;
+    [ObservableProperty]
+    private bool isDeliveryView = false;
+
+    [ObservableProperty]
+    private bool isReturnView = true;
 
     [ObservableProperty]
     private ObservableCollection<FeedTransfer> feedTransfers;
@@ -13,17 +17,14 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
     [ObservableProperty]
     private ObservableCollection<FilterStatus> filterStatuses;
 
-    public FeedingMovementsViewModel(
-        IToastService toastService,
-        IFeedTransferService feedTransferService
-    )
-        : base(toastService)
+    private readonly IFeedTransferService _feedTransferService;
+
+    private readonly IToastService _toastService;
+
+    public TransferMovementViewModel(IFeedTransferService feedTransferService, IToastService toastService) : base(toastService)
     {
         _feedTransferService = feedTransferService;
-
-        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
-
-        GetFeedTransfers();
+        _toastService = toastService;
 
         FilterStatuses = new ObservableCollection<FilterStatus>
         {
@@ -33,6 +34,25 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
             new FilterStatus { Status = "EN RUTA" },
             new FilterStatus { Status = "ENTREGADO" }
          };
+
+        GetFeedTransfers();
+
+    }
+
+    #region commands
+
+    [RelayCommand]
+    private void SelectDelivery()
+    {
+        IsDeliveryView = true;
+        IsReturnView = false;
+    }
+
+    [RelayCommand]
+    private void SelectReturn()
+    {
+        IsReturnView = true;
+        IsDeliveryView = false;
     }
 
     [RelayCommand]
@@ -107,6 +127,10 @@ public partial class FeedingMovementsViewModel : BaseViewModel, IRecipient<Refre
             IsNotBusy = true;
         }
     }
+
+    #endregion
+
+
 
     public void Receive(RefreshDataMessage message)
     {

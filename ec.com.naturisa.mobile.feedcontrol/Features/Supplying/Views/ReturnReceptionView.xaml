@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views.ReturnReceptionView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:supplyingViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    x:DataType="supplyingViewModels:ReturnReceptionViewModel">
+    <Grid RowDefinitions="*">
+        <Grid RowDefinitions="Auto ,*">
+            <Grid RowDefinitions="Auto, Auto" RowSpacing="8">
+                <Frame
+                    Grid.Row="0"
+                    Padding="0"
+                    BackgroundColor="{StaticResource Secondary}">
+                    <VerticalStackLayout>
+                        <DatePicker
+                            Format="dd/MM/yyyy"
+                            HorizontalOptions="FillAndExpand"
+                            MaximumDate="2030-12-31"
+                            MinimumDate="2020-01-01"
+                            TextColor="{StaticResource OnSecondary}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <controls:StatusFilterControl
+                    Grid.Row="2"
+                    FilterSelectedCommand="{Binding SelectFilterCommand}"
+                    Filters="{Binding FilterStatuses}" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

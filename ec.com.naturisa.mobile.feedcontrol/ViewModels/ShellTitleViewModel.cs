@@ -25,4 +25,14 @@ public partial class ShellTitleViewModel : BaseViewModel
 
         // await Shell.Current.GoToAsync(nameof(SelectFarmView), true);
     }
+
+    [RelayCommand]
+    async Task SelectFarm(SubsidiaryUserResponse subsidiary)
+    {
+        if (subsidiary != null)
+        {
+            SelectedSubsidiary = subsidiary;
+            await ToastService.ShowToastAsync($"Has seleccionado {subsidiary.NameSubsidiary}");
+        }
+    }
 }

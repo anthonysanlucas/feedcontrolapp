@@ -148,7 +148,10 @@
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Local_shipping}"
         Route="FeedingMovementsView">
+        <!--
         <ShellContent ContentTemplate="{DataTemplate views:FeedingMovementsView}" />
+        -->
+        <ShellContent ContentTemplate="{DataTemplate distributionViews:TransferMovementView}" />
     </FlyoutItem>
 
     <FlyoutItem
@@ -173,6 +176,14 @@
         Icon="{x:Static models:IconFont.Move_to_inbox}"
         Route="WarehouseTransferView">
         <ShellContent ContentTemplate="{DataTemplate distributionViews:WarehouseTransferView}" />
+    </FlyoutItem>
+
+    <FlyoutItem
+        Title="Recepción de Devoluciones"
+        FlyoutDisplayOptions="AsSingleItem"
+        Icon="{x:Static models:IconFont.Backup_table}"
+        Route="WarehouseTransferView">
+        <ShellContent ContentTemplate="{DataTemplate supplyingViews:ReturnReceptionView}" />
     </FlyoutItem>
 
     <FlyoutItem

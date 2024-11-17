@@ -3,10 +3,10 @@
 public partial class TransferMovementViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
     [ObservableProperty]
-    private bool isDeliveryView = false;
+    private bool isDeliveryView = true;
 
     [ObservableProperty]
-    private bool isReturnView = true;
+    private bool isReturnView = false;
 
     [ObservableProperty]
     private ObservableCollection<FeedTransfer> feedTransfers;
@@ -52,15 +52,28 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
     [RelayCommand]
     private void SelectDelivery()
     {
+        if(IsDeliveryView)
+            return;
+
         IsDeliveryView = true;
         IsReturnView = false;
+
+        TransferQuery.Type = Const.Types.FeedTransferType.Delivery;
+
+        GetFeedTransfers();
     }
 
     [RelayCommand]
     private void SelectReturn()
     {
+        if(IsReturnView)
+            return;
+
         IsReturnView = true;
         IsDeliveryView = false;
+
+        TransferQuery.Type = Const.Types.FeedTransferType.Return;
+        GetFeedTransfers();
     }
 
     [RelayCommand]

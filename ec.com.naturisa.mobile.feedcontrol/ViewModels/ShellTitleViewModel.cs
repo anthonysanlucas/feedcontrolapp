@@ -9,12 +9,16 @@ public partial class ShellTitleViewModel : BaseViewModel
     private SubsidiaryUserResponse _selectedSubsidiary;
 
     [ObservableProperty]
+    private UserData? userData;
+
+    [ObservableProperty]
     private bool _isOpenFarmList;
 
     public ShellTitleViewModel(IToastService toastService) : base(toastService)
     {
         SelectedSubsidiary = GlobalData.Instance.SelectedSubsidiary;
         AvailableSubsidiaries = GlobalData.Instance.Subsidiaries;
+        UserData = GlobalData.Instance.UserData;
     }
 
     [RelayCommand]

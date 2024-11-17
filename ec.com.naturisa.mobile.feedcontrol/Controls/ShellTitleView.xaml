@@ -24,6 +24,7 @@
                     x:Name="ColaboratorName"
                     FontAttributes="Bold"
                     Style="{StaticResource RegularLabel}"
+                    Text="{Binding UserData.FirstNames}"
                     TextColor="{StaticResource Primary900}"
                     VerticalOptions="Center"
                     VerticalTextAlignment="Center" />

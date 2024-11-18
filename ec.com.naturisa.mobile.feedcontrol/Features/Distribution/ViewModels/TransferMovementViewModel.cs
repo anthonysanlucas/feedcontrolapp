@@ -44,7 +44,6 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
         };
 
         GetFeedTransfers();
-
     }
 
     #region commands
@@ -52,7 +51,7 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
     [RelayCommand]
     private void SelectDelivery()
     {
-        if(IsDeliveryView)
+        if (IsDeliveryView)
             return;
 
         IsDeliveryView = true;
@@ -66,7 +65,7 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
     [RelayCommand]
     private void SelectReturn()
     {
-        if(IsReturnView)
+        if (IsReturnView)
             return;
 
         IsReturnView = true;
@@ -96,6 +95,12 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
     {
         if (selectedTransfer == null)
             return;
+
+        if (selectedTransfer.Type == Const.Types.FeedTransferType.Return)
+        {
+            await Shell.Current.GoToAsync(nameof(TransferMovementReturnView), true, new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } });
+            return;
+        }
 
         if (selectedTransfer.Status == Const.Status.Transfer.Assigned)
             await Shell.Current.GoToAsync(
@@ -150,8 +155,6 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
     }
 
     #endregion
-
-
 
     public void Receive(RefreshDataMessage message)
     {

@@ -40,6 +40,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             Routing.RegisterRoute(nameof(NewPoolTransferTwoStepView), typeof(NewPoolTransferTwoStepView));
             Routing.RegisterRoute(nameof(NewPoolTransferThreeStepView), typeof(NewPoolTransferThreeStepView));
             Routing.RegisterRoute(nameof(TransferMovementView), typeof(TransferMovementView));
+            Routing.RegisterRoute(nameof(TransferMovementReturnView), typeof(TransferMovementReturnView));
             #endregion
 
 

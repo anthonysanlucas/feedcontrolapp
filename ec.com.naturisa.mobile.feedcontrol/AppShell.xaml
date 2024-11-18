@@ -181,7 +181,7 @@
     <FlyoutItem
         Title="Recepción de Devoluciones"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Backup_table}"
+        Icon="{x:Static models:IconFont.Move_to_inbox}"
         Route="WarehouseTransferView">
         <ShellContent ContentTemplate="{DataTemplate supplyingViews:ReturnReceptionView}" />
     </FlyoutItem>

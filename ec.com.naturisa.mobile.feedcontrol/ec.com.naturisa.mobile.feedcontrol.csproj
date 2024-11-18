@@ -153,6 +153,9 @@
 	  <MauiXaml Update="Features\Distribution\Views\NewPoolTransferThreeStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Distribution\Views\TransferMovementReturnView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\TransferMovementView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -130,8 +130,6 @@
                         </Frame>
                     </Grid>
 
-
-                    <!--  Table Header  -->
                     <Frame
                         Grid.Row="1"
                         Padding="8"
@@ -140,7 +138,7 @@
                             <Label Text="Producto" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 HorizontalOptions="End"
-                                Text="Cantidad"
+                                Text="Sacos"
                                 TextColor="{StaticResource OnSecondary}" />
                         </Grid>
                     </Frame>

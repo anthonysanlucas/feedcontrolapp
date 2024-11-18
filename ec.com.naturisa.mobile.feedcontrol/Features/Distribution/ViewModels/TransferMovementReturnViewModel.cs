@@ -19,9 +19,12 @@ public partial class TransferMovementReturnViewModel : BaseViewModel
 
     private readonly IFeedTransferDetailService _feedTransferDetailService;
 
-    public TransferMovementReturnViewModel(IToastService toastService, IFeedTransferDetailService feedTransferDetailService)
+    private readonly IFeedTransferService _feedTransferService;
+
+    public TransferMovementReturnViewModel(IFeedTransferService feedTransferService, IFeedTransferDetailService feedTransferDetailService, IToastService toastService)
         : base(toastService)
     {
+        _feedTransferService = feedTransferService;
         _feedTransferDetailService = feedTransferDetailService;
     }
 
@@ -38,11 +41,41 @@ public partial class TransferMovementReturnViewModel : BaseViewModel
     [RelayCommand]
     async Task MarkDestination()
     {
+        try
+        {
+            IsBusy = true;
 
+            int id = (int)SelectedTransfer.IdFeedTransfer;
+
+            var response = await _feedTransferService.PatchReturnStatus(
+                id,
+                Const.Status.Transfer.AtDestination
+            );
+
+            if (response != null && response.Code == 200)
+            {
+                await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+
+                LoadFeedTransferDetails(id);
+            }
+            else
+            {
+                await ToastService.ShowToastAsync(
+                    "Error al actualizar el estado, intente nuevamente."
+                );
+            }
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     #endregion
-
 
     private async void LoadFeedTransferDetails(int feedTransferId)
     {

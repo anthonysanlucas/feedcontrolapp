@@ -87,7 +87,7 @@
                                 <Label Text="Bodega origen" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="{Binding OriginBranch}"
+                                    Text="{Binding OriginBranch.Name}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -126,7 +126,8 @@
                                     <Picker
                                         Title="Selecciona un destino"
                                         FontSize="16"
-                                        ItemsSource="{Binding DestinationWarehouses}"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        ItemsSource="{Binding Warehouses}"
                                         SelectedItem="{Binding SelectedDestinationWharehouse}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />

@@ -46,7 +46,7 @@ public partial class TransferReceptionViewModel : BaseViewModel
             WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
             await ToastService.ShowToastAsync("Carga recibida correctamente.");
 
-            await Shell.Current.GoToAsync($"//{nameof(WarehouseTransferView)}");
+            await Shell.Current.Navigation.PopAsync();
         }
         catch (Exception e)
         {

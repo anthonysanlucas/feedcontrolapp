@@ -1,19 +1,19 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
 
 public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
-{
-    private readonly SupplierTransferService _supplierTransferService;
-
+{    
     [ObservableProperty]
     private ObservableCollection<SupplierTransferResponse> supplierTransfers;
 
     [ObservableProperty]
     private SupplierTransferQuery filterQuery;
 
-    public WarehouseTransferViewModel(IToastService toastService)
+    private readonly ISupplierTransferService _supplierTransferService;
+
+    public WarehouseTransferViewModel(ISupplierTransferService supplierTransferService,IToastService toastService)
         : base(toastService)
     {
-        _supplierTransferService = new SupplierTransferService();
+        _supplierTransferService = supplierTransferService;
 
         WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
 
@@ -21,7 +21,7 @@ public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<Refr
         {
             AssignmentDate = DateTime.Now,
             IncludeFreightTransporter = true,
-            DestinationOperatorWarehouseUserId = App.UserData.IdUser,
+            DestinationOperatorWarehouseUserId = GlobalData.Instance.UserData.IdUser,
             IncludeStatusCatalogue = true,
             IncludeStatusCatalogueList = true,
             IncludeSupplier = true,

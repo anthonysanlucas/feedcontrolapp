@@ -1,21 +1,23 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿using ec.com.naturisa.mobile.feedcontrol.Models.Warehouse;
+
+namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     public partial class NewTransferOneStepViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private List<string> destinationTypes;
+        private WarehouseTransferRequest warehouseTransfer;
 
         [ObservableProperty]
-        private string originBranch;
+        private int originWarehouseId = 64;
 
         [ObservableProperty]
-        private List<string> originWarehouses;
+        private ObservableCollection<WarehouseResponse> warehouses;
+
+        [ObservableProperty]
+        private WarehouseResponse originBranch;
 
         [ObservableProperty]
         private List<string> destinationBranches;
-
-        [ObservableProperty]
-        private List<string> destinationWarehouses;
 
         [ObservableProperty]
         private List<string> destinations;
@@ -36,7 +38,7 @@
         private string selectedDestinationBranch;
 
         [ObservableProperty]
-        private string selectedDestinationWharehouse;
+        private WarehouseResponse selectedDestinationWharehouse;
 
         [ObservableProperty]
         private string selectedTransporter;
@@ -47,24 +49,38 @@
         public NewTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            originBranch = "Acopio Pezjoya";
+            OriginBranch = new WarehouseResponse
+            {
+                IdWarehouse = 64,
+                Name = "Bodega de Balanceado"
 
-            originWarehouses = ["Bodega de Balanceado"];
+            };
+
+            // 64 AC
+            // 49 FINCA
 
             destinationBranches = ["Naturisa"];
 
-            destinationWarehouses = ["Bodega de Balanceado"];
+            Warehouses = new ObservableCollection<WarehouseResponse>
+            {
+                new WarehouseResponse
+                {
+                    IdWarehouse = 49,
+                    Name = "Bodega de Balanceado"
+                }
+            };
 
             transporters = ["NELSON ZAMBRANO"];
             vehiclePlates = ["GRZ 6396"];
         }
 
+
+        #region commands
         [RelayCommand]
         async Task SubmitTransfer()
         {
             if (
                 string.IsNullOrEmpty(SelectedDestinationBranch)
-                || string.IsNullOrEmpty(SelectedDestinationWharehouse)
                 || string.IsNullOrEmpty(SelectedTransporter)
                 || string.IsNullOrEmpty(SelectedVehiclePlate)
             )
@@ -75,5 +91,23 @@
 
             await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView));
         }
+
+        [RelayCommand]
+        async Task GoToTwoStep()
+        {
+            WarehouseTransfer = new WarehouseTransferRequest
+            {
+                OriginWarehouseId = OriginBranch.IdWarehouse,
+                DestinationWarehouseId = SelectedDestinationWharehouse.IdWarehouse,
+                FreightTransporterId = 16,
+                TransportId = 24
+            };
+
+            await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView),
+                true,
+                new Dictionary<string, object> { { nameof(WarehouseTransfer), WarehouseTransfer } }
+                );
+        }
+        #endregion
     }
 }

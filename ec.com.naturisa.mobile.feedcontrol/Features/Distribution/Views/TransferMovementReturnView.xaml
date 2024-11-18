@@ -134,6 +134,7 @@
         <controls:MainButtonControl
             Grid.Row="1"
             Command="{Binding MarkDestinationCommand}"
+            IsBusy="{Binding IsBusy}"
             IsVisible="{Binding IsDestinationDelivery}"
             Text="Registrar llegada a destino" />
 

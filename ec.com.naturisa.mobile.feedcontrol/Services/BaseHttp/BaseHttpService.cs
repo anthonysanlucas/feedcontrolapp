@@ -1,96 +1,105 @@
 ﻿using System.Net.Http.Headers;
 
-namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp
-{
-    public class BaseHttpService
-    {
-        private readonly HttpClient _httpClient;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
+namespace ec.com.naturisa.mobile.feedcontrol.Services.BaseHttp;
 
-        public BaseHttpService(string baseAddress)
+public class BaseHttpService
+{
+    private readonly HttpClient _httpClient;
+    private readonly JsonSerializerOptions _jsonSerializerOptions;
+
+    public BaseHttpService(string baseAddress)
+    {
+        _httpClient = new HttpClient
         {
-            _httpClient = new HttpClient
-            { 
-                BaseAddress = new Uri(baseAddress),                
-            };
-          
-            _jsonSerializerOptions = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            BaseAddress = new Uri(baseAddress),
+        };
+
+        _jsonSerializerOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+    }
+
+    protected async Task<HttpResponseMessage> SendRequestAsync(
+        HttpMethod method,
+        string endpoint,
+        HttpContent content = null
+    )
+    {
+        var token = await SecureStorage.GetAsync("auth_token");
+
+        if (!string.IsNullOrEmpty(token))
+        {
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+                "Bearer",
+                token
+            );
         }
 
-        protected async Task<HttpResponseMessage> SendRequestAsync(
-            HttpMethod method,
-            string endpoint,
-            HttpContent content = null
-        )
+        var request = new HttpRequestMessage(method, endpoint) { Content = content };
+        request.Headers.Add("ngrok-skip-browser-warning", "1");
+        request.Headers.UserAgent.ParseAdd("feedControl/1.0");
+
+        try
         {
-            var token = await SecureStorage.GetAsync("auth_token");
+            var response = await _httpClient.SendAsync(request);
 
-            if (!string.IsNullOrEmpty(token))
+            return response;
+        }
+        catch (TaskCanceledException)
+        {
+            return new HttpResponseMessage
             {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-                    "Bearer",
-                    token
-                );
-            }
+                StatusCode = System.Net.HttpStatusCode.RequestTimeout,
+                ReasonPhrase = "Tiempo de espera alcanzado"
+            };
+        }
+        catch (Exception ex)
+        {
+            return new HttpResponseMessage
+            {
+                ReasonPhrase = $"Error en la solicitud: {ex.ToString()}"
+            };
+        }
+    }
 
-            var request = new HttpRequestMessage(method, endpoint) { Content = content };
-            request.Headers.Add("ngrok-skip-browser-warning", "1");
-            request.Headers.UserAgent.ParseAdd("feedControl/1.0");
+    protected async Task<ApiResponse<T>> ProcessResponse<T>(HttpResponseMessage response)
+    {
+        var responseData = await response.Content.ReadAsStringAsync();
+
+        if (response.IsSuccessStatusCode)
+        {
 
             try
             {
-                return await _httpClient.SendAsync(request);
-            }
-            catch (TaskCanceledException)
-            {               
-                return new HttpResponseMessage
+                var isPagedResponse =
+                    typeof(T).IsGenericType
+                    && typeof(T).GetGenericTypeDefinition() == typeof(PagedApiResponse<>);
+
+                var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(responseData, _jsonSerializerOptions);
+
+                return apiResponse ?? new ApiResponse<T>
                 {
-                    StatusCode = System.Net.HttpStatusCode.RequestTimeout,
-                    ReasonPhrase = "Tiempo de espera alcanzado"
+                    Code = (int)response.StatusCode,
+                    Message = response.ReasonPhrase,
+                    Data = default
                 };
             }
-            catch (Exception ex)
-            {               
-                throw new Exception($"Error en la solicitud: {ex.Message}", ex);
+            catch (JsonException ex)
+            {
+                throw new Exception("Error al deserializar la respuesta JSON", ex);
             }
         }
-
-        protected async Task<ApiResponse<T>> ProcessResponse<T>(HttpResponseMessage response)
+        else
         {
-            if (response.IsSuccessStatusCode)
-            {
-                var responseData = await response.Content.ReadAsStringAsync();
-
-                try
-                {                   
-                    var isPagedResponse =
-                        typeof(T).IsGenericType
-                        && typeof(T).GetGenericTypeDefinition() == typeof(PagedApiResponse<>);
-                 
-                    var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(responseData, _jsonSerializerOptions);
-
-                    return apiResponse ?? new ApiResponse<T>
-                    {
-                        Code = (int)response.StatusCode,
-                        Message = "Error en la deserialización",
-                        Data = default
-                    };
-                }
-                catch (JsonException ex)
-                {
-                    throw new Exception("Error al deserializar la respuesta JSON", ex);
-                }
-            }
-
+            var apiResponseError = JsonSerializer.Deserialize<ApiResponse<T>>(responseData, _jsonSerializerOptions);
             return new ApiResponse<T>
             {
-                Code = (int)response.StatusCode,
-                Message = "Error en la solicitud",
-                Data = default
+                Code = apiResponseError.Code,
+                Message = apiResponseError.Message,
+                Data = apiResponseError.Data
             };
         }
+
     }
 }

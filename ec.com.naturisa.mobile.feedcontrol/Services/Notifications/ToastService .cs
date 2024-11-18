@@ -4,7 +4,7 @@
     {
         public async Task ShowToastAsync(
             string message,
-            ToastDuration duration = ToastDuration.Short,
+            ToastDuration duration = ToastDuration.Long,
             double fontSize = 14
         )
         {

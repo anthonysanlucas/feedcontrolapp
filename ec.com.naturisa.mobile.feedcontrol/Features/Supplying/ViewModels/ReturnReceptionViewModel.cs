@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
+﻿using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
+
+namespace ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
 
 public partial class ReturnReceptionViewModel : BaseViewModel
 {
@@ -32,6 +34,19 @@ public partial class ReturnReceptionViewModel : BaseViewModel
         };
 
         GetReturns();
+    }
+
+    #region commands
+    [RelayCommand]
+    async Task GoToReturnDetailView(FeedTransferModel selectedTransfer)
+    {
+        if (selectedTransfer == null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(ReturnReceptionView),
+            true,
+            new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
+            );
     }
 
     [RelayCommand]
@@ -75,4 +90,5 @@ public partial class ReturnReceptionViewModel : BaseViewModel
             IsNotBusy = true;
         }
     }
+    #endregion
 }

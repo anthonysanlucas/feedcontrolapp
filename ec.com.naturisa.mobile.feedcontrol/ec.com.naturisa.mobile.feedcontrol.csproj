@@ -192,6 +192,9 @@
 	  <MauiXaml Update="Features\Supplying\Views\FarmTransferView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\ReturnReceptionDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Supplying\Views\ReturnReceptionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

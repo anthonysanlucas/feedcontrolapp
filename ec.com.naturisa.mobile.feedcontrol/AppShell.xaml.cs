@@ -47,6 +47,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             #region Supplying
             Routing.RegisterRoute(nameof(TransferReceptionView), typeof(TransferReceptionView));
             Routing.RegisterRoute(nameof(FarmTransferView), typeof(FarmTransferView));
+            Routing.RegisterRoute(nameof(ReturnReceptionDetailView), typeof(ReturnReceptionDetailView));
             #endregion
 
             #region GlobalRoutes

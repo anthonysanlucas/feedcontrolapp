@@ -123,32 +123,6 @@
                                 Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
-
-
-                        <!--
-                        <VerticalStackLayout
-                            Grid.Row="2"
-                            Grid.Column="0"
-                            Spacing="4">
-                            <Label Text="Capacidad" TextColor="{StaticResource OnSecondary}" />
-                            <Label
-                                Style="{StaticResource RegularLabel}"
-                                Text="{Binding PoolTransferOneStepSelection.SelectedTransport.Plate}"
-                                TextColor="{StaticResource Primary700}" />
-                        </VerticalStackLayout>
-
-
-                        <VerticalStackLayout
-                            Grid.Row="2"
-                            Grid.Column="1"
-                            Spacing="4">
-                            <Label Text="Ayudantes" TextColor="{StaticResource OnSecondary}" />
-                            <Label
-                                Style="{StaticResource RegularLabel}"
-                                Text="{Binding PoolTransferOneStepSelection.SelectedCarrier.Name}"
-                                TextColor="{StaticResource Primary700}" />
-                        </VerticalStackLayout>
-                        -->
                     </Grid>
 
                     <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
@@ -183,7 +157,7 @@
                                         <Label
                                             Grid.Column="0"
                                             Style="{StaticResource RegularLabel}"
-                                            Text="{Binding SelectedPool.PoolCode}"
+                                            Text="{Binding SelectedPool.Name}"
                                             TextColor="{StaticResource OnSecondary}"
                                             VerticalOptions="Start" />
 

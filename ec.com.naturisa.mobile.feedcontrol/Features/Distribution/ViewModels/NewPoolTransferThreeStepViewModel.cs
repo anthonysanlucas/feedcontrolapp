@@ -33,7 +33,7 @@
         {
             DestinationPools = string.Join(
                 " ",
-                value.Select(detail => detail.SelectedPool.PoolCode)
+                value.Select(detail => detail.SelectedPool.Name)
             );
         }
 
@@ -55,11 +55,11 @@
                         FeedTransferDetailPools = group
                             .Select(detail => new FeedTransferDetailPoolModel
                             {
-                                PoolId = detail.SelectedPool.PoolId,
-                                PoolCode = detail.SelectedPool.PoolCode,
+                                PoolId = detail.SelectedPool.IdPool,
+                                PoolCode = detail.SelectedPool.Name,
                                 QuantitySacks = detail.QuantitySacks ?? 0,
                                 Weight = (double)(detail.QuantitySacks * 25),
-                                Status = detail.SelectedPool.Status
+                                Status = Const.Status.Feed.Assigned
                             })
                             .ToList()
                     })

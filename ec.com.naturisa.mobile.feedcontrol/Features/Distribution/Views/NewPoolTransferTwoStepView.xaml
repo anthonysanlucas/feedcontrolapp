@@ -190,8 +190,8 @@
                                             <Picker
                                                 Title="Piscina"
                                                 HorizontalOptions="FillAndExpand"
-                                                ItemDisplayBinding="{Binding PoolCode}"
-                                                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=AvailablePools}"
+                                                ItemDisplayBinding="{Binding Name}"
+                                                ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewPoolTransferTwoStepViewModel}}, Path=Pools}"
                                                 SelectedItem="{Binding SelectedPool}"
                                                 TextColor="{StaticResource OnSecondary}"
                                                 TitleColor="{StaticResource Primary900}"

@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
+
+namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     [QueryProperty(nameof(PoolTransferOneStepSelection), nameof(PoolTransferOneStepSelection))]
     public partial class NewPoolTransferTwoStepViewModel : BaseViewModel
@@ -19,11 +21,28 @@
         private ObservableCollection<FeedTransferDetailModel> addedProducts;
 
         [ObservableProperty]
+        private ObservableCollection<PoolsResponse> pools;
+
+        [ObservableProperty]
+        private PoolsQuery poolQuery;
+
+        [ObservableProperty]
         private int vehicleCapacity = 165;
 
-        public NewPoolTransferTwoStepViewModel(IToastService toastService)
+        private readonly IPoolsService _poolsService;
+
+        public NewPoolTransferTwoStepViewModel(IPoolsService poolsService, IToastService toastService)
             : base(toastService)
         {
+            _poolsService = poolsService;
+
+            PoolQuery = new PoolsQuery
+            {
+                SubsidiaryId = GlobalData.Instance.SelectedSubsidiary.SubsidiaryId
+            };
+
+            GetPoolsBySubsidiary();
+
             AvailableProducts = new()
             {
                  new FeedTransferDetailModel
@@ -88,6 +107,9 @@
             }
         }
 
+
+        #region commands
+
         [RelayCommand]
         public async Task AddProductRow()
         {
@@ -126,6 +148,26 @@
                     ["TotalWeight"] = TotalWeightInKilos,
                 }
             );
+        }
+
+        #endregion
+
+        async void GetPoolsBySubsidiary()
+        {
+            var response = await _poolsService.GetPools(PoolQuery);
+
+            if (response != null && response.Code == 200)
+            {
+                Pools = new ObservableCollection<PoolsResponse>(response.Data.Data);
+            }
+            else
+            {
+                async Task ShowError()
+                {
+                    await ToastService.ShowToastAsync("Error al obtener las piscinas.");
+
+                }
+            }
         }
 
         public int TotalQuantitySacks => ProductRows.Sum(row => row.QuantitySacks ?? 0);
@@ -173,7 +215,7 @@
         private FeedTransferDetailModel selectedProduct;
 
         [ObservableProperty]
-        private FeedTransferDetailPoolModel selectedPool;
+        private PoolsResponse selectedPool;
 
         [ObservableProperty]
         private int? quantitySacks;

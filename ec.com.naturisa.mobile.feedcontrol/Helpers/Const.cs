@@ -15,6 +15,7 @@ public class Const
             public const string AtDestination = "EN DESTINO";
             public const string Delivered = "ENTREGADO";
             public const string Paused = "PAUSADO";
+            public const string Returned = "DEVUELTO";
         }
 
         public static class Feed

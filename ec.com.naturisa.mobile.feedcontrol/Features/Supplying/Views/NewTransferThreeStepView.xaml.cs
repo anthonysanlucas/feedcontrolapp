@@ -2,8 +2,9 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views;
 
 public partial class NewTransferThreeStepView : ContentPage
 {
-	public NewTransferThreeStepView()
+	public NewTransferThreeStepView(NewTransferThreeStepViewModel newTransferThreeStepViewModel)
 	{
 		InitializeComponent();
-	}
+        BindingContext = newTransferThreeStepViewModel;
+    }
 }

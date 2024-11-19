@@ -28,7 +28,7 @@
                 if ((string)value == Const.Status.Transfer.Delivered || (string)value == Const.Status.Feed.Fed || (string)value == Const.Status.FeedRemaining.Completed)
                     return Green500;
 
-                if ((string)value == Const.Status.Transfer.Paused)
+                if ((string)value == Const.Status.Transfer.Paused || (string)value == Const.Status.Transfer.Returned)
                     return Neutral500;
             }
 

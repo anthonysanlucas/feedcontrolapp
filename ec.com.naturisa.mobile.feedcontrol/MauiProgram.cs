@@ -1,5 +1,6 @@
 ﻿using DevExpress.Maui;
 using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
+using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
 using System.Reflection;
 
 namespace ec.com.naturisa.mobile.feedcontrol
@@ -30,7 +31,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IPoolsService, PoolsService>();
 
             builder.Services.AddSingleton<ISupplierTransferService, SupplierTransferService>();
-          
+            builder.Services.AddSingleton<IWarehouseTransferService, WarehouseTransferService>();
+
             builder.Services.AddSingleton<IFeedTransferService, FeedTransferService>();
             builder.Services.AddSingleton<IFeedTransferDetailService, FeedTransferDetailService>();
             builder.Services.AddSingleton<IFeedTransferDetailPoolService, FeedTransferDetailPoolService>();

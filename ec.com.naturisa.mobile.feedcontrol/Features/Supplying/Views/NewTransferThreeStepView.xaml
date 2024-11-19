@@ -5,14 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:FeedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
     xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:distributionModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Models"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
-    x:DataType="viewModels:NewTransferTwoStepViewModel"
+    x:DataType="viewModels:NewTransferThreeStepViewModel"
     BackgroundColor="{StaticResource Secondary}"
     Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
-        <Label Style="{StaticResource ShellTitleLabel}" Text="Nuevo viaje" />
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Nueva transferencia" />
     </Shell.TitleView>
 
     <Grid RowDefinitions="Auto, *" RowSpacing="16">
@@ -152,23 +153,18 @@
                         -->
                     </Grid>
 
-                    <!--
+
                     <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
-                        <CollectionView Grid.Row="0">
+                        <CollectionView Grid.Row="0" ItemsSource="{Binding ProductRows}">
                             <CollectionView.Header>
                                 <Frame Padding="8" BackgroundColor="{StaticResource Secondary}">
-                                    <Grid ColumnDefinitions="62,*, Auto" ColumnSpacing="8">
+                                    <Grid ColumnDefinitions="*, Auto" ColumnSpacing="8">
                                         <Label
-                                            Grid.Column="0"
-                                            Text="Piscina"
-                                            TextColor="{StaticResource OnSecondary}" />
-                                        <Label
-                                            Grid.Column="1"
                                             HorizontalOptions="Start"
                                             Text="Producto"
                                             TextColor="{StaticResource OnSecondary}" />
                                         <Label
-                                            Grid.Column="2"
+                                            Grid.Column="1"
                                             HorizontalOptions="End"
                                             Text="Sacos"
                                             TextColor="{StaticResource OnSecondary}" />
@@ -176,20 +172,13 @@
                                 </Frame>
                             </CollectionView.Header>
                             <CollectionView.ItemTemplate>
-                                <DataTemplate x:DataType="FeedTransferModels:PoolTransferTwoStepSelectionModel">
+                                <DataTemplate x:DataType="distributionModels:ProductDetail">
                                     <Grid
                                         Padding="8"
                                         BackgroundColor="{StaticResource Primary50}"
-                                        ColumnDefinitions="62, *, Auto"
+                                        ColumnDefinitions="*, Auto"
                                         ColumnSpacing="8">
-                                        <Label
-                                            Grid.Column="0"
-                                            Style="{StaticResource RegularLabel}"
-                                            Text="{Binding SelectedPool.PoolCode}"
-                                            TextColor="{StaticResource OnSecondary}"
-                                            VerticalOptions="Start" />
-
-                                        <VerticalStackLayout Grid.Column="1">
+                                        <VerticalStackLayout>
                                             <Label
                                                 HorizontalOptions="Start"
                                                 MaximumWidthRequest="300"
@@ -202,7 +191,7 @@
                                         </VerticalStackLayout>
 
                                         <Label
-                                            Grid.Column="2"
+                                            Grid.Column="1"
                                             Style="{StaticResource RegularLabel}"
                                             Text="{Binding QuantitySacks}"
                                             TextColor="{StaticResource Primary700}"
@@ -248,15 +237,12 @@
                             </StackLayout>
                         </Grid>
                     </Grid>
-                    -->
                 </Grid>
 
-                <!--
                 <controls:MainButtonControl
-                    Command="{Binding GoToPoolTransferViewCommand}"
+                    Command="{Binding CreateFarmTransferCommand}"
                     IsBusy="{Binding IsBusy}"
-                    Text="Crear viaje" />
-                -->
+                    Text="Crear transferencia" />
             </Grid>
         </Border>
     </Grid>

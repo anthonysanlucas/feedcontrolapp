@@ -180,6 +180,7 @@
                                             BorderColor="{StaticResource Slate400}">
                                             <Picker
                                                 Title="Selecciona un producto"
+                                                ItemDisplayBinding="{Binding ProductName}"
                                                 ItemsSource="{Binding Source={RelativeSource AncestorType={x:Type viewModels:NewTransferTwoStepViewModel}}, Path=AvailableProducts}"
                                                 SelectedItem="{Binding SelectedProduct}"
                                                 TextColor="{StaticResource OnSecondary}"

@@ -1,6 +1,4 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Models.Warehouse;
-
-namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
     public partial class NewTransferOneStepViewModel : BaseViewModel
     {
@@ -14,7 +12,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         private ObservableCollection<WarehouseResponse> warehouses;
 
         [ObservableProperty]
-        private WarehouseResponse originBranch;
+        private WarehouseResponse originWarehouse;
 
         [ObservableProperty]
         private List<string> destinationBranches;
@@ -38,7 +36,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         private string selectedDestinationBranch;
 
         [ObservableProperty]
-        private WarehouseResponse selectedDestinationWharehouse;
+        private WarehouseResponse destinationWarehouse;
 
         [ObservableProperty]
         private string selectedTransporter;
@@ -49,10 +47,10 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         public NewTransferOneStepViewModel(IToastService toastService)
             : base(toastService)
         {
-            OriginBranch = new WarehouseResponse
+            OriginWarehouse = new WarehouseResponse
             {
                 IdWarehouse = 64,
-                Name = "Bodega de Balanceado"
+                Name = "Acopio Pezjoya"
 
             };
 
@@ -74,38 +72,35 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             vehiclePlates = ["GRZ 6396"];
         }
 
-
-        #region commands
-        [RelayCommand]
-        async Task SubmitTransfer()
-        {
-            if (
-                string.IsNullOrEmpty(SelectedDestinationBranch)
-                || string.IsNullOrEmpty(SelectedTransporter)
-                || string.IsNullOrEmpty(SelectedVehiclePlate)
-            )
-            {
-                await ToastService.ShowToastAsync("Por favor complete todos los campos");
-                return;
-            }
-
-            await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView));
-        }
-
+        #region commands        
         [RelayCommand]
         async Task GoToTwoStep()
         {
+           // if (
+           //    string.IsNullOrEmpty(SelectedDestinationBranch)
+           //    || string.IsNullOrEmpty(SelectedTransporter)
+           //    || string.IsNullOrEmpty(SelectedVehiclePlate)
+           //)
+           // {
+           //     await ToastService.ShowToastAsync("Por favor complete todos los campos");
+           //     return;
+           // }
+
             WarehouseTransfer = new WarehouseTransferRequest
             {
-                OriginWarehouseId = OriginBranch.IdWarehouse,
-                DestinationWarehouseId = SelectedDestinationWharehouse.IdWarehouse,
+                OriginWarehouseId = OriginWarehouse.IdWarehouse,
+                DestinationWarehouseId = DestinationWarehouse.IdWarehouse,
                 FreightTransporterId = 16,
                 TransportId = 24
             };
 
             await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView),
                 true,
-                new Dictionary<string, object> { { nameof(WarehouseTransfer), WarehouseTransfer } }
+                new Dictionary<string, object> {                   
+                    ["WarehouseTransfer"] = WarehouseTransfer,
+                    ["OriginWarehouse"] = OriginWarehouse,
+                    ["DestinationWarehouse"] = DestinationWarehouse,
+                }
                 );
         }
         #endregion

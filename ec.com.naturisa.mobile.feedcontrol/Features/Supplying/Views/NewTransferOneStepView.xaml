@@ -87,7 +87,7 @@
                                 <Label Text="Bodega origen" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="{Binding OriginBranch.Name}"
+                                    Text="{Binding OriginWarehouse.Name}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 
@@ -128,7 +128,7 @@
                                         FontSize="16"
                                         ItemDisplayBinding="{Binding Name}"
                                         ItemsSource="{Binding Warehouses}"
-                                        SelectedItem="{Binding SelectedDestinationWharehouse}"
+                                        SelectedItem="{Binding DestinationWarehouse}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>
@@ -177,8 +177,6 @@
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>
                             </VerticalStackLayout>
-
-
                         </VerticalStackLayout>
                     </ScrollView>
 
@@ -204,7 +202,7 @@
                             <Button
                                 Grid.Column="0"
                                 BackgroundColor="Transparent"
-                                Command="{Binding SubmitTransferCommand}"
+                                Command="{Binding GoToTwoStepCommand}"
                                 HorizontalOptions="FillAndExpand"
                                 Text="Siguiente"
                                 TextColor="White" />

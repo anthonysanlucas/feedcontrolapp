@@ -9,6 +9,7 @@
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:supplyingViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:warehouseTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.WarehouseTransfer"
     x:DataType="supplyingViewModels:FarmTransferViewModel">
     <Grid RowDefinitions="*">
         <Grid RowDefinitions="Auto, *" RowSpacing="16">
@@ -39,7 +40,7 @@
                 Style="{StaticResource RefreshViewStyle}">
                 <CollectionView ItemsSource="{Binding FeedingTrips}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="feedTransferModels:FeedTransferModel">
+                        <DataTemplate x:DataType="warehouseTransferModels:WarehouseTransferResponse">
                             <Frame
                                 Margin="0,6"
                                 BackgroundColor="{StaticResource SurfaceLowContainer}"
@@ -51,15 +52,15 @@
                                 -->
 
                                 <controls:TransferCardControl
-                                    AssignedTransportName="{Binding AssignedVehiclePlate}"
-                                    DestinationSubsidiaryName="{Binding DestinationSubsidiaryName}"
-                                    OriginSubsidiaryName="{Binding OriginSubsidiaryName}"
-                                    PrimaryUnit="{Binding TotalSacks}"
+                                    AssignedTransportName="{Binding FreightTransporterName}"
+                                    DestinationSubsidiaryName="{Binding DestinationWarehouseName}"
+                                    OriginSubsidiaryName="{Binding OriginWarehouseName}"
+                                    PrimaryUnit="{Binding TotalEquivalenceSacks}"
                                     PrimaryUnitText="sacos"
-                                    SecondaryUnit="{Binding TotalWeight}"
+                                    SecondaryUnit="{Binding TotalEquivalenceKilograms}"
                                     SecondaryUnitText="kg"
-                                    Status="{Binding Status}"
-                                    TransferCode="{Binding TransferCode}" />
+                                    Status="{Binding LastStatusCatalogueName}"
+                                    TransferCode="{Binding Code}" />
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

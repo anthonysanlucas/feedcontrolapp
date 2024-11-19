@@ -40,19 +40,21 @@ public partial class TransferMovementReturnViewModel : BaseViewModel
 
             var response = await _feedTransferService.PatchReturnStatus(
                 id,
-                Const.Status.Transfer.InRoute
+                Const.Status.Transfer.AtDestination
             );
 
             if (response != null && response.Code == 200)
             {
                 await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
 
-                LoadFeedTransferDetails(id);
+                WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
+
+                await Shell.Current.Navigation.PopAsync();
             }
             else
             {
                 await ToastService.ShowToastAsync(
-                    "Error al actualizar el estado, intente nuevamente."
+                    $"Error al actualizar el estado {response?.Message}."
                 );
             }
         }

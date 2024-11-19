@@ -43,6 +43,8 @@ public partial class TransferMovementViewModel : BaseViewModel, IRecipient<Refre
             Type = Const.Types.FeedTransferType.Delivery
         };
 
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
+
         GetFeedTransfers();
     }
 

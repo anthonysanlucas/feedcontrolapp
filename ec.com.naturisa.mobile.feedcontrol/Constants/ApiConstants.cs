@@ -8,10 +8,9 @@
         // DEV https://dev-gateway.naturisa.com.ec
         // {API_URL}/feedcontrol/api
      
-        private const string API_URL = "https://b841f6467a6d13ce34b758e3e045d09f.serveo.net";
+        private const string API_URL = "https://dev-gateway.naturisa.com.ec";
         public const string AUTH_URL = "https://dev-gateway.naturisa.com.ec/seguridad";
         public const string AP1_API_URL = "https://dev-gateway.naturisa.com.ec/ap1/api";   
-        public const string API_FEED_CONTROL = $"{API_URL}/api";
-        
+        public const string API_FEED_CONTROL = $"{API_URL}/feedcontrol/api";        
     }
 }

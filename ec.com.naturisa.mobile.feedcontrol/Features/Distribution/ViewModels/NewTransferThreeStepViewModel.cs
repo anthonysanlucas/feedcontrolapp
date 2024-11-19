@@ -85,7 +85,7 @@ public partial class NewTransferThreeStepViewModel : BaseViewModel
 
             var response = await _warehouseTransferService.PostWarehouseTransfer(WarehouseTransfer);
                         
-            if (response.Data != null & response.Code == 201)
+            if (response.Data != null & response.Code == 200)
             {
                 await ToastService.ShowToastAsync("Transferencia de bodega creada exitosamente.");
 

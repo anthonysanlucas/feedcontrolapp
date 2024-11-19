@@ -39,6 +39,8 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
             IncludeFreightTransporter = true,
         };
 
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
+
         GetFarmTransfers();
     }
 
@@ -97,7 +99,7 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            // GetFeedTransfers();
+            GetFarmTransfers();
         });
     }
 }

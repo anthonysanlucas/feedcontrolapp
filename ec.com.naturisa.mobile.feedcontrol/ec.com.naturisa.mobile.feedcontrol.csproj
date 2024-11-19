@@ -159,6 +159,9 @@
 	  <MauiXaml Update="Features\Distribution\Views\TransferMovementView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\FarmTransferDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Supplying\Views\NewTransferOneStepView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -2,7 +2,7 @@
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
 
-public partial class ReturnReceptionViewModel : BaseViewModel
+public partial class ReturnReceptionViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
     [ObservableProperty]
     private ObservableCollection<FilterStatus> filterStatuses;
@@ -33,6 +33,8 @@ public partial class ReturnReceptionViewModel : BaseViewModel
             new FilterStatus { Status = "ENTREGADO" }
         };
 
+        WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
+
         GetReturns();
     }
 
@@ -43,7 +45,7 @@ public partial class ReturnReceptionViewModel : BaseViewModel
         if (selectedTransfer == null)
             return;
 
-        await Shell.Current.GoToAsync(nameof(ReturnReceptionView),
+        await Shell.Current.GoToAsync(nameof(ReturnReceptionDetailView),
             true,
             new Dictionary<string, object> { { "SelectedTransfer", selectedTransfer } }
             );
@@ -91,4 +93,12 @@ public partial class ReturnReceptionViewModel : BaseViewModel
         }
     }
     #endregion
+
+    public void Receive(RefreshDataMessage message)
+    {
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            GetReturns();
+        });
+    }
 }

@@ -16,17 +16,54 @@ public partial class ReturnReceptionDetailViewModel : BaseViewModel
     [ObservableProperty]
     private bool isReturnReception = false;
 
+    private readonly IFeedTransferService _feedTransferService;
+
     private readonly IFeedTransferDetailService _feedTransferDetailService;
 
-    public ReturnReceptionDetailViewModel(IToastService toastService) : base(toastService)
+    public ReturnReceptionDetailViewModel(IFeedTransferService feedTransferService, IFeedTransferDetailService feedTransferDetailService, IToastService toastService) : base(toastService)
     {
+        _feedTransferService = feedTransferService;
+        _feedTransferDetailService = feedTransferDetailService;
     }
 
     #region commands
     [RelayCommand]
     async Task MarkReception()
     {
+        try
+        {
+            IsBusy = true;
 
+            int id = (int)SelectedTransfer.IdFeedTransfer;
+
+            var response = await _feedTransferService.PatchReturnStatus(
+                id,
+                Const.Status.Transfer.Delivered
+            );
+
+            if (response != null && response.Code == 200)
+            {
+                await ToastService.ShowToastAsync("Estado actualizado exitosamente.");
+
+                WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
+
+                await Shell.Current.Navigation.PopAsync();
+            }
+            else
+            {
+                await ToastService.ShowToastAsync(
+                    $"Error al actualizar el estado {response?.Message}."
+                );
+            }
+        }
+        catch (Exception ex)
+        {
+            await ToastService.ShowToastAsync("Ocurrió un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
     }
 
     #endregion

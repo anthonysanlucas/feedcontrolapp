@@ -60,7 +60,6 @@
         <dxco:DXPopup
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"
-            AllowScrim="True"
             BackgroundColor="Transparent"
             CornerRadius="1"
             IsOpen="{Binding IsOpenFarmList}"

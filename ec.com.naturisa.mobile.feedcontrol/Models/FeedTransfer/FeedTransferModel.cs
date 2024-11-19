@@ -2,43 +2,34 @@
 {
     public class FeedTransferModel
     {
-        [JsonPropertyName("idFeedTransfer")]
         public int? IdFeedTransfer { get; set; }
 
-        [JsonPropertyName("originSubsidiaryId")]
         public int OriginSubsidiaryId { get; set; }
 
-        [JsonPropertyName("originSubsidiaryName")]
         public string OriginSubsidiaryName { get; set; }
 
-        [JsonPropertyName("destinationSubsidiaryId")]
         public int DestinationSubsidiaryId { get; set; }
-
-        [JsonPropertyName("destinationSubsidiaryName")]
+        
         public string DestinationSubsidiaryName { get; set; }
 
-        [JsonPropertyName("assignedVehicleId")]
+        public long? DestinationWarehouseId { get; set; }
+
+        public string? DestinationWarehouseName { get; set; }
+     
         public int AssignedVehicleId { get; set; }
 
-        [JsonPropertyName("assignedVehiclePlate")]
         public string AssignedVehiclePlate { get; set; }
 
-        [JsonPropertyName("assignedCarrierId")]
         public int AssignedCarrierId { get; set; }
 
-        [JsonPropertyName("assignedCarrierName")]
         public string AssignedCarrierName { get; set; }
 
-        [JsonPropertyName("type")]
         public string Type { get; set; }
 
-        [JsonPropertyName("transferCode")]
         public string TransferCode { get; set; }
 
-        [JsonPropertyName("totalSacks")]
         public int TotalSacks { get; set; }
 
-        [JsonPropertyName("totalWeight")]
         public decimal TotalWeight { get; set; }
 
         [JsonPropertyName("approximatePallets")]

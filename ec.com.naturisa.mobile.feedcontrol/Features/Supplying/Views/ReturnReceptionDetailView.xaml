@@ -24,7 +24,7 @@
             Grid.Row="0"
             AssignedCarrierName="{Binding SelectedTransfer.AssignedCarrierName}"
             AssignedVehiclePlate="{Binding SelectedTransfer.AssignedVehiclePlate}"
-            DestinationSubsidiaryName="{Binding SelectedTransfer.DestinationSubsidiaryName}"
+            DestinationSubsidiaryName="{Binding SelectedTransfer.DestinationWarehouseName}"
             OriginSubsidiaryName="{Binding SelectedTransfer.OriginSubsidiaryName}"
             Status="{Binding SelectedTransfer.Status}"
             TransferCode="{Binding SelectedTransfer.TransferCode}" />

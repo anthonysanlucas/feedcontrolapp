@@ -28,15 +28,6 @@ public partial class TransferMovementReturnViewModel : BaseViewModel
         _feedTransferDetailService = feedTransferDetailService;
     }
 
-    partial void OnSelectedTransferChanged(FeedTransferModel value)
-    {
-        if (value != null)
-        {
-            LoadFeedTransferDetails((int)value.IdFeedTransfer);
-        }
-        return;
-    }
-
     #region commands
     [RelayCommand]
     async Task MarkDestination()
@@ -49,7 +40,7 @@ public partial class TransferMovementReturnViewModel : BaseViewModel
 
             var response = await _feedTransferService.PatchReturnStatus(
                 id,
-                Const.Status.Transfer.AtDestination
+                Const.Status.Transfer.InRoute
             );
 
             if (response != null && response.Code == 200)
@@ -112,6 +103,15 @@ public partial class TransferMovementReturnViewModel : BaseViewModel
         {
             IsBusy = false;
         }
+    }
+
+    partial void OnSelectedTransferChanged(FeedTransferModel value)
+    {
+        if (value != null)
+        {
+            LoadFeedTransferDetails((int)value.IdFeedTransfer);
+        }
+        return;
     }
 
     private void DestinationDelivery()

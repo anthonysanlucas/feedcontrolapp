@@ -42,9 +42,7 @@ public class BaseHttpService
 
         try
         {
-            var response = await _httpClient.SendAsync(request);
-
-            return response;
+            return await _httpClient.SendAsync(request);            
         }
         catch (TaskCanceledException)
         {

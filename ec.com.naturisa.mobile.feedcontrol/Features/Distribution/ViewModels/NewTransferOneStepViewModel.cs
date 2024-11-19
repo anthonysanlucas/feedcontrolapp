@@ -64,7 +64,7 @@
                 new WarehouseResponse
                 {
                     IdWarehouse = 49,
-                    Name = "Bodega de Balanceado"
+                    Name = "Balanceado Naturisa"
                 }
             };
 
@@ -91,7 +91,7 @@
                 OriginWarehouseId = OriginWarehouse.IdWarehouse,
                 DestinationWarehouseId = DestinationWarehouse.IdWarehouse,
                 FreightTransporterId = 16,
-                TransportId = 24
+                TransportId = 10
             };
 
             await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView),

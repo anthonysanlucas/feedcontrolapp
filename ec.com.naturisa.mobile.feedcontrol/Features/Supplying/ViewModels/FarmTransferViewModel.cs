@@ -1,4 +1,5 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
+﻿using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
+using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
 
@@ -52,6 +53,18 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
         {
             filter.IsSelected = filter.Status == status;
         }
+    }
+
+    [RelayCommand]
+    async Task GoToFarmTransferDetail(WarehouseTransferResponse warehouseTransfer)
+    {
+        if (warehouseTransfer is null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(FarmTransferDetailView),
+            true,
+            new Dictionary<string, object>
+            {{ "WarehouseTransfer", warehouseTransfer }});
     }
 
     [RelayCommand]

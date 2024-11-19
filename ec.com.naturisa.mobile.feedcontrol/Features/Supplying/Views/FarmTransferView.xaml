@@ -45,11 +45,10 @@
                                 Margin="0,6"
                                 BackgroundColor="{StaticResource SurfaceLowContainer}"
                                 BorderColor="{StaticResource Secondary}">
-                                <!--
+
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:PoolTransferViewModel}}, Path=GoToPoolTransferDetailCommand}" CommandParameter="{Binding}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type supplyingViewModels:FarmTransferViewModel}}, Path=GoToFarmTransferDetailCommand}" CommandParameter="{Binding}" />
                                 </Frame.GestureRecognizers>
-                                -->
 
                                 <controls:TransferCardControl
                                     AssignedTransportName="{Binding FreightTransporterName}"

@@ -43,10 +43,10 @@ namespace ec.com.naturisa.mobile.feedcontrol
             Routing.RegisterRoute(nameof(TransferMovementReturnView), typeof(TransferMovementReturnView));
             #endregion
 
-
             #region Supplying
             Routing.RegisterRoute(nameof(TransferReceptionView), typeof(TransferReceptionView));
             Routing.RegisterRoute(nameof(FarmTransferView), typeof(FarmTransferView));
+            Routing.RegisterRoute(nameof(FarmTransferDetailView), typeof(FarmTransferDetailView));
             Routing.RegisterRoute(nameof(ReturnReceptionDetailView), typeof(ReturnReceptionDetailView));
             #endregion
 

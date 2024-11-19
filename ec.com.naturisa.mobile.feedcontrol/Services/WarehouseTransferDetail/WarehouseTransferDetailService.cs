@@ -12,7 +12,7 @@
             
         }
 
-        public async Task<ApiResponse<PagedApiResponse<WarehouseTransferResponse>>> GetWarehouseTransfers(WarehouseTransferDetailQuery query)
+        public async Task<ApiResponse<PagedApiResponse<WarehouseTransferDetailResponse>>> GetWarehouseTransfers(WarehouseTransferDetailQuery query)
         {
             string queryParams = StringExtensions.BuildQueryString(query);
             var response = await SendRequestAsync(
@@ -20,7 +20,7 @@
                 WarehouseTransferEndpoints.WarehouseTransferDetails + queryParams
             );
 
-            return await ProcessResponse<PagedApiResponse<WarehouseTransferResponse>>(response);
+            return await ProcessResponse<PagedApiResponse<WarehouseTransferDetailResponse>>(response);
         }
     }
 }

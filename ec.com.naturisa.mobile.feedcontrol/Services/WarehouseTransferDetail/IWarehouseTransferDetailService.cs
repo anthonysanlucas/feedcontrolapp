@@ -2,6 +2,6 @@
 {
    public interface IWarehouseTransferDetailService
     {
-        Task<ApiResponse<PagedApiResponse<WarehouseTransferResponse>>> GetWarehouseTransfers(WarehouseTransferDetailQuery query);
+        Task<ApiResponse<PagedApiResponse<WarehouseTransferDetailResponse>>> GetWarehouseTransfers(WarehouseTransferDetailQuery query);
     }
 }

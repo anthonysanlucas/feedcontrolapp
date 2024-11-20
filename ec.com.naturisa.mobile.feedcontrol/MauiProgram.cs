@@ -1,5 +1,6 @@
 ﻿using DevExpress.Maui;
 using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
+using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.Warehouse;
 using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
 using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransferDetail;
 using System.Reflection;
@@ -40,8 +41,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IFeedTransferDetailPoolService, FeedTransferDetailPoolService>();
             builder.Services.AddSingleton<IFeedService, FeedService>();
             builder.Services.AddSingleton<IFeedDetailService, FeedDetailService>();
+            builder.Services.AddSingleton<IWarehouseService, WarehouseService>();
             #endregion
-
 
             FormHandler.RemoveBorders();            
 

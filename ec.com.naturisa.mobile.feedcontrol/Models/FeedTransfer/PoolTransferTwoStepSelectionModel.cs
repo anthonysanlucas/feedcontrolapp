@@ -6,7 +6,7 @@
         public FeedTransferDetailModel? selectedProduct;
 
         [ObservableProperty]
-        public FeedTransferDetailPoolModel? selectedPool;
+        public PoolsResponse? selectedPool;
 
         [ObservableProperty]
         public int? quantitySacks;

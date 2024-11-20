@@ -5,6 +5,8 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
 [QueryProperty(nameof(WarehouseTransfer), nameof(WarehouseTransfer))]
 [QueryProperty(nameof(OriginWarehouse), nameof(OriginWarehouse))]
 [QueryProperty(nameof(DestinationWarehouse), nameof(DestinationWarehouse))]
+[QueryProperty(nameof(SelectedTransport), nameof(SelectedTransport))]
+[QueryProperty(nameof(SelectedFreightTransporter), nameof(SelectedFreightTransporter))]
 [QueryProperty(nameof(ProductRows), nameof(ProductRows))]
 [QueryProperty(nameof(TotalQuantitySacks), nameof(TotalQuantitySacks))]
 [QueryProperty(nameof(TotalWeight), nameof(TotalWeight))]
@@ -18,6 +20,12 @@ public partial class NewTransferThreeStepViewModel : BaseViewModel
 
     [ObservableProperty]
     private WarehouseResponse destinationWarehouse;
+
+    [ObservableProperty]
+    private TransportResponse selectedTransport;
+
+    [ObservableProperty]
+    private FreightTransporterResponse selectedFreightTransporter;
 
     [ObservableProperty]
     private ObservableCollection<ProductRow> productRows;
@@ -78,8 +86,8 @@ public partial class NewTransferThreeStepViewModel : BaseViewModel
             {
                 OriginWarehouseId = OriginWarehouse.IdWarehouse,
                 DestinationWarehouseId = DestinationWarehouse.IdWarehouse,
-                FreightTransporterId = 16,
-                TransportId = 24,
+                FreightTransporterId = SelectedFreightTransporter.IdFreightTransporter,
+                TransportId = SelectedTransport.IdTransport,
                 WarehouseTransferDetails = warehouseTransferDetailRequests
             };
 
@@ -87,7 +95,7 @@ public partial class NewTransferThreeStepViewModel : BaseViewModel
                         
             if (response.Data != null & response.Code == 200)
             {
-                await ToastService.ShowToastAsync("Transferencia de bodega creada exitosamente.");
+                await ToastService.ShowToastAsync("Transferencia a bodega creada exitosamente.");
 
                 WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
                 await Shell.Current.Navigation.PopToRootAsync();

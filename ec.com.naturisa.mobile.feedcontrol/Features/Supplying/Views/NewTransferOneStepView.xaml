@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:transportModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedControl.Transport"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
     Padding="0"
     x:DataType="viewModels:NewTransferOneStepViewModel"
@@ -134,7 +135,6 @@
                                 </Frame>
                             </VerticalStackLayout>
 
-                            <!--  Vehículo  -->
                             <VerticalStackLayout Spacing="8">
                                 <Label
                                     Style="{StaticResource RegularLabel}"
@@ -149,14 +149,14 @@
                                     <Picker
                                         Title="Selecciona un vehículo"
                                         FontSize="16"
-                                        ItemsSource="{Binding VehiclePlates}"
-                                        SelectedItem="{Binding SelectedVehiclePlate}"
+                                        ItemDisplayBinding="{Binding Name}"
+                                        ItemsSource="{Binding Transports}"
+                                        SelectedItem="{Binding SelectedTransport}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>
                             </VerticalStackLayout>
 
-                            <!--  Transportista  -->
                             <VerticalStackLayout Spacing="8">
                                 <Label
                                     Style="{StaticResource RegularLabel}"
@@ -171,8 +171,9 @@
                                     <Picker
                                         Title="Selecciona un transportista"
                                         FontSize="16"
-                                        ItemsSource="{Binding Transporters}"
-                                        SelectedItem="{Binding SelectedTransporter}"
+                                        ItemDisplayBinding="{Binding FullName}"
+                                        ItemsSource="{Binding FreightTransporters}"
+                                        SelectedItem="{Binding SelectedFreightTransporter}"
                                         TextColor="{StaticResource Primary700}"
                                         TitleColor="{StaticResource OnSecondary}" />
                                 </Frame>

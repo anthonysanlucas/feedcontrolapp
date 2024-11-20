@@ -99,7 +99,7 @@
                             <Label Text="Destino" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
-                                Text="Naturisa"
+                                Text="{Binding DestinationWarehouse.Name}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
 
@@ -110,7 +110,7 @@
                             <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
-                                Text="GRZ 6396"
+                                Text="{Binding SelectedTransport.NumberPlate}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
 
@@ -121,10 +121,9 @@
                             <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
-                                Text="NELSON ZAMBRANO"
+                                Text="{Binding SelectedFreightTransporter.FullName}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
-
 
                         <!--
                     <VerticalStackLayout
@@ -137,7 +136,6 @@
                             Text="{Binding PoolTransferOneStepSelection.SelectedTransport.Plate}"
                             TextColor="{StaticResource Primary700}" />
                     </VerticalStackLayout>
-
 
                     <VerticalStackLayout
                         Grid.Row="2"
@@ -152,7 +150,6 @@
                          ItemsSource="{Binding PoolTransferTwoStepSelectionModels}"
                         -->
                     </Grid>
-
 
                     <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
                         <CollectionView Grid.Row="0" ItemsSource="{Binding ProductRows}">

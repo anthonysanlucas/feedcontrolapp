@@ -1,6 +1,4 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.Warehouse;
-
-namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels;
 
 public partial class NewTransferOneStepViewModel : BaseViewModel
 {
@@ -26,10 +24,10 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
     private List<string> transporters;
 
     [ObservableProperty]
-    private List<string> vehiclePlates;
+    private ObservableCollection<TransportResponse> transports;
 
     [ObservableProperty]
-    private string selectedDestinationType;
+    private ObservableCollection<FreightTransporterResponse> freightTransporters;    
 
     [ObservableProperty]
     private string selectedOriginWharehouse;
@@ -41,19 +39,27 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
     private WarehouseResponse destinationWarehouse;
 
     [ObservableProperty]
-    private string selectedTransporter;
+    private TransportResponse selectedTransport;
 
     [ObservableProperty]
-    private string selectedVehiclePlate;
+    private FreightTransporterResponse selectedFreightTransporter;    
 
     private readonly IWarehouseService _warehouseService;
 
-    public NewTransferOneStepViewModel(IWarehouseService warehouseService, IToastService toastService)
+    private readonly ITransportService _transportService;
+
+    private readonly IFreightTransporterService _freightTransporterService;
+
+    public NewTransferOneStepViewModel(ITransportService transportService, IWarehouseService warehouseService, IFreightTransporterService freightTransporterService, IToastService toastService)
         : base(toastService)
     {
         _warehouseService = warehouseService;
+        _transportService = transportService;
+        _freightTransporterService = freightTransporterService;
 
         Task.Run(() => GetWarehouses());
+        Task.Run(() => GetTransports());
+        Task.Run(() => GetFreightTransporters());
 
         OriginWarehouse = new WarehouseResponse
         {
@@ -61,10 +67,7 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
             Name = "Acopio Pezjoya"
         };
 
-        destinationBranches = ["Naturisa"];
-
-        transporters = ["NELSON ZAMBRANO"];
-        vehiclePlates = ["GRZ 6396"];
+        destinationBranches = ["Naturisa"];        
     }
 
     #region commands        
@@ -84,9 +87,7 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
         WarehouseTransfer = new WarehouseTransferRequest
         {
             OriginWarehouseId = OriginWarehouse.IdWarehouse,
-            DestinationWarehouseId = DestinationWarehouse.IdWarehouse,
-            FreightTransporterId = 16,
-            TransportId = 10
+            DestinationWarehouseId = DestinationWarehouse.IdWarehouse            
         };
 
         await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView),
@@ -96,6 +97,8 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
                 ["WarehouseTransfer"] = WarehouseTransfer,
                 ["OriginWarehouse"] = OriginWarehouse,
                 ["DestinationWarehouse"] = DestinationWarehouse,
+                ["SelectedTransport"] = SelectedTransport,
+                ["SelectedFreightTransporter"] = SelectedFreightTransporter
             }
             );
     }
@@ -114,6 +117,38 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
         else
         {
             await ShowToastAsync(response.Message ?? "Ha ocurrido un error al cargar las bodegas");
+        }
+    }
+
+    async Task GetTransports()
+    {
+        TransportQuery transportQuery = new() { };
+
+        var response = await _transportService.GetTransports(transportQuery);
+
+        if (response.Data != null && response.Code == 200)
+        {
+            Transports = new ObservableCollection<TransportResponse>(response.Data.Data);
+        }
+        else
+        {
+            await ShowToastAsync(response.Message ?? "Ha ocurrido un error al cargar los transportes");
+        }
+    }
+
+    async Task GetFreightTransporters()
+    {
+        FreightTransporterQuery freightTransporterQuery = new() { };
+
+        var response = await _freightTransporterService.GetFreightTransporters(freightTransporterQuery);
+
+        if (response.Data != null && response.Code == 200)
+        {
+            FreightTransporters = new ObservableCollection<FreightTransporterResponse>(response.Data.Data);
+        }
+        else
+        {
+            await ShowToastAsync(response.Message ?? "Ha ocurrido un error al cargar los transportistas");
         }
     }
 }

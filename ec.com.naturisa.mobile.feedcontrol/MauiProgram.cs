@@ -42,6 +42,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<IFeedDetailService, FeedDetailService>();
             builder.Services.AddSingleton<IWarehouseService, WarehouseService>();
             builder.Services.AddSingleton<ITransportService, TransportService>();
+            builder.Services.AddSingleton<IFreightTransporterService, FreightTransporterService>();
             #endregion
 
             FormHandler.RemoveBorders();            

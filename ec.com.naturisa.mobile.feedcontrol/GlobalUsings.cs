@@ -50,3 +50,6 @@ global using ec.com.naturisa.mobile.feedcontrol.Models.Ap1.Pools;
 global using ec.com.naturisa.mobile.feedcontrol.Models.WarehouseTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Models.Warehouse;
 global using ec.com.naturisa.mobile.feedcontrol.Models.WarehouseTransferDetail;
+global using ec.com.naturisa.mobile.feedcontrol.Models.FeedControl.Transport;
+global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.Transport;
+global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.Warehouse;

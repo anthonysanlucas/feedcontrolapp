@@ -4,7 +4,8 @@ public class WarehouseTransferService : BaseHttpService, IWarehouseTransferServi
 {
     private static class WarehouseTransferEndpoints
     {
-        public const string WarehouseTransfer = $"{ApiConstants.API_FEED_CONTROL}/warehouse_transfers";
+        public const string WarehouseTransfer = $"{ApiConstants.API_FEED_CONTROL}/warehouse_transfers";        
+        public static string ChangeStatus(long id) => $"{WarehouseTransfer}/{id}/change_status";
     }
 
     public WarehouseTransferService() : base(ApiConstants.API_FEED_CONTROL)
@@ -36,4 +37,17 @@ public class WarehouseTransferService : BaseHttpService, IWarehouseTransferServi
         return await ProcessResponse<PagedApiResponse<WarehouseTransferResponse>>(response);
     }
 
+    public async Task<ApiResponse<WarehouseTransferResponse>> ChangeStatus(long id, string status)
+    {
+        var jsonContent = JsonSerializer.Serialize(new { status });
+        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+        var response = await SendRequestAsync(
+            HttpMethod.Patch,
+            WarehouseTransferEndpoints.ChangeStatus(id),
+            content
+        );
+
+        return await ProcessResponse<WarehouseTransferResponse>(response);
+    }
 }

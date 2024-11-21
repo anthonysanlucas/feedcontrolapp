@@ -1,4 +1,4 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol.Models.WarehouseTransfer;
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Models.WarehouseTransferDetail;
 
 public record WarehouseTransferDetailRequest
 {

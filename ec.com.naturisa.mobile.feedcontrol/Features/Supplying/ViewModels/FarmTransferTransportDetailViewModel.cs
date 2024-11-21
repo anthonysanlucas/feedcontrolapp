@@ -12,6 +12,9 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
     [ObservableProperty]
     private WarehouseTransferDetailQuery transferDetailQuery;
 
+    [ObservableProperty]
+    private bool isCheckVisible = false;
+
     private IWarehouseTransferDetailService _warehouseTransferDetailService;
 
     public FarmTransferTransportDetailViewModel(IWarehouseTransferDetailService warehouseTransferDetailService, IToastService toastService) : base(toastService)
@@ -24,6 +27,11 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
         if (value != null)
         {
             LoadFeedTransferDetails((int)value.IdWarehouseTransfer);
+
+            if (value.LastStatusCatalogueName === Const.Status.Transfer.Assigned)
+            {
+                IsCheckVisible = true;
+            }
         }
 
         return;
@@ -64,4 +72,17 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
             IsBusy = false;
         }
     }
+
+    #region commands
+    [RelayCommand]
+    async Task MarkReception()
+    {
+
+    }
+
+    async Task StartRoute()
+    {
+
+    }
+    #endregion
 }

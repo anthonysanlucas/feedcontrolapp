@@ -59,9 +59,13 @@
                         <Grid
                             Padding="8"
                             BackgroundColor="{StaticResource Primary50}"
-                            ColumnDefinitions="*, Auto"
+                            ColumnDefinitions="Auto ,*, Auto"
                             ColumnSpacing="8">
-                            <VerticalStackLayout Grid.Column="0">
+                            <CheckBox
+                                Grid.Column="0"
+                                IsChecked="{Binding IsSelected}"
+                                IsVisible="{Binding IsCheckVisible}" />
+                            <VerticalStackLayout Grid.Column="1">
                                 <Label
                                     HorizontalOptions="Start"
                                     MaximumWidthRequest="300"
@@ -73,7 +77,7 @@
                                     TextColor="{StaticResource OnSecondary}" />
                             </VerticalStackLayout>
                             <Label
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 Style="{StaticResource RegularLabel}"
                                 Text="{Binding EquivalenceSacks}"
                                 TextColor="{StaticResource Primary700}"
@@ -120,6 +124,12 @@
                 </CollectionView.Footer>
             </CollectionView>
         </Border>
+
+        <controls:MainButtonControl
+            Grid.Row="1"
+            Command="{Binding MarkReception}"
+            IsBusy="{Binding IsBusy}"
+            Text="Registrar recepción" />
 
         <components:ViewLoader
             Grid.Row="1"

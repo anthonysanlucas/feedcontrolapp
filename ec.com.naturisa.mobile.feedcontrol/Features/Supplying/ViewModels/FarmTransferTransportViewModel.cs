@@ -81,6 +81,17 @@ public partial class FarmTransferTransportViewModel : BaseViewModel, IRecipient<
 
         }
     }
+
+    [RelayCommand]
+    async Task GoToFarmTransferTransportDetail(WarehouseTransferResponse warehouseTransfer)
+    {
+        if (warehouseTransfer is null) return;
+
+        await Shell.Current.GoToAsync(nameof(FarmTransferTransportDetailView),
+            true,
+             new Dictionary<string, object>
+            {{ "WarehouseTransfer", warehouseTransfer }});
+    }
     #endregion
 
     public void Receive(RefreshDataMessage message)

@@ -48,7 +48,7 @@
                                 BorderColor="{StaticResource Secondary}">
 
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type supplyingViewModels:FarmTransferViewModel}}, Path=GoToFarmTransferDetailCommand}" CommandParameter="{Binding}" />
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type supplyingViewModels:FarmTransferTransportViewModel}}, Path=GoToFarmTransferTransportDetailCommand}" CommandParameter="{Binding}" />
                                 </Frame.GestureRecognizers>
 
                                 <controls:TransferCardControl

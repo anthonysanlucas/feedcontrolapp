@@ -1,7 +1,7 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
 
 [QueryProperty(nameof(WarehouseTransfer), nameof(WarehouseTransfer))]
-public partial class FarmTransferDetailViewModel : BaseViewModel
+public partial class FarmTransferTransportDetailViewModel : BaseViewModel
 {
     [ObservableProperty]
     private WarehouseTransferResponse warehouseTransfer;
@@ -14,7 +14,7 @@ public partial class FarmTransferDetailViewModel : BaseViewModel
 
     private IWarehouseTransferDetailService _warehouseTransferDetailService;
 
-    public FarmTransferDetailViewModel(IWarehouseTransferDetailService warehouseTransferDetailService, IToastService toastService) : base(toastService)
+    public FarmTransferTransportDetailViewModel(IWarehouseTransferDetailService warehouseTransferDetailService, IToastService toastService) : base(toastService)
     {
         _warehouseTransferDetailService = warehouseTransferDetailService;
     }

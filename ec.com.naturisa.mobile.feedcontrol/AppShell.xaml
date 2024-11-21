@@ -179,7 +179,7 @@
         Title="Recepción de Transferencias"
         FlyoutDisplayOptions="AsSingleItem"
         Icon="{x:Static models:IconFont.Move_to_inbox}">
-        <ShellContent ContentTemplate="{DataTemplate supplyingViews:FarmTransferTransportView}" />
+        <ShellContent ContentTemplate="{DataTemplate supplyingViews:FarmTransferTransportReceptionView}" />
     </FlyoutItem>
 
     <FlyoutItem

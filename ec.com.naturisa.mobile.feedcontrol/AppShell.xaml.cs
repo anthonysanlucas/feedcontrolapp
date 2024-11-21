@@ -47,7 +47,7 @@
             Routing.RegisterRoute(nameof(FarmTransferDetailView), typeof(FarmTransferDetailView));
             Routing.RegisterRoute(nameof(FarmTransferTransportDetailView), typeof(FarmTransferTransportDetailView));
             Routing.RegisterRoute(nameof(ReturnReceptionDetailView), typeof(ReturnReceptionDetailView));
-            //Routing.RegisterRoute(nameof(FarmTransferTransportReceptionView), typeof(FarmTransferTransportReceptionView));
+            Routing.RegisterRoute(nameof(FarmTransferTransportReceptionView), typeof(FarmTransferTransportReceptionView));
             // Routing.RegisterRoute(nameof(FarmTransferTransportReceptionDetailView), typeof(FarmTransferTransportReceptionDetailView));
             #endregion
 

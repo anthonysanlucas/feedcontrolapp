@@ -37,7 +37,7 @@
             <RefreshView
                 Grid.Row="2"
                 Command="{Binding GetFarmTransfersCommand}"
-                IsRefreshing="{Binding IsRefreshing}"
+                IsRefreshing="{Binding IsBusy}"
                 Style="{StaticResource RefreshViewStyle}">
                 <CollectionView ItemsSource="{Binding WarehouseTrips}">
                     <CollectionView.ItemTemplate>

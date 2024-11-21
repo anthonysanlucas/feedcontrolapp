@@ -131,6 +131,7 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
                 return;
             }
 
+            WeakReferenceMessenger.Default.Send(new RefreshDataMessage("REFRESH"));
             await Shell.Current.Navigation.PopAsync();
             await ShowToastAsync("Estado cambiado correctamente.");
         }

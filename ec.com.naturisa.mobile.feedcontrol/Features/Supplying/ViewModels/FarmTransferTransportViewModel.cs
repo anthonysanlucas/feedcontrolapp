@@ -1,10 +1,9 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels;
 
-public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
+public partial class FarmTransferTransportViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
-
     [ObservableProperty]
-    private ObservableCollection<WarehouseTransferResponse> feedingTrips;
+    private ObservableCollection<WarehouseTransferResponse> warehouseTrips;
 
     [ObservableProperty]
     private ObservableCollection<FilterStatus> filterStatuses;
@@ -14,8 +13,7 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
 
     private readonly IWarehouseTransferService _warehouseTransferService;
 
-    public FarmTransferViewModel(IWarehouseTransferService warehouseTransferService, IToastService toastService)
-        : base(toastService)
+    public FarmTransferTransportViewModel(IWarehouseTransferService warehouseTransferService, IToastService toastService) : base(toastService)
     {
         _warehouseTransferService = warehouseTransferService;
 
@@ -38,11 +36,10 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
         };
 
         WeakReferenceMessenger.Default.Register<RefreshDataMessage>(this);
-
-       Task.Run(() => GetFarmTransfers());
+        Task.Run(() => GetFarmTransfers());
     }
 
-    #region commands 
+    #region commands
     [RelayCommand]
     private void SelectFilter(string status)
     {
@@ -50,18 +47,6 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
         {
             filter.IsSelected = filter.Status == status;
         }
-    }
-
-    [RelayCommand]
-    async Task GoToFarmTransferDetail(WarehouseTransferResponse warehouseTransfer)
-    {
-        if (warehouseTransfer is null)
-            return;
-
-        await Shell.Current.GoToAsync(nameof(FarmTransferDetailView),
-            true,
-            new Dictionary<string, object>
-            {{ "WarehouseTransfer", warehouseTransfer }});
     }
 
     [RelayCommand]
@@ -77,11 +62,11 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
             {
                 var warehouseTransferResponses = response.Data.Data;
 
-                FeedingTrips = new ObservableCollection<WarehouseTransferResponse>(warehouseTransferResponses);
+                WarehouseTrips = new ObservableCollection<WarehouseTransferResponse>(warehouseTransferResponses);
             }
             else
             {
-                FeedingTrips?.Clear();
+                WarehouseTrips?.Clear();
                 await ToastService.ShowToastAsync(response.Message);
             }
 
@@ -96,19 +81,13 @@ public partial class FarmTransferViewModel : BaseViewModel, IRecipient<RefreshDa
 
         }
     }
-
-    [RelayCommand]
-    async Task CreateTransfer()
-    {
-        await Shell.Current.GoToAsync(nameof(NewTransferOneStepView));
-    }
     #endregion
 
     public void Receive(RefreshDataMessage message)
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            GetFarmTransfers();
+            Task.Run(() => GetFarmTransfers());
         });
     }
 }

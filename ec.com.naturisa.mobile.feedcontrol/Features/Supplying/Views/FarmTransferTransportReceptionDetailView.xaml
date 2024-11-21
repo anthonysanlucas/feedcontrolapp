@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views.FarmTransferTransportReceptionDetailView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views.Components"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:feedTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.FeedTransfer"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    xmlns:suppliyingViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.ViewModels"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels"
+    xmlns:warehouseTransferModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models.WarehouseTransferDetail"
+    Padding="0"
+    x:DataType="suppliyingViewModels:FarmTransferTransportReceptionDetailViewModel"
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Detalle de transferencia" />
+    </Shell.TitleView>
+    <Grid
+        Background="Transparent"
+        RowDefinitions="Auto ,*"
+        RowSpacing="16">
+        <controls:TransferDetailHeaderControl
+            Grid.Row="0"
+            AssignedCarrierName="{Binding WarehouseTransfer.FreightTransporterName}"
+            AssignedVehiclePlate="{Binding WarehouseTransfer.TransportName}"
+            DestinationSubsidiaryName="{Binding WarehouseTransfer.DestinationWarehouseName}"
+            OriginSubsidiaryName="{Binding WarehouseTransfer.OriginWarehouseName}"
+            Status="{Binding WarehouseTransfer.LastStatusCatalogueName}"
+            TransferCode="{Binding WarehouseTransfer.Code}" />
+        <Border
+            Grid.Row="1"
+            Padding="16,24,16,0"
+            Background="{StaticResource White}"
+            HorizontalOptions="FillAndExpand"
+            StrokeShape="RoundRectangle 16,16,0,0"
+            StrokeThickness="0">
+            <CollectionView ItemsSource="{Binding WarehouseDetails}" SelectionMode="None">
+                <CollectionView.Header>
+                    <Frame Padding="6" BackgroundColor="{StaticResource Secondary}">
+                        <Grid ColumnDefinitions="*, Auto" ColumnSpacing="4">
+                            <Label
+                                Grid.Column="0"
+                                HorizontalOptions="Start"
+                                Text="Producto"
+                                TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Text="Sacos"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="warehouseTransferModels:WarehouseTransferDetailResponse">
+                        <Grid
+                            Padding="8"
+                            BackgroundColor="{StaticResource Primary50}"
+                            ColumnDefinitions="Auto ,*, Auto"
+                            ColumnSpacing="8">
+                            <VerticalStackLayout IsVisible="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.IsCheckVisible}">
+                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" />
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label
+                                    HorizontalOptions="Start"
+                                    MaximumWidthRequest="300"
+                                    Text="{Binding ProductName}"
+                                    TextColor="{StaticResource Primary900}" />
+                                <Label
+                                    FontSize="14"
+                                    Text="{Binding ProductId, StringFormat='SKU {0:N0}'}"
+                                    TextColor="{StaticResource OnSecondary}" />
+                            </VerticalStackLayout>
+                            <Label
+                                Grid.Column="2"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding EquivalenceSacks}"
+                                TextColor="{StaticResource Primary700}"
+                                VerticalOptions="Start" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <Grid
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        ColumnDefinitions="*,*"
+                        RowDefinitions="Auto, Auto">
+                        <BoxView
+                            Grid.Row="0"
+                            Grid.ColumnSpan="2"
+                            Margin="0,0,0,8"
+                            BackgroundColor="{StaticResource Gray200}"
+                            HeightRequest="1" />
+                        <Label
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            FontAttributes="None"
+                            Text="TOTAL"
+                            TextColor="{StaticResource OnSecondary}"
+                            VerticalOptions="Start"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalOptions="End">
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding WarehouseTransfer.TotalEquivalenceSacks, StringFormat='{}{0:N0} sacos'}"
+                                TextColor="{StaticResource Primary700}" />
+                            <Label
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding WarehouseTransfer.TotalEquivalencePallets, StringFormat='{}{0:N0} pallets'}"
+                                TextColor="{StaticResource OnSecondary}" />
+                        </StackLayout>
+                    </Grid>
+                </CollectionView.Footer>
+            </CollectionView>
+        </Border>
+
+        <controls:MainButtonControl
+            Grid.Row="1"
+            Command="{Binding ChangeStatusCommand}"
+            IsBusy="{Binding IsBusy}"
+            IsVisible="{Binding IsMainBtnVisible}"
+            Text="{Binding MainBtnText}" />
+
+        <components:ViewLoader
+            Grid.Row="1"
+            Margin="16"
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}"
+            Opacity="1"
+            VerticalOptions="FillAndExpand" />
+    </Grid>
+</ContentPage>

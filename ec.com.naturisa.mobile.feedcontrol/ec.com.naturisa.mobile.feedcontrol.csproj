@@ -165,6 +165,9 @@
 	  <MauiXaml Update="Features\Supplying\Views\FarmTransferTransportDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Supplying\Views\FarmTransferTransportReceptionDetailView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Features\Supplying\Views\FarmTransferTransportReceptionView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

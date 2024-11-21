@@ -87,10 +87,10 @@ public partial class FarmTransferTransportReceptionViewModel : BaseViewModel, IR
     {
         if (warehouseTransfer is null) return;
 
-        //await Shell.Current.GoToAsync(nameof(FarmTransferTransportReceptionDetailView),
-        //    true,
-        //     new Dictionary<string, object>
-        //    {{ "WarehouseTransfer", warehouseTransfer }});
+        await Shell.Current.GoToAsync(nameof(FarmTransferTransportReceptionDetailView),
+            true,
+             new Dictionary<string, object>
+            {{ "WarehouseTransfer", warehouseTransfer }});
     }
     #endregion
 

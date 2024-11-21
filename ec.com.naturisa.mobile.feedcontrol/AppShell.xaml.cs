@@ -1,6 +1,4 @@
-﻿using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
-
-namespace ec.com.naturisa.mobile.feedcontrol
+﻿namespace ec.com.naturisa.mobile.feedcontrol
 {
     public partial class AppShell : Shell
     {
@@ -49,6 +47,8 @@ namespace ec.com.naturisa.mobile.feedcontrol
             Routing.RegisterRoute(nameof(FarmTransferDetailView), typeof(FarmTransferDetailView));
             Routing.RegisterRoute(nameof(FarmTransferTransportDetailView), typeof(FarmTransferTransportDetailView));
             Routing.RegisterRoute(nameof(ReturnReceptionDetailView), typeof(ReturnReceptionDetailView));
+            //Routing.RegisterRoute(nameof(FarmTransferTransportReceptionView), typeof(FarmTransferTransportReceptionView));
+            // Routing.RegisterRoute(nameof(FarmTransferTransportReceptionDetailView), typeof(FarmTransferTransportReceptionDetailView));
             #endregion
 
             #region GlobalRoutes

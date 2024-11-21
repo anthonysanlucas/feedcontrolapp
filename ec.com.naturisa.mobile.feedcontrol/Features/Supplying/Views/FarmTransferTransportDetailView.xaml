@@ -61,10 +61,9 @@
                             BackgroundColor="{StaticResource Primary50}"
                             ColumnDefinitions="Auto ,*, Auto"
                             ColumnSpacing="8">
-                            <CheckBox
-                                Grid.Column="0"
-                                IsChecked="{Binding IsSelected}"
-                                IsVisible="{Binding IsCheckVisible}" />
+                            <VerticalStackLayout IsVisible="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.IsCheckVisible}">
+                                <CheckBox Grid.Column="0" IsChecked="{Binding IsSelected}" />
+                            </VerticalStackLayout>
                             <VerticalStackLayout Grid.Column="1">
                                 <Label
                                     HorizontalOptions="Start"
@@ -127,9 +126,10 @@
 
         <controls:MainButtonControl
             Grid.Row="1"
-            Command="{Binding MarkReception}"
+            Command="{Binding ChangeStatusCommand}"
             IsBusy="{Binding IsBusy}"
-            Text="Registrar recepción" />
+            IsVisible="{Binding IsMainBtnVisible}"
+            Text="{Binding MainBtnText}" />
 
         <components:ViewLoader
             Grid.Row="1"

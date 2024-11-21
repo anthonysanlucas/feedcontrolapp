@@ -37,9 +37,9 @@ public class WarehouseTransferService : BaseHttpService, IWarehouseTransferServi
         return await ProcessResponse<PagedApiResponse<WarehouseTransferResponse>>(response);
     }
 
-    public async Task<ApiResponse<WarehouseTransferResponse>> ChangeStatus(long id, string status)
+    public async Task<ApiResponse<WarehouseTransferResponse>> ChangeStatus(long id, string nextStatus)
     {
-        var jsonContent = JsonSerializer.Serialize(new { status });
+        var jsonContent = JsonSerializer.Serialize(new { nextStatus });
         var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
         var response = await SendRequestAsync(

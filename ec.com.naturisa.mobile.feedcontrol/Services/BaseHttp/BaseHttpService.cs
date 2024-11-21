@@ -67,7 +67,6 @@ public class BaseHttpService
 
         if (response.IsSuccessStatusCode)
         {
-
             try
             {
                 var isPagedResponse =

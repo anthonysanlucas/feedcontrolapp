@@ -15,10 +15,19 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
     [ObservableProperty]
     private bool isCheckVisible = false;
 
+    [ObservableProperty]
+    private bool isMainBtnVisible = false;
+
+    [ObservableProperty]
+    private string mainBtnText = string.Empty;
+
     private IWarehouseTransferDetailService _warehouseTransferDetailService;
 
-    public FarmTransferTransportDetailViewModel(IWarehouseTransferDetailService warehouseTransferDetailService, IToastService toastService) : base(toastService)
+    private IWarehouseTransferService _warehouseTransferService;
+
+    public FarmTransferTransportDetailViewModel(IWarehouseTransferService warehouseTransferService, IWarehouseTransferDetailService warehouseTransferDetailService, IToastService toastService) : base(toastService)
     {
+        _warehouseTransferService = warehouseTransferService;
         _warehouseTransferDetailService = warehouseTransferDetailService;
     }
 
@@ -28,9 +37,25 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
         {
             LoadFeedTransferDetails((int)value.IdWarehouseTransfer);
 
-            if (value.LastStatusCatalogueName === Const.Status.Transfer.Assigned)
+            if (value.LastStatusCatalogueName != Const.Status.Transfer.AtDestination && value.LastStatusCatalogueName != Const.Status.Transfer.Delivered)
+            {
+                IsMainBtnVisible = true;
+            }
+
+            if (value.LastStatusCatalogueName == Const.Status.Transfer.Assigned)
             {
                 IsCheckVisible = true;
+                MainBtnText = "Registrar recepción";
+            }
+
+            if (value.LastStatusCatalogueName == Const.Status.Transfer.Received)
+            {
+                MainBtnText = "Iniciar ruta";
+            }
+
+            if (value.LastStatusCatalogueName == Const.Status.Transfer.InRoute)
+            {
+                MainBtnText = "Registrar llegada a destino";
             }
         }
 
@@ -75,13 +100,48 @@ public partial class FarmTransferTransportDetailViewModel : BaseViewModel
 
     #region commands
     [RelayCommand]
-    async Task MarkReception()
+    async Task ChangeStatus()
     {
+        if (IsBusy) return;
+        try
+        {
+            IsBusy = true;
+            string nextStatus = string.Empty;
 
-    }
+            if (WarehouseTransfer.LastStatusCatalogueName == Const.Status.Transfer.Assigned)
+            {
+                nextStatus = Const.Status.Transfer.Received;
+            }
 
-    async Task StartRoute()
-    {
+            if (WarehouseTransfer.LastStatusCatalogueName == Const.Status.Transfer.Received)
+            {
+                nextStatus = Const.Status.Transfer.InRoute;
+            }
+
+            if (WarehouseTransfer.LastStatusCatalogueName == Const.Status.Transfer.InRoute)
+            {
+                nextStatus = Const.Status.Transfer.AtDestination;
+            }
+
+            var response = await _warehouseTransferService.ChangeStatus(WarehouseTransfer.IdWarehouseTransfer, nextStatus);
+
+            if (response == null || response.Code != 200)
+            {
+                await ShowToastAsync(response?.Message ?? "Ha ocurrido un error, intente nuevamente");
+                return;
+            }
+
+            await Shell.Current.Navigation.PopAsync();
+            await ShowToastAsync("Estado cambiado correctamente.");
+        }
+        catch
+        {
+            await ShowToastAsync("Ha ocurrido un error, intente nuevamente.");
+        }
+        finally
+        {
+            IsBusy = false;
+        }
 
     }
     #endregion

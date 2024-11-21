@@ -87,7 +87,7 @@
                                 <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="{Binding VehiclePlate}"
+                                    Text="{Binding SelectedTransport.NumberPlate}"
                                     TextColor="{StaticResource Primary700}" />
                             </VerticalStackLayout>
 

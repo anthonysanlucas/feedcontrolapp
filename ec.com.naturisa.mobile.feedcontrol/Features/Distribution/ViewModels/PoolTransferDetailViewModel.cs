@@ -13,6 +13,15 @@
         private ObservableCollection<FeedTransferPoolDetailCustomResponse> feedTransferDetails;
 
         [ObservableProperty]
+        private ObservableCollection<FilterStatus> filterStatuses;
+
+        [ObservableProperty]
+        private bool isTableView = true;
+
+        [ObservableProperty]
+        private bool isPoolView = false;
+
+        [ObservableProperty]
         private int totalSacks;
 
         [ObservableProperty]
@@ -30,6 +39,32 @@
             : base(toastService)
         {
             _feedTransferDetailService = feedTransferDetailService;
+
+            FilterStatuses = new ObservableCollection<FilterStatus>
+            {
+                new FilterStatus { Status = "TABLA", IsSelected= true},
+                new FilterStatus { Status = "PISCINA" },                
+            };
+        }
+
+        [RelayCommand]
+        private void SelectFilter(string status)
+        {
+            foreach (var filter in FilterStatuses)
+            {
+                filter.IsSelected = filter.Status == status;
+            }
+
+            if(status == "TABLA")
+            {
+                IsTableView = true;
+                IsPoolView = false;
+            }
+            else
+            {
+                IsTableView = false;
+                IsPoolView = true;
+            }
         }
 
         partial void OnSelectedTransferChanged(FeedTransferModel value)
@@ -41,6 +76,7 @@
             return;
         }
 
+        [RelayCommand]
         private async void LoadFeedTransferDetails(int feedTransferId)
         {
             try
@@ -76,6 +112,12 @@
             {
                 IsBusy = false;
             }
+        }
+
+        [RelayCommand]
+        async Task ShowPoolDetail()
+        {
+            
         }
 
         private void IsDetailEditable()

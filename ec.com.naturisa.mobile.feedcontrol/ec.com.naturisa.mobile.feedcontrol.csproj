@@ -120,6 +120,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\RefreshablePoolGridControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Controls\ShellTitleView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

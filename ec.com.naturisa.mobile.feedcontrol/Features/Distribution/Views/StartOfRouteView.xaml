@@ -155,52 +155,12 @@
                     </Grid>
                 </Frame>
 
-                <RefreshView
+                <controls:RefreshablePoolGridControl
                     Grid.Row="2"
-                    Command="{Binding LoadTwoFeedTransferDetailsCommand}"
-                    IsRefreshing="{Binding IsRefreshing}"
-                    Style="{StaticResource RefreshViewStyle}">
-                    <CollectionView
-                        Grid.Row="1"
-                        HorizontalOptions="FillAndExpand"
-                        ItemsSource="{Binding FeedTransferDetails}"
-                        SelectionMode="None"
-                        VerticalOptions="Start">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout
-                                HorizontalItemSpacing="6"
-                                Orientation="Vertical"
-                                Span="4"
-                                VerticalItemSpacing="6" />
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="feedTransferModels:FeedTransferPoolDetailCustomResponse">
-                                <Frame
-                                    Padding="0"
-                                    BackgroundColor="{Binding Status, Converter={StaticResource StatusColorConverter}, ConverterParameter=Status}"
-                                    BorderColor="{StaticResource Secondary}"
-                                    CornerRadius="8"
-                                    HeightRequest="84"
-                                    HorizontalOptions="CenterAndExpand"
-                                    VerticalOptions="CenterAndExpand"
-                                    WidthRequest="84">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:StartOfRouteViewModel}}, Path=GoToPoolTransferDeliveryDetailCommand}" CommandParameter="{Binding}" />
-                                    </Frame.GestureRecognizers>
-                                    <Label
-                                        FontAttributes="Bold"
-                                        HorizontalOptions="Center"
-                                        HorizontalTextAlignment="Center"
-                                        Style="{StaticResource RegularLabel}"
-                                        Text="{Binding PoolCode}"
-                                        TextColor="{StaticResource White}"
-                                        VerticalOptions="Center"
-                                        VerticalTextAlignment="Center" />
-                                </Frame>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </RefreshView>
+                    IsRefreshing="{Binding IsBusy}"
+                    ItemTappedCommand="{Binding GoToPoolTransferDeliveryDetailCommand}"
+                    ItemsSource="{Binding FeedTransferDetails}"
+                    RefreshCommand="{Binding LoadTwoFeedTransferDetailsCommand}" />
                 <controls:PoolSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
             </Grid>
         </Border>

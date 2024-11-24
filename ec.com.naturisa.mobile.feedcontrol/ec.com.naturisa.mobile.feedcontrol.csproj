@@ -302,6 +302,11 @@
 	  </MauiFont>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Features\Inventory\ViewModels\" />
+	  <Folder Include="Features\Inventory\Views\" />
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -157,8 +157,8 @@
 
                 <controls:RefreshablePoolGridControl
                     Grid.Row="2"
-                    Command="{Binding GoToPoolTransferDeliveryDetailCommand}"
                     IsRefreshing="{Binding IsBusy}"
+                    ItemTappedCommand="{Binding GoToPoolTransferDeliveryDetailCommand}"
                     ItemsSource="{Binding FeedTransferDetails}"
                     RefreshCommand="{Binding LoadTwoFeedTransferDetailsCommand}" />
                 <controls:PoolSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />

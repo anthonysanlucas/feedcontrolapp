@@ -113,6 +113,7 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.1.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 		<PackageReference Include="DevExpress.Maui.Controls" Version="24.1.7" />
+		<PackageReference Include="DevExpress.Maui.DataGrid" Version="24.1.7" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.92" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
@@ -160,6 +161,21 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Distribution\Views\TransferMovementView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Inventory\Views\InventoryWallMoveOneStepView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Inventory\Views\InventoryWallMoveThreeStepView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Inventory\Views\InventoryWallMoveTwoStepView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Inventory\Views\InventoryWallMoveView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Features\Inventory\Views\InventoryWallView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Features\Supplying\Views\FarmTransferDetailView.xaml">
@@ -300,11 +316,6 @@
 	  <MauiFont Update="Resources\Fonts\MaterialIcons-Regular.ttf">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </MauiFont>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Features\Inventory\ViewModels\" />
-	  <Folder Include="Features\Inventory\Views\" />
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" /></VisualStudio></ProjectExtensions>

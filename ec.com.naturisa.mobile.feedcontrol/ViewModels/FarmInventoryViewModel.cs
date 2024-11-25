@@ -10,13 +10,13 @@
         [RelayCommand]
         async Task GoToFarmWallInvetory()
         {
-            await Shell.Current.GoToAsync(nameof(WallInventoryView));
+            await Shell.Current.GoToAsync(nameof(InventoryWallView));
         }
 
         [RelayCommand]
         async Task GoToFarmStoreDetail()
         {
-            await Shell.Current.GoToAsync(nameof(FarmStoreDetailView));
+            await Shell.Current.GoToAsync(nameof(InventoryWallView));
         }
 
         #endregion

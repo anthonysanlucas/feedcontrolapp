@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallMoveOneStepView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:localViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    Padding="0"
+    x:DataType="localViewModels:InventoryWallMoveOneStepViewModel"
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Reasignación de balanceado" />
+    </Shell.TitleView>
+    <Grid RowDefinitions="Auto, *" RowSpacing="16">
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="16"
+            Spacing="8">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Route}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Label
+                    Style="{StaticResource RegularLabel}"
+                    Text="Datos del viaje"
+                    TextColor="{StaticResource OnSecondary}" />
+            </HorizontalStackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding LongDate}"
+                TextColor="{StaticResource Primary900}" />
+            <Grid
+                Grid.Row="2"
+                Margin="0,16,0,0"
+                RowDefinitions="auto,auto"
+                RowSpacing="8">
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                        <Label Style="{StaticResource SteperRoundAccentLabel}" Text="1" />
+                    </Frame>
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="2" />
+                    </Frame>
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="3" />
+                    </Frame>
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="1">
+            <Border Style="{StaticResource RoundedWhiteBorder}">
+                <Grid RowDefinitions="*">
+                    <ScrollView>
+                        <VerticalStackLayout
+                            Padding="16,24,16,92"
+                            Spacing="16"
+                            VerticalOptions="FillAndExpand">
+                            <dx:ComboBoxEdit
+                                BorderColor="{StaticResource OnSecondary}"
+                                DisplayMember="NumberPlate"
+                                FocusedBorderColor="{StaticResource Primary700}"
+                                FocusedLabelColor="{StaticResource Primary700}"
+                                ItemsSource="{Binding Transports}"
+                                LabelText="Vehículo"
+                                ValueMember="NumberPlate" />
+
+                            <dx:ComboBoxEdit
+                                BorderColor="{StaticResource OnSecondary}"
+                                DisplayMember="FullName"
+                                FocusedBorderColor="{StaticResource Primary700}"
+                                FocusedLabelColor="{StaticResource Primary700}"
+                                ItemsSource="{Binding FreightTransporters}"
+                                LabelText="Transportista"
+                                ValueMember="FullName" />
+
+                            <dx:ComboBoxEdit
+                                BorderColor="{StaticResource OnSecondary}"
+                                DisplayMember="Name"
+                                FocusedBorderColor="{StaticResource Primary700}"
+                                FocusedLabelColor="{StaticResource Primary700}"
+                                ItemsSource="{Binding Pools}"
+                                LabelText="Piscina origen"
+                                ValueMember="Name" />
+
+                            <dx:ComboBoxEdit
+                                BorderColor="{StaticResource OnSecondary}"
+                                DisplayMember="Name"
+                                FocusedBorderColor="{StaticResource Primary700}"
+                                FocusedLabelColor="{StaticResource Primary700}"
+                                ItemsSource="{Binding Pools}"
+                                LabelText="Piscina destino"
+                                ValueMember="Name" />
+                        </VerticalStackLayout>
+                    </ScrollView>
+                    <controls:MainButtonControl IsBusy="{Binding IsBusy}" Text="Siguiente" />
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

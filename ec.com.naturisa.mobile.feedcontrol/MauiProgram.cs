@@ -16,6 +16,9 @@ namespace ec.com.naturisa.mobile.feedcontrol
                 .UseMauiCommunityToolkit()               
                 .UseDevExpressControls()                
                 .UseDevExpress()
+                .UseDevExpressDataGrid()
+                .UseDevExpressCollectionView()
+                .UseDevExpressEditors()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

@@ -51,6 +51,13 @@
             Routing.RegisterRoute(nameof(FarmTransferTransportReceptionDetailView), typeof(FarmTransferTransportReceptionDetailView));
             #endregion
 
+            #region Inventory
+            Routing.RegisterRoute(nameof(InventoryWallView), typeof(InventoryWallView));
+            Routing.RegisterRoute(nameof(InventoryWallMoveOneStepView), typeof(InventoryWallMoveOneStepView));
+            Routing.RegisterRoute(nameof(InventoryWallMoveTwoStepView), typeof(InventoryWallMoveTwoStepView));
+            Routing.RegisterRoute(nameof(InventoryWallMoveThreeStepView), typeof(InventoryWallMoveThreeStepView));
+            #endregion
+
             #region GlobalRoutes
             Routing.RegisterRoute(nameof(InitialLoadingView), typeof(InitialLoadingView));
             Routing.RegisterRoute(nameof(NotificationsDetailView), typeof(NotificationsDetailView));

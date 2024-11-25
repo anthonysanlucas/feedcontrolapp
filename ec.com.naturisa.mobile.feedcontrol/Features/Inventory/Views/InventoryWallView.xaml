@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:dxco="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
+    xmlns:localViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    Padding="0"
+    x:DataType="localViewModels:InventoryWallViewModel">
+    <Shell.TitleView>
+        <Grid
+            Margin="0"
+            Padding="0,0,8,0"
+            ColumnDefinitions="Auto, *">
+            <Label
+                FontSize="Medium"
+                Style="{StaticResource ShellTitleLabel}"
+                Text="Inventario en muros" />
+
+            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End">
+                <Frame>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type localViewModels:InventoryWallViewModel}}, Path=GoToMoveOneStepViewCommand}" />
+                    </Frame.GestureRecognizers>
+                    <Label
+                        Grid.Row="1"
+                        HorizontalOptions="Center"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Move_up}"
+                        TextColor="{StaticResource Primary900}"
+                        VerticalOptions="Center" />
+                </Frame>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+    <Grid>
+        <dx:DataGridView AutoGenerateColumnsMode="None" ItemsSource="{Binding InventoryWallList}">
+            <dx:DataGridView.ColumnHeaderAppearance>
+                <dx:ColumnHeaderAppearance
+                    BackgroundColor="{StaticResource SurfaceLowContainer}"
+                    FontAttributes="None"
+                    FontColor="{StaticResource Primary700}"
+                    FontSize="16" />
+            </dx:DataGridView.ColumnHeaderAppearance>
+
+            <dx:TextColumn
+                Width="100"
+                HorizontalContentAlignment="Start"
+                BackgroundColor="{StaticResource White}"
+                Caption="Piscina"
+                FieldName="poolCode"
+                FixedStyle="Start"
+                FontColor="{StaticResource OnSecondary}" />
+
+            <dx:TextColumn
+                Width="180"
+                HorizontalContentAlignment="Start"
+                BackgroundColor="{StaticResource White}"
+                Caption="Producto"
+                FieldName="productName"
+                FontColor="{StaticResource OnSecondary}" />
+
+            <dx:TextColumn
+                Width="100"
+                HorizontalContentAlignment="End"
+                BackgroundColor="{StaticResource White}"
+                Caption="Sacos"
+                FieldName="sacks"
+                FontColor="{StaticResource OnSecondary}" />
+
+            <dx:TextColumn
+                Width="100"
+                HorizontalContentAlignment="End"
+                BackgroundColor="{StaticResource White}"
+                Caption="kg"
+                FieldName="kilograms"
+                FontColor="{StaticResource OnSecondary}" />
+
+        </dx:DataGridView>
+        <!--
+        <dx:BottomSheet>
+            <dx:BottomSheet
+                x:Name="wallMoveSheet"
+                AllowDismiss="True"
+                BackgroundColor="White"
+                CornerRadius="30"
+                HalfExpandedRatio="0.5"
+                IsModal="True"
+                ShowGrabber="True">
+                <Grid RowDefinitions="Auto, *">
+                    <VerticalStackLayout Padding="4,20,4,4">
+                        <Label Text="HOLLLLAAA" />
+                    </VerticalStackLayout>
+                </Grid>
+            </dx:BottomSheet>
+        </dx:BottomSheet>
+        -->
+    </Grid>
+</ContentPage>

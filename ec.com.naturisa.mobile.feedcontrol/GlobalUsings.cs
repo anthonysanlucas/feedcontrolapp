@@ -58,3 +58,4 @@ global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.FreightTran
 global using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransferDetail;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views;

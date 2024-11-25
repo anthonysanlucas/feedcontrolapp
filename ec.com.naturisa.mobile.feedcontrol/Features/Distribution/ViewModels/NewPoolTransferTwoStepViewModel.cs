@@ -69,6 +69,11 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
                 {
                     ProductId = 2,
                     ProductName = "Purina Aquafeed 354 CRE NG LS 2.0mm"
+                },
+                new FeedTransferDetailModel
+                {
+                    ProductId = 6,
+                    ProductName = "Naturisa advance ST D 1.2 mm"
                 }
             };
 

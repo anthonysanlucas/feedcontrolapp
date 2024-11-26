@@ -22,5 +22,9 @@
         public bool IncludeTypeTrip { get; set; }
         public bool IncludeTypeTripCategory { get; set; }
         public bool IncludeOwnershipCatalogue { get; set; }
+
+        public long? TypeTripCategoryFatherId { get; set; } 
+
+        public long[]? OwnershipCatalogueId { get; set; } 
     }
 }

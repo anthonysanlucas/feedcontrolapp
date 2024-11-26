@@ -27,7 +27,7 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
     private ObservableCollection<TransportResponse> transports;
 
     [ObservableProperty]
-    private ObservableCollection<FreightTransporterResponse> freightTransporters;    
+    private ObservableCollection<FreightTransporterResponse> freightTransporters;
 
     [ObservableProperty]
     private string selectedOriginWharehouse;
@@ -42,7 +42,7 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
     private TransportResponse selectedTransport;
 
     [ObservableProperty]
-    private FreightTransporterResponse selectedFreightTransporter;    
+    private FreightTransporterResponse selectedFreightTransporter;
 
     private readonly IWarehouseService _warehouseService;
 
@@ -67,7 +67,7 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
             Name = "Acopio Pezjoya"
         };
 
-        destinationBranches = ["Naturisa"];        
+        destinationBranches = ["Naturisa"];
     }
 
     #region commands        
@@ -87,7 +87,7 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
         WarehouseTransfer = new WarehouseTransferRequest
         {
             OriginWarehouseId = OriginWarehouse.IdWarehouse,
-            DestinationWarehouseId = DestinationWarehouse.IdWarehouse            
+            DestinationWarehouseId = DestinationWarehouse.IdWarehouse
         };
 
         await Shell.Current.GoToAsync(nameof(NewTransferTwoStepView),
@@ -106,7 +106,10 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
 
     async Task GetWarehouses()
     {
-        WarehouseQuery warehouseQuery = new() { };
+        WarehouseQuery warehouseQuery = new()
+        {
+            Type = "BALANCEADO"
+        };
 
         var response = await _warehouseService.GetWarehouses(warehouseQuery);
 
@@ -122,7 +125,11 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
 
     async Task GetTransports()
     {
-        TransportQuery transportQuery = new() { };
+        TransportQuery transportQuery = new()
+        {
+            OwnershipCatalogueId = [1, 2],
+            TypeTripCategoryFatherId = 2
+        };
 
         var response = await _transportService.GetTransports(transportQuery);
 
@@ -138,7 +145,10 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
 
     async Task GetFreightTransporters()
     {
-        FreightTransporterQuery freightTransporterQuery = new() { };
+        FreightTransporterQuery freightTransporterQuery = new()
+        {
+            TypeTripId = 2
+        };
 
         var response = await _freightTransporterService.GetFreightTransporters(freightTransporterQuery);
 

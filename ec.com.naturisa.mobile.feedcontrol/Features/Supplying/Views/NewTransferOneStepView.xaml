@@ -95,27 +95,6 @@
                             <VerticalStackLayout Spacing="4">
                                 <Label
                                     Style="{StaticResource RegularLabel}"
-                                    Text="Finca destino"
-                                    TextColor="{StaticResource Primary900}" />
-                                <Frame
-                                    Padding="8"
-                                    BackgroundColor="Transparent"
-                                    BorderColor="{StaticResource Slate400}"
-                                    HasShadow="False"
-                                    HeightRequest="62">
-                                    <Picker
-                                        Title="Selecciona un destino"
-                                        FontSize="16"
-                                        ItemsSource="{Binding DestinationBranches}"
-                                        SelectedItem="{Binding SelectedDestinationBranch}"
-                                        TextColor="{StaticResource Primary700}"
-                                        TitleColor="{StaticResource OnSecondary}" />
-                                </Frame>
-                            </VerticalStackLayout>
-
-                            <VerticalStackLayout Spacing="4">
-                                <Label
-                                    Style="{StaticResource RegularLabel}"
                                     Text="Bodega destino"
                                     TextColor="{StaticResource Primary900}" />
                                 <Frame

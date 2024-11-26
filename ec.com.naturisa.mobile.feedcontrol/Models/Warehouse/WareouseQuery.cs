@@ -15,5 +15,7 @@
         public string? SystemOrigin { get; set; }
 
         public string? Status { get; set; } = Const.Status.Active;
+
+        public string? Type { get; set; }
     }
 }

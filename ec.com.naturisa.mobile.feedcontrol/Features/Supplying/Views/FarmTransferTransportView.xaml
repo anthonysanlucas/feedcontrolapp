@@ -77,36 +77,5 @@
 
             <controls:TransferCardSkeleton Grid.Row="2" IsVisible="{Binding IsBusy}" />
         </Grid>
-        <Frame
-            Grid.Row="0"
-            HorizontalOptions="End"
-            Style="{StaticResource SecondaryBtnFrame}"
-            VerticalOptions="End">
-            <Frame.Behaviors>
-                <toolkit:TouchBehavior
-                    DefaultAnimationDuration="32"
-                    DefaultAnimationEasing="{x:Static Easing.CubicInOut}"
-                    DefaultOpacity="1"
-                    PressedOpacity="0.6" />
-            </Frame.Behaviors>
-            <HorizontalStackLayout
-                Grid.Column="0"
-                HorizontalOptions="CenterAndExpand"
-                Spacing="4">
-                <Label
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource GoogleFont}"
-                    Text="{x:Static models:IconFont.Add}"
-                    TextColor="{StaticResource Primary700}"
-                    VerticalOptions="Center" />
-                <Label
-                    FontAttributes="None"
-                    Style="{StaticResource RegularLabel}"
-                    Text="Nueva transferencia"
-                    TextColor="{StaticResource Primary700}"
-                    VerticalOptions="Center" />
-            </HorizontalStackLayout>
-        </Frame>
     </Grid>
 </ContentPage>

@@ -2,9 +2,7 @@
 {
     public class FreightTransporterQuery
     {
-        public long? IdFreightTransporter { get; set; }
-
-        public long? TypeTripId { get; set; }
+        public long? IdFreightTransporter { get; set; }        
 
         public string? Identification { get; set; }
 
@@ -21,5 +19,7 @@
         public string? Status { get; set; }
 
         public bool IncludeTypeTrip { get; set; }
+
+        public long? TypeTripId { get; set; }
     }
 }

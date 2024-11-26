@@ -108,12 +108,15 @@
                                 DisplayMember="Name"
                                 FocusedBorderColor="{StaticResource Primary700}"
                                 FocusedLabelColor="{StaticResource Primary700}"
-                                ItemsSource="{Binding Pools}"
+                                ItemsSource="{Binding OtherPools}"
                                 LabelText="Piscina destino"
                                 ValueMember="Name" />
                         </VerticalStackLayout>
                     </ScrollView>
-                    <controls:MainButtonControl IsBusy="{Binding IsBusy}" Text="Siguiente" />
+                    <controls:MainButtonControl
+                        Command="{Binding GoToTwoStepCommand}"
+                        IsBusy="{Binding IsBusy}"
+                        Text="Siguiente" />
                 </Grid>
             </Border>
         </Grid>

@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:dx="http://schemas.devexpress.com/maui"
-    xmlns:dxco="clr-namespace:DevExpress.Maui.Controls;assembly=DevExpress.Maui.Controls"
     xmlns:localViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     Padding="0"
@@ -47,8 +46,9 @@
             </dx:DataGridView.ColumnHeaderAppearance>
 
             <dx:TextColumn
-                Width="100"
-                HorizontalContentAlignment="Start"
+                MinWidth="100"
+                MaxWidth="120"
+                HorizontalContentAlignment="Center"
                 BackgroundColor="{StaticResource White}"
                 Caption="Piscina"
                 FieldName="poolCode"
@@ -56,7 +56,7 @@
                 FontColor="{StaticResource OnSecondary}" />
 
             <dx:TextColumn
-                Width="180"
+                MinWidth="180"
                 HorizontalContentAlignment="Start"
                 BackgroundColor="{StaticResource White}"
                 Caption="Producto"

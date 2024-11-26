@@ -1,12 +1,101 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallMoveTwoStepView"
-             Title="InventoryWallMoveTwoStepView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallMoveTwoStepView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dx="http://schemas.devexpress.com/maui"
+    xmlns:localViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    Padding="0"
+    x:DataType="localViewModels:InventoryWallMoveTwoStepViewModel">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Nuevo viaje" />
+    </Shell.TitleView>
+
+    <Grid RowDefinitions="Auto, *" RowSpacing="16">
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="16"
+            Spacing="8">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.List_alt}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Label
+                    Style="{StaticResource RegularLabel}"
+                    Text="Detalle del viaje"
+                    TextColor="{StaticResource OnSecondary}" />
+            </HorizontalStackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding LongDate}"
+                TextColor="{StaticResource Primary900}" />
+            <Grid
+                Grid.Row="2"
+                Margin="0,16,0,0"
+                RowDefinitions="auto,auto"
+                RowSpacing="8">
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="1" />
+                    </Frame>
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                        <Label Style="{StaticResource SteperRoundAccentLabel}" Text="2" />
+                    </Frame>
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="3" />
+                    </Frame>
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+        <dx:DataGridView
+            Grid.Row="1"
+            AutoGenerateColumnsMode="None"
+            IsReadOnly="False"
+            ItemsSource="{Binding ProductRows}">
+            <dx:DataGridView.ColumnHeaderAppearance>
+                <dx:ColumnHeaderAppearance
+                    BackgroundColor="{StaticResource SurfaceLowContainer}"
+                    FontAttributes="None"
+                    FontColor="{StaticResource Primary700}"
+                    FontSize="16" />
+            </dx:DataGridView.ColumnHeaderAppearance>
+
+            <dx:PickerColumn
+                HorizontalContentAlignment="Start"
+                BackgroundColor="{StaticResource White}"
+                Caption="Producto"
+                DisplayMember="ProductName"
+                FieldName="SelectedProduct"
+                FontColor="{StaticResource OnSecondary}"
+                ItemsSource="{Binding AvailableProducts}"
+                ValueMember="ProductId" />
+
+            <dx:NumberColumn
+                Width="100"
+                HorizontalContentAlignment="End"
+                BackgroundColor="{StaticResource White}"
+                Caption="Sacos"
+                FieldName="QuantitySacks"
+                FontColor="{StaticResource OnSecondary}" />
+        </dx:DataGridView>
+    </Grid>
 </ContentPage>

@@ -16,7 +16,7 @@
 
         public bool? IsEmployee { get; set; }
 
-        public string? Status { get; set; }
+        public string? Status { get; set; } = "ACTIVO";
 
         public bool IncludeTypeTrip { get; set; }
 

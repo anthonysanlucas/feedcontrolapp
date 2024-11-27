@@ -17,7 +17,7 @@
 
         public string? Model { get; set; }
 
-        public string? Status { get; set; }
+        public string? Status { get; set; } = "ACTIVO";
 
         public bool IncludeTypeTrip { get; set; }
         public bool IncludeTypeTripCategory { get; set; }

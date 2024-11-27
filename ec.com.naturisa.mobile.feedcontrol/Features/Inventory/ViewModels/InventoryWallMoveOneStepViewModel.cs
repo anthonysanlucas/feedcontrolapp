@@ -15,15 +15,15 @@ public partial class InventoryWallMoveOneStepViewModel : BaseViewModel
     private ObservableCollection<PoolsResponse> otherPools;
 
     public InventoryWallMoveOneStepViewModel(IToastService toastService) : base(toastService)
-    {        
+    {
         Transports = new ObservableCollection<TransportResponse>
         {
-            new TransportResponse { NumberPlate = "GCT5936" }          
+            new TransportResponse { NumberPlate = "GCT5936" }
         };
 
         FreightTransporters = new ObservableCollection<FreightTransporterResponse>
         {
-            new FreightTransporterResponse { FirstName = "Nelson", LastName = "Zambrano" },                       
+            new FreightTransporterResponse { FirstName = "Nelson", LastName = "Zambrano" },
         };
 
         Pools = new ObservableCollection<PoolsResponse>
@@ -36,12 +36,11 @@ public partial class InventoryWallMoveOneStepViewModel : BaseViewModel
             new PoolsResponse { IdPool = 3, Name = "NA006" },
             new PoolsResponse { IdPool = 3, Name = "NA007" },
             new PoolsResponse { IdPool = 3, Name = "NA008" },
-            new PoolsResponse { IdPool = 3, Name = "NA009" },
             new PoolsResponse { IdPool = 3, Name = "NA010" },
         };
 
         OtherPools = new ObservableCollection<PoolsResponse>
-        {            
+        {
             new PoolsResponse { IdPool = 2, Name = "NA002" },
             new PoolsResponse { IdPool = 3, Name = "NA003" },
             new PoolsResponse { IdPool = 3, Name = "NA004" },
@@ -57,6 +56,6 @@ public partial class InventoryWallMoveOneStepViewModel : BaseViewModel
     [RelayCommand]
     async Task GoToTwoStep()
     {
-        await Shell.Current.GoToAsync(nameof(InventoryWallMoveTwoStepView));
+        await Shell.Current.GoToAsync(nameof(NewPoolTransferTwoStepView));
     }
 }

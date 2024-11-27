@@ -69,6 +69,7 @@
         <dx:DataGridView
             Grid.Row="1"
             AutoGenerateColumnsMode="None"
+            EditorShowMode="Tap"
             IsReadOnly="False"
             ItemsSource="{Binding ProductRows}">
             <dx:DataGridView.ColumnHeaderAppearance>
@@ -93,7 +94,7 @@
                 Width="100"
                 HorizontalContentAlignment="End"
                 BackgroundColor="{StaticResource White}"
-                Caption="Sacos"
+                Caption="sacos"
                 FieldName="QuantitySacks"
                 FontColor="{StaticResource OnSecondary}" />
         </dx:DataGridView>

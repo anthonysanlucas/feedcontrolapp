@@ -64,17 +64,7 @@ public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<Refr
             selectedTransfer.SupplierTransferDetails = response.Data.Data;
         }
 
-        if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName))
-        {
-            await Shell.Current.GoToAsync(nameof(TransferDetailView), true, new Dictionary<string, object>
-            {
-                { "SelectedTransfer", selectedTransfer }
-            });
-
-            return;
-        }
-
-        if (selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.AtDestination)
+        if (selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.AtDestination || selectedTransfer.IsThirdPartyTransport)
         {
             await Shell.Current.GoToAsync(nameof(TransferReceptionView), true, new Dictionary<string, object>
             {
@@ -83,6 +73,16 @@ public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<Refr
 
             return;
         }
+
+        if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName))
+        {
+            await Shell.Current.GoToAsync(nameof(TransferDetailView), true, new Dictionary<string, object>
+            {
+                { "SelectedTransfer", selectedTransfer }
+            });
+
+            return;
+        }      
     }
 
     [RelayCommand]

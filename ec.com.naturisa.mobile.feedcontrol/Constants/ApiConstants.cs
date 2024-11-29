@@ -8,9 +8,9 @@
         // DEV https://dev-gateway.naturisa.com.ec
         // {API_URL}/feedcontrol/api
      
-        private const string API_URL = "https://dev-gateway.naturisa.com.ec";
+        private const string API_URL = "https://included-tetra-incredibly.ngrok-free.app";
         public const string AUTH_URL = "https://dev-gateway.naturisa.com.ec/seguridad";
         public const string AP1_API_URL = "https://dev-gateway.naturisa.com.ec/ap1/api";   
-        public const string API_FEED_CONTROL = $"{API_URL}/feedcontrol/api";        
+        public const string API_FEED_CONTROL = $"{API_URL}/api";        
     }
 }

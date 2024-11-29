@@ -53,8 +53,7 @@ public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<Refr
             Const.Status.Transfer.Assigned,
             Const.Status.Transfer.Received,
             Const.Status.Transfer.InRoute,
-            Const.Status.Transfer.Paused,
-            Const.Status.Transfer.Delivered
+            Const.Status.Transfer.Paused,           
         };
 
         var response = await _supplierTransferService.GetSupplierTransfersDetail(selectedTransfer.IdSupplierTransfer);
@@ -64,7 +63,7 @@ public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<Refr
             selectedTransfer.SupplierTransferDetails = response.Data.Data;
         }
 
-        if (selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.AtDestination || selectedTransfer.IsThirdPartyTransport)
+        if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName) && selectedTransfer.IsThirdPartyTransport || selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.AtDestination)
         {
             await Shell.Current.GoToAsync(nameof(TransferReceptionView), true, new Dictionary<string, object>
             {
@@ -74,7 +73,7 @@ public partial class WarehouseTransferViewModel : BaseViewModel, IRecipient<Refr
             return;
         }
 
-        if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName))
+        if (detailStatuses.Contains(selectedTransfer.LastStatusCatalogueName) || selectedTransfer.LastStatusCatalogueName == Const.Status.Transfer.Delivered)
         {
             await Shell.Current.GoToAsync(nameof(TransferDetailView), true, new Dictionary<string, object>
             {

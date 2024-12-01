@@ -59,3 +59,6 @@ global using ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransferDetail;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views;
+global using ec.com.naturisa.mobile.feedcontrol.Models.FeedControl.PoolTransfer;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Transport.Views;
+global using ec.com.naturisa.mobile.feedcontrol.Features.Transport.ViewModel;

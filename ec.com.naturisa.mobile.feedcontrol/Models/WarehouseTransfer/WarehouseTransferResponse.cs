@@ -22,6 +22,7 @@ public class WarehouseTransferResponse
     public long LastStatusCatalogueId { get; set; }
     public string LastStatusCatalogueName { get; set; }
     public string Status { get; set; }
+    public string TransferType { get; set; }
     public DateTime CreatedAt { get; set; }
     public string CreatedBy { get; set; }
     public DateTime? ModifiedAt { get; set; }

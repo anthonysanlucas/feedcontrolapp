@@ -23,8 +23,9 @@
         public int AssignedCarrierId { get; set; }
 
         public string AssignedCarrierName { get; set; }
-
         public string Type { get; set; }
+
+        public string TransferType { get; set; }
 
         public string TransferCode { get; set; }
 

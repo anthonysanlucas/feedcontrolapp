@@ -247,6 +247,9 @@
 	  <MauiXaml Update="Features\Profile\Views\ProfileDetailView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Features\Transport\Views\TripsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Components\AppLogoAndName.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -316,6 +319,10 @@
 	  <MauiFont Update="Resources\Fonts\MaterialIcons-Regular.ttf">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
 	  </MauiFont>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Services\FeedControl\PoolTransfer\" />
 	</ItemGroup>
 
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" /></VisualStudio></ProjectExtensions>

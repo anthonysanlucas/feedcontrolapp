@@ -1,4 +1,6 @@
-﻿namespace ec.com.naturisa.mobile.feedcontrol
+﻿
+
+namespace ec.com.naturisa.mobile.feedcontrol
 {
     public partial class AppShell : Shell
     {
@@ -56,6 +58,10 @@
             Routing.RegisterRoute(nameof(InventoryWallMoveOneStepView), typeof(InventoryWallMoveOneStepView));
             Routing.RegisterRoute(nameof(InventoryWallMoveTwoStepView), typeof(InventoryWallMoveTwoStepView));
             Routing.RegisterRoute(nameof(InventoryWallMoveThreeStepView), typeof(InventoryWallMoveThreeStepView));
+            #endregion
+
+            #region Transport
+            Routing.RegisterRoute(nameof(TripsView), typeof(TripsView));
             #endregion
 
             #region GlobalRoutes

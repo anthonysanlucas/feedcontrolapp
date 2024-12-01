@@ -7,6 +7,7 @@
     xmlns:distributionViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Distribution.Views"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     xmlns:supplyingViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Supplying.Views"
+    xmlns:transportViews="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Transport.Views"
     xmlns:viewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.ViewModels"
     xmlns:views="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Views"
     Title="ec.com.naturisa.mobile.feedcontrol"
@@ -146,9 +147,8 @@
     <FlyoutItem
         Title="Transporte de Balanceado"
         FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Local_shipping}"
-        Route="FeedingMovementsView">
-        <ShellContent ContentTemplate="{DataTemplate distributionViews:TransferMovementView}" />
+        Icon="{x:Static models:IconFont.Local_shipping}">
+        <ShellContent ContentTemplate="{DataTemplate transportViews:TripsView}" />
     </FlyoutItem>
 
     <FlyoutItem

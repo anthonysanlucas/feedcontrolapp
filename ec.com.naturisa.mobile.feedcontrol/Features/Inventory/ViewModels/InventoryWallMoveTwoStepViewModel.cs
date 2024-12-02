@@ -6,39 +6,15 @@ public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
     private ObservableCollection<ProductWallRow> productRows;
 
     [ObservableProperty]
-    private List<FeedTransferDetailModel> availableProducts;
+    private ObservableCollection<ProductResponse> availableProducts;
 
-    public InventoryWallMoveTwoStepViewModel(IToastService toastService) : base(toastService)
+    private readonly IProductService _productService;
+
+    public InventoryWallMoveTwoStepViewModel(IToastService toastService, IProductService productService) : base(toastService)
     {
-        AvailableProducts = new()
-        {
-             new FeedTransferDetailModel
-            {
-                ProductId = 5,
-                ProductName = "Alimento Iniciador Aquaxel 0.6 MM"
-            },
-            new FeedTransferDetailModel
-            {
-                ProductId = 4,
-                ProductName = "Aquaxel MW 424 SLD Starter 0.8 mm"
-            },
-            new FeedTransferDetailModel
-            {
-                ProductId = 3,
-                ProductName = "Cargill Aquaxel MW 354 START NG ext 35% 1.2 mm"
-            },
-            new FeedTransferDetailModel
-            {
-                ProductId = 1,
-                ProductName = "Aquaxel MW354 Grower NG 1.8"
-            },
-            new FeedTransferDetailModel
-            {
-                ProductId = 2,
-                ProductName = "Purina Aquafeed 354 CRE NG LS 2.0mm"
-            }
-        };
+        _productService = productService;
 
+        AvailableProducts = new();
 
         ProductRows = new ObservableCollection<ProductWallRow> { new() };
 
@@ -48,12 +24,42 @@ public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
         {
             row.PropertyChanged += ProductRow_PropertyChanged;
         }
+
+        GetAvailableProducts();
+    }
+
+    [RelayCommand]
+    public async Task AddProductRow()
+    {
+        //if (!await ValidateFields()) return;
+
+        var newRow = new ProductWallRow();
+        newRow.PropertyChanged += ProductRow_PropertyChanged;
+
+        ProductRows.Add(newRow);
+        UpdateTotals();
+    }
+
+    async void GetAvailableProducts()
+    {
+        ProductQuery productQuery = new();
+
+        var response = await _productService.GetProducts(productQuery);
+
+        if (response != null && response.Code == 200)
+        {
+            AvailableProducts = new ObservableCollection<ProductResponse>(response.Data.Data);
+        }
+        else
+        {
+            await ToastService.ShowToastAsync("No se ha encontrado ningún producto disponible.");
+        }
     }
 
     private void ProductRow_PropertyChanged(
-       object sender,
-       System.ComponentModel.PropertyChangedEventArgs e
-   )
+   object sender,
+   System.ComponentModel.PropertyChangedEventArgs e
+)
     {
         if (e.PropertyName == nameof(ProductRow.QuantitySacks))
         {
@@ -77,7 +83,7 @@ public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
 public partial class ProductWallRow : ObservableObject
 {
     [ObservableProperty]
-    private FeedTransferDetailModel selectedProduct;
+    private ProductResponse selectedProduct;
 
     [ObservableProperty]
     private int? quantitySacks;

@@ -321,10 +321,6 @@
 	  </MauiFont>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Services\FeedControl\PoolTransfer\" />
-	</ItemGroup>
-
 	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" XamarinHotReloadUnhandledDeviceExceptioneccomnaturisamobilefeedcontrolHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>

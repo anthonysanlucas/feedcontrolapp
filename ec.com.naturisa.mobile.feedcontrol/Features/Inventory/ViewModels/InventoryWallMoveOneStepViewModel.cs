@@ -56,6 +56,6 @@ public partial class InventoryWallMoveOneStepViewModel : BaseViewModel
     [RelayCommand]
     async Task GoToTwoStep()
     {
-        await Shell.Current.GoToAsync(nameof(NewPoolTransferTwoStepView));
+        await Shell.Current.GoToAsync(nameof(InventoryWallMoveTwoStepView));
     }
 }

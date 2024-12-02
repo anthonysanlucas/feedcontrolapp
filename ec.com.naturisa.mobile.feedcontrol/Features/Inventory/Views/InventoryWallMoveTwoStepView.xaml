@@ -7,7 +7,9 @@
     xmlns:localViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
     Padding="0"
-    x:DataType="localViewModels:InventoryWallMoveTwoStepViewModel">
+    x:DataType="localViewModels:InventoryWallMoveTwoStepViewModel"
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
     <Shell.TitleView>
         <Label Style="{StaticResource ShellTitleLabel}" Text="Nuevo viaje" />
     </Shell.TitleView>
@@ -66,37 +68,106 @@
             </Grid>
         </VerticalStackLayout>
 
-        <dx:DataGridView
+        <Border
             Grid.Row="1"
-            AutoGenerateColumnsMode="None"
-            EditorShowMode="Tap"
-            IsReadOnly="False"
-            ItemsSource="{Binding ProductRows}">
-            <dx:DataGridView.ColumnHeaderAppearance>
-                <dx:ColumnHeaderAppearance
-                    BackgroundColor="{StaticResource SurfaceLowContainer}"
-                    FontAttributes="None"
-                    FontColor="{StaticResource Primary700}"
-                    FontSize="16" />
-            </dx:DataGridView.ColumnHeaderAppearance>
+            Padding="16,24,16,0"
+            Style="{StaticResource RoundedWhiteBorder}">
+            <Grid RowDefinitions="Auto, *" RowSpacing="8">
 
-            <dx:PickerColumn
-                HorizontalContentAlignment="Start"
-                BackgroundColor="{StaticResource White}"
-                Caption="Producto"
-                DisplayMember="ProductName"
-                FieldName="SelectedProduct"
-                FontColor="{StaticResource OnSecondary}"
-                ItemsSource="{Binding AvailableProducts}"
-                ValueMember="ProductId" />
+                <Grid
+                    Grid.Row="0"
+                    Margin="0,0,0,8"
+                    RowDefinitions="Auto, Auto"
+                    RowSpacing="16">
+                    <FlexLayout Grid.Row="0" JustifyContent="SpaceBetween">
+                        <VerticalStackLayout Grid.Column="0" Spacing="8">
+                            <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Style="{StaticResource RegularLabel}"
+                                Text="LATE"
+                                TextColor="{StaticResource Primary700}" />
+                        </VerticalStackLayout>
 
-            <dx:NumberColumn
-                Width="100"
-                HorizontalContentAlignment="End"
-                BackgroundColor="{StaticResource White}"
-                Caption="sacos"
-                FieldName="QuantitySacks"
-                FontColor="{StaticResource OnSecondary}" />
-        </dx:DataGridView>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label
+                                Margin="0,0,0,8"
+                                Text="Capacidad disponible"
+                                TextColor="{StaticResource OnSecondary}" />
+
+                            <Label
+                                FontAttributes="None"
+                                HorizontalOptions="End"
+                                Style="{StaticResource RegularLabel}"
+                                Text="12"
+                                TextColor="{StaticResource Primary700}" />
+                        </VerticalStackLayout>
+                    </FlexLayout>
+
+                    <Frame
+                        Grid.Row="1"
+                        HorizontalOptions="End"
+                        Style="{StaticResource SecondaryRectBtnFrame}"
+                        VerticalOptions="End">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddProductRowCommand}" />
+                        </Frame.GestureRecognizers>
+                        <HorizontalStackLayout Spacing="4">
+                            <Label
+                                FontSize="18"
+                                Style="{StaticResource GoogleFont}"
+                                Text="{x:Static models:IconFont.Add}"
+                                TextColor="{StaticResource Primary900}"
+                                VerticalOptions="Center" />
+                            <Label
+                                Style="{StaticResource SmallLabel}"
+                                Text="Añadir"
+                                TextColor="{StaticResource Primary900}"
+                                VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                    </Frame>
+                </Grid>
+
+                <dx:DataGridView
+                    Grid.Row="1"
+                    AutoGenerateColumnsMode="None"
+                    EditorShowMode="Tap"
+                    FilterIconColor="White"
+                    IsReadOnly="False"
+                    ItemsSource="{Binding ProductRows}">
+                    <dx:DataGridView.ColumnHeaderAppearance>
+                        <dx:ColumnHeaderAppearance
+                            Padding="6"
+                            BackgroundColor="{StaticResource Primary700}"
+                            FontAttributes="None"
+                            FontColor="{StaticResource White}"
+                            FontSize="16" />
+                    </dx:DataGridView.ColumnHeaderAppearance>
+
+                    <dx:PickerColumn
+                        HorizontalContentAlignment="Start"
+                        AllowAutoFilter="True"
+                        AllowSort="True"
+                        BackgroundColor="{StaticResource White}"
+                        Caption="Producto"
+                        DisplayMember="Name"
+                        FieldName="SelectedProduct"
+                        FontColor="{StaticResource Primary700}"
+                        ItemsSource="{Binding AvailableProducts}"
+                        PlaceholderText="Producto" />
+
+                    <dx:NumberColumn
+                        Width="92"
+                        HorizontalContentAlignment="End"
+                        AllowNullValue="True"
+                        BackgroundColor="{StaticResource White}"
+                        Caption="sacos"
+                        DisplayFormat="N0"
+                        FieldName="QuantitySacks"
+                        FontColor="{StaticResource Primary700}"
+                        PlaceholderText="Sacos" />
+                </dx:DataGridView>
+            </Grid>
+        </Border>
+
     </Grid>
 </ContentPage>

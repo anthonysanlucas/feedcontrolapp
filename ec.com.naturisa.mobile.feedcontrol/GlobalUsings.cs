@@ -62,3 +62,4 @@ global using ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Models.FeedControl.PoolTransfer;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Transport.Views;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Transport.ViewModel;
+global using ec.com.naturisa.mobile.feedcontrol.Models.MasterData.Product;

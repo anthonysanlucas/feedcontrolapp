@@ -1,4 +1,5 @@
 ﻿using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
+using ec.com.naturisa.mobile.feedcontrol.Services.MasterData.Product;
 
 namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 {
@@ -9,7 +10,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
         private PoolTransferOneStepSelection poolTransferOneStepSelection;
 
         [ObservableProperty]
-        private List<FeedTransferDetailModel> availableProducts;
+        private ObservableCollection<ProductResponse> availableProducts;
 
         [ObservableProperty]
         private List<FeedTransferDetailPoolModel> availablePools;
@@ -31,10 +32,13 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
         private readonly IPoolsService _poolsService;
 
-        public NewPoolTransferTwoStepViewModel(IPoolsService poolsService, IToastService toastService)
+        private readonly IProductService _productService;
+
+        public NewPoolTransferTwoStepViewModel(IPoolsService poolsService, IToastService toastService, IProductService productService)
             : base(toastService)
         {
             _poolsService = poolsService;
+            _productService = productService;
 
             PoolQuery = new PoolsQuery
             {
@@ -43,39 +47,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
 
             GetPoolsBySubsidiary();
 
-            AvailableProducts = new()
-            {
-                 new FeedTransferDetailModel
-                {
-                    ProductId = 5,
-                    ProductName = "Alimento Iniciador Aquaxel 0.6 MM"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 4,
-                    ProductName = "Aquaxel MW 424 SLD Starter 0.8 mm"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 3,
-                    ProductName = "Cargill Aquaxel MW 354 START NG ext 35% 1.2 mm"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 1,
-                    ProductName = "Aquaxel MW354 Grower NG 1.8"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 2,
-                    ProductName = "Purina Aquafeed 354 CRE NG LS 2.0mm"
-                },
-                new FeedTransferDetailModel
-                {
-                    ProductId = 6,
-                    ProductName = "Naturisa advance ST D 1.2 mm"
-                }
-            };
+            GetAvailableProducts();
 
             AvailablePools = new()
             {
@@ -167,11 +139,23 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
             }
             else
             {
-                async Task ShowError()
-                {
-                    await ToastService.ShowToastAsync("Error al obtener las piscinas.");
+                await ToastService.ShowToastAsync("Error al cargar las piscinas.");
+            }
+        }
 
-                }
+        async void GetAvailableProducts()
+        {
+            ProductQuery productQuery = new();
+
+            var response = await _productService.GetProducts(productQuery);
+
+            if (response != null && response.Code == 200)
+            {
+                AvailableProducts = new ObservableCollection<ProductResponse>(response.Data.Data);
+            }
+            else
+            {
+                await ToastService.ShowToastAsync("Error al cargar los productos.");
             }
         }
 
@@ -217,7 +201,7 @@ namespace ec.com.naturisa.mobile.feedcontrol.Features.Distribution.ViewModels
     public partial class PoolTransferTwoStepSelectionModel : ObservableObject
     {
         [ObservableProperty]
-        private FeedTransferDetailModel selectedProduct;
+        private ProductResponse selectedProduct;
 
         [ObservableProperty]
         private PoolsResponse selectedPool;

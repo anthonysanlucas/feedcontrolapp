@@ -3,7 +3,7 @@
     public partial class PoolTransferTwoStepSelectionModel : ObservableObject
     {
         [ObservableProperty]
-        public FeedTransferDetailModel? selectedProduct;
+        public ProductResponse? selectedProduct;
 
         [ObservableProperty]
         public PoolsResponse? selectedPool;

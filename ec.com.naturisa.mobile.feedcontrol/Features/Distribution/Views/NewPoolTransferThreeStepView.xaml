@@ -165,11 +165,11 @@
                                             <Label
                                                 HorizontalOptions="Start"
                                                 MaximumWidthRequest="300"
-                                                Text="{Binding SelectedProduct.ProductName}"
+                                                Text="{Binding SelectedProduct.Name}"
                                                 TextColor="{StaticResource Primary900}" />
                                             <Label
                                                 FontSize="14"
-                                                Text="{Binding SelectedProduct.ProductId, StringFormat='SKU {0:F0}'}"
+                                                Text="{Binding SelectedProduct.SupplierCodeRef, StringFormat='SKU {0:F0}'}"
                                                 TextColor="{StaticResource OnSecondary}" />
                                         </VerticalStackLayout>
 

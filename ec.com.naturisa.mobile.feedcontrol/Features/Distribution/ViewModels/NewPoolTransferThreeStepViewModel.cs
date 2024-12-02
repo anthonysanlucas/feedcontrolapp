@@ -45,10 +45,10 @@
                 IsBusy = true;
 
                 var groupedByProduct = PoolTransferTwoStepSelectionModels
-                    .GroupBy(detail => detail.SelectedProduct.ProductName)
+                    .GroupBy(detail => detail.SelectedProduct.Name)
                     .Select(group => new FeedTransferDetailModel
                     {
-                        ProductId = group.First().SelectedProduct.ProductId,
+                        ProductId = (int)group.First().SelectedProduct.IdProduct,
                         ProductName = group.Key,
                         QuantitySacks = group.Sum(item => item.QuantitySacks ?? 0),
                         Weight = group.Sum(item => item.QuantitySacks ?? 0) * 25,

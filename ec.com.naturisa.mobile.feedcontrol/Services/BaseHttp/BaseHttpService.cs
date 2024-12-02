@@ -42,7 +42,7 @@ public class BaseHttpService
 
         try
         {
-            return await _httpClient.SendAsync(request);            
+            return await _httpClient.SendAsync(request);
         }
         catch (TaskCanceledException)
         {
@@ -64,6 +64,7 @@ public class BaseHttpService
     protected async Task<ApiResponse<T>> ProcessResponse<T>(HttpResponseMessage response)
     {
         var responseData = await response.Content.ReadAsStringAsync();
+        var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(responseData, _jsonSerializerOptions);
 
         if (response.IsSuccessStatusCode)
         {
@@ -73,13 +74,12 @@ public class BaseHttpService
                     typeof(T).IsGenericType
                     && typeof(T).GetGenericTypeDefinition() == typeof(PagedApiResponse<>);
 
-                var apiResponse = JsonSerializer.Deserialize<ApiResponse<T>>(responseData, _jsonSerializerOptions);
 
                 return apiResponse ?? new ApiResponse<T>
                 {
-                    Code = (int)response.StatusCode,
-                    Message = response.ReasonPhrase,
-                    Data = default
+                    Code = apiResponse.Code,
+                    Message = apiResponse.Message,
+                    Data = apiResponse.Data
                 };
             }
             catch (JsonException ex)
@@ -88,13 +88,12 @@ public class BaseHttpService
             }
         }
         else
-        {
-            var apiResponseError = JsonSerializer.Deserialize<ApiResponse<T>>(responseData, _jsonSerializerOptions);
+        {           
             return new ApiResponse<T>
             {
-                Code = apiResponseError.Code,
-                Message = apiResponseError.Message,
-                Data = apiResponseError.Data
+                Code = apiResponse.Code,
+                Message = apiResponse.Message,
+                Data = apiResponse.Data
             };
         }
 

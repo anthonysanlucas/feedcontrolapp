@@ -40,5 +40,12 @@ public class Const
             public const string Return = "DEVOLUCION";
         }
 
+        public static class UnifiedTrip
+        {
+            public const string FeedTransfer = "FEED";
+            public const string PoolTransfer = "POOL";
+            public const string WarehouseTransfer = "WAREHOUSE";
+        }
+
     }
 }

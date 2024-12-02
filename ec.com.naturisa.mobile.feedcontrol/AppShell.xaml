@@ -199,13 +199,6 @@
         <ShellContent ContentTemplate="{DataTemplate supplyingViews:FarmTransferView}" />
     </FlyoutItem>
 
-    <FlyoutItem
-        Title="Transporte de Transferencias"
-        FlyoutDisplayOptions="AsSingleItem"
-        Icon="{x:Static models:IconFont.Local_shipping}">
-        <ShellContent ContentTemplate="{DataTemplate supplyingViews:FarmTransferTransportView}" />
-    </FlyoutItem>
-
     <Shell.FlyoutFooter>
         <Frame
             Margin="16"

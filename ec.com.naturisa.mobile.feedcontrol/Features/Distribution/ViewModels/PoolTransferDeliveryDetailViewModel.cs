@@ -4,7 +4,7 @@
     public partial class PoolTransferDeliveryDetailViewModel : BaseViewModel
     {
         [ObservableProperty]
-        private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;       
+        private FeedTransferPoolDetailCustomResponse selectedTransferPoolDetail;
 
         private readonly IFeedTransferDetailPoolService _feedTransferDetailPoolService;
 
@@ -42,9 +42,7 @@
                 }
                 else
                 {
-                    await ToastService.ShowToastAsync(
-                        "Error al actualizar el estado, intente nuevamente."
-                    );
+                    await ShowToastAsync(response.Message);
                 }
             }
             catch (Exception ex)

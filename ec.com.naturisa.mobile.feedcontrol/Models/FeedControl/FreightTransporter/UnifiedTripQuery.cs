@@ -5,7 +5,8 @@
         public long? FreightTransporterUserId { get; set; }     
         public DateTime? AssignmentDate { get; set; }
         public string[]? StatusCatalogueName { get; set; }
-        public string Status { get; set; } = "ACTIVO";       
+        public string Status { get; set; } = Const.Status.Active;
+        public string? Type { get; set; }
         public bool IncludeTransport { get; set; }
         public bool IncludeWarehouse { get; set; }
         public bool IncludeFreightTransporter { get; set; }

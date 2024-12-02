@@ -2,14 +2,13 @@
 {
     public class UnifiedTransferMapper
     {
-
         public static UnifiedTransfer MapToUnifiedTransfer(object transfer)
         {
             return transfer switch
             {
                 SupplierTransferResponse supplier => new UnifiedTransfer
                 {
-                    Id = supplier.IdSupplierTransfer, // ID del SupplierTransfer
+                    Id = supplier.IdSupplierTransfer,
                     TransferType = "Supplier",
                     Code = supplier.Code,
                     Origin = supplier.OriginSupplierName,
@@ -24,8 +23,8 @@
                 },
                 PoolTransferResponse pool => new UnifiedTransfer
                 {
-                    Id = pool.IdPoolTransfer, // ID del PoolTransfer
-                    TransferType = "Pool",
+                    Id = pool.IdPoolTransfer,
+                    TransferType = Const.Types.UnifiedTrip.PoolTransfer,
                     Code = pool.Code,
                     Origin = pool.OriginPoolCode,
                     Destination = pool.DestinationPoolCode,
@@ -39,8 +38,8 @@
                 },
                 WarehouseTransferResponse warehouse => new UnifiedTransfer
                 {
-                    Id = warehouse.IdWarehouseTransfer, // ID del WarehouseTransfer
-                    TransferType = "Warehouse",
+                    Id = warehouse.IdWarehouseTransfer,
+                    TransferType = Const.Types.UnifiedTrip.WarehouseTransfer,
                     Code = warehouse.Code,
                     Origin = warehouse.OriginWarehouseName,
                     Destination = warehouse.DestinationWarehouseName,
@@ -54,8 +53,8 @@
                 },
                 FeedTransferModel feed => new UnifiedTransfer
                 {
-                    Id = feed.IdFeedTransfer ?? 0, // ID del FeedTransfer
-                    TransferType = "Feed",
+                    Id = feed.IdFeedTransfer ?? 0,
+                    TransferType = Const.Types.UnifiedTrip.FeedTransfer,
                     Code = feed.TransferCode,
                     Origin = feed.OriginSubsidiaryName,
                     Destination = feed.DestinationSubsidiaryName,

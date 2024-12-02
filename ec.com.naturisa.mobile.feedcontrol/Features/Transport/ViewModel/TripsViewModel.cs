@@ -3,6 +3,12 @@
 public partial class TripsViewModel : BaseViewModel, IRecipient<RefreshDataMessage>
 {
     [ObservableProperty]
+    private bool isDeliveryView = true;
+
+    [ObservableProperty]
+    private bool isReturnView = false;
+
+    [ObservableProperty]
     private ObservableCollection<FeedTransferModel> feedingTrips;
 
     [ObservableProperty]
@@ -28,7 +34,17 @@ public partial class TripsViewModel : BaseViewModel, IRecipient<RefreshDataMessa
 
         TripQuery = new UnifiedTripQuery
         {
-            AssignmentDate = new DateTime(2024, 11, 22),
+            AssignmentDate = DateTime.Now,
+            IncludeFreightTransporter = true,
+            IncludeTransport = true,
+            IncludeSupplier = true,
+            IncludeWarehouse = true,
+            IncludeSupplierTransferDetails = true,
+            IncludeStatusCatalogue = true,
+            FreightTransporterUserId = GlobalData.Instance.UserData.IdUser,
+            StatusCatalogueName = [Const.Status.Transfer.Assigned, Const.Status.Transfer.Received, Const.Status.Transfer.InRoute, Const.Status.Transfer.Paused, Const.Status.Transfer.AtDestination, Const.Status.Transfer.Delivered],
+            Type = Const.Types.FeedTransferType.Delivery,
+            IncludeStatusCatalogueList = true
         };
 
         FilterStatuses = new ObservableCollection<FilterStatus>
@@ -40,6 +56,33 @@ public partial class TripsViewModel : BaseViewModel, IRecipient<RefreshDataMessa
             new FilterStatus { Status = "ENTREGADO" }
         };
 
+        Task.Run(() => GetTrips());
+    }
+
+    [RelayCommand]
+    private void SelectDelivery()
+    {
+        if (IsDeliveryView)
+            return;
+
+        IsDeliveryView = true;
+        IsReturnView = false;
+
+        TripQuery.Type = Const.Types.FeedTransferType.Delivery;
+
+        Task.Run(() => GetTrips());
+    }
+
+    [RelayCommand]
+    private void SelectReturn()
+    {
+        if (IsReturnView)
+            return;
+
+        IsReturnView = true;
+        IsDeliveryView = false;
+
+        TripQuery.Type = Const.Types.FeedTransferType.Return;
         Task.Run(() => GetTrips());
     }
 
@@ -63,7 +106,6 @@ public partial class TripsViewModel : BaseViewModel, IRecipient<RefreshDataMessa
 
             if (trips != null)
             {
-                //TripResponse = new ObservableCollection<UnifiedTripResponse>((IEnumerable<UnifiedTripResponse>)trips.Data);
                 Transfers = new ObservableCollection<UnifiedTransfer>(trips);
             }
         }
@@ -77,11 +119,73 @@ public partial class TripsViewModel : BaseViewModel, IRecipient<RefreshDataMessa
         }
     }
 
+    [RelayCommand]
+    async Task GoToDetail(UnifiedTransfer unifiedTransfer)
+    {
+        if (unifiedTransfer == null)
+            return;
+
+        if (unifiedTransfer.TransferType == Const.Types.UnifiedTrip.WarehouseTransfer)
+        {
+            try
+            {
+                var warehouseTransferResponse = (WarehouseTransferResponse)unifiedTransfer.OriginalData;
+
+                await Shell.Current.GoToAsync(nameof(FarmTransferTransportDetailView),
+                    true,
+                    new Dictionary<string, object> { { "WarehouseTransfer", warehouseTransferResponse } });
+            }
+            catch (InvalidCastException)
+            {
+                await ShowToastAsync("Error: Tipo de transferencia no válido para WarehouseTransfer.");
+            }
+        }
+
+        if (unifiedTransfer.TransferType == Const.Types.UnifiedTrip.FeedTransfer)
+        {
+            var feedTransferResponse = (FeedTransferModel)unifiedTransfer.OriginalData;
+
+            if (feedTransferResponse.Type == Const.Types.FeedTransferType.Return)
+            {
+                await Shell.Current.GoToAsync(nameof(TransferMovementReturnView), true, new Dictionary<string, object> { { "SelectedTransfer", feedTransferResponse } });
+                return;
+            }
+
+            if (feedTransferResponse.Status == Const.Status.Transfer.Assigned) { 
+                await Shell.Current.GoToAsync(
+                    nameof(PoolTransferReceptionView),
+                    true,
+                    new Dictionary<string, object> { { "SelectedTransfer", feedTransferResponse } }
+                );
+                return;
+            }
+
+            if (
+                feedTransferResponse.Status == Const.Status.Transfer.Received
+                || feedTransferResponse.Status == Const.Status.Transfer.InRoute
+                || feedTransferResponse.Status == Const.Status.Transfer.Delivered
+            )
+            {
+                await Shell.Current.GoToAsync(
+                    nameof(StartOfRouteView),
+                    true,
+                    new Dictionary<string, object> { { "SelectedTransfer", feedTransferResponse } }
+                );
+                return;
+            }
+        }
+
+        if (unifiedTransfer.TransferType == Const.Types.UnifiedTrip.PoolTransfer)
+        {
+
+        }
+    }
+
     public void Receive(RefreshDataMessage message)
     {
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            //GetFeedTransfers();
+            Task.Run(() => GetTrips());
         });
     }
 }

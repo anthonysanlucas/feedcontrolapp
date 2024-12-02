@@ -88,7 +88,7 @@
                             <Label Text="Origen" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
-                                Text="Acopio Pezjoya"
+                                Text="Acopio Pesjoya"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
 

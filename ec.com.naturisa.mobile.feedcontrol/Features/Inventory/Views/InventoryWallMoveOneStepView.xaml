@@ -83,6 +83,7 @@
                                 FocusedLabelColor="{StaticResource Primary700}"
                                 ItemsSource="{Binding Transports}"
                                 LabelText="Vehículo"
+                                SelectedItem="{Binding SelectedTransport}"
                                 ValueMember="NumberPlate" />
 
                             <dx:ComboBoxEdit
@@ -92,6 +93,7 @@
                                 FocusedLabelColor="{StaticResource Primary700}"
                                 ItemsSource="{Binding FreightTransporters}"
                                 LabelText="Transportista"
+                                SelectedItem="{Binding SelectedFreightTransporter}"
                                 ValueMember="FullName" />
 
                             <dx:ComboBoxEdit
@@ -101,6 +103,7 @@
                                 FocusedLabelColor="{StaticResource Primary700}"
                                 ItemsSource="{Binding Pools}"
                                 LabelText="Piscina origen"
+                                SelectedItem="{Binding SelectedPool}"
                                 ValueMember="Name" />
 
                             <dx:ComboBoxEdit
@@ -110,6 +113,7 @@
                                 FocusedLabelColor="{StaticResource Primary700}"
                                 ItemsSource="{Binding OtherPools}"
                                 LabelText="Piscina destino"
+                                SelectedItem="{Binding SelectedOtherPool}"
                                 ValueMember="Name" />
                         </VerticalStackLayout>
                     </ScrollView>

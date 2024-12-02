@@ -84,7 +84,7 @@
                             <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
                             <Label
                                 Style="{StaticResource RegularLabel}"
-                                Text="LATE"
+                                Text="{Binding SelectedTransport.NumberPlate}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
 
@@ -95,10 +95,9 @@
                                 TextColor="{StaticResource OnSecondary}" />
 
                             <Label
-                                FontAttributes="None"
                                 HorizontalOptions="End"
                                 Style="{StaticResource RegularLabel}"
-                                Text="12"
+                                Text="{Binding SelectedTransport.CapacityWeightKg}"
                                 TextColor="{StaticResource Primary700}" />
                         </VerticalStackLayout>
                     </FlexLayout>

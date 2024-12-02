@@ -63,8 +63,8 @@ public partial class NewTransferOneStepViewModel : BaseViewModel
 
         OriginWarehouse = new WarehouseResponse
         {
-            IdWarehouse = 64,
-            Name = "Acopio Pezjoya"
+            IdWarehouse = 125,
+            Name = "Acopio Pesjoya"
         };
 
         destinationBranches = ["Naturisa"];

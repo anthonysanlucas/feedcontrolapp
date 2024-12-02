@@ -1,5 +1,9 @@
 ﻿namespace ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels;
 
+[QueryProperty(nameof(SelectedTransport), nameof(SelectedTransport))]
+[QueryProperty(nameof(SelectedFreightTransporter), nameof(SelectedFreightTransporter))]
+[QueryProperty(nameof(SelectedPool), nameof(SelectedPool))]
+[QueryProperty(nameof(SelectedOtherPool), nameof(SelectedOtherPool))]
 public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
 {
     [ObservableProperty]
@@ -7,6 +11,18 @@ public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
 
     [ObservableProperty]
     private ObservableCollection<ProductResponse> availableProducts;
+
+    [ObservableProperty]
+    private TransportResponse selectedTransport;
+
+    [ObservableProperty]
+    private FreightTransporterResponse selectedFreightTransporter;
+
+    [ObservableProperty]
+    private PoolsResponse selectedPool;
+
+    [ObservableProperty]
+    private PoolsResponse selectedOtherPool;
 
     private readonly IProductService _productService;
 
@@ -38,6 +54,19 @@ public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
 
         ProductRows.Add(newRow);
         UpdateTotals();
+    }
+
+    [RelayCommand]
+    async Task GoToThreeStep()
+    {
+        await Shell.Current.GoToAsync(nameof(InventoryWallMoveThreeStepView), true, new Dictionary<string, object>
+        {
+            ["SelectedTransport"] = SelectedTransport,
+            ["SelectedFreightTransporter"] = SelectedFreightTransporter,
+            ["SelectedPool"] = SelectedPool,
+            ["SelectedOtherPool"] = SelectedOtherPool,
+            ["ProductRows"] = ProductRows
+        });
     }
 
     async void GetAvailableProducts()

@@ -12,7 +12,7 @@
         {
         }
 
-        public async Task<ApiResponse<PagedApiResponse<PoolBalanceResponse>>> Get(PoolBalanceQuery poolBalanceQuery)
+        public async Task<ApiResponse<PagedApiResponse<PoolBalanceResponse>>> GetPoolPalance(PoolBalanceQuery poolBalanceQuery)
         {
             string query = StringExtensions.BuildQueryString(poolBalanceQuery);
             var response = await SendRequestAsync(HttpMethod.Get, PoolBalanceEndpoints.PoolBalance + query);

@@ -7,8 +7,15 @@ public partial class InventoryWallViewModel : BaseViewModel
     [ObservableProperty]
     public ObservableCollection<InventoryWallResponse> inventoryWallList;
 
-    public InventoryWallViewModel(IToastService toastService) : base(toastService)
+    [ObservableProperty]
+    public ObservableCollection<PoolBalanceResponse> poolBalanceList;
+
+    private readonly IPoolBalanceService _poolBalanceService;
+
+    public InventoryWallViewModel(IToastService toastService, IPoolBalanceService poolBalanceService) : base(toastService)
     {
+        _poolBalanceService = poolBalanceService;
+
         InventoryWallList = new() {
                 new InventoryWallResponse
                 {
@@ -116,6 +123,28 @@ public partial class InventoryWallViewModel : BaseViewModel
                     kilograms = 500
                 }
         };
+    }
+
+    [RelayCommand]
+    async Task GetPoolBalance()
+    {
+        PoolBalanceQuery poolBalanceQuery = new PoolBalanceQuery
+        {
+            SubsidiaryId = GlobalData.Instance.SelectedSubsidiary.SubsidiaryId
+        };
+
+        var response = _poolBalanceService.GetPoolPalance(poolBalanceQuery);
+
+        if (response != null && response.Data != null && response.Data.Data.Any())
+        {
+            var feedTransferModels = response.Data.Data;
+
+            FeedingTrips = new ObservableCollection<FeedTransferModel>(feedTransferModels);
+        }
+        else
+        {
+            FeedingTrips?.Clear();
+        }
     }
 
     [RelayCommand]

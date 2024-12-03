@@ -182,6 +182,8 @@
         Icon="{x:Static models:IconFont.Move_to_inbox}">
         <ShellContent ContentTemplate="{DataTemplate supplyingViews:FarmTransferTransportReceptionView}" />
     </FlyoutItem>
+
+    Recepción de Inventario -> Proveedor | Transferencia
     -->
 
     <FlyoutItem

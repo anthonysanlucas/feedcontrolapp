@@ -5,6 +5,7 @@
         private static class PoolTransferEndpoints
         {
             public const string PoolTransfer = $"{ApiConstants.API_FEED_CONTROL}/pool_transfers";
+            public static string PoolTransferById(long id) => $"{ApiConstants.API_FEED_CONTROL}/pool_transfers{id}"; 
         }
 
         public PoolTransferService() : base(ApiConstants.API_FEED_CONTROL)
@@ -24,5 +25,25 @@
 
             return await ProcessResponse<PoolTransferResponse>(response);
         }
+
+        public async Task<ApiResponse<PoolTransferResponse>> Get(PoolTransferQuery poolTransferQuery)
+        {
+            string query = StringExtensions.BuildQueryString(poolTransferQuery);
+            var response = await SendRequestAsync(
+                HttpMethod.Get,
+                PoolTransferEndpoints.PoolTransfer + query
+            );
+
+            return await ProcessResponse<PoolTransferResponse>(response);
+        }
+
+        public async Task<ApiResponse<PoolTransferResponse>> GetById(long id)
+        {
+            var response = await SendRequestAsync(
+                HttpMethod.Get,
+                PoolTransferEndpoints.PoolTransferById(id));
+
+            return await ProcessResponse<PoolTransferResponse>(response);
+       }
     }
 }

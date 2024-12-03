@@ -73,22 +73,43 @@ public partial class InventoryWallMoveTwoStepViewModel : BaseViewModel
     {
         ProductQuery productQuery = new();
 
-        var response = await _productService.GetProducts(productQuery);
+        try
+        {
+            var response = await _productService.GetProducts(productQuery);
 
-        if (response != null && response.Code == 200)
-        {
-            AvailableProducts = new ObservableCollection<ProductResponse>(response.Data.Data);
+            if (response != null && response.Code == 200 && response.Data.Data.Count > 0)
+            {
+                AvailableProducts = new ObservableCollection<ProductResponse>(response.Data.Data);
+            }
+            else
+            {
+                AvailableProducts = new ObservableCollection<ProductResponse>
+                {
+                    new ProductResponse {
+                    IdProduct = 1,
+                    Name = "Producto de demostración",
+                    }
+                    };
+
+                await ToastService.ShowToastAsync("No se ha encontrado ningún producto disponible.");
+            }
         }
-        else
+        catch
         {
-            await ToastService.ShowToastAsync("No se ha encontrado ningún producto disponible.");
+            AvailableProducts = new ObservableCollection<ProductResponse>
+            {
+                new ProductResponse
+                {
+                    IdProduct = 1,
+                    Name = "Producto de demostración",
+                }
+            };
         }
     }
 
     private void ProductRow_PropertyChanged(
-   object sender,
-   System.ComponentModel.PropertyChangedEventArgs e
-)
+        object sender,
+        System.ComponentModel.PropertyChangedEventArgs e)
     {
         if (e.PropertyName == nameof(ProductRow.QuantitySacks))
         {

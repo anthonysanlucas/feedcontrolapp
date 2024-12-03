@@ -56,7 +56,8 @@ public class BaseHttpService
         {
             return new HttpResponseMessage
             {
-                ReasonPhrase = $"Error en la solicitud: {ex.ToString()}"
+                StatusCode = System.Net.HttpStatusCode.InternalServerError,
+                ReasonPhrase = $"{ex.Message}"
             };
         }
     }
@@ -83,8 +84,13 @@ public class BaseHttpService
                 };
             }
             catch (JsonException ex)
-            {
-                throw new Exception("Error al deserializar la respuesta JSON", ex);
+            {                
+                return apiResponse ?? new ApiResponse<T>
+                {
+                    Code = apiResponse.Code,
+                    Message = ex.Message,
+                    Data = apiResponse.Data
+                };
             }
         }
         else

@@ -3,6 +3,7 @@
     x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallMoveTwoStepView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
     xmlns:dx="http://schemas.devexpress.com/maui"
     xmlns:localViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
     xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
@@ -73,7 +74,6 @@
             Padding="16,24,16,0"
             Style="{StaticResource RoundedWhiteBorder}">
             <Grid RowDefinitions="Auto, *" RowSpacing="8">
-
                 <Grid
                     Grid.Row="0"
                     Margin="0,0,0,8"
@@ -165,8 +165,13 @@
                         FontColor="{StaticResource Primary700}"
                         PlaceholderText="Sacos" />
                 </dx:DataGridView>
+
+                <controls:MainButtonControl
+                    Grid.Row="1"
+                    Command="{Binding GoToThreeStepCommand}"
+                    Text="Siguiente"
+                    VerticalOptions="End" />
             </Grid>
         </Border>
-
     </Grid>
 </ContentPage>

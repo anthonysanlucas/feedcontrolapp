@@ -1,12 +1,141 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallMoveThreeStepView"
-             Title="InventoryWallMoveThreeStepView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="ec.com.naturisa.mobile.feedcontrol.Features.Inventory.Views.InventoryWallMoveThreeStepView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Controls"
+    xmlns:inventoryViewModels="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels"
+    xmlns:models="clr-namespace:ec.com.naturisa.mobile.feedcontrol.Models"
+    Padding="0"
+    x:DataType="inventoryViewModels:InventoryWallMoveThreeStepViewModel"
+    BackgroundColor="{StaticResource Secondary}"
+    Shell.BackgroundColor="{StaticResource Secondary}">
+    <Shell.TitleView>
+        <Label Style="{StaticResource ShellTitleLabel}" Text="Nuevo viaje" />
+    </Shell.TitleView>
+    <Grid RowDefinitions="Auto, *" RowSpacing="16">
+        <VerticalStackLayout
+            Grid.Row="0"
+            Padding="16"
+            Spacing="8">
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="6">
+                <Label
+                    FontSize="16"
+                    HorizontalOptions="End"
+                    Style="{StaticResource GoogleFont}"
+                    Text="{x:Static models:IconFont.Preview}"
+                    TextColor="{StaticResource OnSecondary}" />
+                <Label
+                    Style="{StaticResource RegularLabel}"
+                    Text="Vista previa"
+                    TextColor="{StaticResource OnSecondary}" />
+            </HorizontalStackLayout>
+            <Label
+                HorizontalOptions="Center"
+                Style="{StaticResource RegularLabel}"
+                Text="{Binding LongDate}"
+                TextColor="{StaticResource Primary900}" />
+            <Grid
+                Grid.Row="2"
+                Margin="0,16,0,0"
+                RowDefinitions="auto,auto"
+                RowSpacing="8">
+                <HorizontalStackLayout
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Spacing="8">
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="1" />
+                    </Frame>
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundFrame}">
+                        <Label Style="{StaticResource SteperRoundLabel}" Text="2" />
+                    </Frame>
+                    <Label
+                        FontSize="18"
+                        Style="{StaticResource GoogleFont}"
+                        Text="{x:Static models:IconFont.Arrow_right_alt}"
+                        TextColor="{StaticResource OnSecondary}" />
+                    <Frame Style="{StaticResource SteperRoundAccentFrame}">
+                        <Label Style="{StaticResource SteperRoundAccentLabel}" Text="3" />
+                    </Frame>
+                </HorizontalStackLayout>
+            </Grid>
+        </VerticalStackLayout>
+
+        <Border
+            Grid.Row="1"
+            Padding="16,24,16,0"
+            Style="{StaticResource RoundedWhiteBorder}">
+            <Grid RowDefinitions="*">
+                <Grid RowDefinitions="Auto, *" RowSpacing="16">
+                    <Grid
+                        ColumnDefinitions="120, *"
+                        ColumnSpacing="8"
+                        RowDefinitions="Auto, Auto, Auto"
+                        RowSpacing="8">
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Spacing="4">
+                            <Label Text="Origen" TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding SelectedPool.Name}"
+                                TextColor="{StaticResource Primary700}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Spacing="4">
+                            <Label Text="Destino" TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding SelectedOtherPool.Name}"
+                                TextColor="{StaticResource Primary700}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Spacing="4">
+                            <Label Text="Vehículo" TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding SelectedTransport.NumberPlate}"
+                                TextColor="{StaticResource Primary700}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Spacing="4">
+                            <Label Text="Transportista" TextColor="{StaticResource OnSecondary}" />
+                            <Label
+                                Style="{StaticResource RegularLabel}"
+                                Text="{Binding SelectedFreightTransporter.FullName}"
+                                TextColor="{StaticResource Primary700}" />
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid Grid.Row="1" RowDefinitions="Auto, Auto">
+
+                        <!--  TABLA  -->
+
+
+                    </Grid>
+                </Grid>
+
+                <controls:MainButtonControl
+                    Command="{Binding CreateWallReasignationCommand}"
+                    IsBusy="{Binding IsBusy}"
+                    Text="Crear reasignación" />
+            </Grid>
+        </Border>
+    </Grid>
 </ContentPage>

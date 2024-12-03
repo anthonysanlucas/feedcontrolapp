@@ -1,15 +1,13 @@
-﻿using System.Net.Http.Json;
-
-namespace ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.PoolTransfer
+﻿namespace ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.PoolTransfer
 {
-    public partial class PoolTransferService : BaseHttpService
+    public partial class PoolTransferService : BaseHttpService, IPoolTransferService
     {
         private static class PoolTransferEndpoints
         {
             public const string PoolTransfer = $"{ApiConstants.API_FEED_CONTROL}/pool_transfers";
         }
 
-        public PoolTransferService(string baseAddress) : base(baseAddress)
+        public PoolTransferService() : base(ApiConstants.API_FEED_CONTROL)
         {
         }
 

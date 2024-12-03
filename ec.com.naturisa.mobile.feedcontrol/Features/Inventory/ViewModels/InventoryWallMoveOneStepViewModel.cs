@@ -30,12 +30,12 @@ public partial class InventoryWallMoveOneStepViewModel : BaseViewModel
     {
         Transports = new ObservableCollection<TransportResponse>
         {
-            new TransportResponse { NumberPlate = "GCT5936" }
+            new TransportResponse { IdTransport = 10, NumberPlate = "GTN2016" }
         };
 
         FreightTransporters = new ObservableCollection<FreightTransporterResponse>
         {
-            new FreightTransporterResponse { FirstName = "Nelson", LastName = "Zambrano" },
+            new FreightTransporterResponse { IdFreightTransporter= 16, FirstName = "Nelson", LastName = "Zambrano" },
         };
 
         Pools = new ObservableCollection<PoolsResponse>

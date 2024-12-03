@@ -1,9 +1,4 @@
 ﻿using DevExpress.Maui;
-using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
-using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.PoolTransfer;
-using ec.com.naturisa.mobile.feedcontrol.Services.MasterData.Product;
-using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransfer;
-using ec.com.naturisa.mobile.feedcontrol.Services.WarehouseTransferDetail;
 using System.Reflection;
 
 namespace ec.com.naturisa.mobile.feedcontrol
@@ -49,6 +44,7 @@ namespace ec.com.naturisa.mobile.feedcontrol
             builder.Services.AddSingleton<ITransportService, TransportService>();
             builder.Services.AddSingleton<IFreightTransporterService, FreightTransporterService>();
             builder.Services.AddSingleton<IPoolTransferService, PoolTransferService>();
+            builder.Services.AddSingleton<IPoolBalanceService, PoolBalanceService>();
 
             builder.Services.AddSingleton<IProductService, ProductService>();
             #endregion

@@ -67,3 +67,6 @@ global using ec.com.naturisa.mobile.feedcontrol.Models.FeedControl.PoolTransferD
 global using ec.com.naturisa.mobile.feedcontrol.Services.MasterData.Product;
 global using ec.com.naturisa.mobile.feedcontrol.Features.Inventory.ViewModels;
 global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.PoolTransfer;
+global using ec.com.naturisa.mobile.feedcontrol.Models.FeedControl.PoolBalance;
+global using ec.com.naturisa.mobile.feedcontrol.Services.FeedControl.PoolBalance;
+global using ec.com.naturisa.mobile.feedcontrol.Services.Ap1.Pools;
